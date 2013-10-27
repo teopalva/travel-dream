@@ -1,0 +1,1 @@
+Place where put deliveries
