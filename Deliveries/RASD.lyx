@@ -81,6 +81,15 @@
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Introduzione
 \end_layout
@@ -224,45 +233,6 @@ Lista degli acquisti:
  Questi pacchetti non possono essere ne modificati, ne cancellati dai TDC.
 \end_layout
 
-\begin_layout Itemize
-
-\emph on
-Personalizzazione di un prodotto base:
-\emph default
- Possibilità che può essere lasciata al TDC di personalizzare un prodotto
- base.
- L'elenco di personalizzazioni è fornito dal sistema.
- 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Un esempio è la classe di un volo aereo: il TDE inserisce nel prodotto base
- (chiamato volo aereo <nome_compagnia>) l'opzione di personalizzazione 
-\begin_inset Quotes eld
-\end_inset
-
-business class
-\begin_inset Quotes erd
-\end_inset
-
- ed 
-\begin_inset Quotes eld
-\end_inset
-
-economic class
-\begin_inset Quotes erd
-\end_inset
-
-, poi sarà il TDC in fase di personalizzazione pacchetto che deciderà quale
- delle due utilizzare
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Section
 Descrizione generale
 \end_layout
@@ -319,10 +289,10 @@ TravelDream customer (TDC)
 TravelDream customer (TDC): Utente finale del servizio offerto dall'azienda,
  deve potersi registrare nel sistema.
  Succussivamente utilizzando username e password scelti in fase di registrazione
- deve potersi autenticare per accedere alle funzionalità.
+ deve potersi autenticare per accedere alle funzionalità dedicate agli utenti
+ registrati.
  Sono presenti due modalità di navigazione: ricerca per destinazione del
  viaggio oppure è possibile per loro navigare all'interno di un catalogo.
- Un'offerta è costituita da un pacchetto personalizzabile.
  L'utente dopo averlo selezionato può solo modificare i vari prodotti base
  che lo compongono.
  Inoltre è prevista la possibilità per un TDC di creare un pacchetto personalizz
@@ -330,7 +300,6 @@ ato contenente i singoli prodotti base di suo gradimento.
  E' possibile invitare degli amici esterni al sistema ad unirsi ai pacchetti,
  per fare questo è necessario inserire l'email alla quale verrà recapitato
  un messaggio contenente l'invito.
- Tra due TDC possono sussistere rapporti di amicizia.
 \end_layout
 
 \begin_layout Subsubsection
@@ -421,11 +390,11 @@ Sicurezza.
  registrato e amministratore.
  Questo può essere realizzato chiedendo all’utente di autenticarsi inserendo
  il proprio indirizzo e-mail e la password.
- La pas- sword può essere memorizzata nel database salvandone, al posto
- del testo in chiaro, il valore di una opportuna funzione di hash, in modo
- che l’accesso diretto al database da parte dell’amministratore di sistema
- o di altri utenti non permetta di recuperare le pas- sword (che sono il
- dato più sensibile tra quelli memorizzati nel sistema).
+ La password può essere memorizzata nel database salvandone, al posto del
+ testo in chiaro, il valore di una opportuna funzione di hash, in modo che
+ l’accesso diretto al database da parte dell’amministratore di sistema o
+ di altri utenti non permetta di recuperare le pas- sword (che sono il dato
+ più sensibile tra quelli memorizzati nel sistema).
  Gli account degli amministratori sono predefiniti, mentre quelli degli
  utenti registrati sono soggetti a una registrazione autonoma.
  In secondo luogo, poiché il sistema permette l’inseri- mento di dati da
@@ -2095,6 +2064,168 @@ Requisiti speciali
 \end_layout
 
 \begin_layout Subsubsection
+Conferma avvenuto pagamento
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente deve essere autenticato nel sistema come TDE, il pacchetto viaggio
+ deve stato acquistato da un TDC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente accede all'area pacchetti viaggio acquistati ma non pagati
+\end_layout
+
+\begin_layout Enumerate
+L'utente seleziona il pacchetto viaggio desiderato
+\end_layout
+
+\begin_layout Enumerate
+L'utente modifica il campo 
+\begin_inset Quotes eld
+\end_inset
+
+pagato
+\begin_inset Quotes erd
+\end_inset
+
+ e conferma l'operazione
+\end_layout
+
+\begin_layout Enumerate
+Il sistema salva le modifiche
+\end_layout
+
+\begin_layout Enumerate
+L'utente viene reindirizzato alla pagina principale
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Il pacchetto in questione risulta pagato
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
 Visualizzare catalogo
 \end_layout
 
@@ -2531,7 +2662,7 @@ Requisiti speciali
 \end_layout
 
 \begin_layout Subsubsection
-Acquistare prodotto lista regali di un amico
+Acquistare prodotto lista regali di un utente
 \end_layout
 
 \begin_layout Standard
@@ -2575,7 +2706,7 @@ Precondizioni
 
 \begin_layout Plain Layout
 L'utente deve essere autenticato nel sistema come TDC, l'utente deve essere
- sulla pagina del pacchetto che un utente amico ha nella lista regali
+ sulla pagina che mostra la lista regali di un altro utente
 \end_layout
 
 \end_inset
@@ -2595,19 +2726,23 @@ Flusso degli eventi
 \begin_inset Text
 
 \begin_layout Enumerate
-L'utente preme il pulsante 
-\begin_inset Quotes eld
-\end_inset
-
-acquista per <nome_amico>
-\begin_inset Quotes erd
-\end_inset
-
-
+L'utente ricerca il pacchetto che desidera regalare scrollando la lista
 \end_layout
 
 \begin_layout Enumerate
-L'utente conferma l'operazione
+L'utente clicca sul pacchetto che desidera regalare
+\end_layout
+
+\begin_layout Enumerate
+L'utente clicca sul tasto 
+\begin_inset Quotes eld
+\end_inset
+
+regala
+\begin_inset Quotes erd
+\end_inset
+
+ e conferma l'operazione 
 \end_layout
 
 \end_inset
@@ -2627,7 +2762,8 @@ Postcondizioni
 \begin_inset Text
 
 \begin_layout Plain Layout
-Il pacchetto è acquistato per l'utente amico
+Il pacchetto risulta acquistato dall'utente che lo aveva inserito nella
+ lista regali
 \end_layout
 
 \end_inset
@@ -2681,7 +2817,7 @@ Requisiti speciali
 \end_layout
 
 \begin_layout Subsubsection
-Accettare richiesta
+Visualizzare un pacchetto
 \end_layout
 
 \begin_layout Standard
@@ -2704,7 +2840,7 @@ Attori
 \begin_inset Text
 
 \begin_layout Plain Layout
-TDF, TDC
+TDF
 \end_layout
 
 \end_inset
@@ -2724,8 +2860,7 @@ Precondizioni
 \begin_inset Text
 
 \begin_layout Plain Layout
-L'utente deve aver ricevuto sulla sua casella mail un invito per unirsi
- ad un viaggio
+Un TDC deve aver invitato il TDF via mail
 \end_layout
 
 \end_inset
@@ -2749,23 +2884,150 @@ L'utente clicca sul link fornito nella mail
 \end_layout
 
 \begin_layout Enumerate
-L'utente viene reindirizzato ad una pagina speciale di registrazione
+L'utente viene reindirizzato in una pagina che mostra i dettagli del pacchetto
+ a cui è stato invitato
 \end_layout
 
-\begin_layout Enumerate
-L'utente esegue la registrazione o il login
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
 \end_layout
 
-\begin_layout Enumerate
-L'utente viene reindirizzato sulla pagina del pacchetto
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
 \end_layout
 
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Accettare invito per unirsi ad un pacchetto
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente deve aver ricevuto sulla sua casella mail un invito per unirsi
+ ad un viaggio e deve aver già cliccato sul link
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
 \begin_layout Enumerate
-L'utente perme il pulsante 
+L'utente clicca sul pulsante 
 \begin_inset Quotes eld
 \end_inset
 
-accetta richiesta
+accetta invito
 \begin_inset Quotes erd
 \end_inset
 
@@ -2773,7 +3035,16 @@ accetta richiesta
 \end_layout
 
 \begin_layout Enumerate
-Il sistema registra l'azione
+L'utente può decidere se eseguire il login oppure registrarsi in ogni caso
+ alla fine della relativa procedura si autentica
+\end_layout
+
+\begin_layout Enumerate
+L'utente viene reindirizzato ad una pagina che chiede la conferma definitiva
+\end_layout
+
+\begin_layout Enumerate
+L'utente conferma
 \end_layout
 
 \begin_layout Enumerate
@@ -2817,144 +3088,7 @@ Eccezioni
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Requisiti speciali
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsubsection
-Visualizzare un'offerta
-\end_layout
-
-\begin_layout Standard
-\begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
-<features tabularvalignment="middle">
-<column alignment="left" valignment="top" width="0">
-<column alignment="left" valignment="top" width="8cm">
-<row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Attori
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-??
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Precondizioni
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-??
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Flusso degli eventi 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Enumerate
-??
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Postcondizioni
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Eccezioni
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
+L'utente chiude il browser prima della fine della procedura
 \end_layout
 
 \end_inset
