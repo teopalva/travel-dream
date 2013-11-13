@@ -261,11 +261,11 @@ TravelDream
 \end_inset
 
 .
- L’obiettivo del prodotto è supportare gli utenti che vogliono prenotare
+ Obiettivo del prodotto è quello di supportare gli utenti che vogliono prenotare
  un viaggio durante la procedura di scelta e acquisto del pacchetto desiderato.
- Inoltre sarà dato un ampio supporto all'azienda durante le procedure di
- inserimento/modifica/cancellazione dei vari pacchetti e di tutte le componenti
- che li costituiscono.
+ Inoltre il sistema darà un ampio supporto all'azienda omonima durante le
+ procedure di inserimento/modifica/cancellazione dei vari pacchetti e di
+ tutte le componenti che li costituiscono.
 \end_layout
 
 \begin_layout Subsection
@@ -378,11 +378,30 @@ Descrizione generale
 \end_layout
 
 \begin_layout Subsection
+Prospettiva del prodotto
+\end_layout
+
+\begin_layout Standard
+Il sistema proposto è un’applicazione web di e-commerce, fruibile pubblicamente
+ tramite un comune web browser inserendo l'indirizzo web del sito TravelDream.
+\end_layout
+
+\begin_layout Subsection
 Considerazioni preliminari
+\end_layout
+
+\begin_layout Standard
+Di seguito si elencano alcuni punti di disambiguazione e precisazione rispetto
+ alla generica specifica di progetto fornita.
 \end_layout
 
 \begin_layout Subsection
 Caratteristiche degli utenti
+\end_layout
+
+\begin_layout Standard
+Il target dell’applicazione sono tutti gli utenti adulti che decidano di
+ usufruire del sito, accettando i termini e le condizioni del servizio.
 \end_layout
 
 \begin_layout Subsection
