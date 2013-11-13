@@ -287,12 +287,8 @@ li nel modo che viene ritenuto più opportuno.
 \end_layout
 
 \begin_layout Standard
-Ogni utente registrato nel sistema possiede una lista di amici e una lista
- di pacchetti regalo.
- Per aumentare i propri amici è sufficiente richiedere l'amicizia ad un
- altro utente (che poi dovrà confermare).
- In qualsiasi momento è possibile scorrere la lista regali dei propri amici
- e se un utente lo desidera può acquistare un pacchetto regalandolo.
+Ogni utente registrato nel sistema possiede una lista di pacchetti regalo,
+ visualizzabile dagli altri utenti tramite ricerca per email.
 \end_layout
 
 \begin_layout Standard
@@ -301,10 +297,10 @@ La procedura di acquisto di un pacchetto inizia subito dopo che un utente
  delle modifiche riguardanti solo date e orari, ovviamente il sistema controlla
  la coerenza tra le date dei voli e le date di check-in, check-out degli
  hotel.
- Dopo la personalizzazione è possibile acquistare subito il pacchetto, inserirlo
+ Dopo la personalizzazione è possibile acquistare il pacchetto, inserirlo
  nella propria lista regali oppure invitare degli amici ad unirsi al viaggio,
- in tal caso l'acquisto del pacchetto resterà in sospeso finchè gli utenti
- invitati non avranno confermato la partecipazione.
+ in tal caso l'acquisto del pacchetto resterà in sospeso finchè tutti gli
+ utenti invitati non avranno confermato la propria partecipazione.
 \end_layout
 
 \begin_layout Subsection
@@ -328,8 +324,8 @@ Prodotto base:
 \emph on
 Pacchetto viaggio: 
 \emph default
-Insieme di prodotti base, viene memorizzato anche il numero di persone che
- possono usufruire del pacchetto.
+E' un insieme di prodotti base che formano un viaggio completo, studiato
+ per un certo numero di partecipanti.
  Un TDE può decidere di applicare uno sconto ad un pacchetto, lo sconto
  viene perso alla prima modifica che un TDC fa al pacchetto.
 \begin_inset Note Note
@@ -358,10 +354,12 @@ Azienda patner:
 \emph on
 Lista regali:
 \emph default
- Insieme di pacchetti associata ad un TDC che non sono ancora stati acquistati.
- Ogni pacchetto presente non può più essere personalizzato.Un TDC ha la possibili
-tà di visionare la lista dei propri amici, e nel caso lo desideri può acquistare
- uno tra i pacchetti presenti.
+ E' l'insieme di pacchetti personalizzati da un TDC di cui non si è però
+ proceduto con l'acquisto.
+ Ogni pacchetto presente non può essere successivamente personalizzato.
+ La necessità di questa lista è data dal fatto che i pacchetti presenti
+ sono visibili agli altri utenti i quali hanno la possibilità di regalarli
+ al TDC proprietario della lista.
 \end_layout
 
 \begin_layout Itemize
@@ -432,14 +430,14 @@ TravelDream customer (TDC): Utente finale del servizio offerto dall'azienda,
  deve potersi autenticare per accedere alle funzionalità dedicate agli utenti
  registrati.
  Sono presenti due modalità di navigazione: ricerca per destinazione del
- viaggio oppure è possibile per loro navigare all'interno di un catalogo.
+ viaggio oppure esplorazione del catalogo.
  L'utente dopo averlo selezionato può solo modificare i vari prodotti base
  che lo compongono.
  Inoltre è prevista la possibilità per un TDC di creare un pacchetto personalizz
 ato contenente i singoli prodotti base di suo gradimento.
- E' possibile invitare degli amici esterni al sistema ad unirsi ai pacchetti,
- per fare questo è necessario inserire l'email alla quale verrà recapitato
- un messaggio contenente l'invito.
+ E' possibile invitare degli amici esterni al sistema ad unirsi ai pacchetti
+ viaggio, per fare questo è necessario inserire l'email alla quale verrà
+ recapitato un messaggio contenente l'invito.
 \end_layout
 
 \begin_layout Subsubsection
@@ -448,7 +446,8 @@ TravelDream customer's friend (TDF)
 
 \begin_layout Itemize
 TravelDream customer's friend (TDF): Attore esterno al sistema che riceve
- mediante email l'invito da parte di un TDC.
+ mediante email l'invito da parte di un TDC a diventare partecipante ad
+ un pacchetto viaggio.
  Con questo invito il TDF può visualizzare i dettagli del pacchetto proposto
  e ogni singolo prodotto base associato.
  Dal momento che decide di accettare la richiesta diventa a sua volta un
@@ -476,9 +475,8 @@ Semplicità di utilizzo.
 
 \begin_layout Itemize
 Portabilità.
- Il client dev’essere compatibile con tutte le piattaforme hardware e soft-
- ware più diffuse, al fine di raggiungere il maggior numero possibile di
- utenti.
+ Il client dev’essere compatibile con tutte le piattaforme hardware e software
+ più diffuse, al fine di raggiungere il maggior numero possibile di utenti.
  Questo requisito è soddisfatto realizzando il client come applicazione
  web: in questo modo, le uniche assunzioni che devono essere soddisfatte
  dagli utenti sono la disponibilità di un browser web e di una connessione
@@ -487,14 +485,14 @@ Portabilità.
 
 \begin_layout Itemize
 Prestazioni.
- Per poter fornire un servizio adeguato, il sistema dev’essere sufficiente-
- mente reattivo e capace di rispondere a un numero, anche elevato, di richieste
- con- temporanee: pertanto, la potenza di calcolo dei server che erogano
- il servizio e la larghezza di banda a disposizione devono essere dimensionate
+ Per poter fornire un servizio adeguato, il sistema dev’essere sufficientemente
+ reattivo e capace di rispondere a un numero, anche elevato, di richieste
+ contemporanee: pertanto, la potenza di calcolo dei server che erogano il
+ servizio e la larghezza di banda a disposizione devono essere dimensionate
  in maniera adeguata al carico.
  Poiché non è possibile fare assunzioni sulla velocità di connessione degli
  utenti (che in generale può variare molto), è necessario che il volume
- di traffico che deve es- sere scambiato tra client e server sia contenuto,
+ di traffico che deve essere scambiato tra client e server sia contenuto,
  e che nel caso sia necessario scambiare dati di grosse dimensioni, l’interfacci
 a dell’applicazione renda l’utente consapevole di quello che sta avvenendo.
  
@@ -505,8 +503,8 @@ Disponibilità.
  Il sistema dovrà soddisfare dei requisiti di disponibilità, in particolare
  dovrà essere sempre disponibile, 24 ore su 24, e i sistemi su cui funzioneranno
  i server dovranno permettere gli interventi di manutenzione più ordinari
- (ad esempio la sosti- tuzione dei dischi rigidi) senza compromettere la
- disponibilità del servizio.
+ (ad esempio la sostituzione dei dischi rigidi) senza compromettere la disponibi
+lità del servizio.
  Il sistema comunque non è critico, pertanto alcuni rari brevi periodi di
  indisponibilità in caso di problemi al server sono accettabili.
 \end_layout
@@ -526,28 +524,22 @@ Sicurezza.
  Una qualità fondamentale di ogni servizio erogato tramite Internet e che
  gestisce i dati degli utenti è la sicurezza.
  In primo luogo, è necessario gestire in modo sicuro e corretto l’autenticazione
- degli utenti, ossia distinguere i ruoli di utente non registrato, utente
- registrato e amministratore.
+ degli utenti, ossia distinguere i ruoli di utente e amministratore.
  Questo può essere realizzato chiedendo all’utente di autenticarsi inserendo
  il proprio indirizzo e-mail e la password.
  La password può essere memorizzata nel database salvandone, al posto del
  testo in chiaro, il valore di una opportuna funzione di hash, in modo che
  l’accesso diretto al database da parte dell’amministratore di sistema o
- di altri utenti non permetta di recuperare le pas- sword (che sono il dato
+ di altri utenti non permetta di recuperare le password (che sono il dato
  più sensibile tra quelli memorizzati nel sistema).
  Gli account degli amministratori sono predefiniti, mentre quelli degli
  utenti registrati sono soggetti a una registrazione autonoma.
- In secondo luogo, poiché il sistema permette l’inseri- mento di dati da
- parte degli utenti, destinati all’inserimento in query sul database oppure
- in pagine visualizzate da altri utenti, sarà necessario prevederne un opportu-
- no filtraggio al fine di impedire vulnerabilità di sicurezza, ad esempio,
+ In secondo luogo, poiché il sistema permette l’inserimento di dati da parte
+ degli utenti, destinati all’inserimento in query sul database oppure in
+ pagine visualizzate da altri utenti, sarà necessario prevederne un opportuno
+ filtraggio al fine di impedire vulnerabilità di sicurezza, ad esempio,
  SQL injection o cross site scripting (XSS).
- Inoltre, potrà essere migliorata la sicurezza del software attuando una
- protezione dei dati in trasmissione mediante il supporto al protocollo
- HTTPS, almeno per la fase di autenticazione.
- Tuttavia, il supporto a questo protocollo viene rimandato a una versione
- futura del software poiché richiede l’acquisto di un certificato firmato
- da un’autorità di certificazione riconosciuta.
+ 
 \end_layout
 
 \begin_layout Section
@@ -590,8 +582,8 @@ Easy Jet
 \end_layout
 
 \begin_layout Standard
-Successivamente crea un nuovo pacchetto che contiene il prodotto base appena
- creato e altri prodotti base già presenti nel sistema.
+Successivamente vuole creare un nuovo pacchetto che contiene il prodotto
+ base appena creato e altri prodotti base già presenti nel sistema.
  
 \end_layout
 
@@ -657,8 +649,8 @@ Gianluca, che sta cercando un viaggio da fare ad Amsterdam con la moglie,
  arriva tramite una ricerca al sito TravelDream.
  Gianluca, interessato alle offerte, come prima cosa effettua la registrazione
  al sistema inserendo i dati richiesti.
- Una volta ottenuti i dati per l'autenticazione, verifica l'account ed esegue
- il login, quindi accede all'area di ricerca e digita 
+ Una volta completata la procedura esegue il login, quindi accede all'area
+ di ricerca e digita 
 \begin_inset Quotes eld
 \end_inset
 
@@ -722,7 +714,7 @@ El Hotel Pacha
 
 .
  Dopo aver selezionato il pacchetto inserisce le date di inizio e fine vacanza
- (che per questo pacchetto non erano state inserite da un TDE data la ampia
+ (che per questo pacchetto non erano state impostate da un TDE data la ampia
  disponibilità di posti durante tutto l'arco dell'anno).
  Siccome il pacchetto scelto è da 3 persone decide di invitare i suoi due
  amici Andrea e Marco, per fare questo invia un' email a ciascuno con l'apposito
@@ -741,8 +733,8 @@ Il sistema genera automaticamente il link per invitare Andrea e Marco.
  è da 3 persone (e non è possibile modificare questo numero), non lo ritengono
  più conveniente e lo scartano.
  A questo punto Matteo, invece di acquistare uno dei pacchetti proposti
- dall'agenzia, decide di creare un pacchetto analogo a quello scartato ma
- per solo due persone e lo acquista.
+ dall'agenzia, decide di creare ed acquistare un pacchetto per solo due
+ persone analogo a quello scartato.
 \end_layout
 
 \begin_layout Subsubsection
@@ -810,7 +802,7 @@ Capo Verde
  tre mesi.
  Siccome nel sistema è già presente un prodotto base di questo tipo, quest'ultim
 o andrà ampliato aggiungendo anche questa nuova data.
- Per fare ciò Andrea accede al sistema eseguendo il login, ricerca il prodotto
+ Per farlo Andrea accede al sistema eseguendo il login, ricerca il prodotto
  dal nome 
 \begin_inset Quotes eld
 \end_inset
