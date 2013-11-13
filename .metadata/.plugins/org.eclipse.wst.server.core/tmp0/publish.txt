@@ -1,3 +1,0 @@
-#GlassFish 3
-#Sun Oct 27 17:46:37 CET 2013
-org.eclipse.jst.jee.server\:TravelDreamEAR=/Users/gianluca/glassfish4/glassfish/domains/domain1/eclipseApps/TravelDreamEAR
