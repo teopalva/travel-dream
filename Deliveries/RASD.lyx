@@ -105,8 +105,8 @@ L’obiettivo di questo documento è fornire una specifica dei requisiti che
 \end_layout
 
 \begin_layout Standard
-A chi è rivolto Questo documento è rivolto sia agli sviluppatori del progetto
- TravelDream che a tutti gli altri stakeholder del progetto.
+Questo documento è rivolto sia agli sviluppatori del progetto TravelDream
+ che a tutti gli altri stakeholder del progetto.
  Per quanto riguarda i primi, il documento assume importanza nel momento
  in cui è necessario stabilire una coerenza tra lo sviluppo e le richieste
  elaborate.
@@ -120,12 +120,21 @@ Obiettivo
 \end_layout
 
 \begin_layout Standard
-Il sistema che verrà realizzato è un applicativo software denominato TravelDream.
+Il sistema che verrà realizzato è un applicativo software di e-commerce
+ denominato 
+\begin_inset Quotes eld
+\end_inset
+
+TravelDream
+\begin_inset Quotes erd
+\end_inset
+
+.
  L’obiettivo del prodotto è supportare gli utenti che vogliono prenotare
  un viaggio durante la procedura di scelta e acquisto del pacchetto desiderato.
- Inoltre sarà dato un ampio supporto all'azienda TravelDream durante le
- procedure di inserimento/modifica/cancellazione dei vari pacchetti e tutte
- le componenti che li costituiscono.
+ Inoltre sarà dato un ampio supporto all'azienda durante le procedure di
+ inserimento/modifica/cancellazione dei vari pacchetti e di tutte le componenti
+ che li costituiscono.
 \end_layout
 
 \begin_layout Subsection
