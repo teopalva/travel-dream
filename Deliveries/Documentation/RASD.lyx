@@ -309,6 +309,35 @@ Glossario
 
 \begin_layout Itemize
 
+\shape italic
+TravelDream Employee:
+\shape default
+ Successivamente chiamato TDE, rappresenta un impiegato di TravelDream che
+ ha caratteristiche di amministratore e può quindi inserire contenuti nel
+ sistema.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+TravelDream Customer:
+\shape default
+ Utente finale di TravelDream, successivamente chiamato TDC, che usufruisce
+ dei servizi messi a disposizione dal portale e non ha privilegi amministrativi.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+TravelDream Customer Friend:
+\shape default
+ Utente esterno al sistema, che chiameremo successivamente TDF, è invitato
+ da un TDC esistente a partecipare come entità TDC nel sistema.
+\end_layout
+
+\begin_layout Itemize
+
 \emph on
 Prodotto base:
 \emph default
@@ -682,8 +711,14 @@ Caratteristiche degli utenti
 \end_layout
 
 \begin_layout Standard
-Il target dell’applicazione sono tutti gli utenti adulti che decidano di
- usufruire del sito, accettando i termini e le condizioni del servizio.
+Gli utenti del sistema si dividono in due categorie: Amministratori (TDE)
+ e Clienti (TDC).
+ E' previsto infatti l'utilizzo dell'applicativo sia dal punto di vista
+ degli impiegati di TravelDream, che inseriscono i contenuti, che dei clienti,
+ che usufruiscono del serivizio.
+ Questi ultimi vengono considerati come utenti adulti che decidono di usufruire
+ del servizio, accettando i termini e le condizioni dichiarati al momento
+ di registrazione.
 \end_layout
 
 \begin_layout Subsection
@@ -691,19 +726,23 @@ Vincoli ed assunzioni
 \end_layout
 
 \begin_layout Standard
-Il principale vincolo risiede nell’utilizzo della piattaforma J2EE versione
- 7 e della tecnologia degli Enterprise Java Beans (EJB) per la realizzazione
- dell’applicazione.
- Assumiamo che gli utenti del sistema abbiano a disposizione un browser
- web compatibile con HTML5, una connessione ad Internet ed un proprio indirizzo
+Il principale vincolo di sviluppo risiede nell’utilizzo della piattaforma
+ J2EE versione 7 e della tecnologia degli Enterprise Java Beans (EJB) per
+ la realizzazione dell’applicazione.
+\end_layout
+
+\begin_layout Standard
+Assumiamo che gli utenti del sistema abbiano a disposizione un browser web
+ compatibile con HTML5, una connessione ad Internet ed un proprio indirizzo
  di posta elettronica.
- L'azienda TravelDream dovrà possedere o affittare una macchina server (o
+\end_layout
+
+\begin_layout Standard
+L'azienda TravelDream dovrà possedere o affittare una macchina server (o
  una macchina virtuale) su cui far girare Glassfish versione 4 e MySQL come
  DBMS (database management system) per poter memorizzare i dati necessari
  al funzionamento.
- Ulteriori dettagli sulle assunzioni relative ai sistemi con cui TravelDream
- deve interagire sono rimandati a una fase successiva, e saranno contenuti
- nel Design Document.
+ 
 \end_layout
 
 \begin_layout Subsection
