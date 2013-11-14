@@ -410,19 +410,23 @@ Gestione prodotti base
 \end_layout
 
 \begin_deeper
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [RF1] Visualizzazione prodotti base esistenti
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [RF2] Aggiunta di un nuovo prodotto base
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [RF3] Modifica di un prodotto base
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [RF4] Eliminazione di un prodotto base
 \begin_inset VSpace medskip
 \end_inset
@@ -430,16 +434,17 @@ Gestione prodotti base
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [NRF1] Il sistema deve essere in grado di gestire una grande quantità di
  prodotti base
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [NRF2] Il sistema deve prevedere la personalizzazione dei prodotti base
 \end_layout
 
-\end_deeper
 \end_deeper
 \begin_layout Itemize
 
@@ -448,19 +453,23 @@ Gestione pacchetti viaggio
 \end_layout
 
 \begin_deeper
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [RF1] Visualizzazione pacchetti esistenti
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [RF2] Aggiunta di un nuovo pacchetto
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [RF3] Modifica di un pacchetto
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [RF4] Eliminazione di un pacchetto
 \begin_inset VSpace medskip
 \end_inset
@@ -468,7 +477,8 @@ Gestione pacchetti viaggio
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [NRF1] Il sistema deve garantire il supporto di un numero elevato di pacchetti
  viaggio
 \end_layout
@@ -481,11 +491,13 @@ Gestione ordini
 \end_layout
 
 \begin_deeper
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [RF1] Visualizzazione ordini degli utenti
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [RF2] Registrazione dei pagamenti ricevuti 
 \begin_inset VSpace medskip
 \end_inset
@@ -493,11 +505,13 @@ Gestione ordini
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
 [NRF1] Il sistema deve essere in grado di mantenere dati persistenti riguardo
  gli ordini di tutti gli utenti
 \end_layout
 
+\end_deeper
 \end_deeper
 \begin_layout Itemize
 
