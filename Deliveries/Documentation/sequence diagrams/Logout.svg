@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="204" version="1.1" width="556" xmlns="http://www.w3.org/2000/svg">
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="63" y2="68"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="73" y2="78"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="83" y2="88"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="93" y2="98"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="103" y2="108"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="113" y2="118"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="123" y2="128"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="133" y2="138"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="143" y2="148"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="153" y2="158"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="163" y2="168"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="173" y2="178"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="478" x2="478" y1="183" y2="188"/>
+<rect fill="#ffffff" height="126" stroke="#ffffff" stroke-width="1" width="20" x="468" y="63"/>
+<rect fill="none" height="126" stroke="#000000" stroke-width="1" width="20" x="468" y="63"/>
+<rect fill="#ffffff" height="50" stroke="#ffffff" stroke-width="1" width="128" x="414" y="14"/>
+<rect fill="none" height="50" stroke="#000000" stroke-width="1" width="128" x="414" y="14"/>
+<text font-family="Lucida Grande" font-size="13" x="451" y="28">
+:Sistema</text>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="63" y2="68"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="73" y2="78"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="83" y2="88"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="93" y2="98"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="103" y2="108"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="113" y2="118"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="123" y2="128"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="133" y2="138"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="143" y2="148"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="153" y2="158"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="163" y2="168"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="173" y2="178"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="89" x2="89" y1="183" y2="188"/>
+<rect fill="#ffffff" height="126" stroke="#ffffff" stroke-width="1" width="20" x="79" y="63"/>
+<rect fill="none" height="126" stroke="#000000" stroke-width="1" width="20" x="79" y="63"/>
+<rect fill="#ffffff" height="50" stroke="#ffffff" stroke-width="1" width="150" x="14" y="14"/>
+<rect fill="none" height="50" stroke="#000000" stroke-width="1" width="150" x="14" y="14"/>
+<text font-family="Lucida Grande" font-size="13" x="73" y="28">
+:TDC</text>
+<polyline fill="none" points="99,86 468,86" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="456" x2="468" y1="93" y2="86"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="456" x2="468" y1="79" y2="86"/>
+<text font-family="Lucida Grande" font-size="13" x="208" y="81">
+1:Richiesta di logout</text>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="468" x2="463" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="458" x2="453" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="443" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="438" x2="433" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="428" x2="423" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="418" x2="413" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="408" x2="403" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="398" x2="393" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="388" x2="383" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="378" x2="373" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="368" x2="363" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="358" x2="353" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="348" x2="343" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="338" x2="333" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="328" x2="323" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="318" x2="313" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="308" x2="303" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="298" x2="293" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="288" x2="283" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="278" x2="273" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="268" x2="263" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="258" x2="253" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="248" x2="243" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="238" x2="233" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="228" x2="223" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="218" x2="213" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="208" x2="203" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="198" x2="193" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="188" x2="183" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="178" x2="173" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="168" x2="163" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="158" x2="153" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="148" x2="143" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="138" x2="133" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="128" x2="123" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="113" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="108" x2="103" y1="142" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="111" x2="99" y1="135" y2="142"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="111" x2="99" y1="149" y2="142"/>
+<text font-family="Lucida Grande" font-size="13" x="183" y="137">
+2:Reindirizzamento home page</text>
+</svg>
