@@ -1373,6 +1373,10 @@ L'utente inserisce tutti i campi del prodotto e da conferma
 Il sistema salva il prodotto
 \end_layout
 
+\begin_layout Enumerate
+L'utente viene reindirizzato alla pagine principale
+\end_layout
+
 \end_inset
 </cell>
 </row>
@@ -1521,6 +1525,10 @@ L'utente elimina il pacchetto e conferma l'eliminazione
 
 \begin_layout Enumerate
 Il sistema cancella il pacchetto
+\end_layout
+
+\begin_layout Enumerate
+L'utente viene reindirizzato alla pagina principale
 \end_layout
 
 \end_inset
@@ -1673,6 +1681,10 @@ L'utente modifica le parti desiderate
 Il sistema aggiorna il pacchetto
 \end_layout
 
+\begin_layout Enumerate
+L'utente viene reindirizzato alla pagina principale
+\end_layout
+
 \end_inset
 </cell>
 </row>
@@ -1821,6 +1833,10 @@ L'utente aggiunge un insieme di prodotti base al pacchetto e da conferma
 
 \begin_layout Enumerate
 Il sistema crea il pacchetto
+\end_layout
+
+\begin_layout Enumerate
+L'utente viene reindirizzato alla pagina principale
 \end_layout
 
 \end_inset
@@ -1973,6 +1989,10 @@ L'utente elimina il pacchetto confermando l'eliminazione
 Il sistema elimina il pacchetto
 \end_layout
 
+\begin_layout Enumerate
+L'utente viene reindirizzato alla pagina principale
+\end_layout
+
 \end_inset
 </cell>
 </row>
@@ -2044,7 +2064,7 @@ Requisiti speciali
 \end_layout
 
 \begin_layout Subsubsection
-Modificare composizione pacchetto viaggio
+Modificare composizione pacchetto
 \end_layout
 
 \begin_layout Standard
@@ -2108,7 +2128,7 @@ Flusso degli eventi
 \begin_inset Text
 
 \begin_layout Enumerate
-L'utente accede all'area di modifica pacchetti viaggio
+L'utente accede all'area pacchetti viaggio
 \end_layout
 
 \begin_layout Enumerate
@@ -2121,6 +2141,10 @@ L'utente modifica la composizione del pacchetto confermando alla fine
 
 \begin_layout Enumerate
 Il sistema modifica il pacchetto
+\end_layout
+
+\begin_layout Enumerate
+L'utente viene reindirizzato alla pagina principale
 \end_layout
 
 \end_inset
@@ -2274,19 +2298,15 @@ pagato
 \begin_inset Quotes erd
 \end_inset
 
- impostando il valore 
-\begin_inset Quotes eld
-\end_inset
-
-si
-\begin_inset Quotes erd
-\end_inset
-
  e conferma l'operazione
 \end_layout
 
 \begin_layout Enumerate
 Il sistema salva le modifiche
+\end_layout
+
+\begin_layout Enumerate
+L'utente viene reindirizzato alla pagina principale
 \end_layout
 
 \end_inset
@@ -2543,12 +2563,8 @@ Precondizioni
 <cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Enumerate
-L'utente deve essere autenticato nel sistema
-\end_layout
-
-\begin_layout Enumerate
-L'utente deve essere all'interno del catalogo
+\begin_layout Plain Layout
+L'utente deve essere autenticato nel sistemai
 \end_layout
 
 \end_inset
@@ -2568,11 +2584,11 @@ Flusso degli eventi
 \begin_inset Text
 
 \begin_layout Enumerate
-L'utente inserisce le parole chiavi per la ricerca e conferma
+L'utente accede alla sezione di ricerca pacchetti viaggio
 \end_layout
 
 \begin_layout Enumerate
-Il sistema esegue una ricerca in base alle preferenze inserite dall'utente
+L'utente inserisce le parole chiavi per la ricerca e conferma
 \end_layout
 
 \begin_layout Enumerate
@@ -2692,12 +2708,9 @@ Precondizioni
 <cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Enumerate
-L'utente deve essere autenticato nel sistema come TDC,
-\end_layout
-
-\begin_layout Enumerate
-L'utente deve essere sulla pagina del pacchetto
+\begin_layout Plain Layout
+L'utente deve essere autenticato nel sistema come TDC, l'utente deve essere
+ sulla pagina del pacchetto
 \end_layout
 
 \end_inset
@@ -2730,11 +2743,6 @@ acquista
 
 \begin_layout Enumerate
 L'utente conferma l'operazione
-\end_layout
-
-\begin_layout Enumerate
-Il sistema modifica il pacchetto inserendolo nella lista degli acquisti
- non pagati dell'utente
 \end_layout
 
 \end_inset
@@ -2808,7 +2816,7 @@ Requisiti speciali
 \end_layout
 
 \begin_layout Subsubsection
-Acquistare pacchetto lista regali di un utente
+Acquistare prodotto lista regali di un utente
 \end_layout
 
 \begin_layout Standard
@@ -2851,7 +2859,8 @@ Precondizioni
 \begin_inset Text
 
 \begin_layout Plain Layout
-L'utente deve essere autenticato nel sistema come TDC
+L'utente deve essere autenticato nel sistema come TDC, l'utente deve essere
+ sulla pagina che mostra la lista regali di un altro utente
 \end_layout
 
 \end_inset
@@ -2871,27 +2880,7 @@ Flusso degli eventi
 \begin_inset Text
 
 \begin_layout Enumerate
-L'utente accede all'area ricerca utenti
-\end_layout
-
-\begin_layout Enumerate
-L'utente inserisce la mail di un altro utente
-\end_layout
-
-\begin_layout Enumerate
-L'utente clicca su 
-\begin_inset Quotes eld
-\end_inset
-
-lista desideri
-\begin_inset Quotes erd
-\end_inset
-
- dell'utente trovato
-\end_layout
-
-\begin_layout Enumerate
-L'utente scorre la lista alla ricerca del pacchetto che vuole regalare
+L'utente ricerca il pacchetto che desidera regalare scrollando la lista
 \end_layout
 
 \begin_layout Enumerate
@@ -2908,11 +2897,6 @@ regala
 \end_inset
 
  e conferma l'operazione 
-\end_layout
-
-\begin_layout Enumerate
-Il sistema inserisce il pacchetto nella lista dei comprati ma non pagati
- dell'utente che lo aveva precedentemente inserito nella lista regali
 \end_layout
 
 \end_inset
@@ -2953,7 +2937,7 @@ Eccezioni
 \begin_inset Text
 
 \begin_layout Plain Layout
-L'utente cercato non viene trovato perchè non presente nel sistema
+
 \end_layout
 
 \end_inset
@@ -3218,7 +3202,7 @@ L'utente conferma
 \end_layout
 
 \begin_layout Enumerate
-Il sistema salva la preferenza come accettata
+L'utente viene reindirizzato alla pagina principale
 \end_layout
 
 \end_inset
