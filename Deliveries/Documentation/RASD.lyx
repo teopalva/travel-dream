@@ -309,6 +309,35 @@ Glossario
 
 \begin_layout Itemize
 
+\shape italic
+TravelDream Employee:
+\shape default
+ Successivamente chiamato TDE, rappresenta un impiegato di TravelDream che
+ ha caratteristiche di amministratore e può quindi inserire contenuti nel
+ sistema.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+TravelDream Customer:
+\shape default
+ Utente finale di TravelDream, successivamente chiamato TDC, che usufruisce
+ dei servizi messi a disposizione dal portale e non ha privilegi amministrativi.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+TravelDream Customer Friend:
+\shape default
+ Utente esterno al sistema, che chiameremo successivamente TDF, è invitato
+ da un TDC esistente a partecipare come entità TDC nel sistema.
+\end_layout
+
+\begin_layout Itemize
+
 \emph on
 Prodotto base:
 \emph default
@@ -382,8 +411,292 @@ Prospettiva del prodotto
 \begin_layout Standard
 Il sistema proposto è un’applicazione web di e-commerce, fruibile pubblicamente
  tramite un comune web browser inserendo l'indirizzo web del sito TravelDream.
+ 
 \end_layout
 
+\begin_layout Standard
+Sono state definite due sezioni principali: una per gli utenti amministratori
+ (TDE) e uno per gli utenti finali (TDC e TDF).
+ 
+\end_layout
+
+\begin_layout Standard
+In particolare le sezioni, di cui se ne specificano i requisiti funzionali
+ [RF] e i non funzionali [RNF], si articolano nel seguente modo:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Amministrazione
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione prodotti base
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione prodotti base esistenti
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Aggiunta di un nuovo prodotto base
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Modifica di un prodotto base
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF4] Eliminazione di un prodotto base
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF1] Il sistema deve essere in grado di gestire una grande quantità di
+ prodotti base
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF2] Il sistema deve prevedere la personalizzazione dei prodotti base
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione pacchetti viaggio
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione pacchetti esistenti
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Aggiunta di un nuovo pacchetto
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Modifica di un pacchetto
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF4] Eliminazione di un pacchetto
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF1] Il sistema deve garantire il supporto di un numero elevato di pacchetti
+ viaggio
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione ordini
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione ordini degli utenti
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Registrazione dei pagamenti ricevuti 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF1] Il sistema deve essere in grado di mantenere dati persistenti riguardo
+ gli ordini di tutti gli utenti
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Interfaccia utente
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\shape italic
+Esplorazione del sito
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione catalogo
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Ricerca per destinazione viaggio
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Ricerca di una lista regali di un altro utente mediante inserimento
+ dell'email
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione utenza
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Registrazione
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Login
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Logout
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF1] Le password degli utenti devono essere memorizzate in modo sicuro
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF2] Il sistema deve supportare un numero elevato di utenti
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Personalizzazione pacchetto
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Inserimento nuovi prodotti base
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Modifica date/orari e classe dei prodotti base
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Conferma pacchetto viaggio
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Acquisto pacchetto 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Aggiunta pacchetto alla lista regali
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Visualizzazione ordini effettuati
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione lista ordini
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Controllo ricevuta pagamenti
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF1] Il sistema deve garantire tutela dei dati riservati per gli ordini
+ effettuati
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione lista regali
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione lista regali
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Eliminazione pacchetti dalla lista regali
+\end_layout
+
+\end_deeper
+\end_deeper
 \begin_layout Subsection
 Considerazioni preliminari
 \end_layout
@@ -398,8 +711,14 @@ Caratteristiche degli utenti
 \end_layout
 
 \begin_layout Standard
-Il target dell’applicazione sono tutti gli utenti adulti che decidano di
- usufruire del sito, accettando i termini e le condizioni del servizio.
+Gli utenti del sistema si dividono in due categorie: Amministratori (TDE)
+ e Clienti (TDC).
+ E' previsto infatti l'utilizzo dell'applicativo sia dal punto di vista
+ degli impiegati di TravelDream, che inseriscono i contenuti, che dei clienti,
+ che usufruiscono del serivizio.
+ Questi ultimi vengono considerati come utenti adulti che decidono di usufruire
+ del servizio, accettando i termini e le condizioni dichiarati al momento
+ di registrazione.
 \end_layout
 
 \begin_layout Subsection
@@ -407,19 +726,23 @@ Vincoli ed assunzioni
 \end_layout
 
 \begin_layout Standard
-Il principale vincolo risiede nell’utilizzo della piattaforma J2EE versione
- 7 e della tecnologia degli Enterprise Java Beans (EJB) per la realizzazione
- dell’applicazione.
- Assumiamo che gli utenti del sistema abbiano a disposizione un browser
- web compatibile con HTML5, una connessione ad Internet ed un proprio indirizzo
+Il principale vincolo di sviluppo risiede nell’utilizzo della piattaforma
+ J2EE versione 7 e della tecnologia degli Enterprise Java Beans (EJB) per
+ la realizzazione dell’applicazione.
+\end_layout
+
+\begin_layout Standard
+Assumiamo che gli utenti del sistema abbiano a disposizione un browser web
+ compatibile con HTML5, una connessione ad Internet ed un proprio indirizzo
  di posta elettronica.
- L'azienda TravelDream dovrà possedere o affittare una macchina server (o
+\end_layout
+
+\begin_layout Standard
+L'azienda TravelDream dovrà possedere o affittare una macchina server (o
  una macchina virtuale) su cui far girare Glassfish versione 4 e MySQL come
  DBMS (database management system) per poter memorizzare i dati necessari
  al funzionamento.
- Ulteriori dettagli sulle assunzioni relative ai sistemi con cui TravelDream
- deve interagire sono rimandati a una fase successiva, e saranno contenuti
- nel Design Document.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -612,9 +935,7 @@ Il pacchetto che Francesco vuole inserire è un viaggio Milano-Berlino dal
 \end_layout
 
 \begin_layout Itemize
-un volo Easy Jet che parte il 23 Ottobre alle 21 (informazione ottenuta
- dal sistema automatico EasyJet).
- 
+un volo Easy Jet che parte il 23 Ottobre alle 21 
 \end_layout
 
 \begin_layout Itemize
@@ -655,7 +976,7 @@ Una volta terminato l'inserimento dei prodotti base, controlla il prezzo
 €
 \emph default
  per due persone.
- Francesco salva poi il pacchetto che viene poi reso disponibile per l'acquisto
+ Francesco salva il pacchetto che viene reso quindi disponibile per l'acquisto
  nel sistema.
 \end_layout
 
@@ -711,10 +1032,10 @@ Un TDC organizza un viaggio con degli amici
 \end_layout
 
 \begin_layout Standard
-Matteo, da tempo registrato e quindi TDC decide di fare un viaggio insieme
+Matteo, da tempo registrato su TravelDream, decide di fare un viaggio insieme
  ai suoi amici Andrea e Marco.
- Esegue una rapida ricerca su TravelDream e trova quasi subito il pacchetto
- che comprende due notti ad Ibiza presso 
+ Esegue una rapida ricerca e trova quasi subito il pacchetto che comprende
+ due notti ad Ibiza presso 
 \begin_inset Quotes eld
 \end_inset
 
@@ -727,7 +1048,7 @@ El Hotel Pacha
 \begin_inset Quotes eld
 \end_inset
 
- Can Marçà
+Can Marçà
 \begin_inset Quotes erd
 \end_inset
 
@@ -735,17 +1056,20 @@ El Hotel Pacha
  Dopo aver selezionato il pacchetto inserisce le date di inizio e fine vacanza
  (che per questo pacchetto non erano state impostate da un TDE data la ampia
  disponibilità di posti durante tutto l'arco dell'anno).
- Siccome il pacchetto scelto è da 3 persone decide di invitare i suoi due
- amici Andrea e Marco, per fare questo invia un' email a ciascuno con l'apposito
- pulsante presente nell'interfaccia del sistema.
+ Siccome il pacchetto scelto è specifico per un gruppo di 3 persone decide
+ di invitare i suoi due amici Andrea e Marco, quindi, tramite l'apposito
+ pulsante presente nell'interfaccia, il sistema genera il link della pagina
+ contente i dettagli del pacchetto formulato da Matteo e invia la mail contenent
+e quest'ultimo ad Andrea e Marco.
+ 
 \end_layout
 
 \begin_layout Standard
-Il sistema genera automaticamente il link per invitare Andrea e Marco.
- Dopo aver ricevuto la telefonata di Matteo, Andrea decide di unirsi alla
- vacanza, apre il portatile, si connette alla sua casella di posta elettronica
- e vede l'invito del suo amico, clicca sul link raggiungendo il sito (da
- questo momento può essere considerato un TDC) e si registra nel sistema.
+Dopo aver ricevuto la telefonata di Matteo, Andrea decide di unirsi alla
+ vacanza, apre il portatile, si connette alla sua casella di posta elettronica,
+ vede l'invito del suo amico, clicca sul link raggiungendo il sito (da questo
+ momento può essere considerato un TDC) e, dopo aver visualizzato il pacchetto
+ e decidendo di aderirvi, si registra nel sistema.
  Marco invece, non essendo soddisfatto della destinazione scelta, decide
  di rifiutare la vacanza, quindi cancella la mail.
  Andrea e Matteo decidono ugualmente di partire, ma dal momento che il pacchetto
