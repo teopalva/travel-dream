@@ -968,9 +968,12 @@ Eccezioni
 <cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
-\begin_layout Plain Layout
-L'utente inserisce una mail non valida; L'utente inserisce una password
- troppo corta
+\begin_layout Enumerate
+L'utente inserisce una mail non valida
+\end_layout
+
+\begin_layout Enumerate
+L'utente inserisce una password troppo corta
 \end_layout
 
 \end_inset
