@@ -896,9 +896,7 @@ Il pacchetto che Francesco vuole inserire è un viaggio Milano-Berlino dal
 \end_layout
 
 \begin_layout Itemize
-un volo Easy Jet che parte il 23 Ottobre alle 21 (informazione ottenuta
- dal sistema automatico EasyJet).
- 
+un volo Easy Jet che parte il 23 Ottobre alle 21 
 \end_layout
 
 \begin_layout Itemize
@@ -939,7 +937,7 @@ Una volta terminato l'inserimento dei prodotti base, controlla il prezzo
 €
 \emph default
  per due persone.
- Francesco salva poi il pacchetto che viene poi reso disponibile per l'acquisto
+ Francesco salva il pacchetto che viene reso quindi disponibile per l'acquisto
  nel sistema.
 \end_layout
 
@@ -995,10 +993,10 @@ Un TDC organizza un viaggio con degli amici
 \end_layout
 
 \begin_layout Standard
-Matteo, da tempo registrato e quindi TDC decide di fare un viaggio insieme
+Matteo, da tempo registrato su TravelDream, decide di fare un viaggio insieme
  ai suoi amici Andrea e Marco.
- Esegue una rapida ricerca su TravelDream e trova quasi subito il pacchetto
- che comprende due notti ad Ibiza presso 
+ Esegue una rapida ricerca e trova quasi subito il pacchetto che comprende
+ due notti ad Ibiza presso 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1011,7 +1009,7 @@ El Hotel Pacha
 \begin_inset Quotes eld
 \end_inset
 
- Can Marçà
+Can Marçà
 \begin_inset Quotes erd
 \end_inset
 
@@ -1019,17 +1017,20 @@ El Hotel Pacha
  Dopo aver selezionato il pacchetto inserisce le date di inizio e fine vacanza
  (che per questo pacchetto non erano state impostate da un TDE data la ampia
  disponibilità di posti durante tutto l'arco dell'anno).
- Siccome il pacchetto scelto è da 3 persone decide di invitare i suoi due
- amici Andrea e Marco, per fare questo invia un' email a ciascuno con l'apposito
- pulsante presente nell'interfaccia del sistema.
+ Siccome il pacchetto scelto è specifico per un gruppo di 3 persone decide
+ di invitare i suoi due amici Andrea e Marco, quindi, tramite l'apposito
+ pulsante presente nell'interfaccia, il sistema genera il link della pagina
+ contente i dettagli del pacchetto formulato da Matteo e invia la mail contenent
+e quest'ultimo ad Andrea e Marco.
+ 
 \end_layout
 
 \begin_layout Standard
-Il sistema genera automaticamente il link per invitare Andrea e Marco.
- Dopo aver ricevuto la telefonata di Matteo, Andrea decide di unirsi alla
- vacanza, apre il portatile, si connette alla sua casella di posta elettronica
- e vede l'invito del suo amico, clicca sul link raggiungendo il sito (da
- questo momento può essere considerato un TDC) e si registra nel sistema.
+Dopo aver ricevuto la telefonata di Matteo, Andrea decide di unirsi alla
+ vacanza, apre il portatile, si connette alla sua casella di posta elettronica,
+ vede l'invito del suo amico, clicca sul link raggiungendo il sito (da questo
+ momento può essere considerato un TDC) e, dopo aver visualizzato il pacchetto
+ e decidendo di aderirvi, si registra nel sistema.
  Marco invece, non essendo soddisfatto della destinazione scelta, decide
  di rifiutare la vacanza, quindi cancella la mail.
  Andrea e Matteo decidono ugualmente di partire, ma dal momento che il pacchetto
