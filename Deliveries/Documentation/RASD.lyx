@@ -221,6 +221,13 @@ LatexCommand tableofcontents
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Introduzione
 \end_layout
@@ -704,6 +711,115 @@ Considerazioni preliminari
 \begin_layout Standard
 Di seguito si elencano alcuni punti di disambiguazione e precisazione rispetto
  alla generica specifica di progetto fornita.
+\end_layout
+
+\begin_layout Standard
+Nelle seguenti specifiche, rispetto alla consegna originale si sono adottate
+ le seguenti convenzioni:
+\end_layout
+
+\begin_layout Enumerate
+I pacchetti base, dal punto di vista di un TDE, vengono considerati come
+ pacchetti 
+\begin_inset Quotes eld
+\end_inset
+
+vuoti
+\begin_inset Quotes erd
+\end_inset
+
+ che non vanno a specificare nel dettaglio il pacchetto.
+ Ad esempio, se un TDE volesse inserire un prodotto base per un volo Alitalia,
+ dovrebbe selezionare il pacchetto base 
+\begin_inset Quotes eld
+\end_inset
+
+Volo Alitalia
+\begin_inset Quotes erd
+\end_inset
+
+ e successivamente personalizzarlo con date e orari del volo e classe del
+ volo (Business,Economica).
+ I pacchetti base sono dunque dei contenitori che hanno bisogno di personalizzaz
+ione per essere consistenti.
+\end_layout
+
+\begin_layout Enumerate
+Un utente TDC non può comprare un singolo pacchetto base, se volesse procedere
+ con questa operazione, per esempio comprare solo un alloggio in hotel,
+ dovrebbe creare un pacchetto contenente il solo pacchetto base personalizzato
+ con le date di check-in/check out e tipologia di camera.
+\end_layout
+
+\begin_layout Enumerate
+Per modifica (personalizzazione) di un pacchetto da parte di un TDC si intende
+ modifica delle date/orari e della classe di volo/tipologia di camera (in
+ ogni caso vista come 
+\begin_inset Quotes eld
+\end_inset
+
+classe
+\begin_inset Quotes erd
+\end_inset
+
+ nel sistema), da parte di un TDE invece si intende anche come rimozione/modific
+a/aggiunta di prodotti base al pacchetto.
+\end_layout
+
+\begin_layout Enumerate
+La procedura di invito degli amici a partecipare ad un pacchetto viaggio
+ non è vincolante: se gli invitati non confermano la partecipazione, il
+ pacchetto può essere comunque acquistato ma si pagherà l'intera quota prevista
+ da TravelDream per il numero di partecipanti inizialmente previsto.
+ Il sistema notificherà durante la procedura d'acquisto se gli invitati
+ non hanno ancora confermato la partecipazione.
+\end_layout
+
+\begin_layout Enumerate
+L'acquisto del pacchetto è formalizzabile solo dal TDC che ha inviato gli
+ inviti, i TDC invitati hanno solo la possibilità di confermare la partecipazion
+e.
+ Il pagamento risulterà effettuato dal TDC 
+\begin_inset Quotes eld
+\end_inset
+
+invitante
+\begin_inset Quotes erd
+\end_inset
+
+ e l'ordine comparirà nella lista degli ordini di quest'ultimo.
+\end_layout
+
+\begin_layout Standard
+Infine, si è deciso di sviluppare il sistema sotto forma di web application
+ e, in quanto gruppo di tre persone, si sono dovuti integrare anche un sistema
+ che controlla la consistenza di tutti i prodotti contenuti in un pacchetto
+ viaggio e una lista regali nella quale l'utente avrà la possibilità di
+ inserire pacchetti viaggio.
+\end_layout
+
+\begin_layout Standard
+In particolare, durante la costituzione di un pacchetto viaggio viene controllat
+o che:
+\end_layout
+
+\begin_layout Enumerate
+Le date di arrivo/ritorno tramite il mezzo di trasporto scelto coincidano
+ con le date di check-in e check-out presso l'hotel
+\end_layout
+
+\begin_layout Enumerate
+Il luogo di arrivo del mezzo di trasporto di andata e il lugo di partenza
+ di ritorno coincidano con il luogo dell'hotel
+\end_layout
+
+\begin_layout Standard
+Per quanto riguarda la lista regali, quest'ultima è una funzionalità che
+ permette ai TDC di inserire, anche previa personalizzazione, dei pacchetti
+ viaggio che saranno poi visibili ad altri TDC in modo che questi ultimi
+ possano regalarli al TDC proprietario della lista.
+ Una volta regalato il pacchetto, questo scompare dalla lista regali e compare
+ nella lista dei pacchetti ordinati del TDC che lo riceve.
 \end_layout
 
 \begin_layout Subsection
