@@ -382,8 +382,278 @@ Prospettiva del prodotto
 \begin_layout Standard
 Il sistema proposto è un’applicazione web di e-commerce, fruibile pubblicamente
  tramite un comune web browser inserendo l'indirizzo web del sito TravelDream.
+ 
 \end_layout
 
+\begin_layout Standard
+Sono state definite due sezioni principali: una per gli utenti amministratori
+ (TDE) e uno per gli utenti finali (TDC e TDF).
+ 
+\end_layout
+
+\begin_layout Standard
+In particolare le sezioni, di cui se ne specificano i requisiti funzionali
+ [RF] e i non funzionali [RNF], si articolano nel seguente modo:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Amministrazione
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione prodotti base
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+[RF1] Visualizzazione prodotti base esistenti
+\end_layout
+
+\begin_layout Standard
+[RF2] Aggiunta di un nuovo prodotto base
+\end_layout
+
+\begin_layout Standard
+[RF3] Modifica di un prodotto base
+\end_layout
+
+\begin_layout Standard
+[RF4] Eliminazione di un prodotto base
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[NRF1] Il sistema deve essere in grado di gestire una grande quantità di
+ prodotti base
+\end_layout
+
+\begin_layout Standard
+[NRF2] Il sistema deve prevedere la personalizzazione dei prodotti base
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione pacchetti viaggio
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+[RF1] Visualizzazione pacchetti esistenti
+\end_layout
+
+\begin_layout Standard
+[RF2] Aggiunta di un nuovo pacchetto
+\end_layout
+
+\begin_layout Standard
+[RF3] Modifica di un pacchetto
+\end_layout
+
+\begin_layout Standard
+[RF4] Eliminazione di un pacchetto
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[NRF1] Il sistema deve garantire il supporto di un numero elevato di pacchetti
+ viaggio
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione ordini
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+[RF1] Visualizzazione ordini degli utenti
+\end_layout
+
+\begin_layout Standard
+[RF2] Registrazione dei pagamenti ricevuti 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+[NRF1] Il sistema deve essere in grado di mantenere dati persistenti riguardo
+ gli ordini di tutti gli utenti
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Interfaccia utente
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\shape italic
+Esplorazione del sito
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione catalogo
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Ricerca per destinazione viaggio
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Ricerca di una lista regali di un altro utente mediante inserimento
+ dell'email
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione utenza
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Registrazione
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Login
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Logout
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF1] Le password degli utenti devono essere memorizzate in modo sicuro
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF2] Il sistema deve supportare un numero elevato di utenti
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Personalizzazione pacchetto
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Inserimento nuovi prodotti base
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Modifica date/orari e classe dei prodotti base
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Conferma pacchetto viaggio
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Acquisto pacchetto 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Aggiunta pacchetto alla lista regali
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Visualizzazione ordini effettuati
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione lista ordini
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Controllo ricevuta pagamenti
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF1] Il sistema deve garantire tutela dei dati riservati per gli ordini
+ effettuati
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione lista regali
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione lista regali
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Eliminazione pacchetti dalla lista regali
+\end_layout
+
+\end_deeper
+\end_deeper
 \begin_layout Subsection
 Considerazioni preliminari
 \end_layout
