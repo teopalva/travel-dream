@@ -1,19 +1,34 @@
 abstract sig User {}
 
 sig TDE extends User {}
+sig TDF extends User {
+	tdc: lone TDC
+}
+
 sig TDC extends User {
 	giftList: one GiftList,
 	buyingList: one BuyingList
 }
 
-abstract sig BaseProduct {}
+abstract sig BaseProduct {
+	possiblePersonalization: set (DatePersonalization + ClassPersonalization)
+}
 
-sig Excursion extends BaseProduct {}
-sig Flight extends BaseProduct {}
-sig Hotel extends BaseProduct {}
+sig Excursion extends BaseProduct {
+} 
+fact {
+	Excursion.possiblePersonalization & ClassPersonalization = none
+}
+
+sig Flight extends BaseProduct {
+}
+
+sig Hotel extends BaseProduct {
+}
 
 sig PersonalizedProduct {
-	product: one (Excursion + Flight + Hotel)
+	product: one BaseProduct,
+	personalization: set (DatePersonalization + ClassPersonalization)
 }
 
 sig Package  {
@@ -27,13 +42,17 @@ abstract sig PackageList {
 sig GiftList extends PackageList {}
 sig BuyingList extends PackageList {}
 
-/*
 sig Invitation {
 	invite: one TDC,
-	invited: one TDC,
+	invited: one TDF,
 	package: one Package
 }
-*/
+
+abstract sig Personalization {}
+
+sig DatePersonalization extends Personalization {}
+sig ClassPersonalization extends Personalization {}
+
 
 //Model became realistic - mandatory constraints
 fact every_list_has_one_and_only_one_TDC {
@@ -56,6 +75,18 @@ fact every_personalized_product_contained_in_package {
 	all p: PersonalizedProduct | one pkg: Package | p in pkg.products
 }
 
+fact TDC_cant_invite_himself {
+	all invitation: Invitation | invitation.invited.tdc != invitation.invite
+}
+
+fact TDC_cant_invite_to_a_package_in_a_list {
+	all invitation: Invitation | not one i: PackageList | invitation.package in i.packageList
+}
+
+fact PersonalizedProduct_can_contains_only_possible_personalization {
+	all p: PersonalizedProduct | p.personalization in p.product.possiblePersonalization
+}
+
 //Some optional constraints - can be omitted
 
 fact every_package_2flight_1hotel_1excursion {
@@ -71,6 +102,11 @@ assert at_least_one_package_has_no_list {
 	#(PackageList.packageList) = #Package
 }
 
+//I don't want to find an example - Base product personalized with option that is not possible
+assert BaseProduct_personalized_with_option_that_is_possible_not {
+	all p: PersonalizedProduct | p.personalization in p.product.possiblePersonalization
+}
+
 pred show {
 	#Flight > 1
 	#Hotel > 1
@@ -79,8 +115,11 @@ pred show {
 	#Package >= 1
 	#TDE > 1
 	#TDC > 1
+	#Invitation > 0
+	#Personalization = 3
 }
 
-run show for 6
+run show for 6 but 1 Invitation
 
-//check at_least_one_package_has_no_list for 14
+//check at_least_one_package_has_no_list for 15
+//check BaseProduct_personalized_with_option_that_is_possible_not for 15
