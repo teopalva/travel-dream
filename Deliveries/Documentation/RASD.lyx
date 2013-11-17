@@ -719,8 +719,8 @@ Nelle seguenti specifiche, rispetto alla consegna originale si sono adottate
 \end_layout
 
 \begin_layout Enumerate
-I pacchetti base, dal punto di vista di un TDE, vengono considerati come
- pacchetti 
+I prodotti base, dal punto di vista di un TDE, vengono considerati come
+ prodotti base 
 \begin_inset Quotes eld
 \end_inset
 
@@ -730,7 +730,7 @@ vuoti
 
  che non vanno a specificare nel dettaglio il pacchetto.
  Ad esempio, se un TDE volesse inserire un prodotto base per un volo Alitalia,
- dovrebbe selezionare il pacchetto base 
+ dovrebbe selezionare il prodotto base 
 \begin_inset Quotes eld
 \end_inset
 
@@ -740,8 +740,8 @@ Volo Alitalia
 
  e successivamente personalizzarlo con date e orari del volo e classe del
  volo (Business,Economica).
- I pacchetti base sono dunque dei contenitori che hanno bisogno di personalizzaz
-ione per essere consistenti.
+ I prodotti base sono dunque dei contenitori che hanno bisogno di personalizzazi
+one per essere consistenti.
 \end_layout
 
 \begin_layout Enumerate
