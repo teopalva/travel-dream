@@ -719,8 +719,8 @@ Nelle seguenti specifiche, rispetto alla consegna originale si sono adottate
 \end_layout
 
 \begin_layout Enumerate
-I pacchetti base, dal punto di vista di un TDE, vengono considerati come
- pacchetti 
+I prodotti base, dal punto di vista di un TDE, vengono considerati come
+ prodotti base 
 \begin_inset Quotes eld
 \end_inset
 
@@ -730,7 +730,7 @@ vuoti
 
  che non vanno a specificare nel dettaglio il pacchetto.
  Ad esempio, se un TDE volesse inserire un prodotto base per un volo Alitalia,
- dovrebbe selezionare il pacchetto base 
+ dovrebbe selezionare il prodotto base 
 \begin_inset Quotes eld
 \end_inset
 
@@ -740,8 +740,8 @@ Volo Alitalia
 
  e successivamente personalizzarlo con date e orari del volo e classe del
  volo (Business,Economica).
- I pacchetti base sono dunque dei contenitori che hanno bisogno di personalizzaz
-ione per essere consistenti.
+ I prodotti base sono dunque dei contenitori che hanno bisogno di personalizzazi
+one per essere consistenti.
 \end_layout
 
 \begin_layout Enumerate
@@ -823,7 +823,7 @@ Per quanto riguarda la lista regali, quest'ultima è una funzionalità che
  viaggio che saranno poi visibili ad altri TDC in modo che questi ultimi
  possano regalarli al TDC proprietario della lista.
  Una volta regalato il pacchetto, questo scompare dalla lista regali e compare
- nella lista dei pacchetti ordinati del TDC che lo riceve.
+ nelle liste di entrambi i TDC coinvolti.
 \end_layout
 
 \begin_layout Subsection
@@ -887,10 +887,9 @@ TravelDream customer (TDC)
 
 \begin_layout Itemize
 TravelDream customer (TDC): Utente finale del servizio offerto dall'azienda,
- deve potersi registrare nel sistema.
- Succussivamente utilizzando username e password scelti in fase di registrazione
- deve potersi autenticare per accedere alle funzionalità dedicate agli utenti
- registrati.
+ registrato nel sistema.
+ Un utente non registrato ha la necessità di registrarsi per accedere a
+ tutte le funzionalità del sistema.
  Sono presenti due modalità di navigazione: ricerca per destinazione del
  viaggio oppure esplorazione del catalogo.
  L'utente dopo averlo selezionato può solo modificare i vari prodotti base
@@ -912,7 +911,8 @@ TravelDream customer's friend (TDF): Attore esterno al sistema che riceve
  un pacchetto viaggio.
  Con questo invito il TDF può visualizzare i dettagli del pacchetto proposto
  e ogni singolo prodotto base associato.
- Dal momento che decide di accettare la richiesta diventa a sua volta un
+ Dal momento che decide di accettare la richiesta, gli viene proposto di
+ effettuare il login o registrarsi e viene poi visto dal sistema come un
  TDC.
 \end_layout
 
@@ -1187,9 +1187,9 @@ e quest'ultimo ad Andrea e Marco.
 \begin_layout Standard
 Dopo aver ricevuto la telefonata di Matteo, Andrea decide di unirsi alla
  vacanza, apre il portatile, si connette alla sua casella di posta elettronica,
- vede l'invito del suo amico, clicca sul link raggiungendo il sito (da questo
- momento può essere considerato un TDC) e, dopo aver visualizzato il pacchetto
- e decidendo di aderirvi, si registra nel sistema.
+ vede l'invito del suo amico, clicca sul link raggiungendo il sito e, dopo
+ aver visualizzato il pacchetto e decidendo di aderirvi, si registra nel
+ sistema.
  Marco invece, non essendo soddisfatto della destinazione scelta, decide
  di rifiutare la vacanza, quindi cancella la mail.
  Andrea e Matteo decidono ugualmente di partire, ma dal momento che il pacchetto
@@ -1393,7 +1393,8 @@ Postcondizioni
 \begin_inset Text
 
 \begin_layout Plain Layout
-Viene creato un profilo utente e l'utente effettua automaticamente il login
+Viene creato un profilo utente TDC e l'utente effettua automaticamente il
+ login
 \end_layout
 
 \end_inset
@@ -2827,7 +2828,7 @@ Attori
 \begin_inset Text
 
 \begin_layout Plain Layout
-TDC
+Utente non registrato o TDC
 \end_layout
 
 \end_inset
@@ -2847,7 +2848,7 @@ Precondizioni
 \begin_inset Text
 
 \begin_layout Plain Layout
-L'utente deve essere autenticato nel sistema come TDC
+L'utente deve essere sulla home page del sistema
 \end_layout
 
 \end_inset
@@ -2968,7 +2969,7 @@ Attori
 \begin_inset Text
 
 \begin_layout Plain Layout
-TDC
+Utente non registrato o TDC
 \end_layout
 
 \end_inset
@@ -2986,10 +2987,6 @@ Precondizioni
 </cell>
 <cell alignment="left" valignment="top" topline="true" usebox="none">
 \begin_inset Text
-
-\begin_layout Enumerate
-L'utente deve essere autenticato nel sistema
-\end_layout
 
 \begin_layout Enumerate
 L'utente deve essere all'interno del catalogo
@@ -3596,7 +3593,7 @@ Attori
 \begin_inset Text
 
 \begin_layout Plain Layout
-TDC
+TDF
 \end_layout
 
 \end_inset
@@ -3682,7 +3679,8 @@ Postcondizioni
 \begin_inset Text
 
 \begin_layout Plain Layout
-La richiesta di aggiunta di un utente ad un pacchetto è accettata
+La richiesta di aggiunta di un utente ad un pacchetto è accettata, il TDF
+ è diventato TDC
 \end_layout
 
 \end_inset
