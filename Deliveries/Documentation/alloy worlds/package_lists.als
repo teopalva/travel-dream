@@ -87,6 +87,7 @@ fact PersonalizedProduct_can_contains_only_possible_personalization {
 	all p: PersonalizedProduct | p.personalization in p.product.possiblePersonalization
 }
 
+
 fact BasicProduct_must_have_a_personalization {
 	all b: BaseProduct | #(b.possiblePersonalization) > 0
 }
@@ -112,9 +113,21 @@ assert BaseProduct_personalized_with_option_that_is_possible_not {
 }
 
 pred show {
+	//#Flight > 1
+	//#Hotel > 1
+	//#Excursion > 1
+	//#PersonalizedProduct > 1
+	
+	#TDE = 1
+	#TDC = 1
+	#TDF = 0
+	#Invitation = 0
+	#Personalization > 3
+	#Package >= 1
+	#packageList > 1
 }
 
-run show for 20
+run show for 10
 
 //check at_least_one_package_has_no_list for 15
 //check BaseProduct_personalized_with_option_that_is_possible_not for 15
