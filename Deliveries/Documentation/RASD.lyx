@@ -320,8 +320,9 @@ Glossario
 TravelDream Employee:
 \shape default
  Successivamente chiamato TDE, rappresenta un impiegato di TravelDream che
- ha caratteristiche di amministratore e può quindi inserire contenuti nel
- sistema.
+ ha caratteristiche di amministratore: può inserire contenuti nel sistema
+ disponibili per tutti gli utenti e può anche gestire i vari ordini dei
+ clienti.
  
 \end_layout
 
@@ -340,7 +341,8 @@ TravelDream Customer:
 TravelDream Customer Friend:
 \shape default
  Utente esterno al sistema, che chiameremo successivamente TDF, è invitato
- da un TDC esistente a partecipare come entità TDC nel sistema.
+ da un TDC esistente a partecipare ad un viaggio.
+ Dopo aver eseguito un login o la registrazione diviene TDC.
 \end_layout
 
 \begin_layout Itemize
@@ -352,7 +354,12 @@ Prodotto base:
  aereo, hotel, escursione programmata.
  Ogni prodotto base fa riferimento ad una certa azienda che eroga il servizio
  (ad esempio un pacchetto base può essere un volo aereo con una certa compagnia).
- Un prodotto base può essere personalizzato da un cliente
+ Un prodotto base può essere personalizzato dal TDE in fase di inserimento
+ in un pacchetto o da un cliente se il TDE ne ha autorizzato la personalizzazion
+e.
+ Un TDE può concedere la modifica di un prodotto base solo su alcuni parametri
+ che in generale sono: classe, date e orari per un volo, tipologia di camera
+ per un hotel, date e orari per le escursioni.
 \end_layout
 
 \begin_layout Itemize
@@ -364,17 +371,6 @@ E' un insieme di prodotti base che formano un viaggio completo, studiato
  per un certo numero di partecipanti.
  Un TDE può decidere di applicare uno sconto ad un pacchetto, lo sconto
  viene perso alla prima modifica che un TDC fa al pacchetto.
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Le uniche modifiche che possono essere apportate ad un pacchetto è la personaliz
-zazione dei suoi prodotti base
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
@@ -405,6 +401,18 @@ Lista degli acquisti:
 \emph default
  Insieme di pacchetti già acquistati da un TDC.
  Questi pacchetti non possono essere ne modificati, ne cancellati dai TDC.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Lista inviti:
+\shape default
+ E' la lista di pacchetti per i quali è stata richiesta la partecipazione
+ dei TDF tramite invito.
+ Per ogni pacchetto di questa lista è possibile monitorare chi ancora non
+ ha confermato la propria partecipazione.
+ 
 \end_layout
 
 \begin_layout Section
@@ -573,12 +581,6 @@ Esplorazione del sito
 [RF2] Ricerca per destinazione viaggio
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-[RF3] Ricerca di una lista regali di un altro utente mediante inserimento
- dell'email
-\end_layout
-
 \end_deeper
 \begin_layout Itemize
 
@@ -631,7 +633,8 @@ Personalizzazione pacchetto
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-[RF2] Modifica date/orari e classe dei prodotti base
+[RF2] Modifica date/orari e classe dei prodotti base (selezione tra più
+ alternative)
 \end_layout
 
 \end_deeper
@@ -650,6 +653,11 @@ Conferma pacchetto viaggio
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
 [RF2] Aggiunta pacchetto alla lista regali
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Invio invito ad altri utenti per l'acquisto di un pacchetto
 \end_layout
 
 \end_deeper
@@ -702,6 +710,12 @@ Gestione lista regali
 [RF2] Eliminazione pacchetti dalla lista regali
 \end_layout
 
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Ricerca di una lista regali di un altro utente mediante inserimento
+ dell'email
+\end_layout
+
 \end_deeper
 \end_deeper
 \begin_layout Subsection
@@ -719,16 +733,7 @@ Nelle seguenti specifiche, rispetto alla consegna originale si sono adottate
 \end_layout
 
 \begin_layout Enumerate
-I prodotti base, dal punto di vista di un TDE, vengono considerati come
- prodotti base 
-\begin_inset Quotes eld
-\end_inset
-
-vuoti
-\begin_inset Quotes erd
-\end_inset
-
- che non vanno a specificare nel dettaglio il pacchetto.
+I prodotti base sono semplici servizi offerti da un azienda.
  Ad esempio, se un TDE volesse inserire un prodotto base per un volo Alitalia,
  dovrebbe selezionare il prodotto base 
 \begin_inset Quotes eld
@@ -738,31 +743,34 @@ Volo Alitalia
 \begin_inset Quotes erd
 \end_inset
 
- e successivamente personalizzarlo con date e orari del volo e classe del
- volo (Business,Economica).
- I prodotti base sono dunque dei contenitori che hanno bisogno di personalizzazi
-one per essere consistenti.
+ e successivamente personalizzarlo con date e orari del volo e classe (Business,
+Economica).
 \end_layout
 
 \begin_layout Enumerate
-Un utente TDC non può comprare un singolo pacchetto base, se volesse procedere
+Un utente TDC non può comprare un singolo prodotto base, se volesse procedere
  con questa operazione, per esempio comprare solo un alloggio in hotel,
  dovrebbe creare un pacchetto contenente il solo prodotto base personalizzato
  con le date di check-in/check out e tipologia di camera.
 \end_layout
 
 \begin_layout Enumerate
-Per modifica (personalizzazione) di un pacchetto da parte di un TDC si intende
- modifica delle date/orari e della classe di volo/tipologia di camera (in
- ogni caso vista come 
-\begin_inset Quotes eld
-\end_inset
+Per personalizzazione di un pacchetto da parte di un TDC si intende la modifica,
+ se permessa dal TDE che ha creato il pacchetto, di:
+\end_layout
 
-classe
-\begin_inset Quotes erd
-\end_inset
+\begin_deeper
+\begin_layout Enumerate
+date e orari dei voli, 
+\end_layout
 
- nel sistema), da parte di un TDE invece si intende anche come rimozione/modific
+\begin_layout Enumerate
+date di check-in/check-out dell'hotel e tipologia della camera
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Da parte di un TDE la modifica di un pacchetto comprende anche rimozione/modific
 a/aggiunta di prodotti base al pacchetto.
 \end_layout
 
@@ -771,14 +779,15 @@ La procedura di invito degli amici a partecipare ad un pacchetto viaggio
  non è vincolante: se gli invitati non confermano la partecipazione, il
  pacchetto può essere comunque acquistato ma si pagherà l'intera quota prevista
  da TravelDream per il numero di partecipanti inizialmente previsto.
- Il sistema notificherà durante la procedura d'acquisto se gli invitati
+ Il sistema, oltre a prevedere una pagina in cui si visualizzano le presenze
+ confermate, notificherà durante la procedura d'acquisto se gli invitati
  non hanno ancora confermato la partecipazione.
 \end_layout
 
 \begin_layout Enumerate
-L'acquisto del pacchetto è formalizzabile solo dal TDC che ha inviato gli
- inviti, i TDC invitati hanno solo la possibilità di confermare la partecipazion
-e.
+Per i pacchetti presenti nella lista inviti l'acquisto del pacchetto è formalizz
+abile solo dal TDC che ha inviato gli inviti, i TDF invitati hanno solo
+ la possibilità di confermare la partecipazione.
  Il pagamento risulterà effettuato dal TDC 
 \begin_inset Quotes eld
 \end_inset
@@ -804,8 +813,8 @@ o che:
 \end_layout
 
 \begin_layout Enumerate
-Le date di arrivo/ritorno tramite il mezzo di trasporto scelto coincidano
- con le date di check-in e check-out presso l'hotel
+Le date di arrivo/ritorno del volo coincidano con le date di check-in e
+ check-out presso l'hotel
 \end_layout
 
 \begin_layout Enumerate
@@ -813,8 +822,8 @@ La data delle escursioni rientri nel periodo del viaggio
 \end_layout
 
 \begin_layout Enumerate
-Il luogo di arrivo del mezzo di trasporto di andata e il lugo di partenza
- di ritorno coincidano con il luogo dell'hotel
+Il luogo di arrivo del volo di andata e il lugo di partenza del volo di
+ ritorno coincidano con il luogo dell'hotel
 \end_layout
 
 \begin_layout Standard
@@ -832,7 +841,7 @@ Caratteristiche degli utenti
 
 \begin_layout Standard
 Gli utenti del sistema si dividono in due categorie: Amministratori (TDE)
- e Clienti (TDC).
+ e Clienti Registrati (TDC).
  E' previsto infatti l'utilizzo dell'applicativo sia dal punto di vista
  degli impiegati di TravelDream, che inseriscono i contenuti, che dei clienti,
  che usufruiscono del serivizio.
@@ -870,30 +879,39 @@ Attori e funzionalità
 \end_layout
 
 \begin_layout Subsubsection
-TravelDream employee (TDE) 
+Utente non registrato
 \end_layout
 
 \begin_layout Itemize
-TravelDream employee (TDE): Dipendente dell'azienda TravelDream, deve potersi
- autenticare nel sistema ed aggiungere/eliminare/modificare i prodotti base
- venduti dall'azienda.
- Inoltre è prevista la possibilità di aggiungere/eliminare/modificare dei
- pacchetti contenenti i vari prodotti base.
+Un utente non registrato ha necessità di registrarsi per accedere a tutte
+ le funzionalità del sistema.
+ Sono presenti due modalità di navigazione: ricerca per destinazione del
+ viaggio oppure esplorazione del catalogo.
+ Questo utente non è descritto approfonditamente come gli altri nel sistema
+ perchè marginale e privo di funzionalità se non quella di registrazione
+ e di login.
 \end_layout
 
 \begin_layout Subsubsection
-TravelDream customer (TDC)
+TravelDream employee (TDE)
+\end_layout
+
+\begin_layout Itemize
+TravelDream employee (TDE): Dipendente dell'azienda TravelDream, può aggiungere/
+eliminare/modificare i prodotti base e i pacchetti viaggio.
+ Inoltre è prevista un'interfaccia per la visualizzazione degli ordini creati
+ dai TDC e per la conferma dei pagamenti ricevuti.
+\end_layout
+
+\begin_layout Subsubsection
+TravelDream customer (TDC
 \end_layout
 
 \begin_layout Itemize
 TravelDream customer (TDC): Utente finale del servizio offerto dall'azienda,
  registrato nel sistema.
- Un utente non registrato ha la necessità di registrarsi per accedere a
- tutte le funzionalità del sistema.
- Sono presenti due modalità di navigazione: ricerca per destinazione del
- viaggio oppure esplorazione del catalogo.
- L'utente dopo averlo selezionato può solo modificare i vari prodotti base
- che lo compongono.
+ Il TDC dopo aver selezionato un pacchetto può solo modificare (secondo
+ le regole prima descritte) i vari prodotti base che lo compongono.
  Inoltre è prevista la possibilità per un TDC di creare un pacchetto personalizz
 ato contenente i singoli prodotti base di suo gradimento.
  E' possibile invitare degli amici esterni al sistema ad unirsi ai pacchetti
@@ -928,7 +946,10 @@ Abbiamo individuato alcuni requisiti non funzionali necessari per un corretto
 \end_layout
 
 \begin_layout Itemize
-Semplicità di utilizzo.
+
+\shape italic
+Semplicità di utilizzo
+\shape default
  È necessario rendere l’interfaccia utente il più possibile intuitiva: il
  sistema è rivolto a un pubblico eterogeneo anche per utilizzi occasionali.
  Per questo motivo non è possibile assumere che l’utente abbia letto il
@@ -936,32 +957,35 @@ Semplicità di utilizzo.
 \end_layout
 
 \begin_layout Itemize
-Portabilità.
- Il client dev’essere compatibile con tutte le piattaforme hardware e software
+
+\shape italic
+Portabilità
+\shape default
+ Il sistema dev’essere compatibile con tutte le piattaforme hardware e software
  più diffuse, al fine di raggiungere il maggior numero possibile di utenti.
  Questo requisito è soddisfatto realizzando il client come applicazione
  web: in questo modo, le uniche assunzioni che devono essere soddisfatte
- dagli utenti sono la disponibilità di un browser web e di una connessione
- alla rete Internet.
+ dagli utenti sono la disponibilità di un browser web aggiornato e compatibile
+ con HTML5 e di una connessione alla rete Internet.
 \end_layout
 
 \begin_layout Itemize
-Prestazioni.
+
+\shape italic
+Prestazioni
+\shape default
  Per poter fornire un servizio adeguato, il sistema dev’essere sufficientemente
- reattivo e capace di rispondere a un numero, anche elevato, di richieste
- contemporanee: pertanto, la potenza di calcolo dei server che erogano il
- servizio e la larghezza di banda a disposizione devono essere dimensionate
- in maniera adeguata al carico.
- Poiché non è possibile fare assunzioni sulla velocità di connessione degli
- utenti (che in generale può variare molto), è necessario che il volume
- di traffico che deve essere scambiato tra client e server sia contenuto,
- e che nel caso sia necessario scambiare dati di grosse dimensioni, l’interfacci
-a dell’applicazione renda l’utente consapevole di quello che sta avvenendo.
- 
+ reattivo e capace di rispondere a un numero elevato di richieste contemporanee:
+ pertanto, la potenza di calcolo dei server che erogano il servizio e la
+ larghezza di banda a disposizione devono essere dimensionate in maniera
+ adeguata al carico.
 \end_layout
 
 \begin_layout Itemize
-Disponibilità.
+
+\shape italic
+Disponibilità
+\shape default
  Il sistema dovrà soddisfare dei requisiti di disponibilità, in particolare
  dovrà essere sempre disponibile, 24 ore su 24, e i sistemi su cui funzioneranno
  i server dovranno permettere gli interventi di manutenzione più ordinari
@@ -972,17 +996,22 @@ lità del servizio.
 \end_layout
 
 \begin_layout Itemize
-Affidabilità dei dati.
- È necessario, poiché il sistema deve gestire dati scambiati tra gli utenti,
- che tali dati in condizioni normali non vadano persi: il sistema su cui
- tali dati sono salvati deve essere affidabile, e quindi dovrà essere opportunam
-ente replicato (ad esempio sfruttando un dispositivo RAID con mirroring)
- e soggetto a backup in modo da minimizzare le perdite di dati in caso di
- guasto del sistema.
+
+\shape italic
+Affidabilità dei dati
+\shape default
+ È necessario che i dati riguardanti gli ordini e i prodotti salvati all'interno
+ del sistema siano conservati in modo sicuro.
+ Il sistema su cui tali dati sono salvati deve essere affidabile, e quindi
+ dovrà essere soggetto a backup in modo da minimizzare le perdite di dati
+ in caso di guasto del sistema.
 \end_layout
 
 \begin_layout Itemize
-Sicurezza.
+
+\shape italic
+Sicurezza
+\shape default
  Una qualità fondamentale di ogni servizio erogato tramite Internet e che
  gestisce i dati degli utenti è la sicurezza.
  In primo luogo, è necessario gestire in modo sicuro e corretto l’autenticazione
@@ -997,10 +1026,9 @@ Sicurezza.
  Gli account degli amministratori sono predefiniti, mentre quelli degli
  utenti registrati sono soggetti a una registrazione autonoma.
  In secondo luogo, poiché il sistema permette l’inserimento di dati da parte
- degli utenti, destinati all’inserimento in query sul database oppure in
- pagine visualizzate da altri utenti, sarà necessario prevederne un opportuno
- filtraggio al fine di impedire vulnerabilità di sicurezza, ad esempio,
- SQL injection o cross site scripting (XSS).
+ degli utenti, sarà necessario prevederne un opportuno filtraggio al fine
+ di impedire vulnerabilità di sicurezza, ad esempio, SQL injection o cross
+ site scripting (XSS).
  
 \end_layout
 
