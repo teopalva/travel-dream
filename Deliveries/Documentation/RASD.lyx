@@ -376,7 +376,7 @@ E' un insieme di prodotti base che formano un viaggio completo, studiato
 \begin_layout Itemize
 
 \emph on
-Azienda patner:
+Azienda partner:
 \emph default
  Azienda con cui TravelDream intrattiene rapporti commerciali
 \end_layout
@@ -628,13 +628,12 @@ Personalizzazione pacchetto
 \begin_deeper
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-[RF1] Inserimento nuovi prodotti base
+[RF1] Modifica date/orari dei prodotti base (selezione tra più alternative)
 \end_layout
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-[RF2] Modifica date/orari e classe dei prodotti base (selezione tra più
- alternative)
+[RF2] Modifica classe dei prodotti (volo, camera)
 \end_layout
 
 \end_deeper
@@ -779,9 +778,17 @@ La procedura di invito degli amici a partecipare ad un pacchetto viaggio
  non è vincolante: se gli invitati non confermano la partecipazione, il
  pacchetto può essere comunque acquistato ma si pagherà l'intera quota prevista
  da TravelDream per il numero di partecipanti inizialmente previsto.
- Il sistema, oltre a prevedere una pagina in cui si visualizzano le presenze
- confermate, notificherà durante la procedura d'acquisto se gli invitati
- non hanno ancora confermato la partecipazione.
+ Il sistema, oltre a prevedere una pagina (denominata 
+\begin_inset Quotes eld
+\end_inset
+
+Lista Inviti
+\begin_inset Quotes erd
+\end_inset
+
+) in cui si visualizzano le presenze confermate, notificherà durante la
+ procedura d'acquisto se gli invitati non hanno ancora confermato la partecipazi
+one.
 \end_layout
 
 \begin_layout Enumerate
@@ -904,7 +911,7 @@ eliminare/modificare i prodotti base e i pacchetti viaggio.
 \end_layout
 
 \begin_layout Subsubsection
-TravelDream customer (TDC
+TravelDream customer (TDC)
 \end_layout
 
 \begin_layout Itemize
@@ -1180,7 +1187,7 @@ Un TDC organizza un viaggio con degli amici
 \end_layout
 
 \begin_layout Standard
-Matteo, da tempo registrato su TravelDream, decide di fare un viaggio insieme
+Matteo, da tempo registrato su TravelDream, vorrebbe fare un viaggio insieme
  ai suoi amici Andrea e Marco.
  Esegue una rapida ricerca e trova quasi subito il pacchetto che comprende
  due notti ad Ibiza presso 
@@ -1204,11 +1211,11 @@ Can Marçà
  Dopo aver selezionato il pacchetto inserisce le date di inizio e fine vacanza
  (che per questo pacchetto non erano state impostate da un TDE data la ampia
  disponibilità di posti durante tutto l'arco dell'anno).
- Siccome il pacchetto scelto è specifico per un gruppo di 3 persone decide
- di invitare i suoi due amici Andrea e Marco, quindi, tramite l'apposito
- pulsante presente nell'interfaccia, il sistema genera il link della pagina
- contente i dettagli del pacchetto formulato da Matteo e invia la mail contenent
-e quest'ultimo ad Andrea e Marco.
+ Siccome il pacchetto scelto è specifico per un gruppo di 3 persone, invita
+ i suoi due amici Andrea e Marco, quindi, tramite l'apposito pulsante presente
+ nell'interfaccia, il sistema genera il link della pagina contente i dettagli
+ del pacchetto formulato da Matteo e invia la mail contenente quest'ultimo
+ ai due amici.
  
 \end_layout
 
@@ -1262,8 +1269,9 @@ New York in autunno
  base è incluso in due pacchetti (dei quali uno acquistato e uno inserito
  nella lista regali).
  Il sistema chiede conferma prima di eliminarli e Andrea conferma l'azione.
- In seguito il TDE procede con il rimborso alla famiglia Rossi e con una
- mail di scuse a Filippo per la rimozione del pacchetto che desiderava.
+ In seguito il TDE procede con la sostituzione dell'hotel con uno di pari
+ classe per la famiglia Rossi e con una mail di scuse a Filippo per la rimozione
+ del pacchetto che desiderava.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1347,7 +1355,7 @@ Attori
 \begin_inset Text
 
 \begin_layout Plain Layout
-TDC
+Utente non registrato, TDC
 \end_layout
 
 \end_inset
@@ -3162,7 +3170,7 @@ Precondizioni
 \begin_inset Text
 
 \begin_layout Enumerate
-L'utente deve essere autenticato nel sistema come TDC,
+L'utente deve essere autenticato nel sistema come TDC
 \end_layout
 
 \begin_layout Enumerate
@@ -3379,11 +3387,6 @@ regala
  e conferma l'operazione 
 \end_layout
 
-\begin_layout Enumerate
-Il sistema inserisce il pacchetto nella lista dei comprati ma non pagati
- dell'utente che lo aveva precedentemente inserito nella lista regali
-\end_layout
-
 \end_inset
 </cell>
 </row>
@@ -3401,8 +3404,9 @@ Postcondizioni
 \begin_inset Text
 
 \begin_layout Plain Layout
-Il pacchetto risulta acquistato dall'utente che lo aveva inserito nella
- lista regali
+Il pacchetto risulta acquistato nella lista ordini del TDC che l'ha regalato.
+ Nell'account del proprietario della lista regali, il pacchetto viene spostato
+ nella lista degli ordini e segnato come regalato.
 \end_layout
 
 \end_inset
