@@ -143,7 +143,7 @@ Responsabile:
 
 \begin_layout Standard
 Prof.
- Raffaella Mirandola
+ Raffaela Mirandola
 \end_layout
 
 \begin_layout Standard
@@ -429,15 +429,20 @@ Il sistema proposto è un’applicazione web di e-commerce, fruibile pubblicamen
  
 \end_layout
 
+\begin_layout Subsubsection
+Funzionalità del prodotto
+\end_layout
+
 \begin_layout Standard
-Sono state definite due sezioni principali: una per gli utenti amministratori
- (TDE) e uno per gli utenti finali (TDC e TDF).
+Sono state definite due sezioni principali del sistema in termini di funzionalit
+à principali offerte: una per gli utenti amministratori (TDE) e uno per
+ gli utenti finali (TDC e TDF).
  
 \end_layout
 
 \begin_layout Standard
-In particolare le sezioni, di cui se ne specificano i requisiti funzionali
- [RF] e i non funzionali [RNF], si articolano nel seguente modo:
+In particolare le sezioni, di cui qui si specificano in dettaglio i requisiti
+ funzionali [RF] e i non funzionali [RNF], si articolano nel seguente modo:
 \end_layout
 
 \begin_layout Itemize
@@ -482,11 +487,6 @@ Gestione prodotti base
 \labelwidthstring 00.00.0000
 [NRF1] Il sistema deve essere in grado di gestire una grande quantità di
  prodotti base
-\end_layout
-
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-[NRF2] Il sistema deve prevedere la personalizzazione dei prodotti base
 \end_layout
 
 \end_deeper
@@ -717,6 +717,492 @@ Gestione lista regali
 
 \end_deeper
 \end_deeper
+\begin_layout Subsubsection
+Interfaccia utente
+\end_layout
+
+\begin_layout Standard
+Di seguito si mostrano degli sketch che descrivono, in prima approssimazione,
+ quale sarà il layout delle pagine principali del sito.
+ Queste figure non vanno viste come definitive ed esaurienti, ma come un
+ primo sguardo sul design e sull'esperienza complessiva di navigazione sul
+ sito.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/01-HomePage.pdf
+	display false
+	scale 60
+	clip
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Home Page
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/02-Registrazione.pdf
+	display false
+	scale 60
+	clip
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Registrazione
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/03-CatalogoOfferte.pdf
+	display false
+	scale 70
+	clip
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Catalogo Pacchetti Offerte
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/04-CreaPacchetto.pdf
+	display false
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Creazione Pacchetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/05-ModificaPacchetto.pdf
+	display false
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Modifica Pacchetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/06-Check-out.pdf
+	display false
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Check-out
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/07-Pagamento.pdf
+	display false
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Richiesta Pagamento
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/08-MiaListaRegali.pdf
+	display false
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La mia Lista Regali
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/09-ListaRegali.pdf
+	display false
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Lista Regali di amico
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/10-ListaAcquisti.pdf
+	display false
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La mia Lista Acquisti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/11-ListaInviti.pdf
+	display false
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La mia Lista Inviti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/12-TDE.pdf
+	display false
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Pannello di Controllo del TDE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Considerazioni preliminari
 \end_layout
@@ -742,7 +1228,7 @@ Volo Alitalia
 \begin_inset Quotes erd
 \end_inset
 
- e successivamente personalizzarlo con date e orari del volo e classe (Business,
+ e successivamente personalizzarlo con date e orari del volo e classe (Business/
 Economica).
 \end_layout
 
