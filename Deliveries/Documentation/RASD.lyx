@@ -830,7 +830,7 @@ La data delle escursioni rientri nel periodo del viaggio
 \end_layout
 
 \begin_layout Enumerate
-Il luogo di arrivo del volo di andata e il lugo di partenza del volo di
+Il luogo di arrivo del volo di andata e il luogo di partenza del volo di
  ritorno coincidano con il luogo dell'hotel
 \end_layout
 
@@ -852,7 +852,7 @@ Gli utenti del sistema si dividono in due categorie: Amministratori (TDE)
  e Clienti Registrati (TDC).
  E' previsto infatti l'utilizzo dell'applicativo sia dal punto di vista
  degli impiegati di TravelDream, che inseriscono i contenuti, che dei clienti,
- che usufruiscono del serivizio.
+ che usufruiscono del servizio.
  Questi ultimi vengono considerati come utenti adulti che decidono di usufruire
  del servizio, accettando i termini e le condizioni dichiarati al momento
  di registrazione.
@@ -1126,7 +1126,7 @@ un volo Easy Jet di ritorno con partenza 27 Ottobre alle ore 14
 \begin_layout Standard
 Una volta terminato l'inserimento dei prodotti base, controlla il prezzo
  definitivo del pacchetto (che è la somma dei singoli prezzi dei prodotti
- base) e decide di applicarvi uno sconto che in questo caso è del 10% ottendo
+ base) e decide di applicarvi uno sconto che in questo caso è del 10% ottenendo
  un prezzo finale di 825
 \emph on
 €
@@ -1314,7 +1314,7 @@ Coralline Exploration - gita alla scoperta dei coralli
 , ed aggiunge una nuova lista di giorni disponibili (tutti i venerdì per
  i prossimi 3 mesi) e impone un prezzo di 70€.
  Una volta salvato il prodotto base in questione, Andrea decide di aggiungere
- questo'ultimo ad un pacchetto chiamato 
+ quest'ultimo ad un pacchetto chiamato 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3620,10 +3620,6 @@ Requisiti speciali
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 
 \end_layout
 
