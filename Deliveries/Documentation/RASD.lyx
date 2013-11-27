@@ -143,7 +143,7 @@ Responsabile:
 
 \begin_layout Standard
 Prof.
- Raffaella Mirandola
+ Raffaela Mirandola
 \end_layout
 
 \begin_layout Standard
@@ -412,7 +412,8 @@ Lista inviti:
  dei TDF tramite invito.
  Per ogni pacchetto di questa lista è possibile monitorare chi ancora non
  ha confermato la propria partecipazione.
- 
+ Ogni TDC ha una sua lista inviti contenente i vari pacchetti per cui si
+ sta attendendo conferma da altri utenti.
 \end_layout
 
 \begin_layout Section
@@ -429,15 +430,20 @@ Il sistema proposto è un’applicazione web di e-commerce, fruibile pubblicamen
  
 \end_layout
 
+\begin_layout Subsubsection
+Funzionalità del prodotto
+\end_layout
+
 \begin_layout Standard
-Sono state definite due sezioni principali: una per gli utenti amministratori
- (TDE) e uno per gli utenti finali (TDC e TDF).
+Sono state definite due sezioni principali del sistema in termini di funzionalit
+à principali offerte: una per gli utenti amministratori (TDE) e uno per
+ gli utenti finali (TDC e TDF).
  
 \end_layout
 
 \begin_layout Standard
-In particolare le sezioni, di cui se ne specificano i requisiti funzionali
- [RF] e i non funzionali [RNF], si articolano nel seguente modo:
+In particolare le sezioni, di cui qui si specificano in dettaglio i requisiti
+ funzionali [RF] e i non funzionali [RNF], si articolano nel seguente modo:
 \end_layout
 
 \begin_layout Itemize
@@ -482,11 +488,6 @@ Gestione prodotti base
 \labelwidthstring 00.00.0000
 [NRF1] Il sistema deve essere in grado di gestire una grande quantità di
  prodotti base
-\end_layout
-
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-[NRF2] Il sistema deve prevedere la personalizzazione dei prodotti base
 \end_layout
 
 \end_deeper
@@ -717,6 +718,479 @@ Gestione lista regali
 
 \end_deeper
 \end_deeper
+\begin_layout Subsubsection
+Interfaccia utente
+\end_layout
+
+\begin_layout Standard
+Di seguito si mostrano degli sketch che descrivono, in prima approssimazione,
+ quale sarà il layout delle pagine principali del sito.
+ Queste figure non vanno viste come definitive ed esaurienti, ma come un
+ primo sguardo sul design e sull'esperienza complessiva di navigazione sul
+ sito.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/01-HomePage.pdf
+	display false
+	scale 60
+	clip
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Home Page
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/02-Registrazione.pdf
+	display false
+	scale 60
+	clip
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Registrazione
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/03-CatalogoOfferte.pdf
+	display false
+	scale 42.5
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Catalogo Pacchetti Offerte
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/04-CreaPacchetto.pdf
+	display false
+	scale 42.5
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Creazione Pacchetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/05-ModificaPacchetto.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Modifica Pacchetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/06-Check-out.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Check-out
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/07-Pagamento.pdf
+	display false
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Richiesta Pagamento
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename UI Sketch/08-MiaListaRegali.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La mia Lista Regali
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/09-ListaRegali.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Lista Regali di amico
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/10-ListaAcquisti.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La mia Lista Acquisti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/11-ListaInviti.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La mia Lista Inviti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/12-TDE.pdf
+	display false
+	width 85text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Pannello di Controllo del TDE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Considerazioni preliminari
 \end_layout
@@ -742,7 +1216,7 @@ Volo Alitalia
 \begin_inset Quotes erd
 \end_inset
 
- e successivamente personalizzarlo con date e orari del volo e classe (Business,
+ e successivamente personalizzarlo con date e orari del volo e classe (Business/
 Economica).
 \end_layout
 
@@ -829,7 +1303,7 @@ La data delle escursioni rientri nel periodo del viaggio
 \end_layout
 
 \begin_layout Enumerate
-Il luogo di arrivo del volo di andata e il lugo di partenza del volo di
+Il luogo di arrivo del volo di andata e il luogo di partenza del volo di
  ritorno coincidano con il luogo dell'hotel
 \end_layout
 
@@ -851,7 +1325,7 @@ Gli utenti del sistema si dividono in due categorie: Amministratori (TDE)
  e Clienti Registrati (TDC).
  E' previsto infatti l'utilizzo dell'applicativo sia dal punto di vista
  degli impiegati di TravelDream, che inseriscono i contenuti, che dei clienti,
- che usufruiscono del serivizio.
+ che usufruiscono del servizio.
  Questi ultimi vengono considerati come utenti adulti che decidono di usufruire
  del servizio, accettando i termini e le condizioni dichiarati al momento
  di registrazione.
@@ -1125,7 +1599,7 @@ un volo Easy Jet di ritorno con partenza 27 Ottobre alle ore 14
 \begin_layout Standard
 Una volta terminato l'inserimento dei prodotti base, controlla il prezzo
  definitivo del pacchetto (che è la somma dei singoli prezzi dei prodotti
- base) e decide di applicarvi uno sconto che in questo caso è del 10% ottendo
+ base) e decide di applicarvi uno sconto che in questo caso è del 10% ottenendo
  un prezzo finale di 825
 \emph on
 €
@@ -1287,7 +1761,7 @@ Coralline Exploration
 \begin_inset Quotes erd
 \end_inset
 
-, un'azienda partner, che è stata aggiunta una nuova data per la gita alle
+, una azienda partner, che è stata aggiunta una nuova data per la gita alle
  barriere coralline di 
 \begin_inset Quotes eld
 \end_inset
@@ -1313,7 +1787,7 @@ Coralline Exploration - gita alla scoperta dei coralli
 , ed aggiunge una nuova lista di giorni disponibili (tutti i venerdì per
  i prossimi 3 mesi) e impone un prezzo di 70€.
  Una volta salvato il prodotto base in questione, Andrea decide di aggiungere
- questo'ultimo ad un pacchetto chiamato 
+ quest'ultimo ad un pacchetto chiamato 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1337,7 +1811,7 @@ Registrazione
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -1355,7 +1829,7 @@ Attori
 \begin_inset Text
 
 \begin_layout Plain Layout
-Utente non registrato, TDC
+Utente non registrato
 \end_layout
 
 \end_inset
@@ -1461,7 +1935,7 @@ L'utente inserisce una password troppo corta
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1470,7 +1944,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Registrazione.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1493,7 +1994,7 @@ Login
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -1612,7 +2113,7 @@ L'utente inserisce un username che non esiste; L'utente inserisce una password
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1621,7 +2122,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Login.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1644,7 +2172,7 @@ Logout
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -1753,7 +2281,7 @@ Eccezioni
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1762,7 +2290,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Logout.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1785,7 +2340,7 @@ Inserire prodotto base
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -1898,7 +2453,7 @@ Prodotto già presente
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1907,7 +2462,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Inserireprodottobase.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1930,7 +2512,7 @@ Eliminare prodotto base
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -1993,15 +2575,15 @@ L'utente accede all'area di modifica prodotti base
 \end_layout
 
 \begin_layout Enumerate
-L'utente seleziona il pacchetto desiderato
+L'utente seleziona il prodotto base desiderato
 \end_layout
 
 \begin_layout Enumerate
-L'utente elimina il pacchetto e conferma l'eliminazione
+L'utente elimina il prodotto base e conferma l'eliminazione
 \end_layout
 
 \begin_layout Enumerate
-Il sistema cancella il pacchetto
+Il sistema cancella il prodotto base
 \end_layout
 
 \end_inset
@@ -2048,7 +2630,7 @@ Il prodotto è presente in uno o più pacchetti viaggio
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2057,7 +2639,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Eliminareprodottobase.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2080,7 +2689,7 @@ Modificare prodotto base
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -2143,7 +2752,7 @@ L'utente accede all'area di modifica prodotti base
 \end_layout
 
 \begin_layout Enumerate
-L'utente seleziona il pacchetto desiderato
+L'utente seleziona il prodotto base desiderato
 \end_layout
 
 \begin_layout Enumerate
@@ -2151,7 +2760,7 @@ L'utente modifica le parti desiderate
 \end_layout
 
 \begin_layout Enumerate
-Il sistema aggiorna il pacchetto
+Il sistema aggiorna il prodotto base
 \end_layout
 
 \end_inset
@@ -2199,7 +2808,7 @@ ile
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2208,7 +2817,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Modificaprodottobase.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2231,7 +2867,7 @@ Creare pacchetto viaggio
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -2348,7 +2984,7 @@ I prodotti base sono tra di loro incompatibili
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2357,7 +2993,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Crearepacchettoviaggio.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2380,7 +3043,7 @@ Eliminare pacchetto viaggio
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -2498,7 +3161,7 @@ Il pacchetto viaggio è inserito nella lista desideri di un utente
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2507,7 +3170,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Eliminarepacchettoviaggio.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2530,7 +3220,7 @@ Modificare composizione pacchetto viaggio
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -2648,7 +3338,7 @@ La modifica effettuata è incompatibile con gli altri pacchetti base
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2657,7 +3347,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Modificarecomposizionepacchettoviaggio.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2680,7 +3397,7 @@ Conferma avvenuto pagamento
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -2814,7 +3531,7 @@ Eccezioni
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2823,7 +3540,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Confermaavvenutopagamento.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2846,7 +3590,7 @@ Visualizzare catalogo
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -2864,7 +3608,7 @@ Attori
 \begin_inset Text
 
 \begin_layout Plain Layout
-Utente non registrato
+Utente
 \end_layout
 
 \end_inset
@@ -2955,7 +3699,7 @@ Eccezioni
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2964,7 +3708,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Visualizzarecatalogo.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2987,7 +3758,7 @@ Eseguire ricerca personalizzata
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -3005,7 +3776,7 @@ Attori
 \begin_inset Text
 
 \begin_layout Plain Layout
-Utente non registrato
+Utente
 \end_layout
 
 \end_inset
@@ -3100,7 +3871,7 @@ Eccezioni
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3109,7 +3880,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Eseguirericercapersonalizzata.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3132,7 +3930,7 @@ Acquistare pacchetto viaggio
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -3258,7 +4056,7 @@ Eccezioni
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3267,7 +4065,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Acquistarepacchettoviaggio.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3290,7 +4115,7 @@ Acquistare pacchetto lista regali di un utente
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="3" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -3335,7 +4160,7 @@ L'utente deve essere autenticato nel sistema come TDC
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3344,7 +4169,7 @@ Flusso degli eventi
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Enumerate
@@ -3356,15 +4181,7 @@ L'utente inserisce la mail di un altro utente
 \end_layout
 
 \begin_layout Enumerate
-L'utente clicca su 
-\begin_inset Quotes eld
-\end_inset
-
-lista desideri
-\begin_inset Quotes erd
-\end_inset
-
- dell'utente trovato
+Selezione utente e richiesta della lista desideri associata
 \end_layout
 
 \begin_layout Enumerate
@@ -3387,11 +4204,36 @@ regala
  e conferma l'operazione 
 \end_layout
 
+\begin_layout Enumerate
+Il sistema rimuove il pacchetto dalla lista dei regali
+\end_layout
+
+\begin_layout Enumerate
+Il sistema sposta il pacchetto nella lista degli ordini dell'acquirente
+\end_layout
+
+\begin_layout Enumerate
+Il sistema inserisce il pacchetto nella lista degli ordini del TDC beneficiario.
+\end_layout
+
 \end_inset
 </cell>
 </row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
 <row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3400,7 +4242,7 @@ Postcondizioni
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3433,7 +4275,7 @@ L'utente cercato non viene trovato perchè non presente nel sistema
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3442,7 +4284,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Acquistarepacchettolistaregalidiunutente.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3465,7 +4334,7 @@ Visualizzare un pacchetto
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -3575,7 +4444,7 @@ Eccezioni
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3584,7 +4453,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Visualizzareunpacchetto.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3607,7 +4503,7 @@ Accettare invito per unirsi ad un pacchetto
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -3739,7 +4635,7 @@ L'utente chiude il browser prima della fine della procedura
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3748,7 +4644,34 @@ Requisiti speciali
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Accettareinvitoadunirsiadunpacchetto.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
