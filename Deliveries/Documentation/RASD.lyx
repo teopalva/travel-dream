@@ -1355,7 +1355,7 @@ Attori
 \begin_inset Text
 
 \begin_layout Plain Layout
-Utente non registrato, TDC
+Utente non registrato
 \end_layout
 
 \end_inset
@@ -1993,15 +1993,15 @@ L'utente accede all'area di modifica prodotti base
 \end_layout
 
 \begin_layout Enumerate
-L'utente seleziona il pacchetto desiderato
+L'utente seleziona il prodotto base desiderato
 \end_layout
 
 \begin_layout Enumerate
-L'utente elimina il pacchetto e conferma l'eliminazione
+L'utente elimina il prodotto base e conferma l'eliminazione
 \end_layout
 
 \begin_layout Enumerate
-Il sistema cancella il pacchetto
+Il sistema cancella il prodotto base
 \end_layout
 
 \end_inset
@@ -2143,7 +2143,7 @@ L'utente accede all'area di modifica prodotti base
 \end_layout
 
 \begin_layout Enumerate
-L'utente seleziona il pacchetto desiderato
+L'utente seleziona il prodotto base desiderato
 \end_layout
 
 \begin_layout Enumerate
@@ -2151,7 +2151,7 @@ L'utente modifica le parti desiderate
 \end_layout
 
 \begin_layout Enumerate
-Il sistema aggiorna il pacchetto
+Il sistema aggiorna il prodotto base
 \end_layout
 
 \end_inset
@@ -2864,7 +2864,7 @@ Attori
 \begin_inset Text
 
 \begin_layout Plain Layout
-Utente non registrato
+Utente
 \end_layout
 
 \end_inset
@@ -3005,7 +3005,7 @@ Attori
 \begin_inset Text
 
 \begin_layout Plain Layout
-Utente non registrato
+Utente
 \end_layout
 
 \end_inset
@@ -3356,15 +3356,7 @@ L'utente inserisce la mail di un altro utente
 \end_layout
 
 \begin_layout Enumerate
-L'utente clicca su 
-\begin_inset Quotes eld
-\end_inset
-
-lista desideri
-\begin_inset Quotes erd
-\end_inset
-
- dell'utente trovato
+Selezione utente e richiesta della lista desideri associata
 \end_layout
 
 \begin_layout Enumerate
@@ -3385,6 +3377,18 @@ regala
 \end_inset
 
  e conferma l'operazione 
+\end_layout
+
+\begin_layout Enumerate
+Il sistema rimuove il pacchetto dalla lista dei regali
+\end_layout
+
+\begin_layout Enumerate
+Il sistema sposta il pacchetto nella lista degli ordini dell'acquirente
+\end_layout
+
+\begin_layout Enumerate
+Il sistema inserisce il pacchetto nella lista degli ordini del TDC beneficiario.
 \end_layout
 
 \end_inset
