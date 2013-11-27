@@ -818,9 +818,7 @@ status open
 \begin_inset Graphics
 	filename UI Sketch/03-CatalogoOfferte.pdf
 	display false
-	scale 70
-	clip
-	rotateOrigin center
+	scale 42.5
 
 \end_inset
 
@@ -856,7 +854,7 @@ status open
 \begin_inset Graphics
 	filename UI Sketch/04-CreaPacchetto.pdf
 	display false
-	scale 60
+	scale 42.5
 
 \end_inset
 
@@ -896,7 +894,7 @@ status open
 \begin_inset Graphics
 	filename UI Sketch/05-ModificaPacchetto.pdf
 	display false
-	scale 60
+	width 100text%
 
 \end_inset
 
@@ -936,7 +934,7 @@ status open
 \begin_inset Graphics
 	filename UI Sketch/06-Check-out.pdf
 	display false
-	scale 60
+	width 100text%
 
 \end_inset
 
@@ -952,10 +950,6 @@ Check-out
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -976,7 +970,7 @@ status open
 \begin_inset Graphics
 	filename UI Sketch/07-Pagamento.pdf
 	display false
-	scale 60
+	width 90text%
 
 \end_inset
 
@@ -1012,11 +1006,12 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
 \align center
 \begin_inset Graphics
 	filename UI Sketch/08-MiaListaRegali.pdf
 	display false
-	scale 60
+	width 100text%
 
 \end_inset
 
@@ -1056,7 +1051,7 @@ status open
 \begin_inset Graphics
 	filename UI Sketch/09-ListaRegali.pdf
 	display false
-	scale 60
+	width 100text%
 
 \end_inset
 
@@ -1072,10 +1067,6 @@ Lista Regali di amico
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1096,7 +1087,7 @@ status open
 \begin_inset Graphics
 	filename UI Sketch/10-ListaAcquisti.pdf
 	display false
-	scale 60
+	width 100text%
 
 \end_inset
 
@@ -1112,10 +1103,6 @@ La mia Lista Acquisti
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1136,7 +1123,7 @@ status open
 \begin_inset Graphics
 	filename UI Sketch/11-ListaInviti.pdf
 	display false
-	scale 60
+	width 100text%
 
 \end_inset
 
@@ -1176,7 +1163,7 @@ status open
 \begin_inset Graphics
 	filename UI Sketch/12-TDE.pdf
 	display false
-	scale 60
+	width 85text%
 
 \end_inset
 
@@ -1974,6 +1961,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Registrazione.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -2151,6 +2139,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Login.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -2318,6 +2307,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Logout.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -2489,6 +2479,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Inserireprodottobase.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -2665,6 +2656,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Eliminareprodottobase.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -2842,6 +2834,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Modificaprodottobase.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -3017,6 +3010,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Crearepacchettoviaggio.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -3193,6 +3187,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Eliminarepacchettoviaggio.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -3369,6 +3364,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Modificarecomposizionepacchettoviaggio.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -3561,6 +3557,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Confermaavvenutopagamento.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -3728,6 +3725,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Visualizzarecatalogo.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -3899,6 +3897,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Eseguirericercapersonalizzata.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -4083,6 +4082,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Acquistarepacchettoviaggio.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -4115,7 +4115,7 @@ Acquistare pacchetto lista regali di un utente
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="7" columns="2">
+<lyxtabular version="3" rows="3" columns="2">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top" width="0">
 <column alignment="left" valignment="top" width="8cm">
@@ -4160,7 +4160,7 @@ L'utente deve essere autenticato nel sistema come TDC
 </cell>
 </row>
 <row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4169,7 +4169,7 @@ Flusso degli eventi
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Enumerate
@@ -4219,8 +4219,21 @@ Il sistema inserisce il pacchetto nella lista degli ordini del TDC beneficiario.
 \end_inset
 </cell>
 </row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
 <row>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4229,7 +4242,7 @@ Postcondizioni
 
 \end_inset
 </cell>
-<cell alignment="left" valignment="top" topline="true" usebox="none">
+<cell alignment="left" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4288,6 +4301,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Acquistarepacchettolistaregalidiunutente.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -4456,6 +4470,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Visualizzareunpacchetto.pdf
+	display false
 	width 100text%
 
 \end_inset
@@ -4646,6 +4661,7 @@ Requisiti speciali
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename sequence_diagram_pdf/Accettareinvitoadunirsiadunpacchetto.pdf
+	display false
 	width 100text%
 
 \end_inset
