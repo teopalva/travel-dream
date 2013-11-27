@@ -44,7 +44,7 @@ sig BuyingList extends PackageList {}
 
 sig Invitation {
 	invite: one TDC,
-	invited: one TDF,
+	invited: some TDF,
 	package: one Package
 }
 
@@ -114,7 +114,7 @@ assert BaseProduct_personalized_with_option_that_is_possible_not {
 pred show {
 }
 
-run show for 20
+run show for 10
 
 //check at_least_one_package_has_no_list for 15
 //check BaseProduct_personalized_with_option_that_is_possible_not for 15
