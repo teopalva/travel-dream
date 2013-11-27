@@ -412,7 +412,8 @@ Lista inviti:
  dei TDF tramite invito.
  Per ogni pacchetto di questa lista è possibile monitorare chi ancora non
  ha confermato la propria partecipazione.
- 
+ Ogni TDC ha una sua lista inviti contenente i vari pacchetti per cui si
+ sta attendendo conferma da altri utenti.
 \end_layout
 
 \begin_layout Section
