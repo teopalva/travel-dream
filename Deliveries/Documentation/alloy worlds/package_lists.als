@@ -1,3 +1,5 @@
+//Signatures
+
 abstract sig User {}
 
 sig TDE extends User {}
@@ -7,7 +9,8 @@ sig TDF extends User {
 
 sig TDC extends User {
 	giftList: one GiftList,
-	buyingList: one BuyingList
+	buyingList: one BuyingList,
+	invitationList: one InvitationList
 }
 
 abstract sig BaseProduct {
@@ -16,7 +19,7 @@ abstract sig BaseProduct {
 
 sig Excursion extends BaseProduct {
 } 
-fact {
+fact {		//No class personalization
 	Excursion.possiblePersonalization & ClassPersonalization = none
 }
 
@@ -40,11 +43,16 @@ abstract sig PackageList {
 }
 
 sig GiftList extends PackageList {}
-sig BuyingList extends PackageList {}
+sig BuyingList extends PackageList {
+	giftedPackage: set Package
+}
+
+sig InvitationList {
+	invitationList: set Invitation
+}
 
 sig Invitation {
-	invite: one TDC,
-	invited: one TDF,
+	invited: some TDF,
 	package: one Package
 }
 
@@ -57,6 +65,10 @@ sig ClassPersonalization extends Personalization {}
 //Model became realistic - mandatory constraints
 fact every_list_has_one_and_only_one_TDC {
 	all p: PackageList | one t: TDC | t.buyingList = p or t.giftList = p
+}
+
+fact every_InvitationList_has_one_and_only_one_TDC {
+	all list: InvitationList | one t: TDC | t.invitationList = list
 }
 
 fact different_package_cant_share_personalized_product {
@@ -76,7 +88,7 @@ fact every_personalized_product_contained_in_package {
 }
 
 fact TDC_cant_invite_himself {
-	all invitation: Invitation | invitation.invited.tdc != invitation.invite
+	all customer:TDC | all invitation:InvitationList.invitationList | all tdf:TDF | (tdf.tdc)	in customer implies invitation.invited != tdf
 }
 
 fact TDC_cant_invite_to_a_package_in_a_list {
@@ -87,9 +99,28 @@ fact PersonalizedProduct_can_contains_only_possible_personalization {
 	all p: PersonalizedProduct | p.personalization in p.product.possiblePersonalization
 }
 
-
 fact BasicProduct_must_have_a_personalization {
 	all b: BaseProduct | #(b.possiblePersonalization) > 0
+}
+
+fact Invitation_not_shared_between_invitation_lists {
+	all invitation: Invitation | one list:InvitationList | invitation in list.invitationList
+}
+
+fact Package_in_list_must_have_all_personalizations {
+	all package: (PackageList.packageList+(InvitationList.invitationList).package) | all personalizedProduct: package.products | #(personalizedProduct.personalization&DatePersonalization) > 0 and #(personalizedProduct.personalization&DatePersonalization) < 2 and ((personalizedProduct.product in Hotel) or (personalizedProduct.product in Flight) implies #(personalizedProduct.personalization&ClassPersonalization) > 0 and #(personalizedProduct.personalization&ClassPersonalization) < 2) 
+}
+
+fact only_one_TDC_can_buy_a_package_for_another_TDC {
+	all p1, p2: BuyingList.giftedPackage | one gpl1: BuyingList.giftedPackage | one gpl2: BuyingList.giftedPackage | p1 in gpl1 and p2 in gpl2 and p1=p2 implies gpl1=gpl2
+}
+
+fact every_giftedPackage_must_be_in_a_BuyingList {
+	all package: BuyingList.giftedPackage | one b: BuyingList | package in b.packageList 
+}
+
+fact TDC_cant_gift_his_own_package {
+	all package: BuyingList.giftedPackage | all tdc1: TDC | package in tdc1.buyingList.giftedPackage implies not (package in tdc1.buyingList.packageList)
 }
 
 //Some optional constraints - can be omitted
@@ -125,6 +156,12 @@ pred show {
 	#Personalization > 3
 	#Package >= 1
 	#packageList > 1
+	#Hotel = 3
+	#Flight = 4
+	#Excursion = 2
+	#DatePersonalization > 1
+	#ClassPersonalization = 1
+	#(BaseProduct.possiblePersonalization) < 4
 }
 
 run show for 10

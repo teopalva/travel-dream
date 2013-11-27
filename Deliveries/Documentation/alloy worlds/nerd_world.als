@@ -108,10 +108,7 @@ fact Invitation_not_shared_between_invitation_lists {
 }
 
 fact Package_in_list_must_have_all_personalizations {
-	all package: (PackageList.packageList+(InvitationList.invitationList).package) | all personalizedProduct: package.products | 
-		#(personalizedProduct.personalization&DatePersonalization) > 0 and #(personalizedProduct.personalization&DatePersonalization) < 2 and 
-			((personalizedProduct.product in Hotel) or (personalizedProduct.product in Flight) implies #(personalizedProduct.personalization&ClassPersonalization) > 0 and 
-			#(personalizedProduct.personalization&ClassPersonalization) < 2) 
+	all package: (PackageList.packageList+(InvitationList.invitationList).package) | all personalizedProduct: package.products | #(personalizedProduct.personalization&DatePersonalization) > 0 and #(personalizedProduct.personalization&DatePersonalization) < 2 and ((personalizedProduct.product in Hotel) or (personalizedProduct.product in Flight) implies #(personalizedProduct.personalization&ClassPersonalization) > 0 and #(personalizedProduct.personalization&ClassPersonalization) < 2) 
 }
 
 fact only_one_TDC_can_buy_a_package_for_another_TDC {
@@ -152,12 +149,13 @@ assert BaseProduct_personalized_with_option_that_is_possible_not {
 
 pred show {
 	#(BuyingList.packageList) > 1
-	#TDC = 2
-	#TDE = 1
-	#TDF = 0
+	#TDC > 2
+	#TDE > 1
+	#TDF > 0
+	#Invitation > 3
 }
 
-run show for 9
+run show for 30
 
 //check at_least_one_package_has_no_list for 15
 //check BaseProduct_personalized_with_option_that_is_possible_not for 15
