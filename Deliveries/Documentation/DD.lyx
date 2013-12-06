@@ -128,7 +128,7 @@ TravelDream
 
 \begin_layout Standard
 \align center
-(Requirement Analysis and Specification Document)
+(Design Document)
 \end_layout
 
 \begin_layout Standard
@@ -435,9 +435,275 @@ E' costituito dal DBMS, che garantisce la persistenza dei dati.
  standard di Java, JDBC.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tier_schema.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Vista dell'architettura del progetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Progetto dei dati
 \end_layout
 
+\begin_layout Standard
+In questo capitolo forniremo il dettaglio delle strutture dati a supporto
+ del sistema, implementate da un DBMS, nello specifico MySql Server 5.
+ Si andrà prima ad analizzare la progettazione concettuale, ovvero il modello
+ ER elaborato per l'organizzazione del database, in seguito si forniranno
+ la traduzione logica di quanto visto nel modello e infine si presenterà
+ un grafo completo, realizzato tramite MySQL Workbench, relativo al progetto
+ logico riportato.
+\end_layout
+
+\begin_layout Subsection
+Progettazione concettuale
+\end_layout
+
+\begin_layout Standard
+Si sono individuate le entità e le relazioni dell'applicativo secondo quanto
+ già discusso nel documento RASD.
+ Il risultato di questo lavoro è rappresentato dal diagramma ER di Figura
+ 2.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ER.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Diagramma ER
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le entità e le associazioni che abbiamo individuato tramite lo schema ER
+ sono di seguito descritte:
+\end_layout
+
+\begin_layout Itemize
+USER: Rappresenta un utente registrato al sistema, è identificato da un
+ attributo Mail, che è univoco e ha come attributi la Password per l'accesso
+ e alcune informazioni anagrafiche (FirstName e LastName).
+\end_layout
+
+\begin_layout Itemize
+TDE, TDF, TCD: Rappresentano gli attori descritti nel RASD, ci si riferisca
+ dunque a tale documento.
+\end_layout
+
+\begin_layout Itemize
+BUYING LIST: Ogni utente ha una lista degli ordini effettuati, è rappresentata
+ mediante una tabella nel nostro modello e prevede come identificatore lo
+ stesso TDC (in quanto in relazione 1 a 1), dispone degli attributi Gifted
+ e Paid: il primo segnala se il pacchetto è stato regalato da un altro TDC,
+ il secondo indica se è stato ricevuto il pagamento nel conto corrente di
+ TravelDream (parametro modificabile dal pannello di controllo dell'amministrato
+re TDE).
+\end_layout
+
+\begin_layout Itemize
+GIFT LIST: E' la lista desideri di ogni utente, è identificata dal TDC proprieta
+rio (in quanto in relazione 1 a 1), raccoglie i pacchetti che sono stati
+ inseriti da un TDC e sono visibili ad altri TDC per regalarli al proprietario
+ della lista.
+\end_layout
+
+\begin_layout Itemize
+PACKAGE LIST: Relazione che raccoglie in maniera totale ed esclusiva le
+ due liste di cui sopra, un pacchetto non può essere contenuto contemporaneament
+e in entrambe le liste.
+\end_layout
+
+\begin_layout Itemize
+PACKAGE: Rappresenta i pacchetti presenti nel sistema, essi possono essere
+ contenuti o meno in una PACKAGE LIST.
+ Dispone dei seguenti attributi:
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Id: Identificativo del pacchetto, chiave primaria e dunque univoco
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Name: Nome del pacchetto
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Reduction: Sconto applicato al prezzo del pacchetto (calcolato come somma
+ dei prodotti base inseriti)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+People: Numero di persone previsto per un pacchetto, definisce il numero
+ di partecipanti massimo
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+INVITATION: Identifica gli inviti che vengono effettuati da un TDC verso
+ altri TDF.
+ E' identificato da un Hash, che viene generato dal sistema e resta univoco.
+ Un INVITATION ha uno e un solo TDC, un TDC può creare più inviti.
+\end_layout
+
+\begin_layout Itemize
+BASE PRODUCT: E' il prodotto base del sistema, gli unici attributi sono
+ un Id univoco e un nome Name.
+ Un BASE PRODUCT è inoltre in relazione ad una COMPANY (il cui unico attributo
+ è un nome Name) e può avere o meno una personalizzazione PERSONALIZED PRODUCT.
+ Tutti i BASE PRODUCT sono associati, mediate la relazione 
+\begin_inset Quotes eld
+\end_inset
+
+Possible Date Personalization
+\begin_inset Quotes erd
+\end_inset
+
+, a cui corrisponde un prezzo Price, ad una DATE PERSONALIZATION.
+ Il BASE PRODUCT è in relazione totale ed esclusiva con i seguenti: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+EXCURSION: Entità che modella le escursioni.
+ Una escursione è effettuata in una e una sola città CITY
+\end_layout
+
+\begin_layout Itemize
+HOTEL: Entità che modella gli hotel, disponde dell'attributo Stars che indica
+ le stelle dell'albergo, un hotel è disponibile in una e una sola città
+ CITY
+\end_layout
+
+\begin_layout Itemize
+FLIGHT: Entità che modella i voli aerei del sistema, è in relazione con
+ AIRPORT in quanto ha un areoporto di arrivo Arrival e un areoporto di partenza
+ Departure.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+HOTEL, FLIGHT: Dispongono, in aggiunta a quanto detto, di una relazione
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Possibile Class Personalization
+\begin_inset Quotes erd
+\end_inset
+
+ che, con un attributo di prezzo 
+\begin_inset Quotes eld
+\end_inset
+
+Price
+\begin_inset Quotes erd
+\end_inset
+
+ definisce il sovrapprezzo rispetto al 
+\begin_inset Quotes eld
+\end_inset
+
+Price
+\begin_inset Quotes erd
+\end_inset
+
+ definito in 
+\begin_inset Quotes eld
+\end_inset
+
+Possible Date Personalization
+\begin_inset Quotes erd
+\end_inset
+
+ scegliendo una classe superiorie rispetto a quella prevista
+\end_layout
+
+\begin_layout Itemize
+PERSONALIZATION: Disponde di un id per essere identificata, un PERSONALIZED
+ PRODUCT può avere da 0 (nessuna personalizzazione) a 2 (personalizzazione
+ di classe e data) personalizzazioni.
+ Una PERSONALIZATION può essere: 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+in quanto perzonalized...da 1 a 2 o da 0 a 2? ...perchè cmq la date cè sempre
+ (1...n)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+DATE PERSONALIZATION: Definisce le personalizzazioni di data, fornendo un
+ data Date di partenza e una durata del viaggio Duration espressa in minuti
+\end_layout
+
+\begin_layout Itemize
+CLASS PERSONALIZATION: Indica la personalizzazione di una classe
+\end_layout
+
+\end_deeper
 \end_body
 \end_document
