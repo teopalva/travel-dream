@@ -493,6 +493,7 @@ Si sono individuate le entità e le relazioni dell'applicativo secondo quanto
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Float figure
 wide false
 sideways false
@@ -677,21 +678,10 @@ Possible Date Personalization
 \end_layout
 
 \begin_layout Itemize
-PERSONALIZATION: Disponde di un id per essere identificata, un PERSONALIZED
+PERSONALIZATION: Dispone di un id per essere identificata, un PERSONALIZED
  PRODUCT può avere da 0 (nessuna personalizzazione) a 2 (personalizzazione
  di classe e data) personalizzazioni.
- Una PERSONALIZATION può essere: 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-in quanto perzonalized...da 1 a 2 o da 0 a 2? ...perchè cmq la date cè sempre
- (1...n)
-\end_layout
-
-\end_inset
-
-
+ Una PERSONALIZATION può essere:
 \end_layout
 
 \begin_deeper
