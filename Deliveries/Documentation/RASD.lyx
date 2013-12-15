@@ -1802,6 +1802,21 @@ Capo Verde - una terra da scoprire
 \end_layout
 
 \begin_layout Subsection
+Diagramma dei casi d'uso
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename use_case girato.pdf
+	display false
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Modello dei casi d'uso
 \end_layout
 

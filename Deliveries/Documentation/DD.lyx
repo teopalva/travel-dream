@@ -1,0 +1,699 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "RASD"
+\pdf_author "Gianluca Venturini"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine natbib_authoryear
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\align center
+Politecnico di Milano
+\end_layout
+
+\begin_layout Standard
+\align center
+Scuola di Ingegneria dell'Informazione
+\end_layout
+
+\begin_layout Standard
+\align center
+Corso di Laurea Magistrale in Ingegneria Informatica
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename logopm.pdf
+	display false
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+Progetto di Ingegneria del Software 2
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+TravelDream
+\end_layout
+
+\begin_layout Standard
+\align center
+(Design Document)
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Responsabile:
+\end_layout
+
+\begin_layout Standard
+Prof.
+ Raffaela Mirandola
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\align right
+Progetto di:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Palvarini Matteo
+\series default
+ Matricola n.
+ 816952
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Venturini Gianluca
+\series default
+ Matricola n.
+ 814236
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Zerbinati Francesco
+\series default
+ Matricola n.
+ 817415
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+ANNO ACCADEMICO 2013/2014
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduzione
+\end_layout
+
+\begin_layout Standard
+L’obiettivo di questo documento è fornire una descrizione della struttura
+ concettuale del sistema che implementeremo, basata sulle specifiche descritte
+ nel documento di analisi dei requisiti.
+ Si rivolge principalmente al gruppo di lavoro che sarà incaricato dell’implemen
+tazione e della manutenzione del software.
+ In questo capitolo verrà presentata una panoramica del sistema e della
+ sua architettura.
+ Nei capitoli successivi, analizzeremo in dettaglio la progettazione dei
+ vari elementi che compongono l’applicazione.
+ Dapprima verrà presentata la struttura dei dati, per poi passare agli aspetti
+ relativi alla progettazione delle funzionalità dell’applicazione, e infine
+ al progetto dell’interfaccia utente e della logica connessa.
+ Dove necessario, saranno discussi aspetti implementativi rilevanti per
+ la fase di progettazione.
+\end_layout
+
+\begin_layout Subsection
+Panoramica
+\end_layout
+
+\begin_layout Standard
+Il sistema che verrà realizzato è un applicativo software di e-commerce
+ denominato 
+\begin_inset Quotes eld
+\end_inset
+
+TravelDream
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Obiettivo del prodotto è quello di supportare gli utenti che vogliono prenotare
+ un viaggio durante la procedura di scelta e acquisto del pacchetto desiderato.
+ Inoltre il sistema darà un ampio supporto all'azienda omonima durante le
+ procedure di inserimento/modifica/cancellazione dei vari pacchetti e di
+ tutte le componenti che li costituiscono.
+\end_layout
+
+\begin_layout Standard
+Per l'utilizzo della piattaforma si è deciso di progettare un'interfaccia
+ web in primo luogo per rendere il servizio disponibile ad un maggior numero
+ di persone e, in secondo luogo, per permettere un facile aggiornamento
+ del sistema e buona mantenibilità senza dover richiedere particolari installazi
+oni o aggiornamenti da parte dell'utente, in quanto l'applicativo risiederà
+ sul server di TravelDream.
+\end_layout
+
+\begin_layout Standard
+Gli utenti registrati del sistema TravelDream possono visualizzare i pacchetti
+ predefiniti proposti dall'azienda in due modi: utilizzando il catalogo
+ messo a disposizione dal sito oppure utilizzando un piccolo motore di ricerca
+ che permette di selezionare solo i pacchetti viaggio verso le destinazioni
+ di interesse.
+\end_layout
+
+\begin_layout Standard
+In alternativa gli utenti possono creare un loro pacchetto personalizzato,
+ partendo dal selezionare i vari prodotti base che l'azienda offre ed aggregando
+li nel modo che viene ritenuto più opportuno.
+\end_layout
+
+\begin_layout Standard
+Ogni utente registrato nel sistema può possedere una lista di pacchetti
+ regalo, visualizzabile dagli altri utenti tramite ricerca per email.
+\end_layout
+
+\begin_layout Standard
+La procedura di acquisto di un pacchetto inizia subito dopo che un utente
+ lo ha selezionato, a questo punto si può decidere di personalizzarlo con
+ delle modifiche riguardanti solo date e orari, ovviamente il sistema controlla
+ la coerenza tra le date dei voli, le date di check-in, check-out degli
+ hotel e quelle delle escursioni.
+ Dopo la personalizzazione è possibile acquistare il pacchetto, inserirlo
+ nella propria lista regali oppure invitare degli amici ad unirsi al viaggio,
+ in tal caso l'acquisto del pacchetto resterà in sospeso finchè tutti gli
+ utenti invitati non avranno confermato la propria partecipazione.
+\end_layout
+
+\begin_layout Subsection
+Scelte tecnologiche
+\end_layout
+
+\begin_layout Standard
+Alcune scelte relative alle tecnologie da utilizzare per l'implementazione
+ del sistema condizionano aspetti relativi alla progettazione, si evidenziano
+ quindi in questa sezione le tecnologie e gli strumenti che utilizzeremo.
+\end_layout
+
+\begin_layout Itemize
+Il sistema è basato sulla piattaforma Java Enterprise Edition 7, in particolare
+ della piattaforma verranno utilizzate:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Enterprise Java Beans (EJB) per lo sviluppo della logica applicativa
+\end_layout
+
+\begin_layout Itemize
+Java Persisttence API (JPA) per la gestione della persistenza dei dati del
+ DBMS
+\end_layout
+
+\begin_layout Itemize
+Java Server Faces 2.0 (JSF 2.0) per lo sviluppo dell'applicazione web
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Viene inoltre adottato GlassFish 4 come application server, utilizzato come
+ cointainer per i componenti che verranno sviluppati.
+\end_layout
+
+\begin_layout Itemize
+Verrà utilizzata, come libreria di supporto, PrimeFaces.
+\end_layout
+
+\begin_layout Itemize
+Il DMBS utilizzato è MySQL Community Edition 5, questa scelta non è comunque
+ critica in quanto la comunicazion con il database server è astradda dal
+ JPA.
+\end_layout
+
+\begin_layout Itemize
+Per quanto riguarda l'ambiente di sviluppo utilizzeremo Eclipse (versione
+ Kepler) insieme ai plugin relativi a JEE e GlassFish.
+\end_layout
+
+\begin_layout Itemize
+Per semplificare il lavoro tra i vari componenti del gruppo è stato attivato
+ un repository git presso Google Code (https://code.google.com/p/project-travel-dr
+eam)
+\end_layout
+
+\begin_layout Subsection
+Descrizione dell'architettura
+\end_layout
+
+\begin_layout Standard
+Lo stile architetturale che abbiamo adottato, multi-tier, è tipico delle
+ applicazioni di tipo enterprise, i cui i vari livelli logici (o strati,
+ tier) sono distribuiti su diverse macchine che comunicano tra di loro (nel
+ nostro caso questo si verifca solo per il Client Tier).
+ Questo modello rende il sistema estremamente modulare.
+\end_layout
+
+\begin_layout Standard
+L'applicativo che si andrà a realizzare sarà suddiviso in quattro livelli:
+ il client tier, il web tier, il business tier e il data tier.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Client Tier
+\series default
+: E' il livello tramite il quale gli utenti possono accedere alla funzionalità
+ messe a disposizione dall'applicativo.
+ Il tier comunica tramite il protocollo HTTP con il web tier, inviando al
+ server i dati ricevuti dall'utente e visualizzando le pagine ricevute in
+ risposta dal server.
+ Per la realizzazione di questo tier sono utilizzate la tecnologia JSF e
+ la libreria PrimeFaces.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Web Tier: 
+\series default
+Questo strato riceve le richieste HTTP dal client tier e risponde inviando
+ le pagine richieste dall'utente.
+ Le pagine vengono generate dinamicamente in base ai dati ricevuti.
+ Il web tier verrà implementato con JEE e funzionerà all'interno dell'applicatio
+n server GlassFish.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Business Tier: 
+\series default
+Il livello fornisce la business logic dell'applicativo e comunica direttamente
+ con il database.
+ In questo livello sono utilizzati gli EJB, JPA per accedere al database.
+ E' previsto che questo strato interagisca anche con un server di posta
+ elettronica SMTP, per inviare i messaggi di invito ad utenti al sistema.
+ Questo server è esterno al sistema e può quindi essere affidato ad un servizio
+ esterno.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Data Tier: 
+\series default
+E' costituito dal DBMS, che garantisce la persistenza dei dati.
+ L'application server comunica con il database utilizzando le tecnologie
+ standard di Java, JDBC.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tier_schema.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Vista dell'architettura del progetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Progetto dei dati
+\end_layout
+
+\begin_layout Standard
+In questo capitolo forniremo il dettaglio delle strutture dati a supporto
+ del sistema, implementate da un DBMS, nello specifico MySql Server 5.
+ Si andrà prima ad analizzare la progettazione concettuale, ovvero il modello
+ ER elaborato per l'organizzazione del database, in seguito si forniranno
+ la traduzione logica di quanto visto nel modello e infine si presenterà
+ un grafo completo, realizzato tramite MySQL Workbench, relativo al progetto
+ logico riportato.
+\end_layout
+
+\begin_layout Subsection
+Progettazione concettuale
+\end_layout
+
+\begin_layout Standard
+Si sono individuate le entità e le relazioni dell'applicativo secondo quanto
+ già discusso nel documento RASD.
+ Il risultato di questo lavoro è rappresentato dal diagramma ER di Figura
+ 2.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ER.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Diagramma ER
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Le entità e le associazioni che abbiamo individuato tramite lo schema ER
+ sono di seguito descritte:
+\end_layout
+
+\begin_layout Itemize
+USER: Rappresenta un utente registrato al sistema, è identificato da un
+ attributo Mail, che è univoco e ha come attributi la Password per l'accesso
+ e alcune informazioni anagrafiche (FirstName e LastName).
+\end_layout
+
+\begin_layout Itemize
+TDE, TDF, TCD: Rappresentano gli attori descritti nel RASD, ci si riferisca
+ dunque a tale documento.
+\end_layout
+
+\begin_layout Itemize
+BUYING LIST: Ogni utente ha una lista degli ordini effettuati, è rappresentata
+ mediante una tabella nel nostro modello e prevede come identificatore lo
+ stesso TDC (in quanto in relazione 1 a 1), dispone degli attributi Gifted
+ e Paid: il primo segnala se il pacchetto è stato regalato da un altro TDC,
+ il secondo indica se è stato ricevuto il pagamento nel conto corrente di
+ TravelDream (parametro modificabile dal pannello di controllo dell'amministrato
+re TDE).
+\end_layout
+
+\begin_layout Itemize
+GIFT LIST: E' la lista desideri di ogni utente, è identificata dal TDC proprieta
+rio (in quanto in relazione 1 a 1), raccoglie i pacchetti che sono stati
+ inseriti da un TDC e sono visibili ad altri TDC per regalarli al proprietario
+ della lista.
+\end_layout
+
+\begin_layout Itemize
+PACKAGE LIST: Relazione che raccoglie in maniera totale ed esclusiva le
+ due liste di cui sopra, un pacchetto non può essere contenuto contemporaneament
+e in entrambe le liste.
+\end_layout
+
+\begin_layout Itemize
+PACKAGE: Rappresenta i pacchetti presenti nel sistema, essi possono essere
+ contenuti o meno in una PACKAGE LIST.
+ Dispone dei seguenti attributi:
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Id: Identificativo del pacchetto, chiave primaria e dunque univoco
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Name: Nome del pacchetto
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Reduction: Sconto applicato al prezzo del pacchetto (calcolato come somma
+ dei prodotti base inseriti)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+People: Numero di persone previsto per un pacchetto, definisce il numero
+ di partecipanti massimo
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+INVITATION: Identifica gli inviti che vengono effettuati da un TDC verso
+ altri TDF.
+ E' identificato da un Hash, che viene generato dal sistema e resta univoco.
+ Un INVITATION ha uno e un solo TDC, un TDC può creare più inviti.
+\end_layout
+
+\begin_layout Itemize
+BASE PRODUCT: E' il prodotto base del sistema, gli unici attributi sono
+ un Id univoco e un nome Name.
+ Un BASE PRODUCT è inoltre in relazione ad una COMPANY (il cui unico attributo
+ è un nome Name) e può avere o meno una personalizzazione PERSONALIZED PRODUCT.
+ Tutti i BASE PRODUCT sono associati, mediate la relazione 
+\begin_inset Quotes eld
+\end_inset
+
+Possible Date Personalization
+\begin_inset Quotes erd
+\end_inset
+
+, a cui corrisponde un prezzo Price, ad una DATE PERSONALIZATION.
+ Il BASE PRODUCT è in relazione totale ed esclusiva con i seguenti: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+EXCURSION: Entità che modella le escursioni.
+ Una escursione è effettuata in una e una sola città CITY
+\end_layout
+
+\begin_layout Itemize
+HOTEL: Entità che modella gli hotel, disponde dell'attributo Stars che indica
+ le stelle dell'albergo, un hotel è disponibile in una e una sola città
+ CITY
+\end_layout
+
+\begin_layout Itemize
+FLIGHT: Entità che modella i voli aerei del sistema, è in relazione con
+ AIRPORT in quanto ha un areoporto di arrivo Arrival e un areoporto di partenza
+ Departure.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+HOTEL, FLIGHT: Dispongono, in aggiunta a quanto detto, di una relazione
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Possibile Class Personalization
+\begin_inset Quotes erd
+\end_inset
+
+ che, con un attributo di prezzo 
+\begin_inset Quotes eld
+\end_inset
+
+Price
+\begin_inset Quotes erd
+\end_inset
+
+ definisce il sovrapprezzo rispetto al 
+\begin_inset Quotes eld
+\end_inset
+
+Price
+\begin_inset Quotes erd
+\end_inset
+
+ definito in 
+\begin_inset Quotes eld
+\end_inset
+
+Possible Date Personalization
+\begin_inset Quotes erd
+\end_inset
+
+ scegliendo una classe superiorie rispetto a quella prevista
+\end_layout
+
+\begin_layout Itemize
+PERSONALIZATION: Dispone di un id per essere identificata, un PERSONALIZED
+ PRODUCT può avere da 0 (nessuna personalizzazione) a 2 (personalizzazione
+ di classe e data) personalizzazioni.
+ Una PERSONALIZATION può essere:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+DATE PERSONALIZATION: Definisce le personalizzazioni di data, fornendo un
+ data Date di partenza e una durata del viaggio Duration espressa in minuti
+\end_layout
+
+\begin_layout Itemize
+CLASS PERSONALIZATION: Indica la personalizzazione di una classe
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
