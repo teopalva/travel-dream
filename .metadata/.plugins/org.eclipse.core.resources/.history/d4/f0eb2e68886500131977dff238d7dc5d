@@ -1,0 +1,44 @@
+package bean;
+
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
+import DTO.UserDTO;
+import coreEJB.UserEJB;
+
+@ManagedBean(name="Login")
+@ViewScoped
+public class LoginBean {
+	private String mail = null;
+	private String password = null;
+	
+	@EJB
+	UserEJB userEJB;
+	
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String confirmLogin() {
+		UserDTO user = new UserDTO();
+		boolean result = userEJB.authenticateUser(user);
+		if(result==false) {
+			FacesContext.getCurrentInstance().addMessage("", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sample info message", "PrimeFaces rocks!"));
+			return null;
+		}
+		else
+			return null;
+	}
+}

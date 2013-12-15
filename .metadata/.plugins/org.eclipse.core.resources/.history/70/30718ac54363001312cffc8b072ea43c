@@ -1,0 +1,83 @@
+package entity;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * The persistent class for the PERSONALIZED_PRODUCT_FLIGHT database table.
+ * 
+ */
+@Entity
+@Table(name="PERSONALIZED_PRODUCT_FLIGHT")
+@NamedQuery(name="PersonalizedProductFlight.findAll", query="SELECT p FROM PersonalizedProductFlight p")
+public class PersonalizedProductFlight implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private int id;
+
+	//bi-directional many-to-one association to ClassPersonalization
+	@ManyToOne
+	@JoinColumn(name="ClassPersonalization")
+	private ClassPersonalization classPersonalizationBean;
+
+	//bi-directional many-to-one association to DatePersonalization
+	@ManyToOne
+	@JoinColumn(name="DatePersonalization")
+	private DatePersonalization datePersonalizationBean;
+
+	//bi-directional many-to-one association to Flight
+	@ManyToOne
+	@JoinColumn(name="FlightId")
+	private Flight flight;
+
+	//bi-directional many-to-one association to Package
+	@ManyToOne
+	@JoinColumn(name="PackageId")
+	private Package package;
+
+	public PersonalizedProductFlight() {
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public ClassPersonalization getClassPersonalizationBean() {
+		return this.classPersonalizationBean;
+	}
+
+	public void setClassPersonalizationBean(ClassPersonalization classPersonalizationBean) {
+		this.classPersonalizationBean = classPersonalizationBean;
+	}
+
+	public DatePersonalization getDatePersonalizationBean() {
+		return this.datePersonalizationBean;
+	}
+
+	public void setDatePersonalizationBean(DatePersonalization datePersonalizationBean) {
+		this.datePersonalizationBean = datePersonalizationBean;
+	}
+
+	public Flight getFlight() {
+		return this.flight;
+	}
+
+	public void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+
+	public Package getPackage() {
+		return this.package;
+	}
+
+	public void setPackage(Package package) {
+		this.package = package;
+	}
+
+}

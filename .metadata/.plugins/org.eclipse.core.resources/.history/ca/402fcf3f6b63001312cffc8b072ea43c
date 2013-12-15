@@ -1,0 +1,68 @@
+package entity;
+
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
+
+
+/**
+ * The persistent class for the IMAGE database table.
+ * 
+ */
+@Entity
+@NamedQuery(name="Image.findAll", query="SELECT i FROM Image i")
+public class Image implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+
+	private Object data;
+
+	//bi-directional many-to-one association to Package
+	@OneToMany(mappedBy="image")
+	private List<Package> packages;
+
+	public Image() {
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Object getData() {
+		return this.data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
+	}
+
+	public List<Package> getPackages() {
+		return this.packages;
+	}
+
+	public void setPackages(List<Package> packages) {
+		this.packages = packages;
+	}
+
+	public Package addPackage(Package package) {
+		getPackages().add(package);
+		package.setImage(this);
+
+		return package;
+	}
+
+	public Package removePackage(Package package) {
+		getPackages().remove(package);
+		package.setImage(null);
+
+		return package;
+	}
+
+}

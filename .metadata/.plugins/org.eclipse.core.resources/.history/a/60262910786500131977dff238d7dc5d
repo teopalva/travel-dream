@@ -1,0 +1,21 @@
+package CoreEJB;
+
+import javax.ejb.Stateless;
+
+/**
+ * Session Bean implementation class UserEJB
+ */
+@Stateless
+//@LocalBean
+public class UserEJB {
+
+    /**
+     * Default constructor. 
+     */
+    public UserEJB() {
+        // TODO Auto-generated constructor stub
+    }
+    
+    public boolAuthenticateUser()
+
+}

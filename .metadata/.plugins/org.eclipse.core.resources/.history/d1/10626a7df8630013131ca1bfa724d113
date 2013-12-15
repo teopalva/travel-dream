@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="TravelDreamDB">
+		<class>entity.Airport</class>
+		<class>entity.BuyingList</class>
+		<class>entity.BuyingListPK</class>
+		<class>entity.City</class>
+		<class>entity.ClassPersonalization</class>
+		<class>entity.Company</class>
+		<class>entity.DatePersonalization</class>
+		<class>entity.Excursion</class>
+		<class>entity.Flight</class>
+		<class>entity.Hotel</class>
+		<class>entity.Image</class>
+		<class>entity.Invitation</class>
+		<class>entity.Package</class>
+		<class>entity.PersonalizedProductExcursion</class>
+		<class>entity.PersonalizedProductFlight</class>
+		<class>entity.PersonalizedProductHotel</class>
+		<class>entity.User</class>
+		<class>entity.PossibleClassPersonalizationFlight</class>
+		<class>entity.PossibleClassPersonalizationFlightPK</class>
+		<class>entity.PossibleClassPersonalizationHotel</class>
+		<class>entity.PossibleClassPersonalizationHotelPK</class>
+		<class>entity.PossibleDatePersonalizationExcursion</class>
+		<class>entity.PossibleDatePersonalizationExcursionPK</class>
+		<class>entity.PossibleDatePersonalizationFlight</class>
+		<class>entity.PossibleDatePersonalizationFlightPK</class>
+		
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/TravelDream" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.user" value="traveldream" />
+			<property name="javax.persistence.jdbc.password" value="traveldream" />
+		</properties>
+	</persistence-unit>
+</persistence>

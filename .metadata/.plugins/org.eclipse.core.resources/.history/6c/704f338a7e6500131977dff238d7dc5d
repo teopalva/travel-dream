@@ -1,0 +1,7 @@
+package bean;
+
+@ManagedBean(name="Login")
+@RequestScoped
+public class LoginBean {
+
+}

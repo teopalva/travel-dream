@@ -1,0 +1,39 @@
+package coreEJB;
+
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import DTO.UserDTO;
+import entity.User;
+
+import com.google.common.base.Charsets;
+import com.google.common.hash.Hashing;
+
+/**
+ * Session Bean implementation class UserEJB
+ */
+@Stateless
+public class UserEJB implements UserEJBLocal {
+	
+	@PersistenceContext
+	EntityManager em;
+
+    /**
+     * Default constructor. 
+     */
+    public UserEJB() {
+        // TODO Auto-generated constructor stub
+    }
+    
+    public boolean AuthenticateUser(UserDTO userDTO) {
+    	User user = em.find(User.class, userDTO.getMail());
+    	
+    	//Calculate hashed password
+    	String hashedPsw = Hashing.sha256().hashString(userDTO.getPassword(), Charsets.UTF_8).toString();
+    	
+    	if(user)
+    	
+    }
+
+}

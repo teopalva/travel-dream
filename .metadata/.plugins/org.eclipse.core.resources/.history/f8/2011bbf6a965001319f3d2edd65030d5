@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head>
+        <title>LOGIN</title>
+    </h:head>
+    <h:body>
+    	<h3>Login</h3>
+    	<h:form>
+    		<h:panelGrid id="grid" columns="3" cellpadding="4">  
+    	   		<p:inputText id="mail" value="#{Login.mail}"/>
+    	   		<p:message for="mail" /> 
+    	   		<p:password id="password" value="#{Login.password}"/> 
+    	   		<p:message for="password" /> 
+    	   		<p:commandButton value="Login" actionListener="#{Login.confirmLogin} update=":mail"/>
+    		</h:panelGrid>
+    	    
+    	</h:form>
+    </h:body>
+</html>

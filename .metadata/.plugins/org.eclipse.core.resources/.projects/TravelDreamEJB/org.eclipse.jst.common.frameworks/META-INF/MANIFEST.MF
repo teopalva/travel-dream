@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Class-Path: TravelDreamEJBClient.jar eclipselink.jar javax.persistence
+ _2.1.0.v201304241213.jar org.eclipse.persistence.jpa.modelgen_2.5.0.v
+ 20130507-3faac2b.jar org.eclipse.persistence.jpars_2.5.0.v20130507-3f
+ aac2b.jar com.sun.tools.xjc_2.2.0.jar com.sun.xml.bind_2.2.0.v2010041
+ 41950.jar javax.activation_1.1.0.v201108011116.jar javax.mail_1.4.0.v
+ 201005080615.jar javax.xml.bind_2.2.0.v201105210648.jar javax.xml.str
+ eam_1.0.1.v201004272200.jar
+

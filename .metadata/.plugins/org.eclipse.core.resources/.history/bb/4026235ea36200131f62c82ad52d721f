@@ -1,0 +1,83 @@
+package entity;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+
+/**
+ * The persistent class for the PERSONALIZED_PRODUCT_HOTEL database table.
+ * 
+ */
+@Entity
+@Table(name="PERSONALIZED_PRODUCT_HOTEL")
+@NamedQuery(name="PersonalizedProductHotel.findAll", query="SELECT p FROM PersonalizedProductHotel p")
+public class PersonalizedProductHotel implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private int id;
+
+	//bi-directional many-to-one association to Hotel
+	@ManyToOne
+	@JoinColumn(name="HotelId")
+	private Hotel hotel;
+
+	//bi-directional many-to-one association to Package
+	@ManyToOne
+	@JoinColumn(name="PackageId")
+	private Package package;
+
+	//bi-directional many-to-one association to DatePersonalization
+	@ManyToOne
+	@JoinColumn(name="DatePersonalization")
+	private DatePersonalization datePersonalizationBean;
+
+	//bi-directional many-to-one association to ClassPersonalization
+	@ManyToOne
+	@JoinColumn(name="ClassPersonalization")
+	private ClassPersonalization classPersonalizationBean;
+
+	public PersonalizedProductHotel() {
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Hotel getHotel() {
+		return this.hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+
+	public Package getPackage() {
+		return this.package;
+	}
+
+	public void setPackage(Package package) {
+		this.package = package;
+	}
+
+	public DatePersonalization getDatePersonalizationBean() {
+		return this.datePersonalizationBean;
+	}
+
+	public void setDatePersonalizationBean(DatePersonalization datePersonalizationBean) {
+		this.datePersonalizationBean = datePersonalizationBean;
+	}
+
+	public ClassPersonalization getClassPersonalizationBean() {
+		return this.classPersonalizationBean;
+	}
+
+	public void setClassPersonalizationBean(ClassPersonalization classPersonalizationBean) {
+		this.classPersonalizationBean = classPersonalizationBean;
+	}
+
+}

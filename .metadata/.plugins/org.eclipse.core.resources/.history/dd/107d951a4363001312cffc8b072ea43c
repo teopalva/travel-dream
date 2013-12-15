@@ -1,0 +1,92 @@
+package entity;
+
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
+
+
+/**
+ * The persistent class for the EXCURSION database table.
+ * 
+ */
+@Entity
+@NamedQuery(name="Excursion.findAll", query="SELECT e FROM Excursion e")
+public class Excursion implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private int id;
+
+	private String name;
+
+	//bi-directional many-to-one association to Company
+	@ManyToOne
+	@JoinColumn(name="Company")
+	private Company companyBean;
+
+	//bi-directional many-to-one association to PersonalizedProductExcursion
+	@OneToMany(mappedBy="excursion")
+	private List<PersonalizedProductExcursion> personalizedProductExcursions;
+
+	//bi-directional many-to-many association to DatePersonalization
+	@ManyToMany(mappedBy="excursions")
+	private List<DatePersonalization> datePersonalizations;
+
+	public Excursion() {
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Company getCompanyBean() {
+		return this.companyBean;
+	}
+
+	public void setCompanyBean(Company companyBean) {
+		this.companyBean = companyBean;
+	}
+
+	public List<PersonalizedProductExcursion> getPersonalizedProductExcursions() {
+		return this.personalizedProductExcursions;
+	}
+
+	public void setPersonalizedProductExcursions(List<PersonalizedProductExcursion> personalizedProductExcursions) {
+		this.personalizedProductExcursions = personalizedProductExcursions;
+	}
+
+	public PersonalizedProductExcursion addPersonalizedProductExcursion(PersonalizedProductExcursion personalizedProductExcursion) {
+		getPersonalizedProductExcursions().add(personalizedProductExcursion);
+		personalizedProductExcursion.setExcursion(this);
+
+		return personalizedProductExcursion;
+	}
+
+	public PersonalizedProductExcursion removePersonalizedProductExcursion(PersonalizedProductExcursion personalizedProductExcursion) {
+		getPersonalizedProductExcursions().remove(personalizedProductExcursion);
+		personalizedProductExcursion.setExcursion(null);
+
+		return personalizedProductExcursion;
+	}
+
+	public List<DatePersonalization> getDatePersonalizations() {
+		return this.datePersonalizations;
+	}
+
+	public void setDatePersonalizations(List<DatePersonalization> datePersonalizations) {
+		this.datePersonalizations = datePersonalizations;
+	}
+
+}

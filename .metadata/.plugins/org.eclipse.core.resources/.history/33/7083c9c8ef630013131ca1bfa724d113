@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="TravelDreamDB">
+		<class>entity.Airport</class>
+		<class>entity.BuyingList</class>
+		<class>entity.BuyingListPK</class>
+		<class>entity.City</class>
+		<class>entity.ClassPersonalization</class>
+		<class>entity.Company</class>
+		<class>entity.DatePersonalization</class>
+		<class>entity.Excursion</class>
+		<class>entity.Flight</class>
+		<class>entity.Hotel</class>
+		<class>entity.Image</class>
+		<class>entity.Invitation</class>
+		<class>entity.Package</class>
+		<class>entity.PersonalizedProductExcursion</class>
+		<class>entity.PersonalizedProductFlight</class>
+		<class>entity.PersonalizedProductHotel</class>
+		<class>entity.User</class>
+		<class>entityNEW.Airport</class>
+		<class>entityNEW.BuyingList</class>
+		<class>entityNEW.BuyingListPK</class>
+		<class>entityNEW.City</class>
+		<class>entityNEW.ClassPersonalization</class>
+		<class>entityNEW.Company</class>
+		<class>entityNEW.DatePersonalization</class>
+		<class>entityNEW.Excursion</class>
+		<class>entityNEW.Flight</class>
+		<class>entityNEW.Hotel</class>
+		<class>entityNEW.Image</class>
+		<class>entityNEW.Invitation</class>
+		<class>entityNEW.Package</class>
+		<class>entityNEW.PersonalizedProductExcursion</class>
+		<class>entityNEW.PersonalizedProductFlight</class>
+		<class>entityNEW.PersonalizedProductHotel</class>
+		<class>entityNEW.PossibleClassPersonalizationFlight</class>
+		<class>entityNEW.PossibleClassPersonalizationFlightPK</class>
+		<class>entityNEW.PossibleClassPersonalizationHotel</class>
+		<class>entityNEW.PossibleClassPersonalizationHotelPK</class>
+		<class>entityNEW.PossibleDatePersonalizationExcursion</class>
+		<class>entityNEW.PossibleDatePersonalizationExcursionPK</class>
+		<class>entityNEW.PossibleDatePersonalizationFlight</class>
+		<class>entityNEW.PossibleDatePersonalizationFlightPK</class>
+		<class>entityNEW.User</class>
+		
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/TravelDream" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.user" value="traveldream" />
+			<property name="javax.persistence.jdbc.password" value="traveldream" />
+		</properties>
+	</persistence-unit>
+</persistence>

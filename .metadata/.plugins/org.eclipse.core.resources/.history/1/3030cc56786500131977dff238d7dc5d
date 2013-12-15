@@ -1,0 +1,7 @@
+package DTO;
+
+public class UserDTO {
+	private String mail;
+	private String password;
+
+}

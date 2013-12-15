@@ -1,0 +1,17 @@
+package entity;
+
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+
+public class PossibleDatePersonalizationExcursionListener {
+    @PreUpdate
+    @PrePersist
+    public void setPrimaryKey(PossibleDatePersonalizationExcursion p) {
+        Excursion excursion = p.getExcursion();
+        DatePersonalization dateP = p.getDatePersonalization();
+        PossibleDatePersonalizationFlightPK pk = new PossibleDatePersonalizationFlightPK();
+        pk.setFlightId(flight.getId());
+        pk.setDatePersonalizationId(dateP.getId());
+        p.setId(pk);
+    }
+}
