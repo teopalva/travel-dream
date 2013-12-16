@@ -1,0 +1,5155 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "RASD"
+\pdf_author "Gianluca Venturini"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine natbib_authoryear
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\align center
+Politecnico di Milano
+\end_layout
+
+\begin_layout Standard
+\align center
+Scuola di Ingegneria dell'Informazione
+\end_layout
+
+\begin_layout Standard
+\align center
+Corso di Laurea Magistrale in Ingegneria Informatica
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename logopm.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+Progetto di Ingegneria del Software 2
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+TravelDream
+\end_layout
+
+\begin_layout Standard
+\align center
+(Requirement Analysis and Specification Document)
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Responsabile:
+\end_layout
+
+\begin_layout Standard
+Prof.
+ Raffaela Mirandola
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\align right
+Progetto di:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Palvarini Matteo
+\series default
+ Matricola n.
+ 816952
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Venturini Gianluca
+\series default
+ Matricola n.
+ 814236
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Zerbinati Francesco
+\series default
+ Matricola n.
+ 817415
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+ANNO ACCADEMICO 2013/2014
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduzione
+\end_layout
+
+\begin_layout Standard
+L’obiettivo di questo documento è fornire una specifica dei requisiti che
+ dovranno essere soddisfatti dal sistema realizzato.
+ Il documento presenta una descrizione dei requisiti funzionali e non-funzionali
+, impiegando vari diagrammi UML, oltre a una specifica del sistema ad alto
+ livello.
+ Nell’ultima parte è invece presentato un modello formale delle specifiche
+ e i risultati della sua analisi, realizzata mediante Alloy.
+\end_layout
+
+\begin_layout Standard
+Questo documento è rivolto sia agli sviluppatori del progetto TravelDream
+ che a tutti gli altri stakeholder del progetto.
+ Per quanto riguarda i primi, il documento assume importanza nel momento
+ in cui è necessario stabilire una coerenza tra lo sviluppo e le richieste
+ elaborate.
+ Per gli stakeholder, questo documento rappresenta una traccia del lavoro
+ di analisi svolto dagli sviluppatori, utile per interpretarne il lavoro
+ di sviluppo.
+\end_layout
+
+\begin_layout Subsection
+Obiettivo
+\end_layout
+
+\begin_layout Standard
+Il sistema che verrà realizzato è un applicativo software di e-commerce
+ denominato 
+\begin_inset Quotes eld
+\end_inset
+
+TravelDream
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Obiettivo del prodotto è quello di supportare gli utenti che vogliono prenotare
+ un viaggio durante la procedura di scelta e acquisto del pacchetto desiderato.
+ Inoltre il sistema darà un ampio supporto all'azienda omonima durante le
+ procedure di inserimento/modifica/cancellazione dei vari pacchetti e di
+ tutte le componenti che li costituiscono.
+\end_layout
+
+\begin_layout Subsection
+Descrizione del problema
+\end_layout
+
+\begin_layout Standard
+Gli utenti registrati del sistema TravelDream possono visualizzare i pacchetti
+ predefiniti proposti dall'azienda in due modi: utilizzando il catalogo
+ messo a disposizione dal sito oppure utilizzando un piccolo motore di ricerca
+ che permette di selezionare solo i pacchetti viaggio verso le destinazioni
+ di interesse.
+\end_layout
+
+\begin_layout Standard
+In alternativa gli utenti possono creare un loro pacchetto personalizzato,
+ partendo dal selezionare i vari prodotti base che l'azienda offre ed aggregando
+li nel modo che viene ritenuto più opportuno.
+\end_layout
+
+\begin_layout Standard
+Ogni utente registrato nel sistema può possedere una lista di pacchetti
+ regalo, visualizzabile dagli altri utenti tramite ricerca per email.
+\end_layout
+
+\begin_layout Standard
+La procedura di acquisto di un pacchetto inizia subito dopo che un utente
+ lo ha selezionato, a questo punto si può decidere di personalizzarlo con
+ delle modifiche riguardanti solo date e orari, ovviamente il sistema controlla
+ la coerenza tra le date dei voli, le date di check-in, check-out degli
+ hotel e quelle delle escursioni.
+ Dopo la personalizzazione è possibile acquistare il pacchetto, inserirlo
+ nella propria lista regali oppure invitare degli amici ad unirsi al viaggio,
+ in tal caso l'acquisto del pacchetto resterà in sospeso finchè tutti gli
+ utenti invitati non avranno confermato la propria partecipazione.
+\end_layout
+
+\begin_layout Subsection
+Glossario
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+TravelDream Employee:
+\shape default
+ Successivamente chiamato TDE, rappresenta un impiegato di TravelDream che
+ ha caratteristiche di amministratore: può inserire contenuti nel sistema
+ disponibili per tutti gli utenti e può anche gestire i vari ordini dei
+ clienti.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+TravelDream Customer:
+\shape default
+ Utente finale di TravelDream, successivamente chiamato TDC, che usufruisce
+ dei servizi messi a disposizione dal portale e non ha privilegi amministrativi.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+TravelDream Customer Friend:
+\shape default
+ Utente esterno al sistema, che chiameremo successivamente TDF, è invitato
+ da un TDC esistente a partecipare ad un viaggio.
+ Dopo aver eseguito un login o la registrazione diviene TDC.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Prodotto base:
+\emph default
+ Tipologia di servizio offerta da un'azienda partner di TravelDream: volo
+ aereo, hotel, escursione programmata.
+ Ogni prodotto base fa riferimento ad una certa azienda che eroga il servizio
+ (ad esempio un pacchetto base può essere un volo aereo con una certa compagnia).
+ Un prodotto base può essere personalizzato dal TDE in fase di inserimento
+ in un pacchetto o da un cliente se il TDE ne ha autorizzato la personalizzazion
+e.
+ Un TDE può concedere la modifica di un prodotto base solo su alcuni parametri
+ che in generale sono: classe, date e orari per un volo, tipologia di camera
+ per un hotel, date e orari per le escursioni.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Pacchetto viaggio: 
+\emph default
+E' un insieme di prodotti base che formano un viaggio completo, studiato
+ per un certo numero di partecipanti.
+ Un TDE può decidere di applicare uno sconto ad un pacchetto, lo sconto
+ viene perso alla prima modifica che un TDC fa al pacchetto.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Azienda partner:
+\emph default
+ Azienda con cui TravelDream intrattiene rapporti commerciali
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Lista regali:
+\emph default
+ E' l'insieme di pacchetti personalizzati da un TDC di cui non si è però
+ proceduto con l'acquisto.
+ Ogni pacchetto presente non può essere successivamente personalizzato.
+ La necessità di questa lista è data dal fatto che i pacchetti presenti
+ sono visibili agli altri utenti i quali hanno la possibilità di regalarli
+ al TDC proprietario della lista.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Lista degli acquisti:
+\emph default
+ Insieme di pacchetti già acquistati da un TDC.
+ Questi pacchetti non possono essere ne modificati, ne cancellati dai TDC.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Lista inviti:
+\shape default
+ E' la lista di pacchetti per i quali è stata richiesta la partecipazione
+ dei TDF tramite invito.
+ Per ogni pacchetto di questa lista è possibile monitorare chi ancora non
+ ha confermato la propria partecipazione.
+ Ogni TDC ha una sua lista inviti contenente i vari pacchetti per cui si
+ sta attendendo conferma da altri utenti.
+\end_layout
+
+\begin_layout Section
+Descrizione generale
+\end_layout
+
+\begin_layout Subsection
+Prospettiva del prodotto
+\end_layout
+
+\begin_layout Standard
+Il sistema proposto è un’applicazione web di e-commerce, fruibile pubblicamente
+ tramite un comune web browser inserendo l'indirizzo web del sito TravelDream.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Funzionalità del prodotto
+\end_layout
+
+\begin_layout Standard
+Sono state definite due sezioni principali del sistema in termini di funzionalit
+à principali offerte: una per gli utenti amministratori (TDE) e uno per
+ gli utenti finali (TDC e TDF).
+ 
+\end_layout
+
+\begin_layout Standard
+In particolare le sezioni, di cui qui si specificano in dettaglio i requisiti
+ funzionali [RF] e i non funzionali [RNF], si articolano nel seguente modo:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Amministrazione
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione prodotti base
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione prodotti base esistenti
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Aggiunta di un nuovo prodotto base
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Modifica di un prodotto base
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF4] Eliminazione di un prodotto base
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF1] Il sistema deve essere in grado di gestire una grande quantità di
+ prodotti base
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione pacchetti viaggio
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione pacchetti esistenti
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Aggiunta di un nuovo pacchetto
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Modifica di un pacchetto
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF4] Eliminazione di un pacchetto
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF1] Il sistema deve garantire il supporto di un numero elevato di pacchetti
+ viaggio
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione ordini
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione ordini degli utenti
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Registrazione dei pagamenti ricevuti 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF1] Il sistema deve essere in grado di mantenere dati persistenti riguardo
+ gli ordini di tutti gli utenti
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Interfaccia utente
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\shape italic
+Esplorazione del sito
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione catalogo
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Ricerca per destinazione viaggio
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione utenza
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Registrazione
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Login
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Logout
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF1] Le password degli utenti devono essere memorizzate in modo sicuro
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF2] Il sistema deve supportare un numero elevato di utenti
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Personalizzazione pacchetto
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Modifica date/orari dei prodotti base (selezione tra più alternative)
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Modifica classe dei prodotti (volo, camera)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Conferma pacchetto viaggio
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Acquisto pacchetto 
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Aggiunta pacchetto alla lista regali
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Invio invito ad altri utenti per l'acquisto di un pacchetto
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Visualizzazione ordini effettuati
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione lista ordini
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Controllo ricevuta pagamenti
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[NRF1] Il sistema deve garantire tutela dei dati riservati per gli ordini
+ effettuati
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\shape italic
+Gestione lista regali
+\end_layout
+
+\begin_deeper
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF1] Visualizzazione lista regali
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF2] Eliminazione pacchetti dalla lista regali
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+[RF3] Ricerca di una lista regali di un altro utente mediante inserimento
+ dell'email
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsubsection
+Interfaccia utente
+\end_layout
+
+\begin_layout Standard
+Di seguito si mostrano degli sketch che descrivono, in prima approssimazione,
+ quale sarà il layout delle pagine principali del sito.
+ Queste figure non vanno viste come definitive ed esaurienti, ma come un
+ primo sguardo sul design e sull'esperienza complessiva di navigazione sul
+ sito.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/01-HomePage.pdf
+	display false
+	scale 60
+	clip
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Home Page
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/02-Registrazione.pdf
+	display false
+	scale 60
+	clip
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Registrazione
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/03-CatalogoOfferte.pdf
+	display false
+	scale 42.5
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Catalogo Pacchetti Offerte
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/04-CreaPacchetto.pdf
+	display false
+	scale 42.5
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Creazione Pacchetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/05-ModificaPacchetto.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Modifica Pacchetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/06-Check-out.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Check-out
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/07-Pagamento.pdf
+	display false
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Richiesta Pagamento
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename UI Sketch/08-MiaListaRegali.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La mia Lista Regali
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/09-ListaRegali.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Lista Regali di amico
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/10-ListaAcquisti.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La mia Lista Acquisti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/11-ListaInviti.pdf
+	display false
+	width 105text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+La mia Lista Inviti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/12-TDE.pdf
+	display false
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Pannello di Controllo del TDE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Considerazioni preliminari
+\end_layout
+
+\begin_layout Standard
+Di seguito si elencano alcuni punti di disambiguazione e precisazione rispetto
+ alla generica specifica di progetto fornita.
+\end_layout
+
+\begin_layout Standard
+Nelle seguenti specifiche, rispetto alla consegna originale si sono adottate
+ le seguenti convenzioni:
+\end_layout
+
+\begin_layout Enumerate
+I prodotti base sono semplici servizi offerti da un azienda.
+ Ad esempio, se un TDE volesse inserire un prodotto base per un volo Alitalia,
+ dovrebbe selezionare il prodotto base 
+\begin_inset Quotes eld
+\end_inset
+
+Volo Alitalia
+\begin_inset Quotes erd
+\end_inset
+
+ e successivamente personalizzarlo con date e orari del volo e classe (Business/
+Economica).
+\end_layout
+
+\begin_layout Enumerate
+Un utente TDC non può comprare un singolo prodotto base, se volesse procedere
+ con questa operazione, per esempio comprare solo un alloggio in hotel,
+ dovrebbe creare un pacchetto contenente il solo prodotto base personalizzato
+ con le date di check-in/check out e tipologia di camera.
+\end_layout
+
+\begin_layout Enumerate
+Per personalizzazione di un pacchetto da parte di un TDC si intende la modifica,
+ se permessa dal TDE che ha creato il pacchetto, di:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+date e orari dei voli, 
+\end_layout
+
+\begin_layout Enumerate
+date di check-in/check-out dell'hotel e tipologia della camera
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Da parte di un TDE la modifica di un pacchetto comprende anche rimozione/modific
+a/aggiunta di prodotti base al pacchetto.
+\end_layout
+
+\begin_layout Enumerate
+La procedura di invito degli amici a partecipare ad un pacchetto viaggio
+ non è vincolante: se gli invitati non confermano la partecipazione, il
+ pacchetto può essere comunque acquistato ma si pagherà l'intera quota prevista
+ da TravelDream per il numero di partecipanti inizialmente previsto.
+ Il sistema, oltre a prevedere una pagina (denominata 
+\begin_inset Quotes eld
+\end_inset
+
+Lista Inviti
+\begin_inset Quotes erd
+\end_inset
+
+) in cui si visualizzano le presenze confermate, notificherà durante la
+ procedura d'acquisto se gli invitati non hanno ancora confermato la partecipazi
+one.
+\end_layout
+
+\begin_layout Enumerate
+Per i pacchetti presenti nella lista inviti l'acquisto del pacchetto è formalizz
+abile solo dal TDC che ha inviato gli inviti, i TDF invitati hanno solo
+ la possibilità di confermare la partecipazione.
+ Il pagamento risulterà effettuato dal TDC 
+\begin_inset Quotes eld
+\end_inset
+
+invitante
+\begin_inset Quotes erd
+\end_inset
+
+ e l'ordine comparirà nella lista degli ordini di quest'ultimo.
+\end_layout
+
+\begin_layout Standard
+Infine, si è deciso di sviluppare il sistema sotto forma di web application
+ e, in quanto gruppo di tre persone, si sono dovuti integrare anche un sistema
+ che controlla la consistenza di tutti i prodotti contenuti in un pacchetto
+ viaggio e una lista regali nella quale l'utente avrà la possibilità di
+ inserire pacchetti viaggio.
+\end_layout
+
+\begin_layout Standard
+In particolare, durante la costituzione di un pacchetto viaggio viene controllat
+o che:
+\end_layout
+
+\begin_layout Enumerate
+Le date di arrivo/ritorno del volo coincidano con le date di check-in e
+ check-out presso l'hotel
+\end_layout
+
+\begin_layout Enumerate
+La data delle escursioni rientri nel periodo del viaggio
+\end_layout
+
+\begin_layout Enumerate
+Il luogo di arrivo del volo di andata e il luogo di partenza del volo di
+ ritorno coincidano con il luogo dell'hotel
+\end_layout
+
+\begin_layout Standard
+Per quanto riguarda la lista regali, quest'ultima è una funzionalità che
+ permette ai TDC di inserire, anche previa personalizzazione, dei pacchetti
+ viaggio che saranno poi visibili ad altri TDC in modo che questi ultimi
+ possano regalarli al TDC proprietario della lista.
+ Una volta regalato il pacchetto, questo scompare dalla lista regali e compare
+ nelle liste di entrambi i TDC coinvolti.
+\end_layout
+
+\begin_layout Subsection
+Caratteristiche degli utenti
+\end_layout
+
+\begin_layout Standard
+Gli utenti del sistema si dividono in due categorie: Amministratori (TDE)
+ e Clienti Registrati (TDC).
+ E' previsto infatti l'utilizzo dell'applicativo sia dal punto di vista
+ degli impiegati di TravelDream, che inseriscono i contenuti, che dei clienti,
+ che usufruiscono del servizio.
+ Questi ultimi vengono considerati come utenti adulti che decidono di usufruire
+ del servizio, accettando i termini e le condizioni dichiarati al momento
+ di registrazione.
+\end_layout
+
+\begin_layout Subsection
+Vincoli ed assunzioni
+\end_layout
+
+\begin_layout Standard
+Il principale vincolo di sviluppo risiede nell’utilizzo della piattaforma
+ J2EE versione 7 e della tecnologia degli Enterprise Java Beans (EJB) per
+ la realizzazione dell’applicazione.
+\end_layout
+
+\begin_layout Standard
+Assumiamo che gli utenti del sistema abbiano a disposizione un browser web
+ compatibile con HTML5, una connessione ad Internet ed un proprio indirizzo
+ di posta elettronica.
+\end_layout
+
+\begin_layout Standard
+L'azienda TravelDream dovrà possedere o affittare una macchina server (o
+ una macchina virtuale) su cui far girare Glassfish versione 4 e MySQL come
+ DBMS (database management system) per poter memorizzare i dati necessari
+ al funzionamento.
+ 
+\end_layout
+
+\begin_layout Subsection
+Attori e funzionalità
+\end_layout
+
+\begin_layout Subsubsection
+Utente non registrato
+\end_layout
+
+\begin_layout Itemize
+Un utente non registrato ha necessità di registrarsi per accedere a tutte
+ le funzionalità del sistema.
+ Sono presenti due modalità di navigazione: ricerca per destinazione del
+ viaggio oppure esplorazione del catalogo.
+ Questo utente non è descritto approfonditamente come gli altri nel sistema
+ perchè marginale e privo di funzionalità se non quella di registrazione
+ e di login.
+\end_layout
+
+\begin_layout Subsubsection
+TravelDream employee (TDE)
+\end_layout
+
+\begin_layout Itemize
+TravelDream employee (TDE): Dipendente dell'azienda TravelDream, può aggiungere/
+eliminare/modificare i prodotti base e i pacchetti viaggio.
+ Inoltre è prevista un'interfaccia per la visualizzazione degli ordini creati
+ dai TDC e per la conferma dei pagamenti ricevuti.
+\end_layout
+
+\begin_layout Subsubsection
+TravelDream customer (TDC)
+\end_layout
+
+\begin_layout Itemize
+TravelDream customer (TDC): Utente finale del servizio offerto dall'azienda,
+ registrato nel sistema.
+ Il TDC dopo aver selezionato un pacchetto può solo modificare (secondo
+ le regole prima descritte) i vari prodotti base che lo compongono.
+ Inoltre è prevista la possibilità per un TDC di creare un pacchetto personalizz
+ato contenente i singoli prodotti base di suo gradimento.
+ E' possibile invitare degli amici esterni al sistema ad unirsi ai pacchetti
+ viaggio, per fare questo è necessario inserire l'email alla quale verrà
+ recapitato un messaggio contenente l'invito.
+\end_layout
+
+\begin_layout Subsubsection
+TravelDream customer's friend (TDF)
+\end_layout
+
+\begin_layout Itemize
+TravelDream customer's friend (TDF): Attore esterno al sistema che riceve
+ mediante email l'invito da parte di un TDC a diventare partecipante ad
+ un pacchetto viaggio.
+ Con questo invito il TDF può visualizzare i dettagli del pacchetto proposto
+ e ogni singolo prodotto base associato.
+ Dal momento che decide di accettare la richiesta, gli viene proposto di
+ effettuare il login o registrarsi e viene poi visto dal sistema come un
+ TDC.
+\end_layout
+
+\begin_layout Subsection
+Requisiti non funzionali
+\end_layout
+
+\begin_layout Standard
+Abbiamo individuato alcuni requisiti non funzionali necessari per un corretto
+ funzionamento del sistema ed alcune qualità che il software che realizzeremo
+ dovrà avere.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Semplicità di utilizzo
+\shape default
+ È necessario rendere l’interfaccia utente il più possibile intuitiva: il
+ sistema è rivolto a un pubblico eterogeneo anche per utilizzi occasionali.
+ Per questo motivo non è possibile assumere che l’utente abbia letto il
+ manuale d’uso.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Portabilità
+\shape default
+ Il sistema dev’essere compatibile con tutte le piattaforme hardware e software
+ più diffuse, al fine di raggiungere il maggior numero possibile di utenti.
+ Questo requisito è soddisfatto realizzando il client come applicazione
+ web: in questo modo, le uniche assunzioni che devono essere soddisfatte
+ dagli utenti sono la disponibilità di un browser web aggiornato e compatibile
+ con HTML5 e di una connessione alla rete Internet.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Prestazioni
+\shape default
+ Per poter fornire un servizio adeguato, il sistema dev’essere sufficientemente
+ reattivo e capace di rispondere a un numero elevato di richieste contemporanee:
+ pertanto, la potenza di calcolo dei server che erogano il servizio e la
+ larghezza di banda a disposizione devono essere dimensionate in maniera
+ adeguata al carico.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Disponibilità
+\shape default
+ Il sistema dovrà soddisfare dei requisiti di disponibilità, in particolare
+ dovrà essere sempre disponibile, 24 ore su 24, e i sistemi su cui funzioneranno
+ i server dovranno permettere gli interventi di manutenzione più ordinari
+ (ad esempio la sostituzione dei dischi rigidi) senza compromettere la disponibi
+lità del servizio.
+ Il sistema comunque non è critico, pertanto alcuni rari brevi periodi di
+ indisponibilità in caso di problemi al server sono accettabili.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Affidabilità dei dati
+\shape default
+ È necessario che i dati riguardanti gli ordini e i prodotti salvati all'interno
+ del sistema siano conservati in modo sicuro.
+ Il sistema su cui tali dati sono salvati deve essere affidabile, e quindi
+ dovrà essere soggetto a backup in modo da minimizzare le perdite di dati
+ in caso di guasto del sistema.
+\end_layout
+
+\begin_layout Itemize
+
+\shape italic
+Sicurezza
+\shape default
+ Una qualità fondamentale di ogni servizio erogato tramite Internet e che
+ gestisce i dati degli utenti è la sicurezza.
+ In primo luogo, è necessario gestire in modo sicuro e corretto l’autenticazione
+ degli utenti, ossia distinguere i ruoli di utente e amministratore.
+ Questo può essere realizzato chiedendo all’utente di autenticarsi inserendo
+ il proprio indirizzo e-mail e la password.
+ La password può essere memorizzata nel database salvandone, al posto del
+ testo in chiaro, il valore di una opportuna funzione di hash, in modo che
+ l’accesso diretto al database da parte dell’amministratore di sistema o
+ di altri utenti non permetta di recuperare le password (che sono il dato
+ più sensibile tra quelli memorizzati nel sistema).
+ Gli account degli amministratori sono predefiniti, mentre quelli degli
+ utenti registrati sono soggetti a una registrazione autonoma.
+ In secondo luogo, poiché il sistema permette l’inserimento di dati da parte
+ degli utenti, sarà necessario prevederne un opportuno filtraggio al fine
+ di impedire vulnerabilità di sicurezza, ad esempio, SQL injection o cross
+ site scripting (XSS).
+ 
+\end_layout
+
+\begin_layout Section
+Requisiti funzionali
+\end_layout
+
+\begin_layout Subsection
+Scenari
+\end_layout
+
+\begin_layout Subsubsection
+TDE inserisce un nuovo prodotto base e crea un pacchetto viaggio
+\end_layout
+
+\begin_layout Standard
+Francesco, TDE alla TravelDream, riceve l'incarico dal manager di inserire
+ un nuovo prodotto base in seguito alla buona riuscita di un accordo commerciale
+ con Easy Jet, che da ora in poi fornirà la disponibilità di prenotare voli
+ in maniera telematica.
+ Francesco esegue il login nel sistema (utilizzando nome utente e password
+ che si ricorda) e poi accedendo alla sezione dedicata all'inserimento di
+ nuovi prodotti base crea il prodotto di tipo 
+\begin_inset Quotes eld
+\end_inset
+
+Volo
+\begin_inset Quotes erd
+\end_inset
+
+ con il nome 
+\begin_inset Quotes eld
+\end_inset
+
+Easy Jet
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Successivamente vuole creare un nuovo pacchetto che contiene il prodotto
+ base appena creato e altri prodotti base già presenti nel sistema.
+ 
+\end_layout
+
+\begin_layout Standard
+Il pacchetto che Francesco vuole inserire è un viaggio Milano-Berlino dal
+ 23 al 27 Ottobre che include:
+\end_layout
+
+\begin_layout Itemize
+un volo Easy Jet che parte il 23 Ottobre alle 21 
+\end_layout
+
+\begin_layout Itemize
+l'hotel Best Western 
+\begin_inset Quotes eld
+\end_inset
+
+Berlin-Mitte
+\begin_inset Quotes erd
+\end_inset
+
+ prenotato dal 23 al 27 Ottobre
+\end_layout
+
+\begin_layout Itemize
+un escursione in Segway per le vie di Berlino della durata di mezza giornata
+ organizzata dalla 
+\begin_inset Quotes eld
+\end_inset
+
+BerlinWay
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+un volo Easy Jet di ritorno con partenza 27 Ottobre alle ore 14
+\end_layout
+
+\begin_layout Standard
+Una volta terminato l'inserimento dei prodotti base, controlla il prezzo
+ definitivo del pacchetto (che è la somma dei singoli prezzi dei prodotti
+ base) e decide di applicarvi uno sconto che in questo caso è del 10% ottenendo
+ un prezzo finale di 825
+\emph on
+€
+\emph default
+ per due persone.
+ Francesco salva il pacchetto che viene reso quindi disponibile per l'acquisto
+ nel sistema.
+\end_layout
+
+\begin_layout Subsubsection
+Un utente si registra e compra un pacchetto viaggio
+\end_layout
+
+\begin_layout Standard
+Gianluca, che sta cercando un viaggio da fare ad Amsterdam con la moglie,
+ arriva tramite una ricerca al sito TravelDream.
+ Gianluca, interessato alle offerte, come prima cosa effettua la registrazione
+ al sistema inserendo i dati richiesti.
+ Una volta completata la procedura esegue il login, quindi accede all'area
+ di ricerca e digita 
+\begin_inset Quotes eld
+\end_inset
+
+Amsterdam
+\begin_inset Quotes erd
+\end_inset
+
+ nel campo 
+\begin_inset Quotes eld
+\end_inset
+
+Destinazione
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Il sistema propone quindi una lista di pacchetti dalla quale Gianluca sceglie
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Weekend ad Amsterdam per 2 persone
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Dopo aver effettuato la scelta l'utente decide di prolungare la vacanza
+ di mezza giornata, quindi fa una modifica all'orario del volo aereo di
+ ritorno spostandolo dalle ore 12 alle ore 22, il sistema glielo permette
+ perchè la compagnia aerea RyanAir con cui era stato previsto il ritorno
+ effettua un volo anche alle 22.
+ In seguito a questa operazione perde lo sconto sull'intero pacchetto.
+ Dopo aver terminato quest'ultima personalizzazione Gianluca soddisfatto
+ delle scelte effettuate acquista il pacchetto.
+\end_layout
+
+\begin_layout Subsubsection
+Un TDC organizza un viaggio con degli amici
+\end_layout
+
+\begin_layout Standard
+Matteo, da tempo registrato su TravelDream, vorrebbe fare un viaggio insieme
+ ai suoi amici Andrea e Marco.
+ Esegue una rapida ricerca e trova quasi subito il pacchetto che comprende
+ due notti ad Ibiza presso 
+\begin_inset Quotes eld
+\end_inset
+
+El Hotel Pacha
+\begin_inset Quotes erd
+\end_inset
+
+ volo di andata e di ritorno con Lufthansa e un'escursione alle grotte di
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Can Marçà
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Dopo aver selezionato il pacchetto inserisce le date di inizio e fine vacanza
+ (che per questo pacchetto non erano state impostate da un TDE data la ampia
+ disponibilità di posti durante tutto l'arco dell'anno).
+ Siccome il pacchetto scelto è specifico per un gruppo di 3 persone, invita
+ i suoi due amici Andrea e Marco, quindi, tramite l'apposito pulsante presente
+ nell'interfaccia, il sistema genera il link della pagina contente i dettagli
+ del pacchetto formulato da Matteo e invia la mail contenente quest'ultimo
+ ai due amici.
+ 
+\end_layout
+
+\begin_layout Standard
+Dopo aver ricevuto la telefonata di Matteo, Andrea decide di unirsi alla
+ vacanza, apre il portatile, si connette alla sua casella di posta elettronica,
+ vede l'invito del suo amico, clicca sul link raggiungendo il sito e, dopo
+ aver visualizzato il pacchetto e decidendo di aderirvi, si registra nel
+ sistema.
+ Marco invece, non essendo soddisfatto della destinazione scelta, decide
+ di rifiutare la vacanza, quindi cancella la mail.
+ Andrea e Matteo decidono ugualmente di partire, ma dal momento che il pacchetto
+ è da 3 persone (e non è possibile modificare questo numero), non lo ritengono
+ più conveniente e lo scartano.
+ A questo punto Matteo, invece di acquistare uno dei pacchetti proposti
+ dall'agenzia, decide di creare ed acquistare un pacchetto per solo due
+ persone analogo a quello scartato.
+\end_layout
+
+\begin_layout Subsubsection
+TDE elimina un prodotto base
+\end_layout
+
+\begin_layout Standard
+Andrea (TDE) riceve la notizia che l'hotel 
+\begin_inset Quotes eld
+\end_inset
+
+The Belvedere
+\begin_inset Quotes erd
+\end_inset
+
+ di Manhattan è stato chiuso per fallimento, tuttavia è ancora presente
+ nel sistema e quindi deve essere rimosso.
+ Andrea esegue il login nel sistema ed esegue una ricerca di tutti i pacchetti
+ che contengono il suddetto hotel, per sua fortuna è contenuto in un solo
+ pacchetto dal nome 
+\begin_inset Quotes eld
+\end_inset
+
+New York in autunno
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Questo pacchetto è già stato acquistato dalla famiglia Rossi ed è anche
+ nella lista regali di Filippo.
+ Il TDE decide comunque di procedere con l'eliminazione del prodotto base
+ in questione.
+ Durante la procedura di eliminazione il sistema notifica che il prodotto
+ base è incluso in due pacchetti (dei quali uno acquistato e uno inserito
+ nella lista regali).
+ Il sistema chiede conferma prima di eliminarli e Andrea conferma l'azione.
+ In seguito il TDE procede con la sostituzione dell'hotel con uno di pari
+ classe per la famiglia Rossi e con una mail di scuse a Filippo per la rimozione
+ del pacchetto che desiderava.
+\end_layout
+
+\begin_layout Subsubsection
+TDE modifica prodotto base
+\end_layout
+
+\begin_layout Standard
+Andrea (TDE) viene informato per telefono dalla 
+\begin_inset Quotes eld
+\end_inset
+
+Coralline Exploration
+\begin_inset Quotes erd
+\end_inset
+
+, una azienda partner, che è stata aggiunta una nuova data per la gita alle
+ barriere coralline di 
+\begin_inset Quotes eld
+\end_inset
+
+Capo Verde
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Questa gita, infatti, verrà anche effettuata tutti i venerdì per i prossimi
+ tre mesi.
+ Siccome nel sistema è già presente un prodotto base di questo tipo, quest'ultim
+o andrà ampliato aggiungendo anche questa nuova data.
+ Per farlo Andrea accede al sistema eseguendo il login, ricerca il prodotto
+ dal nome 
+\begin_inset Quotes eld
+\end_inset
+
+Coralline Exploration - gita alla scoperta dei coralli
+\begin_inset Quotes erd
+\end_inset
+
+, ed aggiunge una nuova lista di giorni disponibili (tutti i venerdì per
+ i prossimi 3 mesi) e impone un prezzo di 70€.
+ Una volta salvato il prodotto base in questione, Andrea decide di aggiungere
+ quest'ultimo ad un pacchetto chiamato 
+\begin_inset Quotes eld
+\end_inset
+
+Capo Verde - una terra da scoprire
+\begin_inset Quotes erd
+\end_inset
+
+, per fare questo seleziona il pacchetto e aggiunge il prodotto.
+ Infine siccome si accorge che il prezzo finale del pacchetto è lievitato
+ di 65€ decide di applicare un ulteriore sconto del 10% per invogliare i
+ TDC all'acquisto.
+\end_layout
+
+\begin_layout Subsection
+Modello dei casi d'uso
+\end_layout
+
+\begin_layout Subsubsection
+Registrazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Utente non registrato
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente non deve essere registrato
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente accede alla pagina di registrazione
+\end_layout
+
+\begin_layout Enumerate
+Il sistema richiede l'inserimento di nome, cognome, email e password
+\end_layout
+
+\begin_layout Enumerate
+Il sistema verifica l'univocità della mail e che la password inserita sia
+ abbastanza lunga (almeno 6 caratteri)
+\end_layout
+
+\begin_layout Enumerate
+Il sistema conferma l'avvenuta registrazione, autentica l'utente e rimanda
+ all'home page del sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Viene creato un profilo utente TDC e l'utente effettua automaticamente il
+ login
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente inserisce una mail non valida
+\end_layout
+
+\begin_layout Enumerate
+L'utente inserisce una password troppo corta
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Registrazione.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Login
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDC, TDE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente possiede già le credenziali, ma non deve essere autenticato nel
+ sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente accede alla pagina di login
+\end_layout
+
+\begin_layout Enumerate
+L'utente inserisce la mail e la password
+\end_layout
+
+\begin_layout Enumerate
+Il sistema verifica l'autenticità delle credenziali
+\end_layout
+
+\begin_layout Enumerate
+L'utente viene reindirizzato alla home page
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente viene autenticato nel sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente inserisce un username che non esiste; L'utente inserisce una password
+ che non esiste
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Login.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Logout
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDC, TDE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente è autenticato nel sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente preme il pulsante di logout
+\end_layout
+
+\begin_layout Enumerate
+Il sistema redirige alla home page
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente non è più loggato nel sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Logout.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Inserire prodotto base
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente deve essere autenticato nel sistema come TDE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente accede alla sezioni inserimento prodotti base
+\end_layout
+
+\begin_layout Enumerate
+L'utente inserisce tutti i campi del prodotto e da conferma
+\end_layout
+
+\begin_layout Enumerate
+Il sistema salva il prodotto
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Viene creato il nuovo prodotto base
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Prodotto già presente
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Inserireprodottobase.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Eliminare prodotto base
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente deve essere autenticato nel sistema come TDE, il prodotto base
+ deve essere presente nel sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente accede all'area di modifica prodotti base
+\end_layout
+
+\begin_layout Enumerate
+L'utente seleziona il prodotto base desiderato
+\end_layout
+
+\begin_layout Enumerate
+L'utente elimina il prodotto base e conferma l'eliminazione
+\end_layout
+
+\begin_layout Enumerate
+Il sistema cancella il prodotto base
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Viene eliminato il prodotto base
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Il prodotto è presente in uno o più pacchetti viaggio
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Eliminareprodottobase.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Modificare prodotto base
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente deve essere autenticato nel sistema come TDE, il prodotto base
+ deve essere presente nel sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente accede all'area di modifica prodotti base
+\end_layout
+
+\begin_layout Enumerate
+L'utente seleziona il prodotto base desiderato
+\end_layout
+
+\begin_layout Enumerate
+L'utente modifica le parti desiderate
+\end_layout
+
+\begin_layout Enumerate
+Il sistema aggiorna il prodotto base
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Viene modificato il prodotto base
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Il prodotto è inserito in uno o più pacchetti nei quale la modifica è incompatib
+ile
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Modificaprodottobase.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Creare pacchetto viaggio
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente deve essere autenticato nel sistema come TDE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente accede all'area di creazione pacchetti viaggio
+\end_layout
+
+\begin_layout Enumerate
+L'utente inserisce tutti i campi del pacchetto e da conferma
+\end_layout
+
+\begin_layout Enumerate
+L'utente aggiunge un insieme di prodotti base al pacchetto e da conferma
+\end_layout
+
+\begin_layout Enumerate
+Il sistema crea il pacchetto
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Viene creato il pacchetto viaggio e vengono aggiunti i prodotti base
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I prodotti base sono tra di loro incompatibili
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Crearepacchettoviaggio.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Eliminare pacchetto viaggio
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente deve essere autenticato nel sistema come TDE, il pacchetto viaggio
+ deve essere presente nel sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente accede all'area pacchetti viaggio
+\end_layout
+
+\begin_layout Enumerate
+L'utente seleziona il pacchetto viaggio desiderato
+\end_layout
+
+\begin_layout Enumerate
+L'utente elimina il pacchetto confermando l'eliminazione
+\end_layout
+
+\begin_layout Enumerate
+Il sistema elimina il pacchetto
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Viene eliminato il pacchetto viaggio
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Il pacchetto viaggio è inserito nella lista desideri di un utente
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Eliminarepacchettoviaggio.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Modificare composizione pacchetto viaggio
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente deve essere autenticato nel sistema come TDE, il pacchetto viaggio
+ deve essere presente nel sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente accede all'area di modifica pacchetti viaggio
+\end_layout
+
+\begin_layout Enumerate
+L'utente seleziona il pacchetto viaggio desiderato
+\end_layout
+
+\begin_layout Enumerate
+L'utente modifica la composizione del pacchetto confermando alla fine
+\end_layout
+
+\begin_layout Enumerate
+Il sistema modifica il pacchetto
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Viene modificato il pacchetto viaggio
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+La modifica effettuata è incompatibile con gli altri pacchetti base
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Modificarecomposizionepacchettoviaggio.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Conferma avvenuto pagamento
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente deve essere autenticato nel sistema come TDE, il pacchetto viaggio
+ deve stato acquistato da un TDC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente accede all'area pacchetti viaggio acquistati ma non pagati
+\end_layout
+
+\begin_layout Enumerate
+L'utente seleziona il pacchetto viaggio desiderato
+\end_layout
+
+\begin_layout Enumerate
+L'utente modifica il campo 
+\begin_inset Quotes eld
+\end_inset
+
+pagato
+\begin_inset Quotes erd
+\end_inset
+
+ impostando il valore 
+\begin_inset Quotes eld
+\end_inset
+
+si
+\begin_inset Quotes erd
+\end_inset
+
+ e conferma l'operazione
+\end_layout
+
+\begin_layout Enumerate
+Il sistema salva le modifiche
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Il pacchetto in questione risulta pagato
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Confermaavvenutopagamento.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Visualizzare catalogo
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Utente
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente deve essere sulla home page del sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente accede alla sezione catalogo
+\end_layout
+
+\begin_layout Enumerate
+L'utente visualizza il catalogo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Visualizzarecatalogo.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Eseguire ricerca personalizzata
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Utente
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente deve essere all'interno del catalogo
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente inserisce le parole chiavi per la ricerca e conferma
+\end_layout
+
+\begin_layout Enumerate
+Il sistema esegue una ricerca in base alle preferenze inserite dall'utente
+\end_layout
+
+\begin_layout Enumerate
+Il sistema visualizza una serie di pacchetti trovati
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Eseguirericercapersonalizzata.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Acquistare pacchetto viaggio
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente deve essere autenticato nel sistema come TDC
+\end_layout
+
+\begin_layout Enumerate
+L'utente deve essere sulla pagina del pacchetto
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente preme il pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+acquista
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+L'utente conferma l'operazione
+\end_layout
+
+\begin_layout Enumerate
+Il sistema modifica il pacchetto inserendolo nella lista degli acquisti
+ non pagati dell'utente
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Il pacchetto è acquistrato dall'utente
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Acquistarepacchettoviaggio.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Acquistare pacchetto lista regali di un utente
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente deve essere autenticato nel sistema come TDC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente accede all'area ricerca utenti
+\end_layout
+
+\begin_layout Enumerate
+L'utente inserisce la mail di un altro utente
+\end_layout
+
+\begin_layout Enumerate
+Selezione utente e richiesta della lista desideri associata
+\end_layout
+
+\begin_layout Enumerate
+L'utente scorre la lista alla ricerca del pacchetto che vuole regalare
+\end_layout
+
+\begin_layout Enumerate
+L'utente clicca sul pacchetto che desidera regalare
+\end_layout
+
+\begin_layout Enumerate
+L'utente clicca sul tasto 
+\begin_inset Quotes eld
+\end_inset
+
+regala
+\begin_inset Quotes erd
+\end_inset
+
+ e conferma l'operazione 
+\end_layout
+
+\begin_layout Enumerate
+Il sistema rimuove il pacchetto dalla lista dei regali
+\end_layout
+
+\begin_layout Enumerate
+Il sistema sposta il pacchetto nella lista degli ordini dell'acquirente
+\end_layout
+
+\begin_layout Enumerate
+Il sistema inserisce il pacchetto nella lista degli ordini del TDC beneficiario.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Il pacchetto risulta acquistato nella lista ordini del TDC che l'ha regalato.
+ Nell'account del proprietario della lista regali, il pacchetto viene spostato
+ nella lista degli ordini e segnato come regalato.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente cercato non viene trovato perchè non presente nel sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Acquistarepacchettolistaregalidiunutente.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Visualizzare un pacchetto
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDF
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Un TDC deve aver invitato il TDF via mail
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente clicca sul link fornito nella mail
+\end_layout
+
+\begin_layout Enumerate
+L'utente viene reindirizzato in una pagina che mostra i dettagli del pacchetto
+ a cui è stato invitato
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Visualizzareunpacchetto.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Accettare invito per unirsi ad un pacchetto
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TDF
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Precondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente deve aver ricevuto sulla sua casella mail un invito per unirsi
+ ad un viaggio e deve aver già cliccato sul link
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Flusso degli eventi 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Enumerate
+L'utente clicca sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+accetta invito
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+L'utente può decidere se eseguire il login oppure registrarsi in ogni caso
+ alla fine della relativa procedura si autentica
+\end_layout
+
+\begin_layout Enumerate
+L'utente viene reindirizzato ad una pagina che chiede la conferma definitiva
+\end_layout
+
+\begin_layout Enumerate
+L'utente conferma
+\end_layout
+
+\begin_layout Enumerate
+Il sistema salva la preferenza come accettata
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Postcondizioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+La richiesta di aggiunta di un utente ad un pacchetto è accettata, il TDF
+ è diventato TDC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eccezioni
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente chiude il browser prima della fine della procedura
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requisiti speciali
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename sequence_diagram_pdf/Accettareinvitoadunirsiadunpacchetto.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Diagrammi di sequenza
+\end_layout
+
+\begin_layout Section
+Specifiche del sistema
+\end_layout
+
+\begin_layout Subsection
+Diagramma delle classi
+\end_layout
+
+\begin_layout Subsection
+Analisi formale
+\end_layout
+
+\begin_layout Standard
+Per l'analisi formale è stato utilizzato il linguaggio Alloy, che permette
+ la verifica automatica di alcune proprietà del modello e la formalizzazione
+ di alcuni requisiti.
+\end_layout
+
+\begin_layout Standard
+Di seguito viene riportato il codice Alloy utilizzato per generare i mondi
+\end_layout
+
+\begin_layout Subsubsection
+Codice Alloy
+\end_layout
+
+\begin_layout Standard
+//Signatures
+\end_layout
+
+\begin_layout Standard
+abstract sig User {}
+\end_layout
+
+\begin_layout Standard
+sig TDE extends User {} sig TDF extends User { tdc: lone TDC }
+\end_layout
+
+\begin_layout Standard
+sig TDC extends User { giftList: one GiftList, buyingList: one BuyingList,
+ invitationList: one InvitationList }
+\end_layout
+
+\begin_layout Standard
+abstract sig BaseProduct { possiblePersonalization: set (DatePersonalization
+ + ClassPersonalization) }
+\end_layout
+
+\begin_layout Standard
+sig Excursion extends BaseProduct { } fact { //No class personalization
+ Excursion.possiblePersonalization & ClassPersonalization = none }
+\end_layout
+
+\begin_layout Standard
+sig Flight extends BaseProduct { }
+\end_layout
+
+\begin_layout Standard
+sig Hotel extends BaseProduct { }
+\end_layout
+
+\begin_layout Standard
+sig PersonalizedProduct { product: one BaseProduct, personalization: set
+ (DatePersonalization + ClassPersonalization) }
+\end_layout
+
+\begin_layout Standard
+sig Package { products: set PersonalizedProduct }
+\end_layout
+
+\begin_layout Standard
+abstract sig PackageList { packageList: set Package }
+\end_layout
+
+\begin_layout Standard
+sig GiftList extends PackageList {} sig BuyingList extends PackageList {
+ giftedPackage: set Package }
+\end_layout
+
+\begin_layout Standard
+sig InvitationList { invitationList: set Invitation }
+\end_layout
+
+\begin_layout Standard
+sig Invitation { invited: some TDF, package: one Package }
+\end_layout
+
+\begin_layout Standard
+abstract sig Personalization {}
+\end_layout
+
+\begin_layout Standard
+sig DatePersonalization extends Personalization {} sig ClassPersonalization
+ extends Personalization {}
+\end_layout
+
+\begin_layout Standard
+//Model became realistic - mandatory constraints fact every_list_has_one_and_onl
+y_one_TDC { all p: PackageList | one t: TDC | t.buyingList = p or t.giftList
+ = p }
+\end_layout
+
+\begin_layout Standard
+fact every_InvitationList_has_one_and_only_one_TDC { all list: InvitationList
+ | one t: TDC | t.invitationList = list }
+\end_layout
+
+\begin_layout Standard
+fact different_package_cant_share_personalized_product { all disj p1,p2:
+ Package | all p: p1.products | not p in p2.products }
+\end_layout
+
+\begin_layout Standard
+fact different_list_cant_share_same_package { all disj l1,l2: PackageList
+ | all p: l1.packageList | not p in l2.packageList }
+\end_layout
+
+\begin_layout Standard
+fact every_package_cant_contain_more_than_two_flight { all pkg: Package
+ | #(pkg.products.product & Flight) <= 2 }
+\end_layout
+
+\begin_layout Standard
+fact every_personalized_product_contained_in_package { all p: PersonalizedProduc
+t | one pkg: Package | p in pkg.products }
+\end_layout
+
+\begin_layout Standard
+fact TDC_cant_invite_himself { all customer:TDC | all invitation:InvitationList.i
+nvitationList | all tdf:TDF | (tdf.tdc) in customer implies invitation.invited
+ != tdf }
+\end_layout
+
+\begin_layout Standard
+fact TDC_cant_invite_to_a_package_in_a_list { all invitation: Invitation
+ | not one i: PackageList | invitation.package in i.packageList }
+\end_layout
+
+\begin_layout Standard
+fact PersonalizedProduct_can_contains_only_possible_personalization { all
+ p: PersonalizedProduct | p.personalization in p.product.possiblePersonalization
+ }
+\end_layout
+
+\begin_layout Standard
+fact BasicProduct_must_have_a_personalization { all b: BaseProduct | #(b.possible
+Personalization) > 0 }
+\end_layout
+
+\begin_layout Standard
+fact Invitation_not_shared_between_invitation_lists { all invitation: Invitation
+ | one list:InvitationList | invitation in list.invitationList }
+\end_layout
+
+\begin_layout Standard
+fact Package_in_list_must_have_all_personalizations { all package: (PackageList.p
+ackageList+(InvitationList.invitationList).package) | all personalizedProduct:
+ package.products | #(personalizedProduct.personalization&DatePersonalization)
+ > 0 and #(personalizedProduct.personalization&DatePersonalization) < 2 and
+ ((personalizedProduct.product in Hotel) or (personalizedProduct.product in
+ Flight) implies #(personalizedProduct.personalization&ClassPersonalization)
+ > 0 and #(personalizedProduct.personalization&ClassPersonalization) < 2)
+ }
+\end_layout
+
+\begin_layout Standard
+fact only_one_TDC_can_buy_a_package_for_another_TDC { all p1, p2: BuyingList.gift
+edPackage | one gpl1: BuyingList.giftedPackage | one gpl2: BuyingList.giftedPackag
+e | p1 in gpl1 and p2 in gpl2 and p1=p2 implies gpl1=gpl2 }
+\end_layout
+
+\begin_layout Standard
+fact every_giftedPackage_must_be_in_a_BuyingList { all package: BuyingList.gifted
+Package | one b: BuyingList | package in b.packageList }
+\end_layout
+
+\begin_layout Standard
+fact TDC_cant_gift_his_own_package { all package: BuyingList.giftedPackage
+ | all tdc1: TDC | package in tdc1.buyingList.giftedPackage implies not (package
+ in tdc1.buyingList.packageList) }
+\end_layout
+
+\begin_layout Standard
+fact TDF_can_be_only_one_TDF { all tdf1, tdf2: TDF | tdf1.tdc = tdf2.tdc implies
+ tdf1 = tdf2 }
+\end_layout
+
+\begin_layout Standard
+//Some optional constraints - can be omitted
+\end_layout
+
+\begin_layout Standard
+fact every_package_2flight_1hotel_1excursion { all pkg: Package | #(pkg.products.p
+roduct & Flight) = 2 all pkg: Package | #(pkg.products.product & Hotel) =
+ 1 all pkg: Package | #(pkg.products.product & Excursion) = 1 all pkg: Package
+ | all disj p1,p2: pkg.products | p1.product != p2.product }
+\end_layout
+
+\begin_layout Standard
+//I want find a counterexample - package created but not inserted in a list
+ assert at_least_one_package_has_no_list { #(PackageList.packageList) = #Package
+ }
+\end_layout
+
+\begin_layout Standard
+//I don't want to find an example - Base product personalized with option
+ that is not possible assert BaseProduct_personalized_with_option_that_is_possib
+le_not { all p: PersonalizedProduct | p.personalization in p.product.possiblePerson
+alization }
+\end_layout
+
+\begin_layout Subsubsection
+Mondi generati
+\end_layout
+
+\begin_layout Paragraph*
+
+\series bold
+Mondo 1 - liste di pacchetti
+\end_layout
+
+\begin_layout Standard
+In questo mondo sono illustrate le liste di pacchetti che possono essere
+ di due tipi:
+\end_layout
+
+\begin_layout Itemize
+BuyingList: lista di pacchetti acquistati da un TDC
+\end_layout
+
+\begin_layout Itemize
+GiftList: lista di pacchetti che un utente desidera ricevere in regalo
+\end_layout
+
+\begin_layout Standard
+Ogni pacchetto contiene quattro prodotti personalizzati, che a loro volta
+ sono costituiti ciascuno da un prodotto base, con le relative personalizzazioni.
+\end_layout
+
+\begin_layout Standard
+Da notare che per ogni pacchetto contenuto all'interno di una lista è necessario
+ che tutti i prodotti personalizzati contengano una personalizzazione (valida),
+ la cosa che non è necessaria se il pacchetto non è in nessuna lista siccome
+ la personalizzazione dei prodotti avviene in fase di acquisto.
+\end_layout
+
+\begin_layout Standard
+I prodotti personalizzati possono condividere un prodotto base (ad esempio
+ un volo che viene scelto in due pacchetti avrà un prodotto base e due different
+i prodotti personalizzati, in modo che la personalizzazione di un utente
+ non influenzi i pacchetti di altri utenti).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename alloy worlds/package_list.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Mondo dove si vede la composizione delle liste di pacchetti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+
+\series bold
+Mondo 2 - personalizzazione di un prodotto
+\end_layout
+
+\begin_layout Standard
+In questo mondo è illustrato in modo chiaro come viene personalizzato un
+ prodotto base.
+\end_layout
+
+\begin_layout Standard
+I prodotti base possono avere delle personalizzazioni possibili, le personalizza
+zioni possono essere di due tipi:
+\end_layout
+
+\begin_layout Itemize
+ClassPersonalization: la classe di servizio del pacchetto base, ad esempio
+ in un volo la classe business
+\end_layout
+
+\begin_layout Itemize
+DatePersonalization: la data del prodotto base, esempio la partenza di un
+ aereo
+\end_layout
+
+\begin_layout Standard
+Tutti i prodotti base per essere inseriti in un pacchetto necessitano di
+ essere prima inseriti in un prodotto personalizzato che tiene traccia della
+ personalizzazione che viene fatta.
+\end_layout
+
+\begin_layout Standard
+Nel modello si nota come solo le personalizzazioni possibili per un dato
+ prodotto base possono effettivamente essere inserite nel prodotto personalizzat
+o.
+ Inoltre non è necessario che ogni prodotto base sia inserito in un prodotto
+ personalizzato, perchè potrebbe essere che nessun pacchetto lo utilizzi
+ effettivamente, per esempio se è appena stato inserito nel sistema.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename alloy worlds/product_personalization.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Mondo dove si vede come viene personalizzato un prodotto base
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+
+\series bold
+Mondo 3 - TDC che regala un pacchetto viaggio ad un altro TDC
+\end_layout
+
+\begin_layout Standard
+In questo mondo è illustrato un TDC che acquista un pacchetto che un altro
+ TDC aveva inserito nella sua gift list.
+ Una volta effettuato l'acquisto il sistema tiene traccia sia del TDC che
+ regala il pacchetto (con la relazione giftList), sia del TDC che riceve
+ il regalo (con la relazione packageList della signature BuyingList)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename alloy worlds/gift_list.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Mondo dove un TDC regala un pacchetto viaggio ad un altro TDC
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+
+\series bold
+Mondo 4 - TDC invita dei TDF
+\end_layout
+
+\begin_layout Standard
+In questo mondo sono illustrate le relazioni che intercorrono quando un
+ TDC invita dei TDF ad unirsi a lui in un pacchetto.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename alloy worlds/TDF_invitation2.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Mondo dove un TDC invita un TDF ad unirsi ad un pacchetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -9,15 +9,15 @@
    <libraries>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.faces.jar/meta-inf/html_basic.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.faces.jar/meta-inf/html_basic.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.faces.jar/meta-inf/jsf_core.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.faces.jar/meta-inf/jsf_core.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.faces.jar/meta-inf/mojarra_ext.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.faces.jar/meta-inf/mojarra_ext.tld" project="TravelDreamWeb"/>
     </library>
    </libraries>
   </path>
@@ -42,7 +42,7 @@
    <libraries>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-jersey-mvc-jsp.jar/meta-inf/taglib.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-jersey-mvc-jsp.jar/meta-inf/taglib.tld" project="TravelDreamWeb"/>
     </library>
    </libraries>
   </path>
@@ -73,15 +73,15 @@
    <libraries>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.faces-2.2.1.jar/meta-inf/html_basic.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.faces-2.2.1.jar/meta-inf/html_basic.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.faces-2.2.1.jar/meta-inf/jsf_core.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.faces-2.2.1.jar/meta-inf/jsf_core.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.faces-2.2.1.jar/meta-inf/mojarra_ext.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.faces-2.2.1.jar/meta-inf/mojarra_ext.tld" project="TravelDreamWeb"/>
     </library>
    </libraries>
   </path>
@@ -106,63 +106,63 @@
    <libraries>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/c-1_0-rt.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/c-1_0-rt.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/c-1_0.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/c-1_0.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/c.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/c.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/fmt-1_0-rt.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/fmt-1_0-rt.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/fmt-1_0.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/fmt-1_0.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/fmt.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/fmt.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/fn.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/fn.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/permittedtaglibs.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/permittedtaglibs.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/scriptfree.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/scriptfree.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/sql-1_0-rt.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/sql-1_0-rt.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/sql-1_0.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/sql-1_0.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/sql.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/sql.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/x-1_0-rt.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/x-1_0-rt.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/x-1_0.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/x-1_0.tld" project="TravelDreamWeb"/>
     </library>
     <library class="tld">
      <id class="model-object"
-      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/x.tld" project="TravelDreamEJBClient"/>
+      path="FileSystems/lib-javax.servlet.jsp.jstl.jar/meta-inf/x.tld" project="TravelDreamWeb"/>
     </library>
    </libraries>
   </path>
