@@ -10,9 +10,9 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="BUYING_LIST")
-@NamedQuery(name="BuyingList.findAll", query="SELECT b FROM BuyingList b")
-public class BuyingList implements Serializable {
+@Table(name="BUYING_LIST_ITEM")
+@NamedQuery(name="BuyingList.findAll", query="SELECT b FROM BuyingListItem b")
+public class BuyingListItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
@@ -35,7 +35,7 @@ public class BuyingList implements Serializable {
 	@JoinColumn(name="UserIdBuyingList")
 	private User user;
 
-	public BuyingList() {
+	public BuyingListItem() {
 	}
 
 	public BuyingListPK getId() {

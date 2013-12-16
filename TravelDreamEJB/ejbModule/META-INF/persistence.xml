@@ -3,7 +3,7 @@
 	<persistence-unit name="TravelDreamDB" transaction-type="JTA">
 		<jta-data-source>jdbc/MySQLDataSource</jta-data-source>
 		<class>entity.Airport</class>
-		<class>entity.BuyingList</class>
+		<class>entity.BuyingListItem</class>
 		<class>entity.BuyingListPK</class>
 		<class>entity.City</class>
 		<class>entity.ClassPersonalization</class>
@@ -11,6 +11,7 @@
 		<class>entity.DatePersonalization</class>
 		<class>entity.Excursion</class>
 		<class>entity.Flight</class>
+		<class>entity.Group</class>
 		<class>entity.Hotel</class>
 		<class>entity.Image</class>
 		<class>entity.Invitation</class>
@@ -26,11 +27,9 @@
 		<class>entity.PossibleDatePersonalizationExcursionPK</class>
 		<class>entity.PossibleDatePersonalizationFlight</class>
 		<class>entity.PossibleDatePersonalizationFlightPK</class>
-		<class>entity.Group</class>
 		<class>entity.User</class>
 		<properties>
 			<property name="eclipselink.logging.level" value="FINE"/>
-			<property name="eclipselink.logging.parameters" value="true" />
 		</properties>
 	</persistence-unit>
 </persistence>

@@ -26,7 +26,7 @@ public class Package implements Serializable {
 
 	//bi-directional many-to-one association to BuyingList
 	@OneToMany(mappedBy="_package")
-	private List<BuyingList> buyingLists;
+	private List<BuyingListItem> buyingListItems;
 
 	//bi-directional many-to-one association to Invitation
 	@OneToMany(mappedBy="_package")
@@ -88,23 +88,23 @@ public class Package implements Serializable {
 		this.reduction = reduction;
 	}
 
-	public List<BuyingList> getBuyingLists() {
-		return this.buyingLists;
+	public List<BuyingListItem> getBuyingListItems() {
+		return this.buyingListItems;
 	}
 
-	public void setBuyingLists(List<BuyingList> buyingLists) {
-		this.buyingLists = buyingLists;
+	public void setBuyingLists(List<BuyingListItem> buyingLists) {
+		this.buyingListItems = buyingLists;
 	}
 
-	public BuyingList addBuyingList(BuyingList buyingList) {
-		getBuyingLists().add(buyingList);
+	public BuyingListItem addBuyingListItem(BuyingListItem buyingList) {
+		getBuyingListItems().add(buyingList);
 		buyingList.set_package(this);
 
 		return buyingList;
 	}
 
-	public BuyingList removeBuyingList(BuyingList buyingList) {
-		getBuyingLists().remove(buyingList);
+	public BuyingListItem removeBuyingList(BuyingListItem buyingList) {
+		getBuyingListItems().remove(buyingList);
 		buyingList.set_package(null);
 
 		return buyingList;
@@ -120,14 +120,14 @@ public class Package implements Serializable {
 
 	public Invitation addInvitation(Invitation invitation) {
 		getInvitations().add(invitation);
-		invitation.set_package(this);
+		invitation.setPackage(this);
 
 		return invitation;
 	}
 
 	public Invitation removeInvitation(Invitation invitation) {
 		getInvitations().remove(invitation);
-		invitation.set_package(null);
+		invitation.setPackage(null);
 
 		return invitation;
 	}

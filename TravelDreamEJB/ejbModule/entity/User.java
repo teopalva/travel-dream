@@ -35,7 +35,7 @@ public class User implements Serializable {
 
 	//bi-directional many-to-one association to BuyingList
 	@OneToMany(mappedBy="user")
-	private List<BuyingList> buyingLists;
+	private List<BuyingListItem> buyingLists;
 
 	//bi-directional many-to-one association to Invitation
 	@OneToMany(mappedBy="userInviter")
@@ -48,7 +48,7 @@ public class User implements Serializable {
 	//bi-directional many-to-many association to Package
 	@ManyToMany
 	@JoinTable(
-		name="GIFT_LIST"
+		name="GIFT_LIST_ITEM"
 		, joinColumns={
 			@JoinColumn(name="UserIdGiftList")
 			}
@@ -106,22 +106,22 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public List<BuyingList> getBuyingLists() {
+	public List<BuyingListItem> getBuyingLists() {
 		return this.buyingLists;
 	}
 
-	public void setBuyingLists(List<BuyingList> buyingLists) {
+	public void setBuyingLists(List<BuyingListItem> buyingLists) {
 		this.buyingLists = buyingLists;
 	}
 
-	public BuyingList addBuyingList(BuyingList buyingList) {
+	public BuyingListItem addBuyingList(BuyingListItem buyingList) {
 		getBuyingLists().add(buyingList);
 		buyingList.setUser(this);
 
 		return buyingList;
 	}
 
-	public BuyingList removeBuyingList(BuyingList buyingList) {
+	public BuyingListItem removeBuyingList(BuyingListItem buyingList) {
 		getBuyingLists().remove(buyingList);
 		buyingList.setUser(null);
 
