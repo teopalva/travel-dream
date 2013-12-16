@@ -26,6 +26,8 @@ public class AuthenticationEJB implements AuthenticationEJBLocal {
     
     public boolean isTDE() {
     	User user = this.getAuthenticatedUser();
+    	if(user == null)
+    		return false;
     	if(user.getGroups().contains("TDE"))
     		return true;
     	return false;
@@ -33,6 +35,8 @@ public class AuthenticationEJB implements AuthenticationEJBLocal {
     
     public boolean isTDC() {
     	User user = this.getAuthenticatedUser();
+    	if(user == null)
+    		return false;
     	if(user.getGroups().contains("TDC"))
     		return true;
     	return false;
