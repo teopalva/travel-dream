@@ -348,12 +348,12 @@ Viene inoltre adottato GlassFish 4 come application server, utilizzato come
 \end_layout
 
 \begin_layout Itemize
-Verrà utilizzata, come libreria di supporto, PrimeFaces.
+Verrà utilizzata, come libreria grafica di supporto, PrimeFaces.
 \end_layout
 
 \begin_layout Itemize
-Il DMBS utilizzato è MySQL Community Edition 5, questa scelta non è comunque
- critica in quanto la comunicazion con il database server è astradda dal
+Il DMBS utilizzato è MySQL Community Edition 5.2, questa scelta non è comunque
+ critica in quanto la comunicazion con il database server è astratta dal
  JPA.
 \end_layout
 
@@ -473,7 +473,7 @@ Progetto dei dati
 
 \begin_layout Standard
 In questo capitolo forniremo il dettaglio delle strutture dati a supporto
- del sistema, implementate da un DBMS, nello specifico MySql Server 5.
+ del sistema, implementate da un DBMS, nello specifico MySql Server 5.2.
  Si andrà prima ad analizzare la progettazione concettuale, ovvero il modello
  ER elaborato per l'organizzazione del database, in seguito si forniranno
  la traduzione logica di quanto visto nel modello e infine si presenterà
@@ -695,5 +695,153 @@ CLASS PERSONALIZATION: Indica la personalizzazione di una classe
 \end_layout
 
 \end_deeper
+\begin_layout Subsection
+Progettazione logica
+\end_layout
+
+\begin_layout Standard
+Lo schema concettuale proposto al punto precedente viene tradotto nel conseguent
+e schema logico che corrisponde alla reale struttura del database relazionale.
+ Lo schema risultate è riassunto tramite le seguenti:
+\end_layout
+
+\begin_layout Standard
+[tabelle db con attributi]
+\end_layout
+
+\begin_layout Standard
+Lo schema di traduzione adottato 
+\end_layout
+
+\begin_layout Standard
+Abbiamo inserito delle tabell aggiuntive per tradurre nel modello logico
+ delle associazioni [molti a molti, uno a molti]...blabla
+\end_layout
+
+\begin_layout Standard
+[modello logico mysql workbench]
+\end_layout
+
+\begin_layout Section
+Progetto del business tier
+\end_layout
+
+\begin_layout Standard
+Una volta definita la base dati del nostro sistema e definito l'architettura
+ a tier, abbiamo progettato le componenti sodtware da realizzare per implementar
+e la logica applicativa.
+ Il business tier contiene sia le componenti software che descrivono le
+ entità JPA (e quindi il modello dei dati) che la logica applicativa, implementa
+ta tramite gli EJB.
+\end_layout
+
+\begin_layout Subsection
+Modello (Entity Beans, JPA)
+\end_layout
+
+\begin_layout Standard
+L'insieme delle classi JPA Entity, chiamate anche Entity Beans, è direttamente
+ collegato al modello logico dei dati prima discusso, conseguente alla realizzaz
+ione del modello ER.
+ Gli Entity Beans sono utili in quanto introducono un livello di astrazione
+ che può essere utilizzato all'interno del progetto Java.
+ Ogni Entity Bean corrisponde in maniera univoca, in modo 1:1, ad una entità
+ sullo schema del progetto logico, e quindi al database.
+\end_layout
+
+\begin_layout Standard
+La realizzazione di tale sruttura ci permettere di facilitare le operazioni
+ sulla base dati e le varie JPA che sono introdotte sono schematizzate nella
+ figura seguente [...].
+ In particolare si noti come tali entità siano sempre costituite da metodi
+ setter e getter per essere facilmente manipolabili all'interno dell'applicativo.
+\end_layout
+
+\begin_layout Standard
+[DIAGRAMMA UML JPA]
+\end_layout
+
+\begin_layout Subsection
+Logica applicativa (EJB)
+\end_layout
+
+\begin_layout Standard
+Per sviluppare la logica applicativa del progetto, si sono utilizzati i
+ Session Bean messi a disposizione da Java Enterprise.
+ Ricordiamo come questa tipologia di componenti sia il nesso tra le Entity
+ Beans e il web client.
+ Come si vede dallo schema riportato in Figura [...] SCHEMA LAVAGNA TEO.
+\end_layout
+
+\begin_layout Standard
+All'interno dei Session Bean, si sono utilizzati per l'implementazione sia
+ componenti stateless che componenti stateful.
+ Le prime sono state usate per i sistemi di autenticazione 
+\begin_inset Quotes eld
+\end_inset
+
+realm
+\begin_inset Quotes erd
+\end_inset
+
+, mentre negli altri casi si sono utilizzati componenti stateful.
+\end_layout
+
+\begin_layout Standard
+Il diagramma delle classi UML di Figura ^ mostra il design dei Session Bean
+ che verranno implementati.
+ [DESCRIZIONE]
+\end_layout
+
+\begin_layout Standard
+[DIAGRAMMA UML EJB]
+\end_layout
+
+\begin_layout Section
+Progetto del client
+\end_layout
+
+\begin_layout Standard
+Una volta determinate le funzionalità offerte dallo strato di logica applicativa
+, abbiamo progettato il web tier, lo strato che garantisce l'interazione
+ con l'utente che è collegato al sistema tramite un browser web.
+ Abbiamo quindi progettato la struttura dell'interfaccia tramite diagrammi
+ concettuali, che descrivono i percorsi di navigazione all'interno dell'applicat
+ivo, per poi definire la struttura logica con la quale verranno implementati.
+ Abbiamno anche ritenuto conveniente disegnare la struttura di molte delle
+ pagine visualizzabili dagli utenti (sia clienti che amministratori del
+ sistema) in maniera da facilitare il nostro lavoro in fase di sviluppo.
+\end_layout
+
+\begin_layout Subsection
+Progetto della navigazione
+\end_layout
+
+\begin_layout Standard
+UX diagram
+\end_layout
+
+\begin_layout Subsection
+Page sketch 
+\end_layout
+
+\begin_layout Standard
+In questa sezione si presentano molti mockup delle pagine che verranno realizzat
+e nel sistema.
+ Le interfacce sono state disegnate prima del progetto della navigazione,
+ per facilitarci e capire cosa realmente servisse all'interno del sistema
+ per soddisfare le necessità da noi pensate nel documento RASD.
+\end_layout
+
+\begin_layout Standard
+Questi schemi ci hanno dunque permesso di individurare meglio i percorsi
+ di navigazione necessari e di poter individurare i dati da presentare nelle
+ varie schermate.
+ Questi schemi ci supporteranno inoltre durante la fase di implementazione,
+ avendo già una base sulla quale lavorare.
+ I layout presentati sono ovviamente soltanto una bozza e verranno succesivament
+e raffinati in fase di sviluppo.
+\end_layout
+
 \end_body
 \end_document
