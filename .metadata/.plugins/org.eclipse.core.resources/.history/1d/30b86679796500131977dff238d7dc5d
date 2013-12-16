@@ -1,7 +1,0 @@
-package coreEJB;
-
-
-@Local
-public interface UserEJBLocal {
-
-}
