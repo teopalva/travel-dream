@@ -26,6 +26,11 @@
 		<class>entity.PossibleDatePersonalizationExcursionPK</class>
 		<class>entity.PossibleDatePersonalizationFlight</class>
 		<class>entity.PossibleDatePersonalizationFlightPK</class>
+		<class>entity.Group</class>
 		<class>entity.User</class>
+		<properties>
+			<property name="eclipselink.logging.level" value="FINE"/>
+			<property name="eclipselink.logging.parameters" value="true" />
+		</properties>
 	</persistence-unit>
 </persistence>

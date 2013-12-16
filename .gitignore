@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Deliveries/Documentation/RASD.lyx~
 .metadata
 .metadata/
@@ -426,3 +427,33 @@ TravelDreamEJB/.classpath
 TravelDreamEJB/.settings/org.eclipse.jdt.core.prefs
 TravelDreamWEB/.settings/org.eclipse.wst.common.component
 TravelDreamWEB/.settings/org.hibernate.eclipse.console.prefs
+=======
+*.pydevproject
+.metadata
+.metadata/
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+# TeXlipse plugin
+.texlipse
+>>>>>>> 32ef277ce383756707d913204914881e8bea4580

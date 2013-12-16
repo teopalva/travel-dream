@@ -6,6 +6,8 @@ import static org.junit.Assert.fail;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -57,8 +59,15 @@ public class TestDB {
 	
     @Before
     public void setUp() {
-    	emf = Persistence.createEntityManagerFactory(TEST_PERSISTENCE_UNIT);
-        em = emf.createEntityManager();
+    	Map<String, String> config = new HashMap<String, String>();
+    	config.put("javax.persistence.jdbc.url", "jdbc:mysql://localhost:3306/TravelDream");
+    	config.put("javax.persistence.jdbc.user", "traveldream");
+    	config.put("javax.persistence.jdbc.password", "traveldream");
+    	config.put("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
+    	emf = Persistence.createEntityManagerFactory("TravelDreamDB", config);
+    	em = emf.createEntityManager();
+    	//emf = Persistence.createEntityManagerFactory(TEST_PERSISTENCE_UNIT);
+        //em = emf.createEntityManager();
         em.getTransaction().begin();
     }
 

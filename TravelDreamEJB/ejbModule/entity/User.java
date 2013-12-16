@@ -1,8 +1,17 @@
 package entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -30,11 +39,11 @@ public class User implements Serializable {
 
 	//bi-directional many-to-one association to Invitation
 	@OneToMany(mappedBy="userInviter")
-	private List<Invitation> invitationsInviter;
+	private List<Invitation> invites;
 
 	//bi-directional many-to-one association to Invitation
 	@OneToMany(mappedBy="userInvited")
-	private List<Invitation> invitationsInvited;
+	private List<Invitation> inviteds;
 
 	//bi-directional many-to-many association to Package
 	@ManyToMany
@@ -48,6 +57,19 @@ public class User implements Serializable {
 			}
 		)
 	private List<Package> packages;
+
+	//bi-directional many-to-many association to Group
+	@ManyToMany
+	@JoinTable(
+		name="USER_GROUP"
+		, joinColumns={
+			@JoinColumn(name="UserMail")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="GroupId")
+			}
+		)
+	private List<Group> groups;
 
 	public User() {
 	}
@@ -106,48 +128,48 @@ public class User implements Serializable {
 		return buyingList;
 	}
 
-	public List<Invitation> getInvitationsInviter() {
-		return this.invitationsInviter;
+	public List<Invitation> getInvites() {
+		return this.invites;
 	}
 
-	public void setInvitationsInviter(List<Invitation> invitationsInviter) {
-		this.invitationsInviter = invitationsInviter;
+	public void setInvites(List<Invitation> invites) {
+		this.invites = invites;
 	}
 
-	public Invitation addInvitationsInviter(Invitation invitationsInviter) {
-		getInvitationsInviter().add(invitationsInviter);
-		invitationsInviter.setUserInviter(this);
+	public Invitation addInvite(Invitation invite) {
+		getInvites().add(invite);
+		invite.setUserInviter(this);
 
-		return invitationsInviter;
+		return invite;
 	}
 
-	public Invitation removeInvitationsInviter(Invitation invitationsInviter) {
-		getInvitationsInviter().remove(invitationsInviter);
-		invitationsInviter.setUserInviter(null);
+	public Invitation removeInvite(Invitation invite) {
+		getInvites().remove(invite);
+		invite.setUserInviter(null);
 
-		return invitationsInviter;
+		return invite;
 	}
 
-	public List<Invitation> getInvitationsInvited() {
-		return this.invitationsInvited;
+	public List<Invitation> getInviteds() {
+		return this.inviteds;
 	}
 
-	public void setInvitationsInvited(List<Invitation> invitationsInvited) {
-		this.invitationsInvited = invitationsInvited;
+	public void setInviteds(List<Invitation> inviteds) {
+		this.inviteds = inviteds;
 	}
 
-	public Invitation addInvitationsInvited(Invitation invitationsInvited) {
-		getInvitationsInvited().add(invitationsInvited);
-		invitationsInvited.setUserInvited(this);
+	public Invitation addInvited(Invitation invited) {
+		getInviteds().add(invited);
+		invited.setUserInvited(this);
 
-		return invitationsInvited;
+		return invited;
 	}
 
-	public Invitation removeInvitationsInvited(Invitation invitationsInvited) {
-		getInvitationsInvited().remove(invitationsInvited);
-		invitationsInvited.setUserInvited(null);
+	public Invitation removeInvited(Invitation invited) {
+		getInviteds().remove(invited);
+		invited.setUserInvited(null);
 
-		return invitationsInvited;
+		return invited;
 	}
 
 	public List<Package> getPackages() {
@@ -156,6 +178,14 @@ public class User implements Serializable {
 
 	public void setPackages(List<Package> packages) {
 		this.packages = packages;
+	}
+
+	public List<Group> getGroups() {
+		return this.groups;
+	}
+
+	public void setGroups(List<Group> groups) {
+		this.groups = groups;
 	}
 
 }

@@ -1,7 +1,0 @@
-package bean;
-
-@ManagedBean(name="Login")
-@ViewScoped
-public class LoginBean {
-
-}

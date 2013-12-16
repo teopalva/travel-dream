@@ -13,6 +13,33 @@
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>login.xhtml</welcome-file>
+    <welcome-file>index.xhtml</welcome-file>
   </welcome-file-list>
+  <login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login.xhtml</form-login-page>
+			<form-error-page>/loginError.xhtml</form-error-page>
+		</form-login-config>
+	</login-config>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>TDE Pages</web-resource-name>
+			<description />
+			<url-pattern>/admins/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>TDE</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>TDC Pages</web-resource-name>
+			<description />
+			<url-pattern>/users/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>TDC</role-name>
+		</auth-constraint>
+	</security-constraint>
 </web-app>
