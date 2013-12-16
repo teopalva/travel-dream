@@ -1,3 +1,6 @@
+.metadata
+.metadata/
+.metadata/*
 .metadata/.lock
 .metadata/.log
 .metadata/.mylyn/repositories.xml.zip
@@ -418,3 +421,7 @@ TravelDreamEJBClient/build/classes/.gitignore
 .metadata/.plugins/org.eclipse.core.resources/.projects/TestJSF/org.eclipse.jdt.core/state.dat
 .metadata/.plugins/org.eclipse.core.resources/.projects/TestJSF/org.eclipse.wst.jsdt.core/state.dat
 .metadata/.plugins/org.eclipse.core.resources/.root/9.tree
+TravelDreamEJB/.classpath
+TravelDreamEJB/.settings/org.eclipse.jdt.core.prefs
+TravelDreamWEB/.settings/org.eclipse.wst.common.component
+TravelDreamWEB/.settings/org.hibernate.eclipse.console.prefs
