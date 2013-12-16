@@ -13,7 +13,7 @@
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>index.xhtml</welcome-file>
+    <welcome-file>home.xhtml</welcome-file>
   </welcome-file-list>
   <login-config>
 		<auth-method>FORM</auth-method>

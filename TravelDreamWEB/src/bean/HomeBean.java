@@ -13,7 +13,7 @@ public class HomeBean {
 	@EJB
 	AuthenticationEJBLocal authenticationEJB;
 	
-	public String helloWorld() {
+	public String getHelloWorld() {
 		if(authenticationEJB.isTDC())
 			return "TDC";
 		if(authenticationEJB.isTDE())
