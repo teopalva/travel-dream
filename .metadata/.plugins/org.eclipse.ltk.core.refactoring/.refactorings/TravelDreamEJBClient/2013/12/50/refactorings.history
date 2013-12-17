@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy package &apos;coreEJB&apos; to &apos;DeleteMeEAREJBClient/ejbModule&apos;&#x0A;- Original project: &apos;TravelDreamEJBClient&apos;&#x0A;- Destination element: &apos;DeleteMeEAREJBClient/ejbModule&apos;&#x0A;- Original element: &apos;TravelDreamEJBClient/ejbModule/coreEJB&apos;" description="Copy package" destination="=DeleteMeEAREJBClient/ejbModule" element1="/ejbModule&lt;coreEJB" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1387120938434" version="1.0"/>
-</session>
