@@ -1,7 +1,14 @@
 package entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -16,6 +23,8 @@ public class Invitation implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String hash;
+
+	private byte accepted;
 
 	//bi-directional many-to-one association to Package
 	@ManyToOne
@@ -43,16 +52,20 @@ public class Invitation implements Serializable {
 		this.hash = hash;
 	}
 
-	public Package get_package() {
+	public byte getAccepted() {
+		return this.accepted;
+	}
+
+	public void setAccepted(byte accepted) {
+		this.accepted = accepted;
+	}
+
+	public Package getPackage() {
 		return this._package;
 	}
 
-	public void set_package(Package _package) {
-		this._package = _package;
-	}
-
 	public User getUserInviter() {
-		return this.userInviter;
+		return userInviter;
 	}
 
 	public void setUserInviter(User userInviter) {
@@ -60,11 +73,15 @@ public class Invitation implements Serializable {
 	}
 
 	public User getUserInvited() {
-		return this.userInvited;
+		return userInvited;
 	}
 
 	public void setUserInvited(User userInvited) {
 		this.userInvited = userInvited;
+	}
+
+	public void setPackage(Package _package) {
+		this._package = _package;
 	}
 
 }
