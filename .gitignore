@@ -465,3 +465,5 @@ TravelDreamWeb/.settings/org.jboss.ide.eclipse.as.core.prefs
 .metadata/.plugins/org.jboss.tools.central/proxyWizards/1387237253662/.rcache/.orphans.1
 .metadata/.plugins/org.jboss.tools.central/proxyWizards/1387237253662/.rcache/.table.1
 .metadata/.plugins/org.jboss.tools.central/proxyWizards/1387237253662/com.jboss.jbds.central.discovery_7.1.0.Final_v20131208_2326_B531.jar_8696345142563659346.jar
+TravelDreamEJB/.classpath
+TravelDreamWEB/.classpath
