@@ -808,7 +808,7 @@ Una volta determinate le funzionalità offerte dallo strato di logica applicativ
  Abbiamo quindi progettato la struttura dell'interfaccia tramite diagrammi
  concettuali, che descrivono i percorsi di navigazione all'interno dell'applicat
 ivo, per poi definire la struttura logica con la quale verranno implementati.
- Abbiamno anche ritenuto conveniente disegnare la struttura di molte delle
+ Abbiamo anche ritenuto conveniente disegnare la struttura di molte delle
  pagine visualizzabili dagli utenti (sia clienti che amministratori del
  sistema) in maniera da facilitare il nostro lavoro in fase di sviluppo.
 \end_layout
@@ -818,7 +818,252 @@ Progetto della navigazione
 \end_layout
 
 \begin_layout Standard
-UX diagram
+Per rappresentare i percorsi di navigazione attraverso l'interfaccia utente
+ dell'applicazione web abbiamo sfruttato come tipo di diagramma il modello
+ UX, la cui notazione è basata sui diagrammi delle classi UML.
+\end_layout
+
+\begin_layout Standard
+In particolare abbiamo deciso, per semplicità e chiarezza di lettura, di
+ suddividere l'UX in 4 diagrammi che rappresentano funzionalità e/o ruoli
+ diversi degli utenti che possono svolgere il flusso di lavoro evidenziato.
+ Va notato che la copertura delle funzionalità ci pare esaustiva nei suoi
+ aspetti principali, possono mancare tuttavia alcuni aspetti secondari che
+ sono intuibili e avrebbero solo appesantito la notazione.
+\end_layout
+
+\begin_layout Standard
+Nel diagramma di 
+\emph on
+figura3
+\emph default
+ si mostra la parte di applicazione il cui flusso di attività principale
+ ha origine nella schermata HOMEPAGE (evidenziata in 
+\emph on
+arancione
+\emph default
+).
+ Questa porzione di applicazione è quella accessibile a tutti gli utenti
+ che non hanno effettuato il login.
+ Va notato che dalla homepage (come anche da tutte le altre schermate) è
+ presente anche un header nella parte superiore della pagina che contiene
+ vari link e al quale dedichiamo un UX diagram ad hoc.
+\end_layout
+
+\begin_layout Standard
+Inoltre le altre convenzioni di colore delle classi adottate sono: 
+\emph on
+giallo
+\emph default
+ per le pagine (screen), 
+\emph on
+verde
+\emph default
+ per le input form, 
+\emph on
+bianco
+\emph default
+ per le classi di dati.
+ Particolare importanza hanno nel nostro modello le classi di colore 
+\emph on
+azzurro
+\emph default
+, che indica che esse non sono dettagliate nell'UX corrente, ma fanno da
+ passaggio ad un altro diagramma UX nel quale sono specificate adeguatamente.
+\end_layout
+
+\begin_layout Standard
+Si nota, ad esempio, che l'UX di figura1 si ferma alla pagina EDIT_PACKAGE,
+ quetsa infatti non è raggiungibile da un utente non loggato.
+\end_layout
+
+\begin_layout Standard
+Alla pagina EDIT_PACKAGE dedichiamo invece l'UX di 
+\emph on
+figura
+\emph default
+4: qui abbiamo sia i metodi e le funzionalità svolti dal TDC (ad esempio
+ filtrare i prodotti a scelta, fare drag&drop, confermare per andare al
+ checkout), ma anche quelli del TDE che dal pannello di amministrazione
+ arrivano qui per modificare/eliminare un pacchetto.
+\end_layout
+
+\begin_layout Standard
+In 
+\emph on
+figura5
+\emph default
+ viene mostrato l'UX che riassume la navigazione a partire dall'header presente
+ in tutte le pagine.
+ Sui collegamenti delle pagine dopo lo slash viene indicato l'attore che
+ può accedere a quel collegamento a partire dal proprio header, infatti
+ i link contenuti nell'header variano a seconda che l'utente sia non loggato
+ oppure loggato come TDC oppure loggato come TDE.
+\end_layout
+
+\begin_layout Standard
+Infine in 
+\emph on
+figura6
+\emph default
+ si descrive in dettaglio la parte relativa all'area del TDE, che parte
+ dal pannello di amministrazione e raggiunge alcune pagine dedicate, mentre
+ per EDIT_PACKAGE e OFFERINGS_LIST (in azzurro) sfruttiamo le stesse già
+ definite nei precedenti diagrammi aggiungendo nel caso di TDE i metodi
+ e le funzionalità proprie di questo attore.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UX diagrams/TD_UX_01_NonRegistrato.pdf
+	display false
+	scale 95
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+UX: area utente non loggato
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UX diagrams/TD_UX_02_editPackage.pdf
+	display false
+	scale 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+UX: dettaglio navigazione a partire da EDIT_PACKAGE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UX diagrams/TD_UX_03_Header.pdf
+	display false
+	scale 76
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+UX: navigazione a partire dall' HEADER
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UX diagrams/TD_UX_04_TDE.pdf
+	display false
+	scale 110
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+UX: area TDE 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -826,7 +1071,7 @@ Page sketch
 \end_layout
 
 \begin_layout Standard
-In questa sezione si presentano molti mockup delle pagine che verranno realizzat
+In questa sezione si presentano i mockup delle pagine web che verranno realizzat
 e nel sistema.
  Le interfacce sono state disegnate prima del progetto della navigazione,
  per facilitarci e capire cosa realmente servisse all'interno del sistema
