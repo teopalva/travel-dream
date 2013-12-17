@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <libraryInfos>
-<libraryInfo home="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home" version="1.6.0_45">
+<libraryInfo home="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home" version="1.6.0_65">
 <bootpath>
 <entry path="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsfd.jar"/>
 <entry path="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar"/>
@@ -34,7 +34,7 @@
 <entry path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/classes"/>
 </bootpath>
 <extensionDirs>
-<entry path="/Users/gianluca/Library/Java/Extensions"/>
+<entry path="/Users/teo/Library/Java/Extensions"/>
 <entry path="/Library/Java/JavaVirtualMachines/jdk1.7.0_45.jdk/Contents/Home/jre/lib/ext"/>
 <entry path="/Library/Java/Extensions"/>
 <entry path="/Network/Library/Java/Extensions"/>
