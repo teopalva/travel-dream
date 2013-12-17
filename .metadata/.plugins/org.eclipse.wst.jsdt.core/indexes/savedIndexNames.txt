@@ -1,7 +1,0 @@
-INDEX VERSION 1.3+/Users/teo/Developer/TravelDream/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-3380750386.index
-4138349442.index
-3817392528.index
-3404449204.index
-3544082334.index
-1942764262.index
