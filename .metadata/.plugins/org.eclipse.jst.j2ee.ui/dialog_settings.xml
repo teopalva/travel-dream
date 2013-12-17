@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="TestEAR" key="LASTEARNAME_"/>
+	<list key="J2EE_IMPORT_EAR">
+		<item value="/Users/gianluca/Documents/politecnico/IV anno/INGSW2/Progetto/03. SecondHandsOn/se2-example-05-registration.ear"/>
+	</list>
+	<list key="MRU_RUNTIME_STORE">
+		<item value="GlassFish 4.0"/>
+	</list>
+</section>
