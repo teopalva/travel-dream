@@ -59,10 +59,6 @@ public class DatePersonalization implements Serializable {
 	@OneToMany(mappedBy="datePersonalization")
 	private List<PersonalizedProductFlight> personalizedProductFlights;
 
-	//bi-directional many-to-one association to PersonalizedProductHotel
-	@OneToMany(mappedBy="datePersonalization")
-	private List<PersonalizedProductHotel> personalizedProductHotels;
-
 	//bi-directional many-to-one association to PossibleDatePersonalizationExcursion
 	@OneToMany(mappedBy="datePersonalization")
 	private List<PossibleDatePersonalizationExcursion> possibleDatePersonalizationExcursions;
@@ -156,28 +152,6 @@ public class DatePersonalization implements Serializable {
 		personalizedProductFlight.setDatePersonalization(null);
 
 		return personalizedProductFlight;
-	}
-
-	public List<PersonalizedProductHotel> getPersonalizedProductHotels() {
-		return this.personalizedProductHotels;
-	}
-
-	public void setPersonalizedProductHotels(List<PersonalizedProductHotel> personalizedProductHotels) {
-		this.personalizedProductHotels = personalizedProductHotels;
-	}
-
-	public PersonalizedProductHotel addPersonalizedProductHotel(PersonalizedProductHotel personalizedProductHotel) {
-		getPersonalizedProductHotels().add(personalizedProductHotel);
-		personalizedProductHotel.setDatePersonalization(this);
-
-		return personalizedProductHotel;
-	}
-
-	public PersonalizedProductHotel removePersonalizedProductHotel(PersonalizedProductHotel personalizedProductHotel) {
-		getPersonalizedProductHotels().remove(personalizedProductHotel);
-		personalizedProductHotel.setDatePersonalization(null);
-
-		return personalizedProductHotel;
 	}
 
 	public List<PossibleDatePersonalizationExcursion> getPossibleDatePersonalizationExcursions() {

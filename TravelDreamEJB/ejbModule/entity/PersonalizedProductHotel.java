@@ -23,11 +23,6 @@ public class PersonalizedProductHotel implements Serializable {
 	@JoinColumn(name="ClassPersonalization")
 	private ClassPersonalization classPersonalization;
 
-	//bi-directional many-to-one association to DatePersonalization
-	@ManyToOne
-	@JoinColumn(name="DatePersonalization")
-	private DatePersonalization datePersonalization;
-
 	//bi-directional many-to-one association to Hotel
 	@ManyToOne
 	@JoinColumn(name="HotelId")
@@ -55,14 +50,6 @@ public class PersonalizedProductHotel implements Serializable {
 
 	public void setClassPersonalization(ClassPersonalization classPersonalization) {
 		this.classPersonalization = classPersonalization;
-	}
-
-	public DatePersonalization getDatePersonalization() {
-		return this.datePersonalization;
-	}
-
-	public void setDatePersonalization(DatePersonalization datePersonalization) {
-		this.datePersonalization = datePersonalization;
 	}
 
 	public Hotel getHotel() {
