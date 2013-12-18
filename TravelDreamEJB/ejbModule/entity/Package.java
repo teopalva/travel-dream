@@ -50,7 +50,7 @@ public class Package implements Serializable {
 	private List<PersonalizedProductHotel> personalizedProductHotels;
 
 	//bi-directional many-to-many association to User
-	@ManyToMany(mappedBy="packages")
+	@ManyToMany(mappedBy="giftPackages")
 	private List<User> users;
 
 	public Package() {

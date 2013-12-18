@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="ejbModule"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="con" path="org.eclipse.datatools.connectivity.jdt.DRIVERLIBRARY/MySQL JDBC Driver"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink 2.5.0 - Kepler">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="../"/>
@@ -20,5 +19,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/gianluca/glassfish4/glassfish/lib/mysql-connector-java-5.1.26-bin.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

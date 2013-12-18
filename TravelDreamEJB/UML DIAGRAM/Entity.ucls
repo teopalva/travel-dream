@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true">  
+<class-diagram version="1.1.4" icons="true" automaticImage="PDF" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="entity.Image" project="TravelDreamEJB" 
     file="/TravelDreamEJB/ejbModule/entity/Image.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2141" y="49"/>    
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="entity.Airport" project="TravelDreamEJB" 
     file="/TravelDreamEJB/ejbModule/entity/Airport.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="496" y="339"/>    
+    <position height="-1" width="-1" x="397" y="341"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="false"/>      
@@ -103,7 +103,7 @@
   </class>  
   <class id="12" language="java" name="entity.City" project="TravelDreamEJB" 
     file="/TravelDreamEJB/ejbModule/entity/City.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="506" y="133"/>    
+    <position height="-1" width="-1" x="404" y="132"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="false"/>      
@@ -166,7 +166,7 @@
   </class>  
   <class id="19" language="java" name="entity.BuyingListItem" project="TravelDreamEJB" 
     file="/TravelDreamEJB/ejbModule/entity/BuyingListItem.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2469" y="739"/>    
+    <position height="-1" width="-1" x="2553" y="732"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="false"/>      
@@ -192,509 +192,530 @@
     </display>  
   </class>  
   <association id="22">    
-    <end type="SOURCE" refId="16" navigable="true">      
-      <attribute id="23" name="possibleClassPersonalizationHotels"/>      
-      <multiplicity id="24" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="6" navigable="true">      
+      <attribute id="23" name="classPersonalization">        
+        <position height="18" width="121" x="1230" y="689"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="16" width="25" x="1521" y="832"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="18" navigable="true">      
-      <attribute id="25" name="hotel"/>      
-      <multiplicity id="26" minimum="0" maximum="1"/>    
+    <end type="TARGET" refId="3" navigable="true">      
+      <attribute id="25" name="personalizedProductHotels"/>      
+      <multiplicity id="26" minimum="0" maximum="2147483647"/>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="27">    
-    <end type="SOURCE" refId="21" navigable="true">      
-      <attribute id="28" name="datePersonalization"/>      
-      <multiplicity id="29" minimum="0" maximum="1">        
-        <position height="16" width="25" x="549" y="928"/>      
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="28" name="airportDeparture">        
+        <position height="18" width="98" x="457" y="373"/>      
+      </attribute>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="30">    
+    <end type="SOURCE" refId="20" navigable="true">      
+      <attribute id="31" name="datePersonalization">        
+        <position height="18" width="117" x="730" y="465"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="16" width="25" x="555" y="894"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true">      
-      <attribute id="30" name="personalizedProductFlights">        
-        <position height="18" width="157" x="1782" y="399"/>      
-      </attribute>      
-      <multiplicity id="31" minimum="0" maximum="2147483647">        
-        <position height="16" width="23" x="1719" y="361"/>      
-      </multiplicity>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="33" name="flightsDeparture"/>      
+      <attribute id="33" name="personalizedProductExcursions"/>      
       <multiplicity id="34" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="35">    
-    <bendpoint x="2368" y="253"/>    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="36" name="inviteds"/>      
-      <multiplicity id="37" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="38">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="39" name="airportArrival"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="41">    
-    <end type="SOURCE" refId="2" navigable="true">      
-      <attribute id="42" name="users"/>      
-      <multiplicity id="43" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true">      
-      <attribute id="44" name="groups"/>      
-      <multiplicity id="45" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="46">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="47" name="airportDeparture"/>      
-      <multiplicity id="48" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="49">    
-    <end type="SOURCE" refId="16" navigable="true">      
-      <attribute id="50" name="company"/>      
-      <multiplicity id="51" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true">      
-      <attribute id="52" name="hotels"/>      
-      <multiplicity id="53" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="54">    
-    <bendpoint x="2385" y="292"/>    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="55" name="userInviter">        
-        <position height="18" width="65" x="2426" y="261"/>      
-      </attribute>      
-      <multiplicity id="56" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="57">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="58" name="personalizedProductExcursions"/>      
-      <multiplicity id="59" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="60">    
-    <end type="SOURCE" refId="21" navigable="true">      
-      <attribute id="61" name="_package"/>      
-      <multiplicity id="62" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true">      
-      <attribute id="63" name="personalizedProductFlights"/>      
-      <multiplicity id="64" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="65">    
-    <end type="SOURCE" refId="14" navigable="true">      
-      <attribute id="66" name="_package">        
-        <position height="18" width="62" x="1821" y="47"/>      
-      </attribute>      
-      <multiplicity id="67" minimum="0" maximum="1">        
-        <position height="16" width="25" x="1781" y="87"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true">      
-      <attribute id="68" name="invitations"/>      
-      <multiplicity id="69" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="70">    
-    <bendpoint x="2492" y="392"/>    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="71" name="invites">        
-        <position height="18" width="43" x="2381" y="385"/>      
-      </attribute>      
-      <multiplicity id="72" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="73">    
-    <bendpoint x="885" y="538"/>    
-    <bendpoint x="890" y="700"/>    
-    <end type="SOURCE" refId="17" navigable="true">      
-      <attribute id="74" name="possibleDatePersonalizationFlights"/>      
-      <multiplicity id="75" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true">      
-      <attribute id="76" name="flight"/>      
-      <multiplicity id="77" minimum="0" maximum="1"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="78">    
-    <end type="SOURCE" refId="16" navigable="true">      
-      <attribute id="79" name="classPersonalizations">        
-        <position height="18" width="127" x="1258" y="839"/>      
-      </attribute>      
-      <multiplicity id="80" minimum="0" maximum="2147483647">        
-        <position height="16" width="23" x="1436" y="835"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true">      
-      <attribute id="81" name="hotels"/>      
-      <multiplicity id="82" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="83">    
     <end type="SOURCE" refId="18" navigable="true">      
-      <attribute id="84" name="classPersonalization">        
+      <attribute id="36" name="classPersonalization">        
         <position height="18" width="121" x="1423" y="691"/>      
       </attribute>      
-      <multiplicity id="85" minimum="0" maximum="1">        
+      <multiplicity id="37" minimum="0" maximum="1">        
         <position height="16" width="25" x="1560" y="867"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true">      
-      <attribute id="86" name="possibleClassPersonalizationHotels"/>      
-      <multiplicity id="87" minimum="0" maximum="2147483647"/>    
+      <attribute id="38" name="possibleClassPersonalizationHotels"/>      
+      <multiplicity id="39" minimum="0" maximum="2147483647"/>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="88">    
-    <end type="SOURCE" refId="4" navigable="true">      
-      <attribute id="89" name="excursions"/>      
-      <multiplicity id="90" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true">      
-      <attribute id="91" name="datePersonalizations">        
-        <position height="18" width="123" x="679" y="671"/>      
+  <association id="40">    
+    <end type="SOURCE" refId="17" navigable="true">      
+      <attribute id="41" name="datePersonalizations">        
+        <position height="18" width="123" x="453" y="683"/>      
       </attribute>      
-      <multiplicity id="92" minimum="0" maximum="2147483647">        
-        <position height="16" width="23" x="486" y="880"/>      
+      <multiplicity id="42" minimum="0" maximum="2147483647">        
+        <position height="16" width="23" x="524" y="861"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true">      
+      <attribute id="43" name="flights">        
+        <position height="18" width="40" x="837" y="420"/>      
+      </attribute>      
+      <multiplicity id="44" minimum="0" maximum="2147483647">        
+        <position height="16" width="23" x="859" y="403"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="93">    
+  <association id="45">    
+    <end type="SOURCE" refId="5" navigable="true">      
+      <attribute id="46" name="personalizedProductExcursions"/>      
+      <multiplicity id="47" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true">      
+      <attribute id="48" name="_package"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <end type="SOURCE" refId="6" navigable="true">      
+      <attribute id="51" name="hotel"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true">      
+      <attribute id="53" name="personalizedProductHotels"/>      
+      <multiplicity id="54" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="55">    
+    <end type="SOURCE" refId="16" navigable="true">      
+      <attribute id="56" name="possibleClassPersonalizationHotels"/>      
+      <multiplicity id="57" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true">      
+      <attribute id="58" name="hotel">        
+        <position height="18" width="35" x="1194" y="253"/>      
+      </attribute>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="61" name="flightsDeparture">        
+        <position height="18" width="95" x="771" y="334"/>      
+      </attribute>      
+      <multiplicity id="62" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="63">    
+    <bendpoint x="2453" y="338"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="64" name="userInvited">        
+        <position height="18" width="68" x="2448" y="288"/>      
+      </attribute>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="66">    
+    <end type="SOURCE" refId="5" navigable="true">      
+      <attribute id="67" name="personalizedProductHotels"/>      
+      <multiplicity id="68" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true">      
+      <attribute id="69" name="_package"/>      
+      <multiplicity id="70" minimum="0" maximum="1"/>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
     <end type="SOURCE" refId="4" navigable="true">      
-      <attribute id="94" name="possibleDatePersonalizationFlights"/>      
-      <multiplicity id="95" minimum="0" maximum="2147483647"/>    
+      <attribute id="72" name="possibleDatePersonalizationFlights"/>      
+      <multiplicity id="73" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="13" navigable="true">      
-      <attribute id="96" name="datePersonalization"/>      
-      <multiplicity id="97" minimum="0" maximum="1">        
+      <attribute id="74" name="datePersonalization"/>      
+      <multiplicity id="75" minimum="0" maximum="1">        
         <position height="16" width="25" x="578" y="943"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="98">    
+  <association id="76">    
+    <end type="SOURCE" refId="21" navigable="true">      
+      <attribute id="77" name="_package"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true">      
+      <attribute id="79" name="personalizedProductFlights"/>      
+      <multiplicity id="80" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="81">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="82" name="company"/>      
+      <multiplicity id="83" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="84">    
+    <end type="SOURCE" refId="3" navigable="true">      
+      <attribute id="85" name="possibleClassPersonalizationFlights"/>      
+      <multiplicity id="86" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true">      
+      <attribute id="87" name="classPersonalization">        
+        <position height="18" width="121" x="1554" y="664"/>      
+      </attribute>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="89">    
+    <end type="SOURCE" refId="4" navigable="true">      
+      <attribute id="90" name="excursions">        
+        <position height="18" width="67" x="701" y="284"/>      
+      </attribute>      
+      <multiplicity id="91" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true">      
+      <attribute id="92" name="datePersonalizations">        
+        <position height="18" width="123" x="679" y="671"/>      
+      </attribute>      
+      <multiplicity id="93" minimum="0" maximum="2147483647">        
+        <position height="16" width="23" x="486" y="880"/>      
+      </multiplicity>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="94">    
+    <bendpoint x="2492" y="392"/>    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="95" name="invites">        
+        <position height="18" width="43" x="2381" y="385"/>      
+      </attribute>      
+      <multiplicity id="96" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="97">    
+    <end type="SOURCE" refId="21" navigable="true">      
+      <attribute id="98" name="datePersonalization"/>      
+      <multiplicity id="99" minimum="0" maximum="1">        
+        <position height="16" width="25" x="549" y="928"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true">      
+      <attribute id="100" name="personalizedProductFlights">        
+        <position height="18" width="157" x="1782" y="399"/>      
+      </attribute>      
+      <multiplicity id="101" minimum="0" maximum="2147483647">        
+        <position height="16" width="23" x="1719" y="361"/>      
+      </multiplicity>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="102">    
     <bendpoint x="1670" y="559"/>    
     <end type="SOURCE" refId="3" navigable="true">      
-      <attribute id="99" name="personalizedProductFlights">        
+      <attribute id="103" name="personalizedProductFlights">        
         <position height="18" width="157" x="1562" y="369"/>      
       </attribute>      
-      <multiplicity id="100" minimum="0" maximum="2147483647">        
+      <multiplicity id="104" minimum="0" maximum="2147483647">        
         <position height="16" width="23" x="1821" y="368"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="21" navigable="true">      
-      <attribute id="101" name="classPersonalization">        
+      <attribute id="105" name="classPersonalization">        
         <position height="18" width="121" x="1569" y="739"/>      
       </attribute>      
-      <multiplicity id="102" minimum="0" maximum="1">        
+      <multiplicity id="106" minimum="0" maximum="1">        
         <position height="16" width="25" x="1474" y="806"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="103">    
-    <end type="SOURCE" refId="20" navigable="true">      
-      <attribute id="104" name="datePersonalization">        
-        <position height="18" width="117" x="730" y="465"/>      
-      </attribute>      
-      <multiplicity id="105" minimum="0" maximum="1">        
-        <position height="16" width="25" x="555" y="894"/>      
-      </multiplicity>    
+  <association id="107">    
+    <end type="SOURCE" refId="9" navigable="true">      
+      <attribute id="108" name="city"/>      
+      <multiplicity id="109" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true">      
-      <attribute id="106" name="personalizedProductExcursions"/>      
-      <multiplicity id="107" minimum="0" maximum="2147483647"/>    
+    <end type="TARGET" refId="12" navigable="true">      
+      <attribute id="110" name="airports"/>      
+      <multiplicity id="111" minimum="0" maximum="2147483647"/>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="108">    
-    <end type="SOURCE" refId="1" navigable="true">      
-      <attribute id="109" name="packages"/>      
-      <multiplicity id="110" minimum="0" maximum="2147483647">        
-        <position height="16" width="23" x="1797" y="51"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true">      
-      <attribute id="111" name="image"/>      
-      <multiplicity id="112" minimum="0" maximum="1"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="113">    
-    <end type="SOURCE" refId="6" navigable="true">      
-      <attribute id="114" name="hotel"/>      
-      <multiplicity id="115" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true">      
-      <attribute id="116" name="personalizedProductHotels"/>      
-      <multiplicity id="117" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="118">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="119" name="excursion">        
-        <position height="18" width="61" x="845" y="182"/>      
-      </attribute>      
-      <multiplicity id="120" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="121">    
-    <end type="SOURCE" refId="3" navigable="true">      
-      <attribute id="122" name="possibleClassPersonalizationFlights"/>      
-      <multiplicity id="123" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true">      
-      <attribute id="124" name="classPersonalization">        
-        <position height="18" width="121" x="1554" y="664"/>      
-      </attribute>      
-      <multiplicity id="125" minimum="0" maximum="1"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="126">    
+  <association id="112">    
     <end type="SOURCE" refId="17" navigable="true">      
-      <attribute id="127" name="datePersonalizations">        
-        <position height="18" width="123" x="453" y="683"/>      
-      </attribute>      
-      <multiplicity id="128" minimum="0" maximum="2147483647">        
-        <position height="16" width="23" x="524" y="861"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true">      
-      <attribute id="129" name="flights"/>      
-      <multiplicity id="130" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="131">    
-    <end type="SOURCE" refId="17" navigable="true">      
-      <attribute id="132" name="company"/>      
-      <multiplicity id="133" minimum="0" maximum="1"/>    
+      <attribute id="113" name="company"/>      
+      <multiplicity id="114" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true">      
-      <attribute id="134" name="flights"/>      
-      <multiplicity id="135" minimum="0" maximum="2147483647"/>    
+      <attribute id="115" name="flights"/>      
+      <multiplicity id="116" minimum="0" maximum="2147483647"/>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="136">    
-    <end type="SOURCE" refId="5" navigable="true">      
-      <attribute id="137" name="personalizedProductHotels"/>      
-      <multiplicity id="138" minimum="0" maximum="2147483647"/>    
+  <association id="117">    
+    <bendpoint x="885" y="538"/>    
+    <bendpoint x="890" y="700"/>    
+    <end type="SOURCE" refId="17" navigable="true">      
+      <attribute id="118" name="possibleDatePersonalizationFlights"/>      
+      <multiplicity id="119" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true">      
-      <attribute id="139" name="_package"/>      
-      <multiplicity id="140" minimum="0" maximum="1"/>    
+    <end type="TARGET" refId="13" navigable="true">      
+      <attribute id="120" name="flight">        
+        <position height="18" width="34" x="881" y="425"/>      
+      </attribute>      
+      <multiplicity id="121" minimum="0" maximum="1">        
+        <position height="16" width="25" x="894" y="411"/>      
+      </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="141">    
+  <association id="122">    
     <end type="SOURCE" refId="7" navigable="true">      
-      <attribute id="142" name="possibleDatePersonalizationExcursions"/>      
-      <multiplicity id="143" minimum="0" maximum="2147483647"/>    
+      <attribute id="123" name="possibleDatePersonalizationExcursions"/>      
+      <multiplicity id="124" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true">      
-      <attribute id="144" name="excursion"/>      
-      <multiplicity id="145" minimum="0" maximum="1"/>    
+      <attribute id="125" name="excursion">        
+        <position height="18" width="61" x="669" y="257"/>      
+      </attribute>      
+      <multiplicity id="126" minimum="0" maximum="1"/>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="146">    
+  <association id="127">    
     <bendpoint x="1293" y="618"/>    
     <bendpoint x="1172" y="479"/>    
     <end type="SOURCE" refId="3" navigable="true">      
-      <attribute id="147" name="flights"/>      
-      <multiplicity id="148" minimum="0" maximum="2147483647"/>    
+      <attribute id="128" name="flights">        
+        <position height="18" width="40" x="986" y="369"/>      
+      </attribute>      
+      <multiplicity id="129" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="17" navigable="true">      
-      <attribute id="149" name="classPersonalizations">        
+      <attribute id="130" name="classPersonalizations">        
         <position height="18" width="127" x="1316" y="609"/>      
       </attribute>      
-      <multiplicity id="150" minimum="0" maximum="2147483647">        
+      <multiplicity id="131" minimum="0" maximum="2147483647">        
         <position height="16" width="23" x="1406" y="841"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="151">    
-    <bendpoint x="2453" y="338"/>    
+  <association id="132">    
+    <bendpoint x="2385" y="292"/>    
     <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="152" name="userInvited">        
-        <position height="18" width="68" x="2448" y="288"/>      
+      <attribute id="133" name="userInviter">        
+        <position height="18" width="65" x="2426" y="261"/>      
       </attribute>      
-      <multiplicity id="153" minimum="0" maximum="1"/>    
+      <multiplicity id="134" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="154">    
-    <end type="SOURCE" refId="9" navigable="true">      
-      <attribute id="155" name="city"/>      
-      <multiplicity id="156" minimum="0" maximum="1"/>    
+  <association id="135">    
+    <end type="SOURCE" refId="17" navigable="true">      
+      <attribute id="136" name="personalizedProductFlights"/>      
+      <multiplicity id="137" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="12" navigable="true">      
-      <attribute id="157" name="airports"/>      
-      <multiplicity id="158" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="159">    
-    <end type="SOURCE" refId="5" navigable="true">      
-      <attribute id="160" name="personalizedProductExcursions"/>      
-      <multiplicity id="161" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true">      
-      <attribute id="162" name="_package"/>      
-      <multiplicity id="163" minimum="0" maximum="1"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="164">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="165" name="excursions">        
-        <position height="18" width="67" x="872" y="186"/>      
+    <end type="TARGET" refId="21" navigable="true">      
+      <attribute id="138" name="flight">        
+        <position height="18" width="34" x="988" y="349"/>      
       </attribute>      
-      <multiplicity id="166" minimum="0" maximum="2147483647"/>    
+      <multiplicity id="139" minimum="0" maximum="1"/>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="140">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="141" name="airportArrival">        
+        <position height="18" width="78" x="463" y="315"/>      
+      </attribute>      
+      <multiplicity id="142" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="143">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="144" name="excursions">        
+        <position height="18" width="67" x="881" y="204"/>      
+      </attribute>      
+      <multiplicity id="145" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="167">    
+  <association id="146">    
     <end type="SOURCE" refId="17" navigable="true">      
-      <attribute id="168" name="personalizedProductFlights"/>      
-      <multiplicity id="169" minimum="0" maximum="2147483647"/>    
+      <attribute id="147" name="possibleClassPersonalizationFlights"/>      
+      <multiplicity id="148" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="21" navigable="true">      
-      <attribute id="170" name="flight"/>      
-      <multiplicity id="171" minimum="0" maximum="1"/>    
+    <end type="TARGET" refId="11" navigable="true">      
+      <attribute id="149" name="flight">        
+        <position height="18" width="34" x="942" y="425"/>      
+      </attribute>      
+      <multiplicity id="150" minimum="0" maximum="1"/>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="172">    
-    <end type="SOURCE" refId="10" navigable="true">      
-      <attribute id="173" name="datePersonalization">        
-        <position height="18" width="117" x="348" y="828"/>      
+  <association id="151">    
+    <end type="SOURCE" refId="16" navigable="true">      
+      <attribute id="152" name="company"/>      
+      <multiplicity id="153" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true">      
+      <attribute id="154" name="hotels"/>      
+      <multiplicity id="155" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="156">    
+    <end type="SOURCE" refId="2" navigable="true">      
+      <attribute id="157" name="users"/>      
+      <multiplicity id="158" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true">      
+      <attribute id="159" name="groups"/>      
+      <multiplicity id="160" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="161">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="162" name="personalizedProductExcursions"/>      
+      <multiplicity id="163" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="164">    
+    <end type="SOURCE" refId="19" navigable="true">      
+      <attribute id="165" name="user"/>      
+      <multiplicity id="166" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true">      
+      <attribute id="167" name="buyingLists"/>      
+      <multiplicity id="168" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="169">    
+    <end type="SOURCE" refId="14" navigable="true">      
+      <attribute id="170" name="_package">        
+        <position height="18" width="62" x="1821" y="47"/>      
       </attribute>      
-      <multiplicity id="174" minimum="0" maximum="1">        
-        <position height="16" width="25" x="444" y="883"/>      
+      <multiplicity id="171" minimum="0" maximum="1">        
+        <position height="16" width="25" x="1781" y="87"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true">      
-      <attribute id="175" name="possibleDatePersonalizationExcursions"/>      
+    <end type="TARGET" refId="5" navigable="true">      
+      <attribute id="172" name="invitations"/>      
+      <multiplicity id="173" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="174">    
+    <bendpoint x="2368" y="253"/>    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="175" name="inviteds"/>      
       <multiplicity id="176" minimum="0" maximum="2147483647"/>    
     </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="177">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="178" name="flightsArrival"/>      
+    <end type="SOURCE" refId="5" navigable="true">      
+      <attribute id="178" name="buyingListItems"/>      
       <multiplicity id="179" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="180">    
-    <end type="SOURCE" refId="6" navigable="true">      
-      <attribute id="181" name="classPersonalization">        
-        <position height="18" width="121" x="1230" y="689"/>      
-      </attribute>      
-      <multiplicity id="182" minimum="0" maximum="1">        
-        <position height="16" width="25" x="1521" y="832"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true">      
-      <attribute id="183" name="personalizedProductHotels"/>      
-      <multiplicity id="184" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="185">    
-    <end type="SOURCE" refId="5" navigable="true">      
-      <attribute id="186" name="users"/>      
-      <multiplicity id="187" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true">      
-      <attribute id="188" name="packages">        
-        <position height="18" width="61" x="1801" y="68"/>      
-      </attribute>      
-      <multiplicity id="189" minimum="0" maximum="2147483647">        
-        <position height="16" width="23" x="1838" y="26"/>      
-      </multiplicity>    
-    </end>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="190">    
-    <end type="SOURCE" refId="5" navigable="true">      
-      <attribute id="191" name="buyingListItems"/>      
-      <multiplicity id="192" minimum="0" maximum="2147483647"/>    
-    </end>    
     <end type="TARGET" refId="19" navigable="true">      
-      <attribute id="193" name="_package"/>      
-      <multiplicity id="194" minimum="0" maximum="1">        
+      <attribute id="180" name="_package"/>      
+      <multiplicity id="181" minimum="0" maximum="1">        
         <position height="16" width="25" x="1782" y="64"/>      
       </multiplicity>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="195">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="196" name="company"/>      
-      <multiplicity id="197" minimum="0" maximum="1"/>    
+  <association id="182">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="183" name="excursion">        
+        <position height="18" width="61" x="851" y="182"/>      
+      </attribute>      
+      <multiplicity id="184" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="198">    
-    <end type="SOURCE" refId="19" navigable="true">      
-      <attribute id="199" name="user"/>      
-      <multiplicity id="200" minimum="0" maximum="1"/>    
+  <association id="185">    
+    <end type="SOURCE" refId="1" navigable="true">      
+      <attribute id="186" name="packages"/>      
+      <multiplicity id="187" minimum="0" maximum="2147483647">        
+        <position height="16" width="23" x="1797" y="51"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="15" navigable="true">      
-      <attribute id="201" name="buyingLists"/>      
-      <multiplicity id="202" minimum="0" maximum="2147483647"/>    
+    <end type="TARGET" refId="5" navigable="true">      
+      <attribute id="188" name="image"/>      
+      <multiplicity id="189" minimum="0" maximum="1"/>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="203">    
-    <end type="SOURCE" refId="17" navigable="true">      
-      <attribute id="204" name="possibleClassPersonalizationFlights"/>      
+  <association id="190">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="191" name="users"/>      
+      <multiplicity id="192" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="193">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="194" name="flightsArrival">        
+        <position height="18" width="75" x="761" y="351"/>      
+      </attribute>      
+      <multiplicity id="195" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="196">    
+    <end type="SOURCE" refId="10" navigable="true">      
+      <attribute id="197" name="datePersonalization">        
+        <position height="18" width="117" x="348" y="828"/>      
+      </attribute>      
+      <multiplicity id="198" minimum="0" maximum="1">        
+        <position height="16" width="25" x="444" y="883"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true">      
+      <attribute id="199" name="possibleDatePersonalizationExcursions"/>      
+      <multiplicity id="200" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="201">    
+    <end type="SOURCE" refId="16" navigable="true">      
+      <attribute id="202" name="classPersonalizations">        
+        <position height="18" width="127" x="1258" y="839"/>      
+      </attribute>      
+      <multiplicity id="203" minimum="0" maximum="2147483647">        
+        <position height="16" width="23" x="1436" y="835"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true">      
+      <attribute id="204" name="hotels"/>      
       <multiplicity id="205" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true">      
-      <attribute id="206" name="flight"/>      
-      <multiplicity id="207" minimum="0" maximum="1"/>    
     </end>    
     <display labels="true" multiplicity="true"/>  
   </association>  

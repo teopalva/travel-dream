@@ -1,7 +1,9 @@
 package entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
 
 
@@ -10,6 +12,7 @@ import java.util.Date;
  * 
  */
 @Entity
+@EntityListeners({BuyingListItemListener.class})
 @Table(name="BUYING_LIST_ITEM")
 @NamedQuery(name="BuyingList.findAll", query="SELECT b FROM BuyingListItem b")
 public class BuyingListItem implements Serializable {
