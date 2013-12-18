@@ -313,6 +313,244 @@ La procedura di acquisto di un pacchetto inizia subito dopo che un utente
 \end_layout
 
 \begin_layout Subsection
+Acronimi e glossario
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="11" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Acronimo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Definizione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JEE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Java Enterprise Edition
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+EJB
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Enterprise Java Beans
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JPA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Java Persistence Api
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JSF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Java Server Faces
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+XHTML
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+eXtensible HyperText Markup Language
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ER
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Modello Entità Relazione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DBMS
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Database Management System
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DTO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Java Data Transfer Object
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+EAR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Java Enterprise ARchive
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JDBC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Java Database Connectivity
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Scelte tecnologiche
 \end_layout
 
@@ -430,7 +668,7 @@ Il livello fornisce la business logic dell'applicativo e comunica direttamente
 \series bold
 Data Tier: 
 \series default
-E' costituito dal DBMS, che garantisce la persistenza dei dati.
+E' costituito dal DBMS MySQL, che garantisce la persistenza dei dati.
  L'application server comunica con il database utilizzando le tecnologie
  standard di Java, JDBC.
 \end_layout
@@ -504,7 +742,8 @@ status open
 \begin_inset Graphics
 	filename ER.pdf
 	display false
-	width 100text%
+	scale 25
+	BoundingBox 75cm 3cm 1cm 24cm
 
 \end_inset
 
@@ -702,24 +941,353 @@ Progettazione logica
 \begin_layout Standard
 Lo schema concettuale proposto al punto precedente viene tradotto nel conseguent
 e schema logico che corrisponde alla reale struttura del database relazionale.
- Lo schema risultate è riassunto tramite le seguenti:
+ Lo schema risultante è riassunto tramite le seguenti:
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-[tabelle db con attributi]
+
+\size small
+USER(
+\bar under
+Mail
+\bar default
+, Password*, FirstName*, LastName*) 
 \end_layout
 
 \begin_layout Standard
-Lo schema di traduzione adottato 
+
+\size small
+GROUP(Id) 
 \end_layout
 
 \begin_layout Standard
-Abbiamo inserito delle tabell aggiuntive per tradurre nel modello logico
- delle associazioni [molti a molti, uno a molti]...blabla
+
+\size small
+USER_GROUP(
+\bar under
+\color blue
+UserId,GroupId
+\bar default
+\color inherit
+) 
 \end_layout
 
 \begin_layout Standard
-[modello logico mysql workbench]
+
+\size small
+COMPANY(
+\bar under
+Name
+\bar default
+) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+EXCURSION(
+\bar under
+Id
+\bar default
+, Name, 
+\color blue
+Company
+\color inherit
+) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+HOTEL(
+\bar under
+Id
+\bar default
+, Name, 
+\color blue
+Company
+\color inherit
+) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+CITY(
+\bar under
+Id
+\bar default
+,Name) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+AIRPORT(
+\bar under
+Id,
+\color blue
+CityId
+\bar default
+\color inherit
+) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+FLIGHT(
+\bar under
+Id
+\bar default
+, Name, 
+\color blue
+Company
+\color inherit
+,
+\color blue
+Arrival
+\color inherit
+,
+\color blue
+Departure
+\color inherit
+) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+DATE_PERSONALIZATION(
+\bar under
+Id
+\bar default
+, Date, Duration) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+CLASS_PERSONALIZATION(
+\bar under
+Id
+\bar default
+, Class) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+POSSIBLE_DATE_PERSONALIZATION_FLIGHT(
+\bar under
+\color blue
+FlightId,DatePersonalizationId
+\bar default
+\color inherit
+,duration) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+POSSIBLE_DATE_PERSONALIZATION_EXCURSION(
+\bar under
+\color blue
+ExcursionId,DatePersonalizationId
+\bar default
+\color inherit
+) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+POSSIBLE_CLASS_PERSONALIZATION_HOTEL(
+\bar under
+\color blue
+HotelId,ClassPersonalizationId
+\bar default
+\color inherit
+) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+POSSIBLE_CLASS_PERSONALIZATION_FLIGHT(
+\bar under
+\color blue
+FlightId,ClassPersonalizationId
+\bar default
+\color inherit
+) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+PERSONALIZED_PRODUCT_HOTEL(
+\bar under
+Id
+\bar default
+,
+\color blue
+HotelId,PackageId,DatePersonalization,ClassPersonalization
+\color inherit
+) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+PERSONALIZED_PRODUCT_FLIGHT (
+\bar under
+Id
+\bar default
+,
+\color blue
+FlightId,PackageId,DatePersonalization,ClassPersonalization
+\color inherit
+) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+PERSONALIZED_PRODUCT_EXCURSION (
+\bar under
+Id
+\bar default
+,
+\color blue
+ExcursionId,PackageId,DatePersonalization
+\color inherit
+) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+PACKAGE(
+\bar under
+Id
+\bar default
+,Reduction,People, name, image) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+GIFT_LIST_ITEM(
+\bar under
+\color blue
+PackageId,UserId
+\bar default
+\color inherit
+) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+BUYING_LIST_ITEM(
+\bar under
+\color blue
+PackageId,UserId
+\bar default
+\color inherit
+,Gifted,Paid) 
+\end_layout
+
+\begin_layout Standard
+
+\size small
+INVITATION(
+\bar under
+Hash
+\bar default
+,
+\color blue
+PackageId,InviterUserId,InvitedUserId
+\color inherit
+,Accepted) 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Lo schema di traduzione adottato ha previsto il collasso verso il basso
+ e il collasso verso l'alto di numerose entità, si noti infatti come non
+ siano più presenti l'entità BASE PRODUCT e PERSONALIZATION.
+\end_layout
+
+\begin_layout Standard
+Abbiamo inserito delle tabelle aggiuntive per tradurre nel modello logico
+ delle associazioni molti a molti, quali ad esempio le “POSSIBLE DATE PERSONALIZ
+ATION” per tutte e tre le tipologie di prodotto base, le “POSSIBLE CLASS
+ PERSONALIZATION” per i prodotti base HOTEL e FLIGHT.
+ E' stato eseguito lo stesso procedimento con la relazione “USER_GROUP”.
+\end_layout
+
+\begin_layout Standard
+Dal modello logico qui descritto abbiamo ottenuto poi il database vero e
+ proprio e l'abbiamo renderizzato tramite MySQL WorkBench 6.0.
+\end_layout
+
+\begin_layout Standard
+Di seguito si riporta il modello ottenuto:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Travel_Dream_schema.pdf
+	display false
+	scale 45
+	BoundingBox 4.5cm 1cm 1cm 40cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schema ottenuto con MySQL WorkBench
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -735,6 +1303,43 @@ e la logica applicativa.
 ta tramite gli EJB.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename full_ejb+jpa_diagram.pdf
+	display false
+	scale 15
+	BoundingBox 135cm 1cm 1cm 34cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schema dell'architettura generale della business logic realizzata
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Modello (Entity Beans, JPA)
 \end_layout
@@ -745,20 +1350,62 @@ L'insieme delle classi JPA Entity, chiamate anche Entity Beans, è direttamente
 ione del modello ER.
  Gli Entity Beans sono utili in quanto introducono un livello di astrazione
  che può essere utilizzato all'interno del progetto Java.
- Ogni Entity Bean corrisponde in maniera univoca, in modo 1:1, ad una entità
- sullo schema del progetto logico, e quindi al database.
+ Ogni Entity Bean corrisponde in maniera univoca ad una entità sullo schema
+ del progetto logico, e quindi al database.
 \end_layout
 
 \begin_layout Standard
 La realizzazione di tale sruttura ci permettere di facilitare le operazioni
  sulla base dati e le varie JPA che sono introdotte sono schematizzate nella
- figura seguente [...].
- In particolare si noti come tali entità siano sempre costituite da metodi
- setter e getter per essere facilmente manipolabili all'interno dell'applicativo.
+ Figura 5.
+ In particolare si tenga presente come tali entità siano sempre implicitamente
+ costituite da metodi setter e getter per essere facilmente manipolabili
+ all'interno dell'applicativo.
 \end_layout
 
 \begin_layout Standard
-[DIAGRAMMA UML JPA]
+Per quanto quanto riguarda le JPA realizzate si faccia riferimento al seguente
+ diagramma:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UML JPA entities.pdf
+	display false
+	scale 27
+	BoundingBox 12cm 1cm 3cm 20cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Diagramma UML delle JPA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -770,13 +1417,12 @@ Per sviluppare la logica applicativa del progetto, si sono utilizzati i
  Session Bean messi a disposizione da Java Enterprise.
  Ricordiamo come questa tipologia di componenti sia il nesso tra le Entity
  Beans e il web client.
- Come si vede dallo schema riportato in Figura [...] SCHEMA LAVAGNA TEO.
+ 
 \end_layout
 
 \begin_layout Standard
-All'interno dei Session Bean, si sono utilizzati per l'implementazione sia
- componenti stateless che componenti stateful.
- Le prime sono state usate per i sistemi di autenticazione 
+All'interno dei Session Bean, si noti come siano state usate classi stateful
+ per i sistemi di autenticazione gestiti tramite 
 \begin_inset Quotes eld
 \end_inset
 
@@ -784,17 +1430,61 @@ realm
 \begin_inset Quotes erd
 \end_inset
 
-, mentre negli altri casi si sono utilizzati componenti stateful.
+ (l'ejb denominato 
+\begin_inset Quotes eld
+\end_inset
+
+AuthenticationEJB
+\begin_inset Quotes erd
+\end_inset
+
+) mentre negli altri casi si sono utilizzati componenti stateful e stateless
+ a seconda delle necessità.
 \end_layout
 
 \begin_layout Standard
-Il diagramma delle classi UML di Figura ^ mostra il design dei Session Bean
- che verranno implementati.
- [DESCRIZIONE]
+Il diagramma delle classi UML di Figura 6 mostra il design dei Enterprise
+ Java Beans che verranno implementati.
+ 
 \end_layout
 
 \begin_layout Standard
-[DIAGRAMMA UML EJB]
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ejb_diagram.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schema UML per gli EJB individuati nel sistema
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -813,13 +1503,106 @@ ivo, per poi definire la struttura logica con la quale verranno implementati.
  sistema) in maniera da facilitare il nostro lavoro in fase di sviluppo.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename managed_beans.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schema UML per i Managed Beans del sistema
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si elencano ora alcune annotazioni prese durante la fase di stesura di questa
+ sezione:
+\end_layout
+
+\begin_layout Description
+HeaderBean Le funzioni di 
+\begin_inset Quotes eld
+\end_inset
+
+show
+\begin_inset Quotes erd
+\end_inset
+
+ redirigono alle rispettive pagine, controllando che l'utente abbia i permessi
+ necessari per accedervi
+\end_layout
+
+\begin_layout Description
+EditPackageBean La funzione 
+\begin_inset Quotes eld
+\end_inset
+
+showCheckout()
+\begin_inset Quotes erd
+\end_inset
+
+ viene eseguita solo se sono rispettati tutti i vincoli sul pacchetto (verificat
+i dal TDO), altrimenti si mostrerà l'errore relativo
+\end_layout
+
+\begin_layout Description
+OfferingListBean Contiene una funzione che genera la tabella con tutti i
+ pacchetti disponibili, secondo i criteri di ricerca selezionati tramite
+ la funzione 
+\begin_inset Quotes eld
+\end_inset
+
+dropDownFilter()
+\begin_inset Quotes erd
+\end_inset
+
+ e 
+\begin_inset Quotes eld
+\end_inset
+
+submitSearch()
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Description
+CheckoutBean Prevede le tre modalità di conclusione dell'ordine, quali acquisto,
+ inserimento nella lista regali e invito di amici ad unirsi al pacchetto
+\end_layout
+
 \begin_layout Subsection
 Progetto della navigazione
 \end_layout
 
 \begin_layout Standard
 Per rappresentare i percorsi di navigazione attraverso l'interfaccia utente
- dell'applicazione web abbiamo sfruttato come tipo di diagramma il modello
+ dell' applicazione web abbiamo sfruttato come tipo di diagramma il modello
  UX, la cui notazione è basata sui diagrammi delle classi UML.
 \end_layout
 
@@ -924,7 +1707,7 @@ status open
 \begin_inset Graphics
 	filename UX diagrams/TD_UX_01_NonRegistrato.pdf
 	display false
-	scale 95
+	BoundingBox 2cm -1cm 1cm 10cm
 
 \end_inset
 
@@ -959,7 +1742,8 @@ status open
 \begin_inset Graphics
 	filename UX diagrams/TD_UX_02_editPackage.pdf
 	display false
-	scale 90
+	scale 95
+	BoundingBox 1cm -1cm 3cm 16cm
 
 \end_inset
 
@@ -975,10 +1759,6 @@ UX: dettaglio navigazione a partire da EDIT_PACKAGE
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -998,8 +1778,8 @@ status open
 \begin_inset Graphics
 	filename UX diagrams/TD_UX_03_Header.pdf
 	display false
-	scale 76
-	rotateAngle 90
+	scale 80
+	BoundingBox 4cm -1cm 1cm 10cm
 
 \end_inset
 
@@ -1038,7 +1818,8 @@ status open
 \begin_inset Graphics
 	filename UX diagrams/TD_UX_04_TDE.pdf
 	display false
-	scale 110
+	scale 120
+	BoundingBox 1.7cm -1cm -2cm 10cm
 
 \end_inset
 
@@ -1066,6 +1847,13 @@ UX: area TDE
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Page sketch 
 \end_layout
@@ -1084,8 +1872,754 @@ Questi schemi ci hanno dunque permesso di individurare meglio i percorsi
  varie schermate.
  Questi schemi ci supporteranno inoltre durante la fase di implementazione,
  avendo già una base sulla quale lavorare.
- I layout presentati sono ovviamente soltanto una bozza e verranno succesivament
-e raffinati in fase di sviluppo.
+ I layout presentati sono ovviamente soltanto una bozza e verranno successivamen
+te raffinati in fase di sviluppo.
+\end_layout
+
+\begin_layout Standard
+Le schermate individuate per la realizzazione del progetto sono di seguito
+ riportate con una breve didascalia che ne descrive le funzioni principali.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/01b-HomePage.pdf
+	display false
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Home Page
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/02-Registrazione.pdf
+	display false
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schermata per la registrazione di un nuovo utente
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/03b-CatalogoOfferte.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Catalogo dei pacchetti disponibili
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/04b-CreaPacchetto.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schermata per la creazione di un nuovo pacchetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/05b-ModificaPacchetto.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schermata per la modifica di un pacchetto esistente
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/06b-Check-out.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Opzioni per la finalizzazione dell'ordine
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/07-Pagamento.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schermata di riepilogo dell'ordine con dati per effettuare il pagamento
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/08-MiaListaRegali.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Lista regali dell'utente registrato
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/09-ListaRegali.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Lista regali di un altro utente
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/10b-ListaAcquisti.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Lista degli ordini di un utente
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/11-ListaInviti.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Lista di riepilogo degli inviti effettuati da un utente per i vari pacchetti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/12-adminPanel.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Pannello di amministrazione per i TDE
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/13-editBaseProduct.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Creazione e modifica di un pacchetto per un amministratore
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/14-orderList.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Riepilogo degli ordini inseriti nel sistema
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename UI Sketch/15-orderDetail.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Pagina di dettagli per un ordine con conferma di ricevuta del pagamento
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename UI Sketch/16-viewBaseProduct.pdf
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schermata di modifica/aggiunta/rimozione dei pacchetti base
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Rettifiche al RASD
+\end_layout
+
+\begin_layout Standard
+Durante la stesura di questo documento ci siamo accorti di voler modificare
+ alcune considerazioni fatte nel documento RASD, per migliorare l'approccio
+ al problema e per risolvere alcuni problemi riscontrati solo durante questa
+ fase del progetto.
+\end_layout
+
+\begin_layout Itemize
+Si specifica, come considerazione, che gli hotel siano aperti tutto l'anno
+ e quindi non dispongano di un attributo 
+\begin_inset Quotes eld
+\end_inset
+
+DATE PERSONALIZATION
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Aggiunta di molti UI Sketch
+\end_layout
+
+\begin_layout Itemize
+Modifca degli UI Sketch precedenti per l'introduzione di tutte le funzioni
+ pensate in fase di design
+\end_layout
+
+\begin_layout Section
+Ore di lavoro complessive
+\end_layout
+
+\begin_layout Standard
+Sono state conteggiate le ore di lavoro per la stesura di questo documento.
+ Sono state suddivise in ore condivise tra i vari componenti del gruppo
+ e in ore di lavoro individuale.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ore di lavoro in gruppo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+23
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Persona
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ore di lavoro individuale
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Palvarini
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Venturini
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Zerbinati
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \end_body
