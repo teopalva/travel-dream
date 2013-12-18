@@ -781,29 +781,25 @@ USER: Rappresenta un utente registrato al sistema, è identificato da un
 \begin_layout Itemize
 TDE, TDF, TCD: Rappresentano gli attori descritti nel RASD, ci si riferisca
  dunque a tale documento.
+ Ogni USER può appartenere ad uno solo di questi tre gruppi, l'appartenenza
+ è modellata con una relazione tra le entità GROUP e USER.
 \end_layout
 
 \begin_layout Itemize
-BUYING LIST: Ogni utente ha una lista degli ordini effettuati, è rappresentata
- mediante una tabella nel nostro modello e prevede come identificatore lo
- stesso TDC (in quanto in relazione 1 a 1), dispone degli attributi Gifted
- e Paid: il primo segnala se il pacchetto è stato regalato da un altro TDC,
+BUYING LIST ITEM: Ogni utente ha una lista degli ordini effettuati, è rappresent
+ata mediante una tabella nel nostro modello e prevede come identificatore
+ lo stesso TDC e il pacchetto ordinato, dispone degli attributi Gifted e
+ Paid: il primo segnala se il pacchetto è stato regalato da un altro TDC,
  il secondo indica se è stato ricevuto il pagamento nel conto corrente di
  TravelDream (parametro modificabile dal pannello di controllo dell'amministrato
 re TDE).
 \end_layout
 
 \begin_layout Itemize
-GIFT LIST: E' la lista desideri di ogni utente, è identificata dal TDC proprieta
-rio (in quanto in relazione 1 a 1), raccoglie i pacchetti che sono stati
- inseriti da un TDC e sono visibili ad altri TDC per regalarli al proprietario
- della lista.
-\end_layout
-
-\begin_layout Itemize
-PACKAGE LIST: Relazione che raccoglie in maniera totale ed esclusiva le
- due liste di cui sopra, un pacchetto non può essere contenuto contemporaneament
-e in entrambe le liste.
+GIFT LIST ITEM: E' un elemento della lista desideri di un utente, è identificata
+ dal TDC proprietario e dal pacchetto.
+ Ogni tupla rappresenta un pacchetto inserito nella lista desideri da un
+ utente.
 \end_layout
 
 \begin_layout Itemize
@@ -832,7 +828,12 @@ Reduction: Sconto applicato al prezzo del pacchetto (calcolato come somma
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
 People: Numero di persone previsto per un pacchetto, definisce il numero
- di partecipanti massimo
+ di partecipanti
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+Image: Immagine che rappresenta il pacchetto (questo attributo è opzionale)
 \end_layout
 
 \end_deeper
@@ -848,16 +849,7 @@ BASE PRODUCT: E' il prodotto base del sistema, gli unici attributi sono
  un Id univoco e un nome Name.
  Un BASE PRODUCT è inoltre in relazione ad una COMPANY (il cui unico attributo
  è un nome Name) e può avere o meno una personalizzazione PERSONALIZED PRODUCT.
- Tutti i BASE PRODUCT sono associati, mediate la relazione 
-\begin_inset Quotes eld
-\end_inset
-
-Possible Date Personalization
-\begin_inset Quotes erd
-\end_inset
-
-, a cui corrisponde un prezzo Price, ad una DATE PERSONALIZATION.
- Il BASE PRODUCT è in relazione totale ed esclusiva con i seguenti: 
+ Da BASE PRODUCT discendono (con relazione totale ed esclusiva): 
 \end_layout
 
 \begin_deeper
@@ -880,7 +872,7 @@ FLIGHT: Entità che modella i voli aerei del sistema, è in relazione con
 
 \end_deeper
 \begin_layout Itemize
-HOTEL, FLIGHT: Dispongono, in aggiunta a quanto detto, di una relazione
+HOTEL e FLIGHT: Dispongono, in aggiunta a quanto detto, di una relazione
  
 \begin_inset Quotes eld
 \end_inset
@@ -897,7 +889,21 @@ Price
 \begin_inset Quotes erd
 \end_inset
 
- definisce il sovrapprezzo rispetto al 
+ definisce il prezzo aggiuntivo da applicare nel caso venga scelta quella
+ personalizzazione.
+\end_layout
+
+\begin_layout Itemize
+EXCURSION e FLIGHT: Dispongono, in aggiunta a quanto detto, di una relazione
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Possibile Date Personalization
+\begin_inset Quotes erd
+\end_inset
+
+ che contiene anch'essa un attributo 
 \begin_inset Quotes eld
 \end_inset
 
@@ -905,21 +911,14 @@ Price
 \begin_inset Quotes erd
 \end_inset
 
- definito in 
-\begin_inset Quotes eld
-\end_inset
-
-Possible Date Personalization
-\begin_inset Quotes erd
-\end_inset
-
- scegliendo una classe superiorie rispetto a quella prevista
+ che svolge le stesse funzioni sopra menzionate
 \end_layout
 
 \begin_layout Itemize
 PERSONALIZATION: Dispone di un id per essere identificata, un PERSONALIZED
- PRODUCT può avere da 0 (nessuna personalizzazione) a 2 (personalizzazione
- di classe e data) personalizzazioni.
+ PRODUCT può avere da 0 (nessuna personalizzazione) a 2 personalizzazioni
+ (esse non possono essere entrambe dello stesso tipo, questo vincolo sarà
+ modellato ed evidenziato più avanti durante la traduzione logica).
  Una PERSONALIZATION può essere:
 \end_layout
 
@@ -930,7 +929,40 @@ DATE PERSONALIZATION: Definisce le personalizzazioni di data, fornendo un
 \end_layout
 
 \begin_layout Itemize
-CLASS PERSONALIZATION: Indica la personalizzazione di una classe
+CLASS PERSONALIZATION: Indica la personalizzazione di una classe (ad esempio
+ classe 
+\begin_inset Quotes eld
+\end_inset
+
+economy
+\begin_inset Quotes erd
+\end_inset
+
+ o 
+\begin_inset Quotes eld
+\end_inset
+
+business
+\begin_inset Quotes erd
+\end_inset
+
+ in un volo aereo e 
+\begin_inset Quotes eld
+\end_inset
+
+suite
+\begin_inset Quotes erd
+\end_inset
+
+ o 
+\begin_inset Quotes eld
+\end_inset
+
+camera di lusso
+\begin_inset Quotes erd
+\end_inset
+
+ nel caso di un hotel)
 \end_layout
 
 \end_deeper
@@ -1227,7 +1259,8 @@ PackageId,InviterUserId,InvitedUserId
 \begin_layout Standard
 Lo schema di traduzione adottato ha previsto il collasso verso il basso
  e il collasso verso l'alto di numerose entità, si noti infatti come non
- siano più presenti l'entità BASE PRODUCT e PERSONALIZATION.
+ siano più presenti l'entità BASE PRODUCT e PERSONALIZATION (entrambe collassate
+ verso il basso).
 \end_layout
 
 \begin_layout Standard
@@ -1239,8 +1272,8 @@ ATION” per tutte e tre le tipologie di prodotto base, le “POSSIBLE CLASS
 \end_layout
 
 \begin_layout Standard
-Dal modello logico qui descritto abbiamo ottenuto poi il database vero e
- proprio e l'abbiamo renderizzato tramite MySQL WorkBench 6.0.
+Dal modello logico qui descritto abbiamo ottenuto poi il codice SQL ed in
+ seguito l'abbiamo visualizzato tramite MySQL WorkBench 6.0.
 \end_layout
 
 \begin_layout Standard
@@ -1296,7 +1329,7 @@ Progetto del business tier
 
 \begin_layout Standard
 Una volta definita la base dati del nostro sistema e definito l'architettura
- a tier, abbiamo progettato le componenti sodtware da realizzare per implementar
+ a tier, abbiamo progettato le componenti software da realizzare per implementar
 e la logica applicativa.
  Il business tier contiene sia le componenti software che descrivono le
  entità JPA (e quindi il modello dei dati) che la logica applicativa, implementa
@@ -1430,7 +1463,7 @@ realm
 \begin_inset Quotes erd
 \end_inset
 
- (l'ejb denominato 
+ (l'EJB denominato 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1553,7 +1586,7 @@ show
 \end_inset
 
  redirigono alle rispettive pagine, controllando che l'utente abbia i permessi
- necessari per accedervi
+ necessari per accedervi.
 \end_layout
 
 \begin_layout Description
@@ -1566,7 +1599,7 @@ showCheckout()
 \end_inset
 
  viene eseguita solo se sono rispettati tutti i vincoli sul pacchetto (verificat
-i dal TDO), altrimenti si mostrerà l'errore relativo
+i dal TDE), altrimenti si mostrerà l'errore relativo.
 \end_layout
 
 \begin_layout Description
@@ -1588,12 +1621,12 @@ submitSearch()
 \begin_inset Quotes erd
 \end_inset
 
- 
+ .
 \end_layout
 
 \begin_layout Description
 CheckoutBean Prevede le tre modalità di conclusione dell'ordine, quali acquisto,
- inserimento nella lista regali e invito di amici ad unirsi al pacchetto
+ inserimento nella lista regali e invito di amici ad unirsi al pacchetto.
 \end_layout
 
 \begin_layout Subsection
@@ -2473,10 +2506,6 @@ DATE PERSONALIZATION
 \end_inset
 
 
-\end_layout
-
-\begin_layout Itemize
-Aggiunta di molti UI Sketch
 \end_layout
 
 \begin_layout Itemize
