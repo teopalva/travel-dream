@@ -12,7 +12,9 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnit;
 
+import org.eclipse.persistence.config.PersistenceUnitProperties;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +39,8 @@ import entity.User;
 public class TestDB {
 	
 	private static final String TEST_PERSISTENCE_UNIT = "TravelDreamDB";
-	private EntityManagerFactory emf;
+	@PersistenceUnit EntityManagerFactory emf;
+	//private EntityManagerFactory emf;
 	protected EntityManager em;
 	
 	private City city;
@@ -59,15 +62,11 @@ public class TestDB {
 	
     @Before
     public void setUp() {
-    	Map<String, String> config = new HashMap<String, String>();
-    	config.put("javax.persistence.jdbc.url", "jdbc:mysql://localhost:3306/TravelDream");
-    	config.put("javax.persistence.jdbc.user", "traveldream");
-    	config.put("javax.persistence.jdbc.password", "traveldream");
-    	config.put("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
-    	emf = Persistence.createEntityManagerFactory("TravelDreamDB", config);
+    	Map<String, String> properties = new HashMap<String, String>();
+    	properties.put("eclipselink.persistencexml", "META-INF/persistence-test.xml");
+
+    	emf = Persistence.createEntityManagerFactory("TravelDreamDB", properties);
     	em = emf.createEntityManager();
-    	//emf = Persistence.createEntityManagerFactory(TEST_PERSISTENCE_UNIT);
-        //em = emf.createEntityManager();
         em.getTransaction().begin();
     }
 
@@ -464,7 +463,7 @@ public class TestDB {
 		testAddPersonalizationToExcursion();
 		
 		try {
-			em.merge(flight1);
+			em.merge(excursion);
 			
 			PossibleDatePersonalizationExcursion possibleDatePersonalizationExcursion = excursion.getPossibleDatePersonalizationExcursions().get(0);
 			

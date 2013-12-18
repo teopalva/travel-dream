@@ -56,7 +56,7 @@ public class User implements Serializable {
 			@JoinColumn(name="PackageId")
 			}
 		)
-	private List<Package> packages;
+	private List<Package> giftPackages;
 
 	//bi-directional many-to-many association to Group
 	@ManyToMany
@@ -172,12 +172,12 @@ public class User implements Serializable {
 		return invited;
 	}
 
-	public List<Package> getPackages() {
-		return this.packages;
+	public List<Package> getGiftPackages() {
+		return this.giftPackages;
 	}
 
-	public void setPackages(List<Package> packages) {
-		this.packages = packages;
+	public void setGiftPackages(List<Package> packages) {
+		this.giftPackages = packages;
 	}
 
 	public List<Group> getGroups() {
