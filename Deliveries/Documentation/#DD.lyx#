@@ -309,7 +309,7 @@ La procedura di acquisto di un pacchetto inizia subito dopo che un utente
  Dopo la personalizzazione è possibile acquistare il pacchetto, inserirlo
  nella propria lista regali oppure invitare degli amici ad unirsi al viaggio,
  in tal caso l'acquisto del pacchetto resterà in sospeso, dando la possibilità
- agli utenti invitati di confermare la propria partecipazione e all'utente
+ agli utenti invitati di confermare la propria partecipazione oppure all'utente
  che ha invitato di portare a termine il pagamento in qualsiasi momento.
 \end_layout
 
@@ -572,7 +572,7 @@ Enterprise Java Beans (EJB) per lo sviluppo della logica applicativa
 \end_layout
 
 \begin_layout Itemize
-Java Persistence API (JPA) per la gestione della persistenza dei dati del
+Java Persisttence API (JPA) per la gestione della persistenza dei dati del
  DBMS
 \end_layout
 
@@ -615,7 +615,7 @@ Descrizione dell'architettura
 Lo stile architetturale che abbiamo adottato, multi-tier, è tipico delle
  applicazioni di tipo enterprise, i cui i vari livelli logici (o strati,
  tier) sono distribuiti su diverse macchine che comunicano tra di loro (nel
- nostro caso questo si verifica solo per il Client Tier).
+ nostro caso questo si verifca solo per il Client Tier).
  Questo modello rende il sistema estremamente modulare.
 \end_layout
 
@@ -634,8 +634,8 @@ Client Tier
  Il tier comunica tramite il protocollo HTTP con il web tier, inviando al
  server i dati ricevuti dall'utente e visualizzando le pagine ricevute in
  risposta dal server.
- Per la realizzazione di questo tier utilizzeranno la tecnologia JSF e la
- libreria PrimeFaces.
+ Per la realizzazione di questo tier sono utilizzate la tecnologia JSF e
+ la libreria PrimeFaces.
 \end_layout
 
 \begin_layout Itemize
@@ -787,10 +787,10 @@ TDE, TDF, TCD: Rappresentano gli attori descritti nel RASD, ci si riferisca
 \end_layout
 
 \begin_layout Itemize
-BUYING LIST ITEM: Ogni utente ha una lista degli ordini effettuati che è
- rappresentata mediante una tabella nel nostro modello e prevede come identifica
-tore lo stesso TDC e il pacchetto ordinato, dispone degli attributi Gifted
- e Paid: il primo segnala se il pacchetto è stato regalato da un altro TDC,
+BUYING LIST ITEM: Ogni utente ha una lista degli ordini effettuati, è rappresent
+ata mediante una tabella nel nostro modello e prevede come identificatore
+ lo stesso TDC e il pacchetto ordinato, dispone degli attributi Gifted e
+ Paid: il primo segnala se il pacchetto è stato regalato da un altro TDC,
  il secondo indica se è stato ricevuto il pagamento nel conto corrente di
  TravelDream (parametro modificabile dal pannello di controllo dell'amministrato
 re TDE).
@@ -1329,9 +1329,9 @@ Progetto del business tier
 \end_layout
 
 \begin_layout Standard
-Una volta definiti la base dati del nostro sistema e l'architettura a tier,
- abbiamo progettato le componenti software da realizzare per implementare
- la logica applicativa.
+Una volta definita la base dati del nostro sistema e definito l'architettura
+ a tier, abbiamo progettato le componenti software da realizzare per implementar
+e la logica applicativa.
  Il business tier contiene sia le componenti software che descrivono le
  entità JPA (e quindi il modello dei dati) che la logica applicativa, implementa
 ta tramite gli EJB.
@@ -1398,7 +1398,8 @@ La realizzazione di tale sruttura ci permettere di facilitare le operazioni
 \end_layout
 
 \begin_layout Standard
-Si faccia riferimento al seguente diagramma:
+Per quanto quanto riguarda le JPA realizzate si faccia riferimento al seguente
+ diagramma:
 \end_layout
 
 \begin_layout Standard
@@ -1649,9 +1650,12 @@ In particolare abbiamo deciso, per semplicità e chiarezza di lettura, di
 \end_layout
 
 \begin_layout Standard
-Nel diagramma di Figura 8 si mostra la parte di applicazione il cui flusso
- di attività principale ha origine nella schermata HOMEPAGE (evidenziata
- in 
+Nel diagramma di 
+\emph on
+figura3
+\emph default
+ si mostra la parte di applicazione il cui flusso di attività principale
+ ha origine nella schermata HOMEPAGE (evidenziata in 
 \emph on
 arancione
 \emph default
@@ -1686,21 +1690,28 @@ azzurro
 \end_layout
 
 \begin_layout Standard
-Si nota, ad esempio, che l'UX di Figura 8 si ferma alla pagina EDIT_PACKAGE,
+Si nota, ad esempio, che l'UX di figura1 si ferma alla pagina EDIT_PACKAGE,
  quetsa infatti non è raggiungibile da un utente non loggato.
 \end_layout
 
 \begin_layout Standard
-Alla pagina EDIT_PACKAGE dedichiamo invece l'UX di Figura 9: qui abbiamo
- sia i metodi e le funzionalità svolti dal TDC (ad esempio filtrare i prodotti
- a scelta, fare drag&drop, confermare per andare al checkout), ma anche
- quelli del TDE che dal pannello di amministrazione arrivano qui per modificare/
-eliminare un pacchetto.
+Alla pagina EDIT_PACKAGE dedichiamo invece l'UX di 
+\emph on
+figura
+\emph default
+4: qui abbiamo sia i metodi e le funzionalità svolti dal TDC (ad esempio
+ filtrare i prodotti a scelta, fare drag&drop, confermare per andare al
+ checkout), ma anche quelli del TDE che dal pannello di amministrazione
+ arrivano qui per modificare/eliminare un pacchetto.
 \end_layout
 
 \begin_layout Standard
-In Figura 10 viene mostrato l'UX che riassume la navigazione a partire dall'head
-er presente in tutte le pagine.
+In 
+\emph on
+figura5
+\emph default
+ viene mostrato l'UX che riassume la navigazione a partire dall'header presente
+ in tutte le pagine.
  Sui collegamenti delle pagine dopo lo slash viene indicato l'attore che
  può accedere a quel collegamento a partire dal proprio header, infatti
  i link contenuti nell'header variano a seconda che l'utente sia non loggato
@@ -1708,11 +1719,15 @@ er presente in tutte le pagine.
 \end_layout
 
 \begin_layout Standard
-Infine in Figura 11 si descrive in dettaglio la parte relativa all'area
- del TDE, che parte dal pannello di amministrazione e raggiunge alcune pagine
- dedicate, mentre per EDIT_PACKAGE e OFFERINGS_LIST (in azzurro) sfruttiamo
- le stesse già definite nei precedenti diagrammi aggiungendo nel caso di
- TDE i metodi e le funzionalità proprie di questo attore.
+Infine in 
+\emph on
+figura6
+\emph default
+ si descrive in dettaglio la parte relativa all'area del TDE, che parte
+ dal pannello di amministrazione e raggiunge alcune pagine dedicate, mentre
+ per EDIT_PACKAGE e OFFERINGS_LIST (in azzurro) sfruttiamo le stesse già
+ definite nei precedenti diagrammi aggiungendo nel caso di TDE i metodi
+ e le funzionalità proprie di questo attore.
 \end_layout
 
 \begin_layout Standard
@@ -1888,10 +1903,11 @@ e nel sistema.
 \begin_layout Standard
 Questi schemi ci hanno dunque permesso di individurare meglio i percorsi
  di navigazione necessari e di poter individurare i dati da presentare nelle
- varie schermate e ci supporteranno inoltre durante la fase di implementazione,
+ varie schermate.
+ Questi schemi ci supporteranno inoltre durante la fase di implementazione,
  avendo già una base sulla quale lavorare.
- I layout presentati sono soltanto una bozza e verranno successivamente
- raffinati in fase di sviluppo.
+ I layout presentati sono ovviamente soltanto una bozza e verranno successivamen
+te raffinati in fase di sviluppo.
 \end_layout
 
 \begin_layout Standard
@@ -2475,8 +2491,9 @@ Rettifiche al RASD
 
 \begin_layout Standard
 Durante la stesura di questo documento ci siamo accorti di voler modificare
- alcune considerazioni fatte nel documento RASD per risolvere alcuni problemi
- riscontrati solo durante questa fase del progetto.
+ alcune considerazioni fatte nel documento RASD, per migliorare l'approccio
+ al problema e per risolvere alcuni problemi riscontrati solo durante questa
+ fase del progetto.
 \end_layout
 
 \begin_layout Itemize
