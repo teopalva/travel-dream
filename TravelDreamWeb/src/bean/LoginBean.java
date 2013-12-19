@@ -7,8 +7,8 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import DTO.UserDTO;
 import coreEJB.UserEJBLocal;
+import dto.UserDTO;
 
 @ManagedBean(name="Login")
 @ViewScoped
