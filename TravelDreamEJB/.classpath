@@ -19,6 +19,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Applications/Glassfish/glassfish/lib/mysql-connector-java-5.1.26-bin.jar"/>
+	<classpathentry kind="lib" path="mysql-connector-java-5.1.26-bin.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
