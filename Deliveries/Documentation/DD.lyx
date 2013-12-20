@@ -1326,16 +1326,17 @@ Schema ottenuto con MySQL WorkBench
 \end_layout
 
 \begin_layout Section
-Progetto del business tier
+Visione d'insieme
 \end_layout
 
 \begin_layout Standard
-Una volta definita la base dati del nostro sistema e l'architettura a tier,
- abbiamo progettato le componenti software da realizzare per implementare
- la logica applicativa.
- Il business tier contiene sia le componenti software che descrivono le
- entità JPA (e quindi il modello dei dati) che la logica applicativa, implementa
-ta tramite gli EJB.
+Si è voluto organizzare l'intero progetto completo di business e client
+ tier per avere una visione d'insieme di quello che saremo andati a implementare.
+ Non ci si è soffermati, in questo schema, a descrivere le singole classi
+ e le varie componenti della struttura ma si sono semplicemente evidenziate
+ le relazioni tra le varie componenti (sono raccolte dunque le JPA, i vari
+ EJB e le pagine JSF con i relativi managed beans) che verrano poi descritte
+ in maniera approfondita nelle sezioni seguenti del documento.
 \end_layout
 
 \begin_layout Standard
@@ -1343,7 +1344,7 @@ ta tramite gli EJB.
 placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -1362,7 +1363,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Schema dell'architettura generale della business logic realizzata
+Schema generale dell'architettura
 \end_layout
 
 \end_inset
@@ -1373,6 +1374,19 @@ Schema dell'architettura generale della business logic realizzata
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Progetto del business tier
+\end_layout
+
+\begin_layout Standard
+Una volta definita la base dati del nostro sistema e l'architettura a tier,
+ abbiamo progettato le componenti software da realizzare per implementare
+ la logica applicativa.
+ Il business tier contiene sia le componenti software che descrivono le
+ entità JPA (e quindi il modello dei dati) che la logica applicativa, implementa
+ta tramite gli EJB.
 \end_layout
 
 \begin_layout Subsection
