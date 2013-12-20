@@ -557,8 +557,9 @@ Scelte tecnologiche
 
 \begin_layout Standard
 Alcune scelte relative alle tecnologie da utilizzare per l'implementazione
- del sistema condizionano aspetti relativi alla progettazione, si evidenziano
- quindi in questa sezione le tecnologie e gli strumenti che utilizzeremo.
+ del sistema condizionano aspetti relativi alla progettazione.
+ Si evidenziano quindi in questa sezione le tecnologie e gli strumenti che
+ utilizzeremo.
 \end_layout
 
 \begin_layout Itemize
@@ -657,7 +658,7 @@ Business Tier:
 \series default
 Il livello fornisce la business logic dell'applicativo e comunica direttamente
  con il database.
- In questo livello sono utilizzati gli EJB, JPA per accedere al database.
+ In questo livello sono utilizzati gli EJB e JPA per accedere al database.
  E' previsto che questo strato interagisca anche con un server di posta
  elettronica SMTP, per inviare i messaggi di invito ad utenti al sistema.
  Questo server è esterno al sistema e può quindi essere affidato ad un servizio
@@ -670,7 +671,7 @@ Il livello fornisce la business logic dell'applicativo e comunica direttamente
 Data Tier: 
 \series default
 E' costituito dal DBMS MySQL, che garantisce la persistenza dei dati.
- L'application server comunica con il database utilizzando le tecnologie
+ L'application server comunica con il database utilizzando la tecnologia
  standard di Java, JDBC.
 \end_layout
 
@@ -775,12 +776,12 @@ Le entità e le associazioni che abbiamo individuato tramite lo schema ER
 
 \begin_layout Itemize
 USER: Rappresenta un utente registrato al sistema, è identificato da un
- attributo Mail, che è univoco e ha come attributi la Password per l'accesso
+ attributo Email, che è univoco e ha come attributi la Password per l'accesso
  e alcune informazioni anagrafiche (FirstName e LastName).
 \end_layout
 
 \begin_layout Itemize
-TDE, TDF, TCD: Rappresentano gli attori descritti nel RASD, ci si riferisca
+TDE, TDF, TDC: Rappresentano gli attori descritti nel RASD, ci si riferisca
  dunque a tale documento.
  Ogni USER può appartenere ad uno solo di questi tre gruppi, l'appartenenza
  è modellata con una relazione tra le entità GROUP e USER.
@@ -1329,9 +1330,9 @@ Progetto del business tier
 \end_layout
 
 \begin_layout Standard
-Una volta definita la base dati del nostro sistema e definito l'architettura
- a tier, abbiamo progettato le componenti software da realizzare per implementar
-e la logica applicativa.
+Una volta definita la base dati del nostro sistema e l'architettura a tier,
+ abbiamo progettato le componenti software da realizzare per implementare
+ la logica applicativa.
  Il business tier contiene sia le componenti software che descrivono le
  entità JPA (e quindi il modello dei dati) che la logica applicativa, implementa
 ta tramite gli EJB.
