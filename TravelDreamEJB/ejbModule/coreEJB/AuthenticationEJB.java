@@ -6,7 +6,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import dto.UserDTO;
 import entity.User;
+import exceptions.NotAuthenticatedException;
 
 /**
  * Session Bean implementation class AuthenticationEJB
@@ -21,40 +23,53 @@ public class AuthenticationEJB implements AuthenticationEJBLocal {
 	private EJBContext context;
 	
     public AuthenticationEJB() {
-        // TODO Auto-generated constructor stub
     }
     
     public boolean isTDE() {
     	System.out.println("isTDE");
-    	User user = this.getAuthenticatedUser();
+    	UserDTO user;
+		try {
+			user = this.getAuthenticatedUser();
+		} catch (NotAuthenticatedException e) {
+			return false;
+		}
     	if(user == null)
     		return false;
-    	if(user.getGroups().get(0).getId().equals("TDE"))
+    	if(user.getGroup().equals("TDE"))
     		return true;
     	return false;
     }
     
     public boolean isTDC() {
     	System.out.println("isTDC");
-    	User user = this.getAuthenticatedUser();
+    	UserDTO user;
+		try {
+			user = this.getAuthenticatedUser();
+		} catch (NotAuthenticatedException e) {
+			return false;
+		}
     	if(user == null)
     		return false;
-    	if(user.getGroups().get(0).getId().equals("TDC"))
+    	if(user.getGroup().equals("TDC"))
     		return true;
     	return false;
     }
     
-    private User getAuthenticatedUser() {
+    private UserDTO getAuthenticatedUser() throws NotAuthenticatedException {
     	String mail = context.getCallerPrincipal().getName();
     	User user = null;
+    	UserDTO userDTO = null;
     	try {
     		user = em.createQuery("SELECT u FROM User u JOIN FETCH u.groups WHERE u.mail=:mail", User.class).setParameter("mail", mail).getResultList().get(0);
+    		userDTO = new UserDTO(user);
     	}catch(Exception e) {
     		System.out.println(e.toString());
     		user = null;
     	}
     	//User user = em.find(User.class, mail);
-    	return user;
+    	if(userDTO == null)
+    		throw new NotAuthenticatedException();
+    	return userDTO;
     }
 
 }

@@ -38,9 +38,7 @@ import entity.User;
 
 public class TestDB {
 	
-	private static final String TEST_PERSISTENCE_UNIT = "TravelDreamDB";
 	@PersistenceUnit EntityManagerFactory emf;
-	//private EntityManagerFactory emf;
 	protected EntityManager em;
 	
 	private City city;
