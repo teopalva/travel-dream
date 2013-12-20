@@ -33,7 +33,7 @@ public class LoginBean {
 	}
 	
 	public void confirmLogin(ActionEvent actionEvent) {
-		UserDTO user = new UserDTO();
+		UserDTO user = new UserDTO(mail, password, null, null, null);
 		user.setMail(mail);
 		user.setPassword(password);
 		System.out.println("Tentativo di login: "+mail+" password: "+password);
