@@ -2,7 +2,7 @@ package coreEJB;
 
 import javax.ejb.Local;
 
-import DTO.UserDTO;
+import dto.UserDTO;
 
 @Local
 public interface UserEJBLocal {

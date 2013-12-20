@@ -1330,7 +1330,11 @@ Progetto del business tier
 \end_layout
 
 \begin_layout Standard
+<<<<<<< HEAD
 Una volta definita la base dati del nostro sistema e l'architettura a tier,
+=======
+Una volta definiti la base dati del nostro sistema e l'architettura a tier,
+>>>>>>> 2462260f92a61f2a246ab21e7acc3cc724f01817
  abbiamo progettato le componenti software da realizzare per implementare
  la logica applicativa.
  Il business tier contiene sia le componenti software che descrivono le

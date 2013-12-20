@@ -4,7 +4,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import DTO.UserDTO;
+import dto.UserDTO;
 import entity.User;
 
 import com.google.common.base.Charsets;
