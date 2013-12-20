@@ -27,8 +27,8 @@
 \paperfontsize default
 \spacing single
 \use_hyperref true
-\pdf_title "RASD"
-\pdf_author "Gianluca Venturini"
+\pdf_title "DD"
+\pdf_author "Matteo Palvarini"
 \pdf_bookmarks true
 \pdf_bookmarksnumbered false
 \pdf_bookmarksopen false
@@ -1331,7 +1331,7 @@ Visione d'insieme
 
 \begin_layout Standard
 Si è voluto organizzare l'intero progetto completo di business e client
- tier per avere una visione d'insieme di quello che saremo andati a implementare.
+ tier per avere una visione d'insieme di quello che andremo a implementare.
  Non ci si è soffermati, in questo schema, a descrivere le singole classi
  e le varie componenti della struttura ma si sono semplicemente evidenziate
  le relazioni tra le varie componenti (sono raccolte dunque le JPA, i vari
@@ -1642,6 +1642,10 @@ submitSearch()
 \begin_layout Description
 CheckoutBean Prevede le tre modalità di conclusione dell'ordine, quali acquisto,
  inserimento nella lista regali e invito di amici ad unirsi al pacchetto.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1702,7 +1706,7 @@ azzurro
 
 \begin_layout Standard
 Si nota, ad esempio, che l'UX di Figura 8 si ferma alla pagina EDIT_PACKAGE,
- quetsa infatti non è raggiungibile da un utente non loggato.
+ questa infatti non è raggiungibile da un utente non loggato.
 \end_layout
 
 \begin_layout Standard
@@ -1731,6 +1735,18 @@ Infine in Figura 11 si descrive in dettaglio la parte relativa all'area
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\color white
+-
+\color inherit
+
+\begin_inset VSpace 15page%
+\end_inset
+
+
 \begin_inset Float figure
 placement H
 wide false
@@ -1766,6 +1782,18 @@ UX: area utente non loggato
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\color white
+-
+\color inherit
+
+\begin_inset VSpace 5page%
+\end_inset
+
+
 \begin_inset Float figure
 placement H
 wide false
@@ -1802,6 +1830,18 @@ UX: dettaglio navigazione a partire da EDIT_PACKAGE
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\color white
+-
+\color inherit
+
+\begin_inset VSpace 15page%
+\end_inset
+
+
 \begin_inset Float figure
 placement H
 wide false
@@ -1812,7 +1852,7 @@ status open
 \begin_inset Graphics
 	filename UX diagrams/TD_UX_03_Header.pdf
 	display false
-	scale 80
+	scale 75
 	BoundingBox 4cm -1cm 1cm 10cm
 
 \end_inset
@@ -1842,6 +1882,18 @@ UX: navigazione a partire dall' HEADER
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\color white
+-
+\color inherit
+
+\begin_inset VSpace 15page%
+\end_inset
+
+
 \begin_inset Float figure
 placement H
 wide false
@@ -1896,7 +1948,7 @@ Page sketch
 In questa sezione si presentano i mockup delle pagine web che verranno realizzat
 e nel sistema.
  Le interfacce sono state disegnate prima del progetto della navigazione,
- per facilitarci e capire cosa realmente servisse all'interno del sistema
+ per facilitarci a capire cosa realmente servisse all'interno del sistema
  per soddisfare le necessità da noi pensate nel documento RASD.
 \end_layout
 
@@ -1905,13 +1957,13 @@ Questi schemi ci hanno dunque permesso di individurare meglio i percorsi
  di navigazione necessari e di poter individurare i dati da presentare nelle
  varie schermate e ci supporteranno inoltre durante la fase di implementazione,
  avendo già una base sulla quale lavorare.
- I layout presentati sono soltanto una bozza e verranno successivamente
- raffinati in fase di sviluppo.
+ I layout presentati verranno ulteriormente raffinati in fase di sviluppo.
 \end_layout
 
 \begin_layout Standard
 Le schermate individuate per la realizzazione del progetto sono di seguito
- riportate con una breve didascalia che ne descrive le funzioni principali.
+ riportate con una breve didascalia che contiene il nome che avrà la corrisponde
+nte pagina .jsf e ne descrive le funzioni principali.
 \end_layout
 
 \begin_layout Standard
@@ -1943,7 +1995,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Home Page
+
+\emph on
+home
+\emph default
+: Home Page
 \end_layout
 
 \end_inset
@@ -1982,7 +2038,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Schermata per la registrazione di un nuovo utente
+
+\emph on
+registration
+\emph default
+: schermata per la registrazione di un nuovo utente
 \end_layout
 
 \end_inset
@@ -2017,7 +2077,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Catalogo dei pacchetti disponibili
+
+\emph on
+offerings_list
+\emph default
+: catalogo dei pacchetti disponibili, con possibilità di filtrare i risultati
 \end_layout
 
 \end_inset
@@ -2052,7 +2116,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Schermata per la creazione di un nuovo pacchetto
+
+\emph on
+edit_package
+\emph default
+: schermata per la creazione di un nuovo pacchetto
 \end_layout
 
 \end_inset
@@ -2087,7 +2155,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Schermata per la modifica di un pacchetto esistente
+
+\emph on
+edit_package
+\emph default
+: schermata per la modifica di un pacchetto esistente
 \end_layout
 
 \end_inset
@@ -2122,7 +2194,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Opzioni per la finalizzazione dell'ordine
+
+\emph on
+checkout
+\emph default
+: mostra le 3 diverse opzioni per la finalizzazione dell'ordine
 \end_layout
 
 \end_inset
@@ -2157,7 +2233,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Schermata di riepilogo dell'ordine con dati per effettuare il pagamento
+
+\emph on
+payment
+\emph default
+: schermata di riepilogo dell'ordine con dati per effettuare il pagamento
 \end_layout
 
 \end_inset
@@ -2191,7 +2271,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Lista regali dell'utente registrato
+
+\emph on
+gift_list
+\emph default
+: lista regali dell'utente registrato, vi si accede tramite link dell'header
 \end_layout
 
 \end_inset
@@ -2225,7 +2309,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Lista regali di un altro utente
+
+\emph on
+gift_list
+\emph default
+ (dopo ricerca di amico): lista regali di un altro utente
 \end_layout
 
 \end_inset
@@ -2259,7 +2347,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Lista degli ordini di un utente
+
+\emph on
+buying_list
+\emph default
+: lista degli ordini di un utente
 \end_layout
 
 \end_inset
@@ -2293,7 +2385,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Lista di riepilogo degli inviti effettuati da un utente per i vari pacchetti
+
+\emph on
+invitation_list
+\emph default
+: Lista di riepilogo degli inviti effettuati da un utente per i vari pacchetti
 \end_layout
 
 \end_inset
@@ -2327,7 +2423,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Pannello di amministrazione per i TDE
+
+\emph on
+admin/index
+\emph default
+: pannello di amministrazione per i TDE
 \end_layout
 
 \end_inset
@@ -2361,7 +2461,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Creazione e modifica di un pacchetto per un amministratore
+
+\emph on
+edit_base_product
+\emph default
+: pagina TDE per creazione e modifica di un pacchetto
 \end_layout
 
 \end_inset
@@ -2395,7 +2499,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Riepilogo degli ordini inseriti nel sistema
+
+\emph on
+order_list
+\emph default
+: riepilogo degli ordini inseriti nel sistema
 \end_layout
 
 \end_inset
@@ -2429,7 +2537,12 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Pagina di dettagli per un ordine con conferma di ricevuta del pagamento
+
+\emph on
+order_detail
+\emph default
+: pagina di dettaglio per un ordine con pulsante di conferma di ricevuta
+ del pagamento
 \end_layout
 
 \end_inset
@@ -2464,7 +2577,11 @@ status collapsed
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Schermata di modifica/aggiunta/rimozione dei pacchetti base
+
+\emph on
+view_base_products
+\emph default
+: schermata di ricerca dei prodotti base per eliminarli/vedere i dettagli
 \end_layout
 
 \end_inset
@@ -2491,7 +2608,7 @@ Rettifiche al RASD
 \begin_layout Standard
 Durante la stesura di questo documento ci siamo accorti di voler modificare
  alcune considerazioni fatte nel documento RASD per risolvere alcuni problemi
- riscontrati solo durante questa fase del progetto.
+ riscontrati solo durante questa fase del progetto:
 \end_layout
 
 \begin_layout Itemize
@@ -2508,8 +2625,10 @@ DATE PERSONALIZATION
 \end_layout
 
 \begin_layout Itemize
-Modifca degli UI Sketch precedenti per l'introduzione di tutte le funzioni
- pensate in fase di design
+Si sono modificati alcuni UI Sketch precedenti con l'introduzione di tutte
+ le funzioni pensate in fase di design e alcune correzioni minori.
+ Per completare la copertura di tutto il sistema sono stati inoltre aggiunti
+ tutti gli sketch relativi all'area riservata al TDE.
 \end_layout
 
 \begin_layout Section
@@ -2518,8 +2637,10 @@ Ore di lavoro complessive
 
 \begin_layout Standard
 Sono state conteggiate le ore di lavoro per la stesura di questo documento.
- Sono state suddivise in ore condivise tra i vari componenti del gruppo
- e in ore di lavoro individuale.
+ Queste sono state suddivise tra ore condivise tra i vari componenti del
+ gruppo, per la definizione in comune accordo dei punti più importanti del
+ documento e di carattere più generale, e ore di lavoro individuale aggiuntive
+ per la realizzazione più pratica di questo Design Document.
 \end_layout
 
 \begin_layout Standard
@@ -2543,7 +2664,7 @@ Ore di lavoro in gruppo
 \begin_inset Text
 
 \begin_layout Plain Layout
-23
+21
 \end_layout
 
 \end_inset

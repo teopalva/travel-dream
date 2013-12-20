@@ -35,7 +35,7 @@ public class UserEJB implements UserEJBLocal {
     		return false;
     	
     	//Calculate hashed password
-    	String hashedPsw = null; // = Hashing.sha256().hashString(userDTO.getPassword(), Charsets.UTF_8).toString();
+    	String hashedPsw = Hashing.sha256().hashString(userDTO.getPassword(), Charsets.UTF_8).toString();
     	
     	System.out.println("Hash: "+hashedPsw);
     	
