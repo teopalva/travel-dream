@@ -19,7 +19,10 @@ public class PackageDTO {
 	
 	public PackageDTO(Package _package) throws FieldNotPresentException{
 		try {
-			this.imageId = _package.getImage().getId();
+			if(_package.getImage() != null)
+				this.imageId = _package.getImage().getId();
+			else
+				this.imageId = -1;
 			this.numPeople = _package.getNumPeople();
 			this.name = _package.getName();
 			this.reduction = _package.getReduction();
