@@ -60,7 +60,7 @@ public class User implements Serializable {
 	private List<Package> giftPackages;
 
 	//bi-directional many-to-many association to Group
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 		name="USER_GROUP"
 		, joinColumns={

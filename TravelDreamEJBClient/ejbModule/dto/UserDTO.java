@@ -20,7 +20,7 @@ public class UserDTO {
 		this.lastName = user.getLastName();
 		
 		List<Group>groups = user.getGroups();
-		if(groups != null && groups.size()>1) {
+		if(groups != null && groups.size()>=1) {
 			this.group = groups.get(0).getId();
 		}
 		else {
