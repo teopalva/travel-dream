@@ -20,5 +20,13 @@ public class HomeBean {
 			return "TDE";
 		return "NON AUTENTICATO";
 	}
+	
+	public void showEditPackage() {
+		
+	}
+	
+	public void showOfferingsList() {
+		
+	}
 
 }
