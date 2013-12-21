@@ -1,7 +1,9 @@
 package entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -33,7 +35,7 @@ public class Package implements Serializable {
 	private List<Invitation> invitations;
 
 	//bi-directional many-to-one association to Image
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="ImageId")
 	private Image image;
 

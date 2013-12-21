@@ -29,12 +29,12 @@ public class BuyingListItem implements Serializable {
 	private byte paid;
 
 	//bi-directional many-to-one association to Package
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="PackageId")
 	private Package _package;
 
 	//bi-directional many-to-one association to User
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="UserIdBuyingList")
 	private User user;
 

@@ -1,13 +1,18 @@
 package coreEJB;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
+/**
+ * Session Bean implementation class InvitationEJB
+ */
 @Stateless
-public class InvitationEJB {
-	
-	@PersistenceContext
-	EntityManager em;
+public class InvitationEJB implements InvitationEJBLocal {
+
+    /**
+     * Default constructor. 
+     */
+    public InvitationEJB() {
+        // TODO Auto-generated constructor stub
+    }
 
 }

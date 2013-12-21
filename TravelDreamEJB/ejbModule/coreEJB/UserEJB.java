@@ -1,14 +1,16 @@
 package coreEJB;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import dto.BuyingListItemDTO;
+import dto.FieldNotPresentException;
+import dto.GiftListItemDTO;
 import dto.UserDTO;
 import entity.User;
-
-import com.google.common.base.Charsets;
-import com.google.common.hash.Hashing;
 
 /**
  * Session Bean implementation class UserEJB
@@ -26,25 +28,29 @@ public class UserEJB implements UserEJBLocal {
         // TODO Auto-generated constructor stub
     }
     
-    public boolean authenticateUser(UserDTO userDTO) {
-    	if(userDTO == null || userDTO.getMail() == null)
-    		return false;
-    	User user = em.find(User.class, userDTO.getMail());
-    	
-    	if(user == null)
-    		return false;
-    	
-    	//Calculate hashed password
-    	String hashedPsw = Hashing.sha256().hashString(userDTO.getPassword(), Charsets.UTF_8).toString();
-    	
-    	System.out.println("Hash: "+hashedPsw);
-    	
-    	if(user.getPassword().equals(hashedPsw)) {
-    		return true;
-    	}
-    	
-    	return false;
+    public UserDTO getUser(String mail) {
+    	if(mail == null)
+    		throw new IllegalArgumentException();
+    	User user = em.find(User.class, mail);
+    	try {
+			return new UserDTO(user);
+		} catch (FieldNotPresentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return null;
     	
     }
+    /*
+    public List<BuyingListItemDTO> getBuyingList(UserDTO userDTO){
+    	List<BuyingListItemDTO> list = new ArrayList<BuyingListItemDTO>
+    }
+    public List<GiftListItemDTO> getGiftList(UserDTO userDTO){
+    	
+    }
+    public List<BuyingListItemDTO> getAllBuyingList(){
+    	
+    }
+    */
 
 }

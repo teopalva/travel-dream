@@ -1,13 +1,20 @@
 package coreEJB;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
+/**
+ * Session Bean implementation class BaseProductEJB
+ */
 @Stateful
+@LocalBean
 public class BaseProductEJB {
-	
-	@PersistenceContext
-	EntityManager em;
+
+    /**
+     * Default constructor. 
+     */
+    public BaseProductEJB() {
+        // TODO Auto-generated constructor stub
+    }
 
 }
