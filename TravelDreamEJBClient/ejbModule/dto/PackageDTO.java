@@ -17,6 +17,8 @@ public class PackageDTO {
 	
 	List<PersonalizedProductDTO> personalizedProducts;
 	
+	public PackageDTO() {}
+	
 	public PackageDTO(Package _package) throws FieldNotPresentException{
 		try {
 			if(_package.getImage() != null)
@@ -108,5 +110,11 @@ public class PackageDTO {
 	public boolean isValid() {
 		//TODO: implement the check
 		return false;
+	}
+	
+	@Override
+	public PackageDTO clone() {
+	    return this.clone();
+	    
 	}
 }

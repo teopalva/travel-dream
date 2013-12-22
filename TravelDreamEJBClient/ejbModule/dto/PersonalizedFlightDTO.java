@@ -2,26 +2,33 @@ package dto;
 
 import entity.PersonalizedProductFlight;
 
-
 public class PersonalizedFlightDTO extends PersonalizedProductDTO {
-	private FlightDTO flight;
-	
-	public PersonalizedFlightDTO(PersonalizedProductFlight flight) throws FieldNotPresentException {
-		this.flight = new FlightDTO(flight.getFlight());
-	}
+    private FlightDTO flight;
+    private DatePersonalizationDTO date;
 
-	public PersonalizedFlightDTO(FlightDTO flight) {
-		super();
-		this.flight = flight;
-	}
+    public PersonalizedFlightDTO() {
+    }
 
-	public FlightDTO getFlight() {
-		return flight;
-	}
+    public PersonalizedFlightDTO(PersonalizedProductFlight flight) throws FieldNotPresentException {
+	this.flight = new FlightDTO(flight.getFlight());
+    }
 
-	public void setFlight(FlightDTO flight) {
-		this.flight = flight;
-	}
-	
-	
+    public PersonalizedFlightDTO(FlightDTO flight, DatePersonalizationDTO date) {
+	super();
+	this.flight = flight;
+	this.date = date;
+    }
+
+    public FlightDTO getFlight() {
+	return flight;
+    }
+
+    public void setFlight(FlightDTO flight) {
+	this.flight = flight;
+    }
+
+    public DatePersonalizationDTO getDatePersonalizatonFlight() {
+	return date;
+    }
+
 }

@@ -12,6 +12,9 @@ public class FlightDTO extends BaseProductDTO {
 	private String airportDeparture;
 	private List<ClassPersonalizationDTO> possibleClassPersonalizations;
 	private List<DatePersonalizationDTO> possibleDatePersonalizations;
+	
+	public FlightDTO() {}
+	
 	public FlightDTO(Flight flight) throws FieldNotPresentException{
 		try {
 			this.airportArrival = flight.getAirportArrival().getId();
@@ -24,12 +27,12 @@ public class FlightDTO extends BaseProductDTO {
 				for(PossibleClassPersonalizationFlight cp: flight.getPossibleClassPersonalizationFlights()) {
 					possibleClassPersonalizations.add(new ClassPersonalizationDTO(cp.getClassPersonalization()));
 				}
-			} catch(NullPointerException e) {}	//No problem, there are no personalization
+			} catch(NullPointerException e) {}	//No problem, there are no personalizations
 			try {
 				for(PossibleDatePersonalizationFlight cp: flight.getPossibleDatePersonalizationFlights()) {
 					possibleDatePersonalizations.add(new DatePersonalizationDTO(cp.getDatePersonalization()));
 				}
-			} catch(NullPointerException e) {}	//No problem, there are no personalization
+			} catch(NullPointerException e) {}	//No problem, there are no personalizations
 		} catch(Exception e) {
 			throw new FieldNotPresentException();
 		}
