@@ -3,6 +3,7 @@ package dto;
 public class BaseProductDTO {
 	protected String name;
 	protected String company;
+	protected int id;
 
 	public String getCompany() {
 		return company;
@@ -18,5 +19,13 @@ public class BaseProductDTO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

@@ -14,8 +14,13 @@ public class PackageDTO {
 	private int numPeople;
 	private String name;
 	private double reduction;
+	private int id;
 	
 	List<PersonalizedProductDTO> personalizedProducts;
+	
+	public PackageDTO() {
+		this.id = -1;
+	}
 	
 	public PackageDTO(Package _package) throws FieldNotPresentException{
 		try {
@@ -27,6 +32,7 @@ public class PackageDTO {
 			this.name = _package.getName();
 			this.reduction = _package.getReduction();
 			this.personalizedProducts = new ArrayList<PersonalizedProductDTO>();
+			this.id = _package.getId();
 			try {
 				for(PersonalizedProductFlight flight : _package.getPersonalizedProductFlights()) {
 					personalizedProducts.add(new PersonalizedFlightDTO(flight));
@@ -50,6 +56,7 @@ public class PackageDTO {
 	public PackageDTO(long imageId, int numPeople, String name,
 			double reduction, List<PersonalizedProductDTO> personalizedProducts) {
 		super();
+		this.id = -1;
 		this.imageId = imageId;
 		this.numPeople = numPeople;
 		this.name = name;
@@ -108,5 +115,13 @@ public class PackageDTO {
 	public boolean isValid() {
 		//TODO: implement the check
 		return false;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

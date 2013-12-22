@@ -18,6 +18,7 @@ public class FlightDTO extends BaseProductDTO {
 			this.airportDeparture = flight.getAirportDeparture().getId();
 			this.name = flight.getName();
 			this.company = flight.getCompany().getName();
+			this.id = flight.getId();
 			possibleClassPersonalizations = new ArrayList<ClassPersonalizationDTO>();
 			possibleDatePersonalizations = new ArrayList<DatePersonalizationDTO>();
 			try {
@@ -39,12 +40,19 @@ public class FlightDTO extends BaseProductDTO {
 			List<ClassPersonalizationDTO> possibleClassPersonalizations,
 			List<DatePersonalizationDTO> possibleDatePersonalizations) {
 		super();
+		this.id = -1;
 		this.name = name;
 		this.company = company;
 		this.airportArrival = airportArrival;
 		this.airportDeparture = airportDeparture;
-		this.possibleClassPersonalizations = new ArrayList(possibleClassPersonalizations);
-		this.possibleDatePersonalizations = new ArrayList(possibleDatePersonalizations);
+		if(possibleClassPersonalizations != null)
+			this.possibleClassPersonalizations = new ArrayList<ClassPersonalizationDTO>(possibleClassPersonalizations);
+		else
+			this.possibleClassPersonalizations = new ArrayList<ClassPersonalizationDTO>();
+		if(possibleDatePersonalizations != null)
+			this.possibleDatePersonalizations = new ArrayList<DatePersonalizationDTO>(possibleDatePersonalizations);
+		else
+			this.possibleDatePersonalizations = new ArrayList<DatePersonalizationDTO>();
 	}
 	public String getAirportArrival() {
 		return airportArrival;

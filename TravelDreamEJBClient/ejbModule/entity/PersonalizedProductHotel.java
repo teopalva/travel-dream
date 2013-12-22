@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -19,17 +20,17 @@ public class PersonalizedProductHotel implements Serializable {
 	private int id;
 
 	//bi-directional many-to-one association to ClassPersonalization
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ClassPersonalization")
 	private ClassPersonalization classPersonalization;
 
 	//bi-directional many-to-one association to Hotel
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="HotelId")
 	private Hotel hotel;
 
 	//bi-directional many-to-one association to Package
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="PackageId")
 	private Package _package;
 

@@ -15,6 +15,7 @@ public class HotelDTO extends BaseProductDTO {
 			this.company = hotel.getCompany().getName();
 			this.name = hotel.getName();
 			this.stars = stars;
+			this.id = hotel.getId();
 			possibleClassPersonalizations = new ArrayList<ClassPersonalizationDTO>();
 			try {
 				for(PossibleClassPersonalizationHotel cp: hotel.getPossibleClassPersonalizationHotels()) {
@@ -31,6 +32,7 @@ public class HotelDTO extends BaseProductDTO {
 	
 	public HotelDTO(String name, String company, int stars, List<ClassPersonalizationDTO> possibleClassPersonalizations) {
 		super();
+		this.id = -1;
 		this.name = name;
 		this.company = company;
 		this.stars = stars;

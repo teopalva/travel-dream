@@ -11,12 +11,14 @@ public class DatePersonalizationDTO extends PersonalizationDTO {
 	public DatePersonalizationDTO(DatePersonalization datePersonalization) {
 		this.duration = datePersonalization.getDuration();
 		this.date = (Date)datePersonalization.getDate().clone();
+		this.id = datePersonalization.getId();
 	}
 	
 	public DatePersonalizationDTO(int duration, Date date) {
 		super();
 		this.duration = duration;
 		this.date = date;
+		this.id = -1;
 	}
 	public int getDuration() {
 		return duration;
