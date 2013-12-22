@@ -104,6 +104,7 @@ public class OfferingsListBean {
 
     /**
      * Packages to be retrieved directly from jsf: http://goo.gl/dfVYp4
+     * 
      * @return
      */
     public List<PackageDTO> submitSearch() {
@@ -114,6 +115,7 @@ public class OfferingsListBean {
 
     /**
      * Now only considering flight filters
+     * 
      * @param offerings
      * @return
      */
@@ -126,8 +128,8 @@ public class OfferingsListBean {
 		    if (pers instanceof PersonalizedFlightDTO) {
 			if ((departurePlace == ((PersonalizedFlightDTO) pers).getFlight().getAirportDeparture() || departurePlace == null)
 				&& (arrivalPlace == ((PersonalizedFlightDTO) pers).getFlight().getAirportArrival() || arrivalPlace == null)
-				&& (departureDate.equals(((PersonalizedFlightDTO) pers).getDatePersonalizatonFlight().getInitialDate()) || departureDate == null)
-				&& (returnDate.equals(((PersonalizedFlightDTO) pers).getDatePersonalizatonFlight().getFinalDate()) || returnDate == null)) {
+				&& (departureDate.equals(((PersonalizedFlightDTO) pers).getDatePersonalization().getInitialDate()) || departureDate == null)
+				&& (returnDate.equals(((PersonalizedFlightDTO) pers).getDatePersonalization().getFinalDate()) || returnDate == null)) {
 			    filter = true;
 			}
 			filter = false;
