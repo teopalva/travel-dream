@@ -4,11 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import entity.Company;
-import entity.DatePersonalization;
-import entity.PersonalizedProductExcursion;
-import entity.PossibleDatePersonalizationExcursion;
-
 import java.util.List;
 
 
@@ -26,9 +21,14 @@ public class Excursion implements Serializable {
 	private int id;
 
 	private String name;
+	
+	//bi-directional many-to-one association to City
+	@ManyToOne
+	@JoinColumn(name="City")
+	private City city;
 
 	//bi-directional many-to-many association to DatePersonalization
-	@ManyToMany(mappedBy="excursions")
+	@ManyToMany(mappedBy="excursions", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<DatePersonalization> datePersonalizations;
 
 	//bi-directional many-to-one association to Company
@@ -121,6 +121,14 @@ public class Excursion implements Serializable {
 		possibleDatePersonalizationExcursion.setExcursion(null);
 
 		return possibleDatePersonalizationExcursion;
+	}
+	
+	public City getCity() {
+		return this.city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
 	}
 
 }

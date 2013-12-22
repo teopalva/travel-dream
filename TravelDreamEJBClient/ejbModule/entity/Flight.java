@@ -31,11 +31,11 @@ public class Flight implements Serializable {
 	private String name;
 
 	//bi-directional many-to-many association to ClassPersonalization
-	@ManyToMany(mappedBy="flights")
+	@ManyToMany(mappedBy="flights", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<ClassPersonalization> classPersonalizations;
 
 	//bi-directional many-to-many association to DatePersonalization
-	@ManyToMany(mappedBy="flights")
+	@ManyToMany(mappedBy="flights", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<DatePersonalization> datePersonalizations;
 
 	//bi-directional many-to-one association to Airport

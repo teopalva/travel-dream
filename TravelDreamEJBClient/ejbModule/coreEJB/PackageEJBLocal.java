@@ -5,12 +5,13 @@ import java.util.List;
 import javax.ejb.Local;
 
 import dto.PackageDTO;
+import exceptions.NotValidPackageException;
 
 @Local
 public interface PackageEJBLocal {
 	public List<PackageDTO> getOfferingPackages();
-	public void savePackage(PackageDTO _package);
-	public void removePackage(PackageDTO _package);
+	public void savePackage(PackageDTO _package)  throws NotValidPackageException;
+	public void removePackage(PackageDTO _package)  throws NotValidPackageException;
 	
 	//Getters and setters
 	public PackageDTO getTmpPackage();

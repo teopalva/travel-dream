@@ -228,11 +228,14 @@ public class TestDB {
 	
 	@Test
 	public void testHotel() {
+		testCity();
 		testCompany();
 		
 		hotel = new Hotel();
 		hotel.setCompany(company);
 		hotel.setName("Hotel di test");
+		hotel.setCity(city);
+		hotel.setStars(5);
 		
 		try {
 			em.persist(hotel);
@@ -246,11 +249,13 @@ public class TestDB {
 	
 	@Test
 	public void testExcursion() {
+		testCity();
 		testCompany();
 		
 		excursion = new Excursion();
 		excursion.setCompany(company);
 		excursion.setName("Gita alle barriere coralline di test");
+		excursion.setCity(city);
 		
 		try {
 			em.persist(excursion);

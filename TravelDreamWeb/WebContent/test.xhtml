@@ -29,6 +29,13 @@
     	   		</h:commandButton>
   
         </h:panelGrid>  
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test testBaseProductEJB" actionListener="#{Test.testBaseProductEJB()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>  
   
     </p:panel>  
   

@@ -4,11 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import entity.ClassPersonalization;
-import entity.Company;
-import entity.PersonalizedProductHotel;
-import entity.PossibleClassPersonalizationHotel;
-
 import java.util.List;
 
 
@@ -26,9 +21,16 @@ public class Hotel implements Serializable {
 	private int id;
 
 	private String name;
+	
+	private int stars;
+	
+	//bi-directional many-to-one association to City
+		@ManyToOne
+		@JoinColumn(name="City")
+		private City city;
 
 	//bi-directional many-to-many association to ClassPersonalization
-	@ManyToMany(mappedBy="hotels")
+	@ManyToMany(mappedBy="hotels", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<ClassPersonalization> classPersonalizations;
 
 	//bi-directional many-to-one association to Company
@@ -121,6 +123,22 @@ public class Hotel implements Serializable {
 		possibleClassPersonalizationHotel.setHotel(null);
 
 		return possibleClassPersonalizationHotel;
+	}
+	
+	public City getCity() {
+		return this.city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+	
+	public int getStars() {
+		return this.stars;
+	}
+
+	public void setStars(int stars) {
+		this.stars = stars;
 	}
 
 }

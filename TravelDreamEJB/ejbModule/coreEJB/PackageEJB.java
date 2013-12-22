@@ -10,15 +10,22 @@ import javax.persistence.PersistenceContext;
 
 import dto.FieldNotPresentException;
 import dto.PackageDTO;
+import dto.PersonalizedExcursionDTO;
 import dto.PersonalizedFlightDTO;
+import dto.PersonalizedHotelDTO;
 import dto.PersonalizedProductDTO;
 import entity.Airport;
 import entity.ClassPersonalization;
 import entity.Company;
 import entity.DatePersonalization;
+import entity.Excursion;
 import entity.Flight;
+import entity.Hotel;
 import entity.Package;
+import entity.PersonalizedProductExcursion;
 import entity.PersonalizedProductFlight;
+import entity.PersonalizedProductHotel;
+import exceptions.NotValidPackageException;
 
 /**
  * Session Bean implementation class PackageEJB
@@ -39,6 +46,9 @@ public class PackageEJB implements PackageEJBLocal {
         // TODO Auto-generated constructor stub
     }
     
+    /**
+     * Return a list of all PackageDTO that are not in a BuyingList of a TDC or in a gift list
+     */
     public List<PackageDTO> getOfferingPackages() {
     	List<PackageDTO> list = new ArrayList<PackageDTO>();
     	List <Package> packageList = em.createNativeQuery("SELECT * FROM PACKAGE WHERE Id NOT IN(SELECT PackageId"
@@ -54,65 +64,161 @@ public class PackageEJB implements PackageEJBLocal {
     	}
     	return list;
     }
-	public void savePackage(PackageDTO packageDTO) {
+	
+    /**
+     * Save a package inside the DB.
+     * Mandatory field are: name, numPeople, reduction
+     * Optional field are: personalizedProducts
+     * If you include at least one personalized product every one of them must be coherent with the ER representation
+     *    (eg: PersonalizedFlightDTO must contain FlightDTO and may contain Class/DataPersonalization)
+     */
+    public void savePackage(PackageDTO packageDTO)  throws NotValidPackageException{
 		Package _package = new Package();
 		_package.setName(packageDTO.getName());
 		_package.setNumPeople(packageDTO.getNumPeople());
 		_package.setReduction(packageDTO.getReduction());
 		
-		//Create personalized product list
-		for(PersonalizedProductDTO p : packageDTO.getPersonalizedProducts()) {
-			if(p instanceof PersonalizedFlightDTO) {
-				PersonalizedFlightDTO flightDTO = (PersonalizedFlightDTO)p;
-				PersonalizedProductFlight flight = em.find(PersonalizedProductFlight.class, p.getId());
-				if(flight == null) {
-					//Create a new Flight
-					flight = new PersonalizedProductFlight();
-					
-					//Create flight base product
-					Flight baseFlight = em.find(Flight.class, flightDTO.getFlight().getId());
-					if(baseFlight == null) {
-						baseFlight = new Flight();
-						Airport airport = em.find(Airport.class, flightDTO.getFlight().getAirportArrival());
-						baseFlight.setAirportArrival(airport);
-						airport = em.find(Airport.class, flightDTO.getFlight().getAirportDeparture());
-						baseFlight.setAirportDeparture(airport);
-						Company company = em.find(Company.class, flightDTO.getFlight().getCompany());
-						baseFlight.setCompany(company);
-						baseFlight.setName(flightDTO.getFlight().getName());
+		try {
+			//Create personalized product list
+			for(PersonalizedProductDTO p : packageDTO.getPersonalizedProducts()) {
+				
+				//personalizedProductFlight
+				if(p instanceof PersonalizedFlightDTO) {
+					PersonalizedFlightDTO flightDTO = (PersonalizedFlightDTO)p;
+					PersonalizedProductFlight flight = em.find(PersonalizedProductFlight.class, p.getId());
+					if(flight == null) {
+						//Create a new Flight
+						flight = new PersonalizedProductFlight();
+						
+						//Create flight base product
+						Flight baseFlight = em.find(Flight.class, flightDTO.getFlight().getId());
+						if(baseFlight == null) {
+							baseFlight = new Flight();
+							Airport airport = em.find(Airport.class, flightDTO.getFlight().getAirportArrival());
+							baseFlight.setAirportArrival(airport);
+							airport = em.find(Airport.class, flightDTO.getFlight().getAirportDeparture());
+							baseFlight.setAirportDeparture(airport);
+							Company company = em.find(Company.class, flightDTO.getFlight().getCompany());
+							baseFlight.setCompany(company);
+							baseFlight.setName(flightDTO.getFlight().getName());
+						}
+						flight.setFlight(baseFlight);
+						//Try to set classPersonalization
+						try {
+							ClassPersonalization classPersonalization = em.find(ClassPersonalization.class, flightDTO.getClassPersonalization().getId());
+							if(classPersonalization == null) {
+								//Create new class personalization
+								classPersonalization = new ClassPersonalization();
+								classPersonalization.setClass_(flightDTO.getClassPersonalization().get_class());
+							}
+							flight.setClassPersonalization(classPersonalization);
+						} catch (NullPointerException e) {}	//No problem
+						
+						//Try to set datePersonalization
+						try {
+							DatePersonalization datePersonalization = em.find(DatePersonalization.class, flightDTO.getDatePersonalization().getId());
+							if(datePersonalization == null) {
+								//Create new date personalization
+								datePersonalization = new DatePersonalization();
+								datePersonalization.setDate(flightDTO.getDatePersonalization().getInitialDate());
+								datePersonalization.setDuration(flightDTO.getDatePersonalization().getDuration());
+							}
+							flight.setDatePersonalization(datePersonalization);
+						} catch (NullPointerException e) {}	//No problem
+						
 					}
-					flight.setFlight(baseFlight);
-					//Try to set classPersonalization
-					try {
-						ClassPersonalization classPersonalization = em.find(ClassPersonalization.class, flightDTO.getClassPersonalization().getId());
-						if(classPersonalization == null) {
-							//Create new class personalization
-							classPersonalization = new ClassPersonalization();
-							classPersonalization.setClass_(flightDTO.getClassPersonalization().get_class());
-						}
-						flight.setClassPersonalization(classPersonalization);
-					} catch (NullPointerException e) {}	//No problem
 					
-					//Try to set datePersonalization
-					try {
-						DatePersonalization datePersonalization = em.find(DatePersonalization.class, flightDTO.getDatePersonalization().getId());
-						if(datePersonalization == null) {
-							//Create new date personalization
-							datePersonalization = new DatePersonalization();
-							datePersonalization.setDate(flightDTO.getDatePersonalization().getInitialDate());
-							datePersonalization.setDuration(flightDTO.getDatePersonalization().getDuration());
-						}
-						flight.setDatePersonalization(datePersonalization);
-					} catch (NullPointerException e) {}	//No problem
-					
+					_package.addPersonalizedProductFlight(flight);
 				}
 				
-				_package.addPersonalizedProductFlight(flight);
+				//PersonalizedProductExcursion
+				if(p instanceof PersonalizedHotelDTO) {
+					PersonalizedHotelDTO hotelDTO = (PersonalizedHotelDTO)p;
+					PersonalizedProductHotel hotel = em.find(PersonalizedProductHotel.class, p.getId());
+					if(hotel == null) {
+						//Create a new Flight
+						hotel = new PersonalizedProductHotel();
+						
+						//Create flight base product
+						Hotel baseHotel = em.find(Hotel.class, hotelDTO.getHotel().getId());
+						if(baseHotel == null) {
+							baseHotel = new Hotel();
+							baseHotel.setStars(hotelDTO.getHotel().getStars());
+							Company company = em.find(Company.class, hotelDTO.getHotel().getCompany());
+							baseHotel.setCompany(company);
+							baseHotel.setName(hotelDTO.getHotel().getName());
+						}
+						hotel.setHotel(baseHotel);
+						//Try to set classPersonalization
+						try {
+							ClassPersonalization classPersonalization = em.find(ClassPersonalization.class, hotelDTO.getClassPersonalization().getId());
+							if(classPersonalization == null) {
+								//Create new class personalization
+								classPersonalization = new ClassPersonalization();
+								classPersonalization.setClass_(hotelDTO.getClassPersonalization().get_class());
+							}
+							hotel.setClassPersonalization(classPersonalization);
+						} catch (NullPointerException e) {}	//No problem
+						
+						
+					}
+					
+					_package.addPersonalizedProductHotel(hotel);
+				}
+				
+				//PersonalizedProductExcursion
+				if(p instanceof PersonalizedExcursionDTO) {
+					PersonalizedExcursionDTO excursionDTO = (PersonalizedExcursionDTO)p;
+					PersonalizedProductExcursion excursion = em.find(PersonalizedProductExcursion.class, p.getId());
+					if(excursion == null) {
+						//Create a new Flight
+						excursion = new PersonalizedProductExcursion();
+						
+						//Create flight base product
+						Excursion baseExcursion = em.find(Excursion.class, excursionDTO.getExcursion().getId());
+						if(baseExcursion == null) {
+							baseExcursion = new Excursion();
+							Company company = em.find(Company.class, excursionDTO.getExcursion().getCompany());
+							baseExcursion.setCompany(company);
+							baseExcursion.setName(excursionDTO.getExcursion().getName());
+						}
+						excursion.setExcursion(baseExcursion);
+						
+						//Try to set datePersonalization
+						try {
+							DatePersonalization datePersonalization = em.find(DatePersonalization.class, excursionDTO.getDatePersonalization().getId());
+							if(datePersonalization == null) {
+								//Create new date personalization
+								datePersonalization = new DatePersonalization();
+								datePersonalization.setDate(excursionDTO.getDatePersonalization().getInitialDate());
+								datePersonalization.setDuration(excursionDTO.getDatePersonalization().getDuration());
+							}
+							excursion.setDatePersonalization(datePersonalization);
+						} catch (NullPointerException e) {}	//No problem
+						
+					}
+					
+					_package.addPersonalizedProductExcursion(excursion);
+				}
 			}
+		} catch (NullPointerException e) {
+			throw new NotValidPackageException();
 		}
 		em.persist(_package);
 	}
-	public void removePackage(PackageDTO _package){
+	
+    /**
+     * Remove the package, N.B.: it must contain a valid id
+     */
+    public void removePackage(PackageDTO _package) throws NotValidPackageException{
+		em.getTransaction().begin();
+		Package package_ = em.find(Package.class, _package.getId());
+		
+		if(package_ == null)
+			throw new NotValidPackageException();
+		
+		em.remove(package_);
+		em.getTransaction().commit();
 		
 	}
 

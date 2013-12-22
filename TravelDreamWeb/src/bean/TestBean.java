@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import coreEJB.BaseProductEJBLocal;
 import coreEJB.PackageEJBLocal;
 import coreEJB.UserEJBLocal;
 import dto.BuyingListItemDTO;
@@ -16,6 +17,8 @@ import dto.PackageDTO;
 import dto.PersonalizedFlightDTO;
 import dto.PersonalizedProductDTO;
 import dto.UserDTO;
+import exceptions.NotValidBaseProductException;
+import exceptions.NotValidPackageException;
 
 @ManagedBean(name="Test")
 @RequestScoped
@@ -26,6 +29,9 @@ public class TestBean {
 	
 	@EJB
 	PackageEJBLocal packageEJB;
+	
+	@EJB
+	BaseProductEJBLocal baseProductEJB;
 	
 	public void testUserEJB() {
 		UserDTO user = userEJB.getUser("gianluca.91@gmail.com");
@@ -55,7 +61,26 @@ public class TestBean {
 		//pFlight.setDatePersonalization(datePersonalization);
 		pp.add(pFlight);
 		_package.setPersonalizedProducts(pp);
-		packageEJB.savePackage(_package);
+		try {
+			packageEJB.savePackage(_package);
+		} catch (NotValidPackageException e) {
+			e.printStackTrace();
+		}
+		try {
+			packageEJB.removePackage(list.get(0));
+		} catch (NotValidPackageException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void testBaseProductEJB() {
+		FlightDTO flight = new FlightDTO("Volo di test","Alitalia","MXP","MXP",null,null);
+		try {
+			baseProductEJB.saveBaseProduct(flight);
+		} catch (NotValidBaseProductException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

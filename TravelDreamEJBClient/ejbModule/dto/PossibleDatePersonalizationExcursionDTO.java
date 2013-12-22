@@ -1,0 +1,20 @@
+package dto;
+
+public class PossibleDatePersonalizationExcursionDTO extends
+		PossibleDatePersonalizationDTO {
+	private int excursionId;
+
+	public PossibleDatePersonalizationExcursionDTO(double price, int dateId,
+			int excursionId) {
+		super(price, dateId);
+		this.excursionId = excursionId;
+	}
+
+	public int getExcursionId() {
+		return excursionId;
+	}
+
+	public void setExcursionId(int excursionId) {
+		this.excursionId = excursionId;
+	}
+}

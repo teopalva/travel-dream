@@ -1,7 +1,9 @@
 package entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -23,6 +25,14 @@ public class City implements Serializable {
 	//bi-directional many-to-one association to Airport
 	@OneToMany(mappedBy="city")
 	private List<Airport> airports;
+	
+	//bi-directional many-to-one association to Excursion
+	@OneToMany(mappedBy="city")
+	private List<Excursion> excursions;
+
+	//bi-directional many-to-one association to Hotel
+	@OneToMany(mappedBy="city")
+	private List<Hotel> hotels;
 
 	public City() {
 	}
