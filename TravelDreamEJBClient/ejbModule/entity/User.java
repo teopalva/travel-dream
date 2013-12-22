@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,6 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String mail;
 
 	private String firstName;
@@ -35,19 +35,19 @@ public class User implements Serializable {
 	private String password;
 
 	//bi-directional many-to-one association to BuyingList
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
 	private List<BuyingListItem> buyingLists;
 
 	//bi-directional many-to-one association to Invitation
-	@OneToMany(mappedBy="userInviter")
+	@OneToMany(mappedBy="userInviter", cascade=CascadeType.ALL)
 	private List<Invitation> invites;
 
 	//bi-directional many-to-one association to Invitation
-	@OneToMany(mappedBy="userInvited")
+	@OneToMany(mappedBy="userInvited", cascade=CascadeType.ALL)
 	private List<Invitation> inviteds;
 
 	//bi-directional many-to-many association to Package
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable(
 		name="GIFT_LIST_ITEM"
 		, joinColumns={

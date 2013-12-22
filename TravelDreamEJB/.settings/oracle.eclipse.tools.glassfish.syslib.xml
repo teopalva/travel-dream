@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<system-libraries>
+    <library path="/Users/gianluca/glassfish4/glassfish/modules/javax.el.jar" source="/Users/gianluca/.m2/repository/org/glassfish/javax.el/3.0.0/javax.el-3.0.0-sources.jar"/>
+    <library path="/Users/gianluca/glassfish4/glassfish/modules/javax.faces-2.2.1.jar" source="/Users/gianluca/.m2/repository/org/glassfish/javax.faces/2.2.1/javax.faces-2.2.1-sources.jar"/>
+</system-libraries>

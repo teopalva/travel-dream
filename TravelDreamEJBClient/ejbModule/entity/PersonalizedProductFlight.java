@@ -19,17 +19,17 @@ public class PersonalizedProductFlight implements Serializable {
 	private int id;
 
 	//bi-directional many-to-one association to ClassPersonalization
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ClassPersonalization")
 	private ClassPersonalization classPersonalization;
 
 	//bi-directional many-to-one association to DatePersonalization
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="DatePersonalization")
 	private DatePersonalization datePersonalization;
 
 	//bi-directional many-to-one association to Flight
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="FlightId")
 	private Flight flight;
 

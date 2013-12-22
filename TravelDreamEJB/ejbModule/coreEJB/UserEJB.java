@@ -1,6 +1,10 @@
 package coreEJB;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -12,6 +16,7 @@ import dto.FieldNotPresentException;
 import dto.GiftListItemDTO;
 import dto.UserDTO;
 import entity.BuyingListItem;
+import entity.Group;
 import entity.User;
 
 /**
@@ -82,6 +87,65 @@ public class UserEJB implements UserEJBLocal {
 			}
     	}
     	return list;
+    }
+    
+    public void saveUser(UserDTO userDTO) {
+    	try {
+	    	User user = new User();
+	    	List<Group> groups = new ArrayList<Group>();
+	    	Group group = new Group();
+	    	if(!userDTO.getGroup().equals("TDC")) {
+	    		System.err.println("User must be TDC!!");
+	    		throw new Exception();
+	    	}
+	    	group.setId("TDC");
+	    	groups.add(group);
+	    	user.setFirstName(userDTO.getFirstName());
+	    	user.setLastName(userDTO.getLastName());
+	    	user.setMail(userDTO.getMail());
+	    	user.setGroups(groups);
+	    	
+	    	//Calculate SHA-256 hash for the user
+	    	user.setPassword(encryptPassword(userDTO.getPassword()));
+	    	em.persist(user);
+    	} catch(Exception e) {
+    		e.printStackTrace();
+    		throw new IllegalArgumentException();
+    	}
+    	
+    }
+    
+    private static String encryptPassword(String password)
+    {
+        String sha1 = "";
+        try
+        {
+            MessageDigest crypt = MessageDigest.getInstance("SHA-256");
+            crypt.reset();
+            crypt.update(password.getBytes("UTF-8"));
+            sha1 = byteToHex(crypt.digest());
+        }
+        catch(NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        catch(UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        }
+        return sha1;
+    }
+
+    private static String byteToHex(final byte[] hash)
+    {
+        Formatter formatter = new Formatter();
+        for (byte b : hash)
+        {
+            formatter.format("%02x", b);
+        }
+        String result = formatter.toString();
+        formatter.close();
+        return result;
     }
 
 }

@@ -18,9 +18,13 @@ public class PackageDTO {
 	
 	List<PersonalizedProductDTO> personalizedProducts;
 	
+<<<<<<< HEAD
+	public PackageDTO() {}
+=======
 	public PackageDTO() {
 		this.id = -1;
 	}
+>>>>>>> bca69f5742b13be373c1c9478ad39a037735fc0e
 	
 	public PackageDTO(Package _package) throws FieldNotPresentException{
 		try {
@@ -116,6 +120,13 @@ public class PackageDTO {
 		//TODO: implement the check
 		return false;
 	}
+<<<<<<< HEAD
+	
+	@Override
+	public PackageDTO clone() {
+	    return this.clone();
+	    
+=======
 
 	public int getId() {
 		return id;
@@ -123,5 +134,6 @@ public class PackageDTO {
 
 	public void setId(int id) {
 		this.id = id;
+>>>>>>> bca69f5742b13be373c1c9478ad39a037735fc0e
 	}
 }

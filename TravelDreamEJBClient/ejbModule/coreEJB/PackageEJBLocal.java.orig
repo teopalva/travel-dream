@@ -8,6 +8,35 @@ import dto.PackageDTO;
 
 @Local
 public interface PackageEJBLocal {
+<<<<<<< HEAD
+
+public List<PackageDTO> getOfferingPackages();
+
+public void savePackage(PackageDTO _package);
+
+public void removePackage(PackageDTO _package);
+
+
+//Getters and setters
+
+public PackageDTO getTmpPackage();
+
+public void setTmpPackage(PackageDTO tmpPackage);
+
+public boolean isSelectedFlight();
+
+public void setSelectedFlight(boolean selectedFlight);
+
+public boolean isSelectedHotel();
+
+public void setSelectedHotel(boolean selectedHotel);
+
+public boolean isSelectedExcursion();
+
+public void setSelectedExcursion(boolean selectedExcursion);
+
+}
+=======
 	public List<PackageDTO> getOfferingPackages();
 	public void savePackage(PackageDTO _package);
 	public void removePackage(PackageDTO _package);
@@ -22,3 +51,4 @@ public interface PackageEJBLocal {
 	public boolean isSelectedExcursion();
 	public void setSelectedExcursion(boolean selectedExcursion);
 }
+>>>>>>> bca69f5742b13be373c1c9478ad39a037735fc0e

@@ -15,4 +15,5 @@ public interface UserEJBLocal {
     public List<BuyingListItemDTO> getBuyingList(UserDTO userDTO);
     public List<GiftListItemDTO> getGiftList(UserDTO userDTO);
     public List<BuyingListItemDTO> getAllBuyingList();
+    public void saveUser(UserDTO user);
 }

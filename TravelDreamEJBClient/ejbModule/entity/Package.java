@@ -1,10 +1,20 @@
 package entity;
 
 import java.io.Serializable;
-
-import javax.persistence.*;
-
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -40,22 +50,28 @@ public class Package implements Serializable {
 	private Image image;
 
 	//bi-directional many-to-one association to PersonalizedProductExcursion
-	@OneToMany(mappedBy="_package")
+	@OneToMany(mappedBy="_package", cascade=CascadeType.ALL)
 	private List<PersonalizedProductExcursion> personalizedProductExcursions;
 
 	//bi-directional many-to-one association to PersonalizedProductFlight
-	@OneToMany(mappedBy="_package")
+	@OneToMany(mappedBy="_package", cascade=CascadeType.ALL)
 	private List<PersonalizedProductFlight> personalizedProductFlights;
 
 	//bi-directional many-to-one association to PersonalizedProductHotel
-	@OneToMany(mappedBy="_package")
+	@OneToMany(mappedBy="_package", cascade=CascadeType.ALL)
 	private List<PersonalizedProductHotel> personalizedProductHotels;
 
 	//bi-directional many-to-many association to User
-	@ManyToMany(mappedBy="giftPackages")
+	@ManyToMany(mappedBy="giftPackages", cascade=CascadeType.ALL)
 	private List<User> users;
 
 	public Package() {
+		buyingListItems = new ArrayList<BuyingListItem>();
+		invitations = new ArrayList<Invitation>();
+		personalizedProductExcursions = new ArrayList<PersonalizedProductExcursion>();
+		personalizedProductFlights = new ArrayList<PersonalizedProductFlight>();
+		personalizedProductHotels = new ArrayList<PersonalizedProductHotel>();
+		users = new ArrayList<User>();
 	}
 
 	public int getId() {

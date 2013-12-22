@@ -12,6 +12,7 @@ public class ExcursionDTO extends BaseProductDTO {
 	
 	public ExcursionDTO(Excursion excursion) {
 		possibleDatePersonalizations = new ArrayList<DatePersonalizationDTO>();
+		this.id = excursion.getId();
 		try {
 			for(PossibleDatePersonalizationExcursion cp: excursion.getPossibleDatePersonalizationExcursions()) {
 				possibleDatePersonalizations.add(new DatePersonalizationDTO(cp.getDatePersonalization()));

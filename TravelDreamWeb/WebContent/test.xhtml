@@ -17,7 +17,14 @@
         <p:messages id="msgs" />  
   
         <h:panelGrid columns="3" cellpadding="5">  
-    	   		<h:commandButton value="Test" actionListener="#{Test.testUserEJB()}" id="btnGlobal">
+    	   		<h:commandButton value="Test userEJB" actionListener="#{Test.testUserEJB()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>  
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test packageEJB" actionListener="#{Test.testPackageEJB()}">
     	   			<f:ajax execute="panel" render="panel" />  
     	   		</h:commandButton>
   
