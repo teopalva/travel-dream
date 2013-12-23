@@ -10,6 +10,8 @@ public class HotelDTO extends BaseProductDTO {
 	private List<ClassPersonalizationDTO> possibleClassPersonalizations;
 	private int stars;
 	
+	public HotelDTO() {}
+	
 	public HotelDTO(Hotel hotel) throws FieldNotPresentException{
 		try {
 			this.company = hotel.getCompany().getName();

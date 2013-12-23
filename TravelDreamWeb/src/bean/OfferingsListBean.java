@@ -68,11 +68,11 @@ public class OfferingsListBean {
 	return returnDate;
     }
 
-    public void setNumPeople(int n) {
+    public void setNumPeople(Integer n) {
 	numPeople = n;
     }
 
-    public int getNumPeople() {
+    public Integer getNumPeople() {
 	return numPeople;
     }
 
@@ -92,11 +92,11 @@ public class OfferingsListBean {
 	return hotelClass;
     }
 
-    public void setHotelStars(int s) {
+    public void setHotelStars(Integer s) {
 	hotelStars = s;
     }
 
-    public int getHotelStars() {
+    public Integer getHotelStars() {
 	return hotelStars;
     }
 
@@ -119,25 +119,26 @@ public class OfferingsListBean {
      * @param offerings
      * @return
      */
-    private List<PackageDTO> searchFilter(List<PackageDTO> offerings) {
+    public List<PackageDTO> searchFilter(List<PackageDTO> offerings) {
 	boolean filter = true;
 	List<PackageDTO> filteredOfferings = new ArrayList<PackageDTO>();
 	for (PackageDTO pack : offerings) {
-	    if (pack.getNumPeople() == numPeople || numPeople == null) {
+	    if (numPeople == null || pack.getNumPeople() == numPeople) {
 		for (PersonalizedProductDTO pers : pack.getPersonalizedProducts()) {
 		    if (pers instanceof PersonalizedFlightDTO) {
-			if ((departurePlace == ((PersonalizedFlightDTO) pers).getFlight().getAirportDeparture() || departurePlace == null)
-				&& (arrivalPlace == ((PersonalizedFlightDTO) pers).getFlight().getAirportArrival() || arrivalPlace == null)
-				&& (departureDate.equals(((PersonalizedFlightDTO) pers).getDatePersonalization().getInitialDate()) || departureDate == null)
-				&& (returnDate.equals(((PersonalizedFlightDTO) pers).getDatePersonalization().getFinalDate()) || returnDate == null)) {
+			if ((departurePlace == null || (departurePlace.equals(((PersonalizedFlightDTO) pers).getFlight().getAirportDeparture())))
+				&& (arrivalPlace == null || arrivalPlace.equals(((PersonalizedFlightDTO) pers).getFlight().getAirportArrival()))
+				&& (departureDate == null || departureDate.equals(((PersonalizedFlightDTO) pers).getDatePersonalization().getInitialDate()))
+				&& (returnDate == null || returnDate.equals(((PersonalizedFlightDTO) pers).getDatePersonalization().getFinalDate()))) {
 			    filter = true;
+			} else {
+			    filter = false;
 			}
-			filter = false;
 		    }
 		}
 	    }
 	    if (filter) {
-		filteredOfferings.add(pack.clone());
+		filteredOfferings.add(pack); // .clone()
 	    }
 	}
 	return filteredOfferings;

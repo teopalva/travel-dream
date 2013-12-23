@@ -127,6 +127,8 @@ public class PackageDTO {
 
     @Override
     public PackageDTO clone() {
-	return this.clone();
+	PackageDTO p = new PackageDTO();
+	p = this.clone();
+	return p;
     }
 }
