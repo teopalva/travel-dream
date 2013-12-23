@@ -1,6 +1,7 @@
 package bean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -11,6 +12,8 @@ import coreEJB.BaseProductEJBLocal;
 import coreEJB.PackageEJBLocal;
 import coreEJB.UserEJBLocal;
 import dto.BuyingListItemDTO;
+import dto.ClassPersonalizationDTO;
+import dto.DatePersonalizationDTO;
 import dto.FlightDTO;
 import dto.GiftListItemDTO;
 import dto.PackageDTO;
@@ -54,7 +57,7 @@ public class TestBean {
 		_package.setNumPeople(2);
 		_package.setReduction(0.1);
 		List<PersonalizedProductDTO> pp = new ArrayList<PersonalizedProductDTO>();
-		FlightDTO flight = new FlightDTO("Volo di test", "Alitalia", "LIN", "LIN", null, null);
+		FlightDTO flight = new FlightDTO("Volo di test", "Alitalia", "LIN", "LIN", null, null, null);
 		flight.setId(2);
 		PersonalizedFlightDTO pFlight = new PersonalizedFlightDTO();
 		pFlight.setFlight(flight);
@@ -74,7 +77,13 @@ public class TestBean {
 	}
 	
 	public void testBaseProductEJB() {
-		FlightDTO flight = new FlightDTO("Volo di test","Alitalia","MXP","MXP",null,null);
+		FlightDTO flight = new FlightDTO("Volo di test","Alitalia","MXP","MXP",null,null, null);
+		ClassPersonalizationDTO cp = new ClassPersonalizationDTO("Economy");
+		flight.getPossibleClassPersonalizations().add(cp);
+		flight.getPrices().put(cp, new Double(10));
+		DatePersonalizationDTO dp = new DatePersonalizationDTO(100, new Date(21,01,2013));
+		flight.getPossibleDatePersonalizations().add(dp);
+		flight.getPrices().put(dp, new Double(20));
 		try {
 			baseProductEJB.saveBaseProduct(flight);
 		} catch (NotValidBaseProductException e) {

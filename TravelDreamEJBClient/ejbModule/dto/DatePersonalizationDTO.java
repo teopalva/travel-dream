@@ -40,6 +40,34 @@ public class DatePersonalizationDTO extends PersonalizationDTO {
 	public Date getFinalDate() {
 		return new Date(date.getTime()+duration*1000*60);		//Calculate time in minutes
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + duration;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DatePersonalizationDTO other = (DatePersonalizationDTO) obj;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (duration != other.duration)
+			return false;
+		return true;
+	}
 	
 	
 

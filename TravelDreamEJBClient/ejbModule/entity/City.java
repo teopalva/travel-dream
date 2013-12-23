@@ -21,6 +21,8 @@ public class City implements Serializable {
 	private int id;
 
 	private String name;
+	
+	private String country;
 
 	//bi-directional many-to-one association to Airport
 	@OneToMany(mappedBy="city")
@@ -51,6 +53,14 @@ public class City implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public List<Airport> getAirports() {

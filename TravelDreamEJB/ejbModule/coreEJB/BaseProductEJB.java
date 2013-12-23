@@ -1,5 +1,6 @@
 package coreEJB;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +18,15 @@ import dto.FlightDTO;
 import dto.HotelDTO;
 import dto.PossiblePersonalizationDTO;
 import entity.Airport;
+import entity.City;
 import entity.ClassPersonalization;
 import entity.Company;
 import entity.DatePersonalization;
 import entity.Excursion;
 import entity.Flight;
 import entity.Hotel;
+import entity.PossibleClassPersonalizationFlight;
+import entity.PossibleDatePersonalizationFlight;
 import exceptions.NotValidBaseProductException;
 
 /**
@@ -43,86 +47,327 @@ public class BaseProductEJB implements BaseProductEJBLocal {
     public BaseProductEJB() {
     }
     
-    public void saveBaseProduct(BaseProductDTO baseProduct) {
+    public void saveBaseProduct(BaseProductDTO baseProduct) throws NotValidBaseProductException{
     	//Create the right entity
     	if(baseProduct instanceof FlightDTO) {
     		FlightDTO flightDTO = (FlightDTO) baseProduct;
-    		Flight flight = em.find(Flight.class, flightDTO.getId());
-    		
-    		if(flight == null) {
-    			//The flight is not present. Built it from scratch
-    			flight = new Flight();
-    			flight.setAirportArrival(em.find(Airport.class, flightDTO.getAirportArrival()));
-    			flight.setAirportDeparture(em.find(Airport.class, flightDTO.getAirportDeparture()));
-    			flight.setCompany(em.find(Company.class, flightDTO.getCompany()));
-    			flight.setName(flightDTO.getName());
-    			for(ClassPersonalizationDTO cp : flightDTO.getPossibleClassPersonalizations()) {
-    				ClassPersonalization classPersonalization  = em.find(ClassPersonalization.class, cp.getId());
-    				
-    				//Try to find with name of the class
-    				if(classPersonalization == null) {
-    					try {
-    						classPersonalization  = em.createNamedQuery("SELECT c FROM ClassPersonalization c WHERE c.class_=:class", ClassPersonalization.class).setParameter("class", cp.get_class()).getResultList().get(0);
-    					}catch(NullPointerException e) {}	//No problem
-    				}
-    				
-    				if(classPersonalization == null) {
-    					//Create new classPersonalization
-    					classPersonalization = new ClassPersonalization();
-    					classPersonalization.setClass_(cp.get_class());
-    				}
-    				flight.getClassPersonalizations().add(classPersonalization);
-    			}
-    			for(DatePersonalizationDTO dp : flightDTO.getPossibleDatePersonalizations()) {
-    				DatePersonalization datePersonalization  = em.find(DatePersonalization.class, dp.getId());
-    				
-    				if(datePersonalization == null) {
-    					//Create new classPersonalization
-    					datePersonalization = new DatePersonalization();
-    					datePersonalization.setDate(dp.getInitialDate());
-    					datePersonalization.setDuration(dp.getDuration());
-    				}
-    				flight.getDatePersonalizations().add(datePersonalization);
-    			}
-    			em.persist(flight);
-    		} else {
-    			//The flight is already present in the DB. Update it
-    			flight.setAirportArrival(em.find(Airport.class, flightDTO.getAirportArrival()));
-    			flight.setAirportDeparture(em.find(Airport.class, flightDTO.getAirportDeparture()));
-    			flight.setCompany(em.find(Company.class, flightDTO.getCompany()));
-    			flight.setName(flightDTO.getName());
-    			for(ClassPersonalizationDTO cp : flightDTO.getPossibleClassPersonalizations()) {
-    				ClassPersonalization classPersonalization  = em.find(ClassPersonalization.class, cp.getId());
-    				
-    				//Try to find with name of the class
-    				if(classPersonalization == null) {
-    					try {
-    						classPersonalization  = em.createNamedQuery("SELECT c FROM ClassPersonalization c WHERE c.class_=:class", ClassPersonalization.class).setParameter("class", cp.get_class()).getResultList().get(0);
-    					}catch(NullPointerException e) {}	//No problem
-    				}
-    				
-    				if(classPersonalization == null) {
-    					//Create new classPersonalization
-    					classPersonalization = new ClassPersonalization();
-    					classPersonalization.setClass_(cp.get_class());
-    				}
-    				flight.getClassPersonalizations().add(classPersonalization);
-    			}
-    			for(DatePersonalizationDTO dp : flightDTO.getPossibleDatePersonalizations()) {
-    				DatePersonalization datePersonalization  = em.find(DatePersonalization.class, dp.getId());
-    				
-    				if(datePersonalization == null) {
-    					//Create new classPersonalization
-    					datePersonalization = new DatePersonalization();
-    					datePersonalization.setDate(dp.getInitialDate());
-    					datePersonalization.setDuration(dp.getDuration());
-    				}
-    				flight.getDatePersonalizations().add(datePersonalization);
-    			}
-    			em.merge(flight);
-    		}
-    		
+    		saveFlight(flightDTO);
     	}
+    	if(baseProduct instanceof HotelDTO) {
+    		HotelDTO hotelDTO = (HotelDTO) baseProduct;
+    		saveHotel(hotelDTO);
+    	}
+    	if(baseProduct instanceof ExcursionDTO) {
+    		ExcursionDTO excursionDTO = (ExcursionDTO) baseProduct;
+    		saveExcursion(excursionDTO);
+    	}
+    }
+    
+    public void saveFlight(FlightDTO flightDTO)  throws NotValidBaseProductException {
+    	Flight flight = em.find(Flight.class, flightDTO.getId());
+		
+		if(flight == null) {
+			//The flight is not present. Built it from scratch
+			flight = new Flight();
+			flight.setAirportArrival(em.find(Airport.class, flightDTO.getAirportArrival()));
+			flight.setAirportDeparture(em.find(Airport.class, flightDTO.getAirportDeparture()));
+			flight.setCompany(em.find(Company.class, flightDTO.getCompany()));
+			flight.setName(flightDTO.getName());
+			for(ClassPersonalizationDTO cp : flightDTO.getPossibleClassPersonalizations()) {
+				ClassPersonalization classPersonalization  = em.find(ClassPersonalization.class, cp.getId());
+				
+				//Try to find with name of the class
+				if(classPersonalization == null) {
+					try {
+						classPersonalization  = em.createQuery("SELECT c FROM ClassPersonalization c WHERE c.class_=:class", ClassPersonalization.class).setParameter("class", cp.get_class()).getResultList().get(0);
+					}catch(IndexOutOfBoundsException e) {}	//No problem
+				}
+				
+				if(classPersonalization == null) {
+					//Create new classPersonalization
+					classPersonalization = new ClassPersonalization();
+					classPersonalization.setClass_(cp.get_class());
+				}
+				flight.getClassPersonalizations().add(classPersonalization);
+				
+				//Try to find the possibleClassPersonalization
+				PossibleClassPersonalizationFlight pcp = null;
+				try {
+					pcp = em.createQuery("SELECT p FROM PossibleClassPersonalizationFlight p WHERE p.flight=:flight AND p.classPersonalization=:class", PossibleClassPersonalizationFlight.class)
+																	.setParameter("flight", flight)
+																	.setParameter("class", classPersonalization)
+																	.getResultList().get(0);
+				} catch (IndexOutOfBoundsException e) {}	//No problem
+			
+				pcp = new PossibleClassPersonalizationFlight();
+				pcp.setFlight(flight);
+				
+				pcp.setClassPersonalization(classPersonalization);
+				
+				//Extract the price from the map
+				Double price = flightDTO.getPrices().get(cp);
+				
+				if(price == null)
+					throw new NotValidBaseProductException();
+				pcp.setPrice(new BigDecimal(price.doubleValue()));
+		
+				flight.addPossibleClassPersonalizationFlight(pcp);
+				
+			}
+			for(DatePersonalizationDTO dp : flightDTO.getPossibleDatePersonalizations()) {
+				DatePersonalization datePersonalization  = em.find(DatePersonalization.class, dp.getId());
+				
+				if(datePersonalization == null) {
+					//Create new classPersonalization
+					datePersonalization = new DatePersonalization();
+					datePersonalization.setDate(dp.getInitialDate());
+					datePersonalization.setDuration(dp.getDuration());
+				}
+				flight.getDatePersonalizations().add(datePersonalization);
+				
+				//Try to find the possibleClassPersonalization
+				PossibleDatePersonalizationFlight pdp = null;
+				try {
+					pdp = em.createQuery("SELECT p FROM PossibleDatePersonalizationFlight p WHERE p.flight=:flight AND p.datePersonalization=:date", PossibleDatePersonalizationFlight.class)
+																	.setParameter("fligh", flight)
+																	.setParameter("class", datePersonalization)
+																	.getResultList().get(0);
+				} catch (IndexOutOfBoundsException e) {}	//No problem
+			
+				pdp = new PossibleDatePersonalizationFlight();
+				pdp.setFlight(flight);
+				
+				//Extract the price from the map
+				Double price = flightDTO.getPrices().get(dp);
+				
+				if(price == null)
+					throw new NotValidBaseProductException();
+				pdp.setPrice(new BigDecimal(price.doubleValue()));
+				
+				pdp.setDatePersonalization(datePersonalization);
+				flight.addPossibleDatePersonalizationFlight(pdp);
+			}
+			em.persist(flight);
+		} else {
+			//The flight is already present in the DB. Update it
+			flight.setAirportArrival(em.find(Airport.class, flightDTO.getAirportArrival()));
+			flight.setAirportDeparture(em.find(Airport.class, flightDTO.getAirportDeparture()));
+			flight.setCompany(em.find(Company.class, flightDTO.getCompany()));
+			flight.setName(flightDTO.getName());
+			for(ClassPersonalizationDTO cp : flightDTO.getPossibleClassPersonalizations()) {
+				ClassPersonalization classPersonalization  = em.find(ClassPersonalization.class, cp.getId());
+				
+				//Try to find with name of the class
+				if(classPersonalization == null) {
+					try {
+						classPersonalization  = em.createQuery("SELECT c FROM ClassPersonalization c WHERE c.class_=:class", ClassPersonalization.class).setParameter("class", cp.get_class()).getResultList().get(0);
+					}catch(NullPointerException e) {}	//No problem
+				}
+				
+				if(classPersonalization == null) {
+					//Create new classPersonalization
+					classPersonalization = new ClassPersonalization();
+					classPersonalization.setClass_(cp.get_class());
+				}
+				flight.getClassPersonalizations().add(classPersonalization);
+				
+				//Try to find the possibleClassPersonalization
+				PossibleClassPersonalizationFlight pcp = null;
+				try {
+					pcp = em.createQuery("SELECT p FROM PossibleClassPersonalizationFlight p WHERE p.flight=:flight AND p.classPersonalization=:class", PossibleClassPersonalizationFlight.class)
+																	.setParameter("fligh", flight)
+																	.setParameter("class", classPersonalization)
+																	.getResultList().get(0);
+				} catch (NullPointerException e) {}	//No problem
+			
+				pcp = new PossibleClassPersonalizationFlight();
+				pcp.setFlight(flight);
+				pcp.setClassPersonalization(classPersonalization);
+				
+				//Extract the price from the map
+				Double price = flightDTO.getPrices().get(cp);
+				
+				if(price == null)
+					throw new NotValidBaseProductException();
+				pcp.setPrice(new BigDecimal(price.doubleValue()));
+				
+				flight.addPossibleClassPersonalizationFlight(pcp);
+				
+			}
+			for(DatePersonalizationDTO dp : flightDTO.getPossibleDatePersonalizations()) {
+				DatePersonalization datePersonalization  = em.find(DatePersonalization.class, dp.getId());
+				
+				if(datePersonalization == null) {
+					//Create new classPersonalization
+					datePersonalization = new DatePersonalization();
+					datePersonalization.setDate(dp.getInitialDate());
+					datePersonalization.setDuration(dp.getDuration());
+				}
+				flight.getDatePersonalizations().add(datePersonalization);
+				
+				//Try to find the possibleClassPersonalization
+				PossibleDatePersonalizationFlight pdp = null;
+				try {
+					pdp = em.createQuery("SELECT p FROM PossibleDatePersonalizationFlight p WHERE p.flight=:flight AND p.datePersonalization=:date", PossibleDatePersonalizationFlight.class)
+																	.setParameter("fligh", flight)
+																	.setParameter("class", datePersonalization)
+																	.getResultList().get(0);
+				} catch (NullPointerException e) {}	//No problem
+			
+				pdp = new PossibleDatePersonalizationFlight();
+				pdp.setFlight(flight);
+				pdp.setDatePersonalization(datePersonalization);
+				
+				//Extract the price from the map
+				Double price = flightDTO.getPrices().get(dp);
+				
+				if(price == null)
+					throw new NotValidBaseProductException();
+				pdp.setPrice(new BigDecimal(price.doubleValue()));
+				
+				flight.addPossibleDatePersonalizationFlight(pdp);
+			}
+			em.merge(flight);
+		}
+    }
+    public void saveHotel(HotelDTO hotelDTO)  throws NotValidBaseProductException {
+    	Hotel hotel = em.find(Hotel.class, hotelDTO.getId());
+		
+		if(hotel == null) {
+			//The hotel is not present. Built it from scratch
+			hotel = new Hotel();
+			hotel.setStars(hotelDTO.getStars());
+			
+			City city = null;
+			try {
+				city = em.createQuery("SELECT c FROM City c WHERE name=:name AND country=:country", City.class)
+											.setParameter("name", hotelDTO.getCity().getName())
+											.setParameter("country", hotelDTO.getCity().getCountry())
+											.getResultList().get(0);
+			} catch (NullPointerException e) {
+				throw new NotValidBaseProductException();
+			}
+			
+			hotel.setCity(city);
+			hotel.setName(hotelDTO.getName());
+			hotel.setCompany(em.find(Company.class, hotelDTO.getCompany()));
+			for(ClassPersonalizationDTO cp : hotelDTO.getPossibleClassPersonalizations()) {
+				ClassPersonalization classPersonalization  = em.find(ClassPersonalization.class, cp.getId());
+				
+				//Try to find with name of the class
+				if(classPersonalization == null) {
+					try {
+						classPersonalization  = em.createQuery("SELECT c FROM ClassPersonalization c WHERE c.class_=:class", ClassPersonalization.class).setParameter("class", cp.get_class()).getResultList().get(0);
+					}catch(NullPointerException e) {}	//No problem
+				}
+				
+				if(classPersonalization == null) {
+					//Create new classPersonalization
+					classPersonalization = new ClassPersonalization();
+					classPersonalization.setClass_(cp.get_class());
+				}
+				hotel.getClassPersonalizations().add(classPersonalization);
+			}
+			em.persist(hotel);
+		} else {
+			//The hotel is already present in the DB. Update it
+			hotel.setCompany(em.find(Company.class, hotelDTO.getCompany()));
+			hotel.setName(hotelDTO.getName());
+			hotel.setStars(hotelDTO.getStars());
+			City city = null;
+			try {
+				city = em.createQuery("SELECT c FROM City c WHERE name=:name AND country=:country", City.class)
+											.setParameter("name", hotelDTO.getCity().getName())
+											.setParameter("country", hotelDTO.getCity().getCountry())
+											.getResultList().get(0);
+			} catch (NullPointerException e) {
+				throw new NotValidBaseProductException();
+			}
+			
+			hotel.setCity(city);
+			for(ClassPersonalizationDTO cp : hotelDTO.getPossibleClassPersonalizations()) {
+				ClassPersonalization classPersonalization  = em.find(ClassPersonalization.class, cp.getId());
+				
+				//Try to find with name of the class
+				if(classPersonalization == null) {
+					try {
+						classPersonalization  = em.createQuery("SELECT c FROM ClassPersonalization c WHERE c.class_=:class", ClassPersonalization.class).setParameter("class", cp.get_class()).getResultList().get(0);
+					}catch(NullPointerException e) {}	//No problem
+				}
+				
+				if(classPersonalization == null) {
+					//Create new classPersonalization
+					classPersonalization = new ClassPersonalization();
+					classPersonalization.setClass_(cp.get_class());
+				}
+				hotel.getClassPersonalizations().add(classPersonalization);
+			}
+			em.merge(hotel);
+		}
+    }
+    public void saveExcursion(ExcursionDTO excursionDTO)  throws NotValidBaseProductException {
+    	Excursion excursion = em.find(Excursion.class, excursionDTO.getId());
+		
+		if(excursion == null) {
+			//The excursion is not present. Built it from scratch
+			excursion = new Excursion();
+			excursion.setCompany(em.find(Company.class, excursionDTO.getCompany()));
+			excursion.setName(excursionDTO.getName());
+			
+			//Search and set the city (that must exist)
+			City city = null;
+			try {
+				city = em.createQuery("SELECT c FROM City c WHERE name=:name AND country=:country", City.class)
+											.setParameter("name", excursionDTO.getCity().getName())
+											.setParameter("country", excursionDTO.getCity().getCountry())
+											.getResultList().get(0);
+			} catch (NullPointerException e) {
+				throw new NotValidBaseProductException();
+			}	
+			excursion.setCity(city);
+			
+			for(DatePersonalizationDTO dp : excursionDTO.getPossibleDatePersonalizations()) {
+				DatePersonalization datePersonalization  = em.find(DatePersonalization.class, dp.getId());
+				
+				if(datePersonalization == null) {
+					//Create new classPersonalization
+					datePersonalization = new DatePersonalization();
+					datePersonalization.setDate(dp.getInitialDate());
+					datePersonalization.setDuration(dp.getDuration());
+				}
+				excursion.getDatePersonalizations().add(datePersonalization);
+			}
+			em.persist(excursion);
+		} else {
+			//The excursion is already present in the DB. Update it
+			excursion.setCompany(em.find(Company.class, excursionDTO.getCompany()));
+			excursion.setName(excursionDTO.getName());
+			
+			City city = null;
+			try {
+				city = em.createQuery("SELECT c FROM City c WHERE name=:name AND country=:country", City.class)
+											.setParameter("name", excursionDTO.getCity().getName())
+											.setParameter("country", excursionDTO.getCity().getCountry())
+											.getResultList().get(0);
+			} catch (NullPointerException e) {
+				throw new NotValidBaseProductException();
+			}
+			
+			excursion.setCity(city);
+
+			for(DatePersonalizationDTO dp : excursionDTO.getPossibleDatePersonalizations()) {
+				DatePersonalization datePersonalization  = em.find(DatePersonalization.class, dp.getId());
+				
+				if(datePersonalization == null) {
+					//Create new classPersonalization
+					datePersonalization = new DatePersonalization();
+					datePersonalization.setDate(dp.getInitialDate());
+					datePersonalization.setDuration(dp.getDuration());
+				}
+				excursion.getDatePersonalizations().add(datePersonalization);
+			}
+			em.merge(excursion);
+		}
     }
     
     public void removeBaseProduct(BaseProductDTO baseProduct) throws NotValidBaseProductException {
