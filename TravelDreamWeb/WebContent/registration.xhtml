@@ -9,7 +9,41 @@
 <h:head>
 	<title>REGISTRATION</title>
 </h:head>
+<f:metadata>
+	<f:viewParam name="backurl" value="#{Registration.backurl}" />
+</f:metadata>
 <h:body>
-REGISTRATION
-    </h:body>
+	<h:form>
+		<p:panel header="Form di registrazione">
+			<h:panelGrid columns="3" id="regGrid">
+				<h:outputLabel for="email">Email:</h:outputLabel>
+				<p:inputText id="email" value="#{Registration.user.mail}" />
+				<p:message for="email" />
+
+				<h:outputLabel for="firstName">Nome:</h:outputLabel>
+				<p:inputText id="firstName" value="#{Registration.user.firstName}" />
+				<p:message for="firstName" />
+
+				<h:outputLabel for="lastName">Cognome:</h:outputLabel>
+				<p:inputText id="lastName" value="#{Registration.user.lastName}" />
+				<p:message for="lastName" />
+
+				<h:outputLabel for="password">Password:</h:outputLabel>
+				<p:password id="password" value="#{Registration.user.password}"
+					feedback="true" match="pwd2" label="Password" />
+				<p:message for="password" />
+
+				<h:outputLabel for="pwd2">Conferma Password:</h:outputLabel>
+				<p:password id="pwd2" label="Confirm Password"
+					value="#{Registration.user.password}" />
+			</h:panelGrid>
+			<p:commandButton value="Registrati" update="regGrid"
+				action="#{Registration.register()}" />
+
+		</p:panel>
+	</h:form>
+	<h:link value="Go back via link" outcome="#{Registration.backurl}">
+	</h:link>
+
+</h:body>
 </html>

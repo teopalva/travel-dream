@@ -10,8 +10,12 @@
 	<title>HOME</title>
 </h:head>
 <h:body>
+	<h:link outcome="#{Header.showLogin()}" value="LOGIN" />
+	<br> </br>
+
 	<h:form>
-		<p:panel id="panel" header="New Person" style="margin-bottom:10px;">
+		<p:panel id="panel" header="Sei autenticato come:"
+			style="margin-bottom:10px;">
 			<p:messages id="messages" />
 			<h:panelGrid columns="2">
 
@@ -22,7 +26,6 @@
 
 
 	</h:form>
-	<h:link outcome="login" value="LOGIN" />
 
 	<!-- ....................................................................... -->
 	<h:form>
@@ -43,5 +46,8 @@
 		<p:commandButton value="VAI!" action="#{Home.showEditPackage()}" />
 
 	</h:form>
+	<br></br>
+	<h:link outcome="user/pagina_generica" value="Vai a pagina TDC" />
+
 </h:body>
 </html>

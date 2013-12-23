@@ -13,6 +13,8 @@ public class UserDTO {
 	private String lastName;
 	private String group;
 	
+	public UserDTO() {}
+	
 	public UserDTO(User user) throws FieldNotPresentException {
 		this.mail = user.getMail();
 		this.password = null;
