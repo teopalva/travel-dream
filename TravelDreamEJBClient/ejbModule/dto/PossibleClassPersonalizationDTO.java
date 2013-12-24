@@ -15,5 +15,5 @@ abstract public class PossibleClassPersonalizationDTO extends PossiblePersonaliz
 	public void setClassId(int classId) {
 		this.classId = classId;
 	}
-	
+
 }

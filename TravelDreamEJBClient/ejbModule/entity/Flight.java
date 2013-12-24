@@ -1,18 +1,20 @@
 package entity;
 
 import java.io.Serializable;
-
-import javax.persistence.*;
-
-import entity.Airport;
-import entity.ClassPersonalization;
-import entity.Company;
-import entity.DatePersonalization;
-import entity.PersonalizedProductFlight;
-import entity.PossibleClassPersonalizationFlight;
-import entity.PossibleDatePersonalizationFlight;
-
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -58,14 +60,19 @@ public class Flight implements Serializable {
 	private List<PersonalizedProductFlight> personalizedProductFlights;
 
 	//bi-directional many-to-one association to PossibleClassPersonalizationFlight
-	@OneToMany(mappedBy="flight")
+	@OneToMany(mappedBy="flight", cascade = CascadeType.ALL)
 	private List<PossibleClassPersonalizationFlight> possibleClassPersonalizationFlights;
 
 	//bi-directional many-to-one association to PossibleDatePersonalizationFlight
-	@OneToMany(mappedBy="flight")
+	@OneToMany(mappedBy="flight", cascade = CascadeType.ALL)
 	private List<PossibleDatePersonalizationFlight> possibleDatePersonalizationFlights;
 
 	public Flight() {
+		classPersonalizations = new ArrayList<ClassPersonalization>();
+		datePersonalizations = new ArrayList<DatePersonalization>();
+		personalizedProductFlights = new ArrayList<PersonalizedProductFlight>();
+		possibleClassPersonalizationFlights = new ArrayList<PossibleClassPersonalizationFlight>();
+		possibleDatePersonalizationFlights = new ArrayList<PossibleDatePersonalizationFlight>();
 	}
 
 	public int getId() {

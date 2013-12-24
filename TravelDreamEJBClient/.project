@@ -3,6 +3,8 @@
 	<name>TravelDreamEJBClient</name>
 	<comment></comment>
 	<projects>
+		<project>TravelDreamEAR</project>
+		<project>TravelDreamEJB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

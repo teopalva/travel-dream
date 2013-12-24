@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -29,7 +30,7 @@ public class PossibleDatePersonalizationFlight implements Serializable {
 	private BigDecimal price;
 
 	//bi-directional many-to-one association to DatePersonalization
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="DatePersonalizationId", nullable=false)
 	private DatePersonalization datePersonalization;
 

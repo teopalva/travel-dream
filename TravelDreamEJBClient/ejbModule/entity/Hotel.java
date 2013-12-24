@@ -1,10 +1,20 @@
 package entity;
 
 import java.io.Serializable;
-
-import javax.persistence.*;
-
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -25,9 +35,9 @@ public class Hotel implements Serializable {
 	private int stars;
 	
 	//bi-directional many-to-one association to City
-		@ManyToOne
-		@JoinColumn(name="City")
-		private City city;
+	@ManyToOne
+	@JoinColumn(name="City")
+	private City city;
 
 	//bi-directional many-to-many association to ClassPersonalization
 	@ManyToMany(mappedBy="hotels", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -43,10 +53,13 @@ public class Hotel implements Serializable {
 	private List<PersonalizedProductHotel> personalizedProductHotels;
 
 	//bi-directional many-to-one association to PossibleClassPersonalizationHotel
-	@OneToMany(mappedBy="hotel")
+	@OneToMany(mappedBy="hotel", cascade = CascadeType.ALL)
 	private List<PossibleClassPersonalizationHotel> possibleClassPersonalizationHotels;
 
 	public Hotel() {
+		classPersonalizations = new ArrayList<ClassPersonalization>();
+		personalizedProductHotels = new ArrayList<PersonalizedProductHotel>();
+		possibleClassPersonalizationHotels = new ArrayList<PossibleClassPersonalizationHotel>();
 	}
 
 	public int getId() {

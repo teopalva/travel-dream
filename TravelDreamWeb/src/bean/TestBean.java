@@ -1,6 +1,7 @@
 package bean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -10,9 +11,15 @@ import javax.faces.bean.RequestScoped;
 import coreEJB.BaseProductEJBLocal;
 import coreEJB.PackageEJBLocal;
 import coreEJB.UserEJBLocal;
+import dto.BaseProductDTO;
 import dto.BuyingListItemDTO;
+import dto.CityDTO;
+import dto.ClassPersonalizationDTO;
+import dto.DatePersonalizationDTO;
+import dto.ExcursionDTO;
 import dto.FlightDTO;
 import dto.GiftListItemDTO;
+import dto.HotelDTO;
 import dto.PackageDTO;
 import dto.PersonalizedFlightDTO;
 import dto.PersonalizedProductDTO;
@@ -54,7 +61,7 @@ public class TestBean {
 		_package.setNumPeople(2);
 		_package.setReduction(0.1);
 		List<PersonalizedProductDTO> pp = new ArrayList<PersonalizedProductDTO>();
-		FlightDTO flight = new FlightDTO("Volo di test", "Alitalia", "LIN", "LIN", null, null);
+		FlightDTO flight = new FlightDTO("Volo di test", "Alitalia", "LIN", "LIN", null, null, null);
 		flight.setId(2);
 		PersonalizedFlightDTO pFlight = new PersonalizedFlightDTO();
 		pFlight.setFlight(flight);
@@ -74,13 +81,52 @@ public class TestBean {
 	}
 	
 	public void testBaseProductEJB() {
-		FlightDTO flight = new FlightDTO("Volo di test","Alitalia","MXP","MXP",null,null);
+		FlightDTO flight = new FlightDTO("Volo di test 2","Alitalia","MXP","MXP",null,null,null);
+		ClassPersonalizationDTO cp = new ClassPersonalizationDTO("Business con vodka");
+		flight.getPossibleClassPersonalizations().add(cp);
+		flight.getPrices().put(cp, new Double(10));
+		DatePersonalizationDTO dp = new DatePersonalizationDTO(100, new Date(114,0,13));
+		dp.setId(36);
+		flight.getPossibleDatePersonalizations().add(dp);
+		flight.getPrices().put(dp, new Double(20));
 		try {
 			baseProductEJB.saveBaseProduct(flight);
 		} catch (NotValidBaseProductException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		HotelDTO hotel = new HotelDTO("Hilton London","Hilton",5,null,new CityDTO("London","England"),null);
+		ClassPersonalizationDTO cp2 = new ClassPersonalizationDTO("Camera di lusso");
+		hotel.addPersonalization(cp2, 30.2);
+		try {
+			baseProductEJB.saveBaseProduct(hotel);
+		} catch (NotValidBaseProductException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ExcursionDTO excursion = new ExcursionDTO("Escursione di test","Alitalia",null,new CityDTO("Mantova","IT"),null);
+		DatePersonalizationDTO dp2 = new DatePersonalizationDTO(100, new Date(114,0,15));
+		excursion.addPersonalization(dp2, 50);
+		try {
+			baseProductEJB.saveBaseProduct(excursion);
+		} catch (NotValidBaseProductException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	public void testDeleteBaseProductEJB() {
+		//Delete all base products
+			List<BaseProductDTO> baseProducts = baseProductEJB.getAllBaseProducts();
+			for(BaseProductDTO b : baseProducts) {
+				try {
+					baseProductEJB.removeBaseProduct(b);
+				} catch (NotValidBaseProductException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 	}
 
 }
