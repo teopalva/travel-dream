@@ -28,6 +28,7 @@
 				</f:facet>
 			</p:ajaxStatus>  
 
+		<div id="loginForm">
 		<p:panel header="Accedi">
 				<h:form id="login"
 					onsubmit="document.getElementById('login').action='j_security_check';"
@@ -40,9 +41,10 @@
 						<p:commandButton id="submit" value="Vai!" ajax="false" />
 					</h:panelGrid>
 				</h:form>
+				
+							<center>Non sei registrato? <h:link outcome="#{Header.showRegistration()}" value="Registrati" /></center>
 			</p:panel>
-			Non sei registrato? <h:link outcome="#{Header.showRegistration()}"
-				value="Registrati" />
+		</div>
 		</h:body>
 	</ui:define>
 </ui:composition>
