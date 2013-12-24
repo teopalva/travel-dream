@@ -45,7 +45,12 @@
 
 				</h:panelGrid>
 
+<<<<<<< HEAD
+		<p:commandButton value="VAI!" action="#{Home.showEditPackage()}">				
+		</p:commandButton>
+=======
 				<p:commandButton value="VAI!" action="#{Home.showEditPackage()}" />
+>>>>>>> c6eb8f42f681a63459db444115301b54a7fd4211
 
 			</h:form>
 			<br></br>
