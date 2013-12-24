@@ -3,6 +3,7 @@ package bean;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 import dto.PackageDTO;
@@ -13,16 +14,19 @@ public class EditPackageBean {
     private String warningDiscount;
     private PackageDTO packageDto;
 
-    // @ManagedProperty(value = "#{OfferingsListBean.selectedPackage}")
-    // private PackageDTO selectedPackage;
+//    @ManagedProperty("#{OfferingsList.selectedPackage}")
+//    private PackageDTO selectedPackage;	// TODO use this
 
-    @ManagedProperty("#{OfferingsListBean.selectedPackageString}")
-    private Integer selectedPackageString; // TODO pass the entire package
+    @ManagedProperty("#{OfferingsList.selectedPackageString}")
+    private String selectedPackageString; 
+
+    public EditPackageBean() {
+	packageDto = new PackageDTO();
+    }
 
     @PostConstruct
     public void init() {
-	packageDto = new PackageDTO();
-	this.packageDto.setId(selectedPackageString);
+	this.packageDto.setName(selectedPackageString);
     }
 
     public void setPackageDto(PackageDTO p) {
@@ -33,11 +37,11 @@ public class EditPackageBean {
 	return packageDto;
     }
 
-    public Integer getselectedPackageString() {
+    public String getselectedPackageString() {
 	return selectedPackageString;
     }
 
-    public void setselectedPackageString(Integer s) {
+    public void setselectedPackageString(String s) {
 	selectedPackageString = s;
     }
 
