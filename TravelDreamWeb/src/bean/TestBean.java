@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import coreEJB.BaseProductEJBLocal;
+import coreEJB.InvitationEJBLocal;
 import coreEJB.PackageEJBLocal;
 import coreEJB.UserEJBLocal;
 import dto.BaseProductDTO;
@@ -20,11 +21,13 @@ import dto.ExcursionDTO;
 import dto.FlightDTO;
 import dto.GiftListItemDTO;
 import dto.HotelDTO;
+import dto.InvitationDTO;
 import dto.PackageDTO;
 import dto.PersonalizedFlightDTO;
 import dto.PersonalizedProductDTO;
 import dto.UserDTO;
 import exceptions.NotValidBaseProductException;
+import exceptions.NotValidInvitationException;
 import exceptions.NotValidPackageException;
 
 @ManagedBean(name="Test")
@@ -39,6 +42,9 @@ public class TestBean {
 	
 	@EJB
 	BaseProductEJBLocal baseProductEJB;
+	
+	@EJB
+	InvitationEJBLocal invitationEJB;
 	
 	public void testUserEJB() {
 		UserDTO user = userEJB.getUser("gianluca.91@gmail.com");
@@ -127,6 +133,24 @@ public class TestBean {
 					e.printStackTrace();
 				}
 			}
+	}
+	
+	public void testInvitationEJB() {
+		InvitationDTO invitation = new InvitationDTO();
+		UserDTO user = new UserDTO();
+		UserDTO inviter = new UserDTO();
+		PackageDTO _package = new PackageDTO();
+		_package.setId(2);
+		inviter.setMail("gianluca.91@gmail.com");
+		user.setMail("gianluca.91@gmail.com");
+		invitation.setInvited(user);
+		invitation.setInviter(inviter);
+		invitation.set_package(_package);
+		try {
+			invitationEJB.sendInvitation(invitation);
+		} catch (NotValidInvitationException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
