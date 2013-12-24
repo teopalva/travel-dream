@@ -5,8 +5,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import coreEJB.AuthenticationEJBLocal;
 import coreEJB.PackageEJBLocal;
@@ -28,11 +32,17 @@ public class OfferingsListBean {
     private Integer hotelStars = null;
     private String hotelClass = null;
 
-    @EJB
-    AuthenticationEJBLocal authenticationEJB;
+    /**
+     * The package selected by the user for editing
+     */
+    private PackageDTO selectedPackage = null;
+    private String selectedPackageString = "pacchetto non selezionato";
 
     @EJB
-    PackageEJBLocal packageEJB;
+    private AuthenticationEJBLocal authenticationEJB;
+
+    @EJB
+    private PackageEJBLocal packageEJB;
 
     // Bean properties:
 
@@ -100,6 +110,22 @@ public class OfferingsListBean {
 	return hotelStars;
     }
 
+    public void setSelectedPackage(PackageDTO p) {
+	selectedPackage = p;
+    }
+
+    public PackageDTO getSelectedPackage() {
+	return selectedPackage;
+    }
+
+    public void setSelectedPackageString(String p) {
+	selectedPackageString = p;
+    }
+
+    public String getSelectedPackageString() {
+	return selectedPackageString;
+    }
+
     // Action controller methods:
 
     /**
@@ -148,12 +174,26 @@ public class OfferingsListBean {
 
     }
 
-    public String showEditPackage() {
-	if (authenticationEJB.isTDC() || authenticationEJB.isTDE()) { // TODO if TDE...
-	    return "edit_package";
+    /**
+     * Shows edit_package page related to the selected package TODO: on click jsf has to set selectedPackage
+     * 
+     * @param p
+     *            the PackageDTO selected by the user
+     * @return URL String of the page
+     */
+    public String showEditPackage(String packageName) {
+	this.setSelectedPackageString(packageName);
+	if (authenticationEJB.isTDE()) {
+	    return "admin/edit_package?faces-redirect=true";
 	} else {
-	    return "login";
+	    return "user/edit_package?faces-redirect=true";
 	}
     }
 
+    /*
+     * public void showEditPackage2(ActionEvent actionEvent) { FacesContext.getCurrentInstance().addMessage(null, new
+     * FacesMessage(getSelectedPackageString())); }
+     * 
+     * public String showEditPackage3(int n) { System.out.println("Hai scelto: " + n); return null; }
+     */
 }

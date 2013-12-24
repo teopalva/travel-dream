@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>OFFERINGS LIST</title>
+</h:head>
+<ui:composition template="/WEB-INF/template/template.xhtml">
+	<ui:define name="content">
+		<h:body>
+	OFFERINGS_LIST TEST: choose your package from the list	
+	<h:form id="p1">
+				<h:commandButton id="actionButton" value="Pacchetto1:VAI!"
+					action="#{OfferingsList.showEditPackage('Pacchetto1')}">
+				</h:commandButton>
+			</h:form>
+
+			<h:form id="p2">
+				<h:commandButton id="actionButton" value="Pacchetto2:VAI!"
+					action="#{OfferingsList.showEditPackage('Pacchetto2')}">
+				</h:commandButton>
+			</h:form>
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

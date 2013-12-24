@@ -26,7 +26,7 @@
 		<web-resource-collection>
 			<web-resource-name>TDE Pages</web-resource-name>
 			<description />
-			<url-pattern>/admins/*</url-pattern>
+			<url-pattern>/admin/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>TDE</role-name>
@@ -36,7 +36,7 @@
 		<web-resource-collection>
 			<web-resource-name>TDC Pages</web-resource-name>
 			<description />
-			<url-pattern>/users/*</url-pattern>
+			<url-pattern>/user/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>TDC</role-name>

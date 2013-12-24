@@ -1,40 +1,49 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
- 
-    <h:head>
-        <title>LOGIN</title>
-    </h:head>
-    <h:body>
-  
-<p:ajaxStatus style="width:64px;height:64px;position:fixed;right:5px;bottom:5px">  
-    <f:facet name="start">  
-        <h:outputText value="LOADING" /> 
-    </f:facet>  
-  
-    <f:facet name="complete">  
-        <h:outputText value="FINISHED" />  
-    </f:facet>  
-</p:ajaxStatus>  
 
-REALM AUTHENTICATION
-<p:panel header="Login Form">
-		<h:form id="login"
-			onsubmit="document.getElementById('login').action='j_security_check';"
-			prependId="false">
-			<h:panelGrid columns="2">
-				<p:outputLabel for="j_username" value="Email" />
-				<p:inputText id="j_username" name="j_username" />
-				<p:outputLabel for="j_password" value="Password" />
-				<p:password id="j_password" name="j_password" />
-				<p:commandButton id="submit" value="Login" ajax="false" />
-			</h:panelGrid>
-		</h:form>
-	</p:panel>
-	Non sei registrato? <h:link outcome="registration" value="Registrati" />
-    </h:body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+	<ui:define name="content">
+		<h:head>
+			<title>Login</title>
+						 
+		</h:head>
+
+		<h:body>
+			
+			<p:ajaxStatus
+				style="width:64px;height:64px;position:fixed;right:5px;bottom:5px">
+				<f:facet name="start">
+					<h:outputText value="LOADING" />
+				</f:facet>
+
+				<f:facet name="complete">
+					<h:outputText value="FINISHED" />
+				</f:facet>
+			</p:ajaxStatus>  
+
+		<p:panel header="Accedi">
+				<h:form id="login"
+					onsubmit="document.getElementById('login').action='j_security_check';"
+					prependId="false">
+					<h:panelGrid columns="2">
+						<p:outputLabel for="j_username" value="Email" />
+						<p:inputText id="j_username" name="j_username" />
+						<p:outputLabel for="j_password" value="Password" />
+						<p:password id="j_password" name="j_password" />
+						<p:commandButton id="submit" value="Vai!" ajax="false" />
+					</h:panelGrid>
+				</h:form>
+			</p:panel>
+			Non sei registrato? <h:link outcome="#{Header.showRegistration()}"
+				value="Registrati" />
+		</h:body>
+	</ui:define>
+</ui:composition>
 </html>
