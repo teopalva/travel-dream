@@ -12,10 +12,10 @@ public class PossibleDatePersonalizationFlightPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "FlightId", insertable=false, updatable=false)
+	@Column(insertable=false, updatable=false)
 	private int flightId;
 
-	@Column(name = "DatePersonalizationId", insertable=false, updatable=false)
+	@Column(insertable=false, updatable=false)
 	private int datePersonalizationId;
 
 	public PossibleDatePersonalizationFlightPK() {

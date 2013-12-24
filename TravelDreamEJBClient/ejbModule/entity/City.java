@@ -38,6 +38,11 @@ public class City implements Serializable {
 
 	public City() {
 	}
+	
+	public City(String name, String country) {
+		this.name = name;
+		this.country = country;
+	}
 
 	public int getId() {
 		return this.id;

@@ -104,4 +104,29 @@ public class FlightDTO extends BaseProductDTO {
 		this.prices = prices;
 	}
 	
+	public void addPersonalization(PersonalizationDTO personalization, double price) {
+		if(personalization instanceof DatePersonalizationDTO) {
+			DatePersonalizationDTO d = (DatePersonalizationDTO)personalization;
+			this.possibleDatePersonalizations.add(d);
+			this.prices.put(d,new Double(price));
+		}
+		if(personalization instanceof ClassPersonalizationDTO) {
+			ClassPersonalizationDTO c = (ClassPersonalizationDTO)personalization;
+			this.possibleClassPersonalizations.add(c);
+			this.prices.put(c,new Double(price));
+		}
+	}
+	public void removePersonalization(PersonalizationDTO personalization) {
+		if(personalization instanceof DatePersonalizationDTO) {
+			DatePersonalizationDTO d = (DatePersonalizationDTO)personalization;
+			this.possibleDatePersonalizations.remove(d);
+			this.prices.remove(d);
+		}
+		if(personalization instanceof ClassPersonalizationDTO) {
+			ClassPersonalizationDTO c = (ClassPersonalizationDTO)personalization;
+			this.possibleClassPersonalizations.remove(c);
+			this.prices.remove(c);
+		}
+	}
+	
 }

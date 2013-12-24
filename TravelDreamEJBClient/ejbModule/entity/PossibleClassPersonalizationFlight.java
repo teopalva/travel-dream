@@ -28,7 +28,7 @@ public class PossibleClassPersonalizationFlight implements Serializable {
 	private BigDecimal price;
 
 	//bi-directional many-to-one association to ClassPersonalization
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ClassPersonalizationId", nullable=false)
 	private ClassPersonalization classPersonalization;
 

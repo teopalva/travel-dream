@@ -86,5 +86,21 @@ public class HotelDTO extends BaseProductDTO {
 	public void setPrices(Map<PersonalizationDTO, Double> prices) {
 		this.prices = prices;
 	}
+	
+	public void addPersonalization(PersonalizationDTO personalization, double price) {
+		if(personalization instanceof ClassPersonalizationDTO) {
+			ClassPersonalizationDTO c = (ClassPersonalizationDTO)personalization;
+			this.possibleClassPersonalizations.add(c);
+			this.prices.put(c,new Double(price));
+		}
+	}
+	public void removePersonalization(PersonalizationDTO personalization) {
+		if(personalization instanceof ClassPersonalizationDTO) {
+			ClassPersonalizationDTO c = (ClassPersonalizationDTO)personalization;
+			this.possibleClassPersonalizations.remove(c);
+			this.prices.remove(c);
+		}
+	}
+	
 
 }

@@ -27,7 +27,7 @@ public class PossibleDatePersonalizationExcursion implements Serializable {
 	private BigDecimal price;
 
 	//bi-directional many-to-one association to DatePersonalization
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="DatePersonalizationId", nullable=false)
 	private DatePersonalization datePersonalization;
 

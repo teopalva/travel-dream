@@ -33,7 +33,7 @@ public class Excursion implements Serializable {
 	private String name;
 	
 	//bi-directional many-to-one association to City
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="City")
 	private City city;
 
@@ -42,7 +42,7 @@ public class Excursion implements Serializable {
 	private List<DatePersonalization> datePersonalizations;
 
 	//bi-directional many-to-one association to Company
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="Company")
 	private Company company;
 

@@ -15,7 +15,7 @@ import java.math.BigDecimal;
  * 
  */
 @Entity
-@EntityListeners({PossibleClassPersonalizationHotel.class})
+@EntityListeners({PossibleClassPersonalizationHotelListener.class})
 @Table(name="POSSIBLE_CLASS_PERSONALIZATION_HOTEL")
 @NamedQuery(name="PossibleClassPersonalizationHotel.findAll", query="SELECT p FROM PossibleClassPersonalizationHotel p")
 public class PossibleClassPersonalizationHotel implements Serializable {
@@ -27,7 +27,7 @@ public class PossibleClassPersonalizationHotel implements Serializable {
 	private BigDecimal price;
 
 	//bi-directional many-to-one association to ClassPersonalization
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="ClassPersonalizationId", nullable=false)
 	private ClassPersonalization classPersonalization;
 

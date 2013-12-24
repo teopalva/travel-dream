@@ -41,17 +41,17 @@ public class Flight implements Serializable {
 	private List<DatePersonalization> datePersonalizations;
 
 	//bi-directional many-to-one association to Airport
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="Arrival")
 	private Airport airportArrival;
 
 	//bi-directional many-to-one association to Airport
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="Departure")
 	private Airport airportDeparture;
 
 	//bi-directional many-to-one association to Company
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="Company")
 	private Company company;
 

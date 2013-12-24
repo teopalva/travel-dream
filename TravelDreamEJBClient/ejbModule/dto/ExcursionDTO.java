@@ -64,5 +64,21 @@ public class ExcursionDTO extends BaseProductDTO {
 		this.prices = prices;
 	}
 	
+	public void addPersonalization(PersonalizationDTO personalization, double price) {
+		if(personalization instanceof DatePersonalizationDTO) {
+			DatePersonalizationDTO d = (DatePersonalizationDTO)personalization;
+			this.possibleDatePersonalizations.add(d);
+			this.prices.put(d,new Double(price));
+		}
+	}
+	public void removePersonalization(PersonalizationDTO personalization) {
+		if(personalization instanceof DatePersonalizationDTO) {
+			DatePersonalizationDTO d = (DatePersonalizationDTO)personalization;
+			this.possibleDatePersonalizations.remove(d);
+			this.prices.remove(d);
+		}
+	}
+	
+	
 	
 }

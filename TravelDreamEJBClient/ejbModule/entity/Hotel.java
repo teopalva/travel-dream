@@ -35,16 +35,16 @@ public class Hotel implements Serializable {
 	private int stars;
 	
 	//bi-directional many-to-one association to City
-		@ManyToOne
-		@JoinColumn(name="City")
-		private City city;
+	@ManyToOne
+	@JoinColumn(name="City")
+	private City city;
 
 	//bi-directional many-to-many association to ClassPersonalization
 	@ManyToMany(mappedBy="hotels", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<ClassPersonalization> classPersonalizations;
 
 	//bi-directional many-to-one association to Company
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="Company")
 	private Company company;
 

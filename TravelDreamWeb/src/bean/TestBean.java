@@ -11,11 +11,15 @@ import javax.faces.bean.RequestScoped;
 import coreEJB.BaseProductEJBLocal;
 import coreEJB.PackageEJBLocal;
 import coreEJB.UserEJBLocal;
+import dto.BaseProductDTO;
 import dto.BuyingListItemDTO;
+import dto.CityDTO;
 import dto.ClassPersonalizationDTO;
 import dto.DatePersonalizationDTO;
+import dto.ExcursionDTO;
 import dto.FlightDTO;
 import dto.GiftListItemDTO;
+import dto.HotelDTO;
 import dto.PackageDTO;
 import dto.PersonalizedFlightDTO;
 import dto.PersonalizedProductDTO;
@@ -92,7 +96,37 @@ public class TestBean {
 			e.printStackTrace();
 		}
 		
-		HotelDTO hotel = new HotelDTO()
+		HotelDTO hotel = new HotelDTO("Hilton London","Hilton",5,null,new CityDTO("London","England"),null);
+		ClassPersonalizationDTO cp2 = new ClassPersonalizationDTO("Camera di lusso");
+		hotel.addPersonalization(cp2, 30.2);
+		try {
+			baseProductEJB.saveBaseProduct(hotel);
+		} catch (NotValidBaseProductException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ExcursionDTO excursion = new ExcursionDTO("Escursione di test","Alitalia",null,new CityDTO("Mantova","IT"),null);
+		DatePersonalizationDTO dp2 = new DatePersonalizationDTO(100, new Date(114,0,15));
+		excursion.addPersonalization(dp2, 50);
+		try {
+			baseProductEJB.saveBaseProduct(excursion);
+		} catch (NotValidBaseProductException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	public void testDeleteBaseProductEJB() {
+		//Delete all base products
+			List<BaseProductDTO> baseProducts = baseProductEJB.getAllBaseProducts();
+			for(BaseProductDTO b : baseProducts) {
+				try {
+					baseProductEJB.removeBaseProduct(b);
+				} catch (NotValidBaseProductException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 	}
 
 }
