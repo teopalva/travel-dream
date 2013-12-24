@@ -26,6 +26,7 @@ import entity.Excursion;
 import entity.Flight;
 import entity.Hotel;
 import entity.PossibleClassPersonalizationFlight;
+import entity.PossibleClassPersonalizationHotel;
 import entity.PossibleDatePersonalizationFlight;
 import exceptions.NotValidBaseProductException;
 
@@ -55,11 +56,11 @@ public class BaseProductEJB implements BaseProductEJBLocal {
     	}
     	if(baseProduct instanceof HotelDTO) {
     		HotelDTO hotelDTO = (HotelDTO) baseProduct;
-    		saveHotel(hotelDTO);
+    		//saveHotel(hotelDTO);
     	}
     	if(baseProduct instanceof ExcursionDTO) {
     		ExcursionDTO excursionDTO = (ExcursionDTO) baseProduct;
-    		saveExcursion(excursionDTO);
+    		//saveExcursion(excursionDTO);
     	}
     }
     
@@ -87,8 +88,9 @@ public class BaseProductEJB implements BaseProductEJBLocal {
 					//Create new classPersonalization
 					classPersonalization = new ClassPersonalization();
 					classPersonalization.setClass_(cp.get_class());
+					flight.getClassPersonalizations().add(classPersonalization);
 				}
-				flight.getClassPersonalizations().add(classPersonalization);
+				
 				
 				//Try to find the possibleClassPersonalization
 				PossibleClassPersonalizationFlight pcp = null;
@@ -98,17 +100,21 @@ public class BaseProductEJB implements BaseProductEJBLocal {
 																	.setParameter("class", classPersonalization)
 																	.getResultList().get(0);
 				} catch (IndexOutOfBoundsException e) {}	//No problem
-			
-				pcp = new PossibleClassPersonalizationFlight();
-				pcp.setFlight(flight);
 				
-				pcp.setClassPersonalization(classPersonalization);
+				//create new
+				if(pcp == null) {
+					pcp = new PossibleClassPersonalizationFlight();
+					pcp.setFlight(flight);
+					
+					pcp.setClassPersonalization(classPersonalization);
+				}
 				
 				//Extract the price from the map
 				Double price = flightDTO.getPrices().get(cp);
 				
-				if(price == null)
+				if(price == null) {
 					throw new NotValidBaseProductException();
+				}
 				pcp.setPrice(new BigDecimal(price.doubleValue()));
 		
 				flight.addPossibleClassPersonalizationFlight(pcp);
@@ -129,22 +135,26 @@ public class BaseProductEJB implements BaseProductEJBLocal {
 				PossibleDatePersonalizationFlight pdp = null;
 				try {
 					pdp = em.createQuery("SELECT p FROM PossibleDatePersonalizationFlight p WHERE p.flight=:flight AND p.datePersonalization=:date", PossibleDatePersonalizationFlight.class)
-																	.setParameter("fligh", flight)
-																	.setParameter("class", datePersonalization)
+																	.setParameter("flight", flight)
+																	.setParameter("date", datePersonalization)
 																	.getResultList().get(0);
 				} catch (IndexOutOfBoundsException e) {}	//No problem
 			
-				pdp = new PossibleDatePersonalizationFlight();
-				pdp.setFlight(flight);
+				if(pdp == null) {
+					pdp = new PossibleDatePersonalizationFlight();
+					pdp.setFlight(flight);
+					pdp.setDatePersonalization(datePersonalization);
+				}
 				
 				//Extract the price from the map
 				Double price = flightDTO.getPrices().get(dp);
 				
-				if(price == null)
+				if(price == null) {
 					throw new NotValidBaseProductException();
+				}
 				pdp.setPrice(new BigDecimal(price.doubleValue()));
 				
-				pdp.setDatePersonalization(datePersonalization);
+				
 				flight.addPossibleDatePersonalizationFlight(pdp);
 			}
 			em.persist(flight);
@@ -154,6 +164,17 @@ public class BaseProductEJB implements BaseProductEJBLocal {
 			flight.setAirportDeparture(em.find(Airport.class, flightDTO.getAirportDeparture()));
 			flight.setCompany(em.find(Company.class, flightDTO.getCompany()));
 			flight.setName(flightDTO.getName());
+			
+			//Reset possible date and class personalizations
+			flight.setPossibleClassPersonalizationFlights(new ArrayList<PossibleClassPersonalizationFlight>());
+			flight.setPossibleDatePersonalizationFlights(new ArrayList<PossibleDatePersonalizationFlight>());
+			
+			
+			//PossibleClassPersonalization synchronization
+			List<PossibleClassPersonalizationFlight> oldClassList = em.createNativeQuery("SELECT * FROM POSSIBLE_CLASS_PERSONALIZATION_FLIGHT WHERE FlightId='"+flight.getId()+"'", PossibleClassPersonalizationFlight.class)
+																		.getResultList();
+			List<PossibleClassPersonalizationFlight> newClassList = new ArrayList<PossibleClassPersonalizationFlight>();	//contains all matched personalizations
+		
 			for(ClassPersonalizationDTO cp : flightDTO.getPossibleClassPersonalizations()) {
 				ClassPersonalization classPersonalization  = em.find(ClassPersonalization.class, cp.getId());
 				
@@ -161,39 +182,50 @@ public class BaseProductEJB implements BaseProductEJBLocal {
 				if(classPersonalization == null) {
 					try {
 						classPersonalization  = em.createQuery("SELECT c FROM ClassPersonalization c WHERE c.class_=:class", ClassPersonalization.class).setParameter("class", cp.get_class()).getResultList().get(0);
-					}catch(NullPointerException e) {}	//No problem
+					}catch(IndexOutOfBoundsException e) {}	//No problem
 				}
 				
 				if(classPersonalization == null) {
 					//Create new classPersonalization
 					classPersonalization = new ClassPersonalization();
 					classPersonalization.setClass_(cp.get_class());
+					flight.getClassPersonalizations().add(classPersonalization);
 				}
-				flight.getClassPersonalizations().add(classPersonalization);
+				
 				
 				//Try to find the possibleClassPersonalization
 				PossibleClassPersonalizationFlight pcp = null;
 				try {
 					pcp = em.createQuery("SELECT p FROM PossibleClassPersonalizationFlight p WHERE p.flight=:flight AND p.classPersonalization=:class", PossibleClassPersonalizationFlight.class)
-																	.setParameter("fligh", flight)
+																	.setParameter("flight", flight)
 																	.setParameter("class", classPersonalization)
 																	.getResultList().get(0);
-				} catch (NullPointerException e) {}	//No problem
-			
-				pcp = new PossibleClassPersonalizationFlight();
-				pcp.setFlight(flight);
-				pcp.setClassPersonalization(classPersonalization);
+				} catch (IndexOutOfBoundsException e) {}	//No problem
+				if(pcp == null) {
+					pcp = new PossibleClassPersonalizationFlight();
+					pcp.setFlight(flight);
+					pcp.setClassPersonalization(classPersonalization);
+				} else {
+					newClassList.add(pcp);
+				}
 				
 				//Extract the price from the map
 				Double price = flightDTO.getPrices().get(cp);
 				
-				if(price == null)
+				if(price == null) {
 					throw new NotValidBaseProductException();
+				}
 				pcp.setPrice(new BigDecimal(price.doubleValue()));
 				
 				flight.addPossibleClassPersonalizationFlight(pcp);
 				
 			}
+			
+			//PossibleDatePersonalization synchronization
+			List<PossibleDatePersonalizationFlight> oldDateList = em.createNativeQuery("SELECT * FROM POSSIBLE_DATE_PERSONALIZATION_FLIGHT WHERE FlightId='"+flight.getId()+"'", PossibleDatePersonalizationFlight.class)
+																		.getResultList();
+			List<PossibleDatePersonalizationFlight> newDateList = new ArrayList<PossibleDatePersonalizationFlight>();	//contains all matched personalizations
+			
 			for(DatePersonalizationDTO dp : flightDTO.getPossibleDatePersonalizations()) {
 				DatePersonalization datePersonalization  = em.find(DatePersonalization.class, dp.getId());
 				
@@ -209,48 +241,69 @@ public class BaseProductEJB implements BaseProductEJBLocal {
 				PossibleDatePersonalizationFlight pdp = null;
 				try {
 					pdp = em.createQuery("SELECT p FROM PossibleDatePersonalizationFlight p WHERE p.flight=:flight AND p.datePersonalization=:date", PossibleDatePersonalizationFlight.class)
-																	.setParameter("fligh", flight)
-																	.setParameter("class", datePersonalization)
+																	.setParameter("flight", flight)
+																	.setParameter("date", datePersonalization)
 																	.getResultList().get(0);
-				} catch (NullPointerException e) {}	//No problem
-			
-				pdp = new PossibleDatePersonalizationFlight();
-				pdp.setFlight(flight);
-				pdp.setDatePersonalization(datePersonalization);
+																	
+				} catch (IndexOutOfBoundsException e) {}	//No problem
+				if(pdp == null) {
+					pdp = new PossibleDatePersonalizationFlight();
+					pdp.setFlight(flight);
+					pdp.setDatePersonalization(datePersonalization);
+				} else {
+					newDateList.add(pdp);
+				}
 				
 				//Extract the price from the map
 				Double price = flightDTO.getPrices().get(dp);
 				
-				if(price == null)
+				if(price == null) {
 					throw new NotValidBaseProductException();
+				}
 				pdp.setPrice(new BigDecimal(price.doubleValue()));
 				
 				flight.addPossibleDatePersonalizationFlight(pdp);
 			}
+		
 			em.merge(flight);
+			
+			//Eliminate all date personalization no more associated
+			for(PossibleDatePersonalizationFlight p : oldDateList) {
+				if(!newDateList.contains(p))
+					em.remove(p);
+			}
+			
+			//Eliminate all class personalization no more associated
+			for(PossibleClassPersonalizationFlight c : oldClassList) {
+				if(!newClassList.contains(c))
+					em.remove(c);
+			}
+			em.flush();
 		}
     }
+   
     public void saveHotel(HotelDTO hotelDTO)  throws NotValidBaseProductException {
     	Hotel hotel = em.find(Hotel.class, hotelDTO.getId());
 		
 		if(hotel == null) {
 			//The hotel is not present. Built it from scratch
 			hotel = new Hotel();
-			hotel.setStars(hotelDTO.getStars());
+			hotel.setCompany(em.find(Company.class, hotelDTO.getCompany()));
+			hotel.setName(hotelDTO.getName());
 			
 			City city = null;
 			try {
-				city = em.createQuery("SELECT c FROM City c WHERE name=:name AND country=:country", City.class)
-											.setParameter("name", hotelDTO.getCity().getName())
-											.setParameter("country", hotelDTO.getCity().getCountry())
-											.getResultList().get(0);
-			} catch (NullPointerException e) {
+				city = em.createQuery("SELECT c FROM City c WHERE c.name=:name AND c.country=:country", City.class)
+							.setParameter("name", hotelDTO.getCity().getName())
+							.setParameter("country", hotelDTO.getCity().getCountry())
+							.getResultList()
+							.get(0);
+			} catch (IndexOutOfBoundsException e) {
 				throw new NotValidBaseProductException();
 			}
 			
 			hotel.setCity(city);
-			hotel.setName(hotelDTO.getName());
-			hotel.setCompany(em.find(Company.class, hotelDTO.getCompany()));
+			hotel.setStars(hotelDTO.getStars());
 			for(ClassPersonalizationDTO cp : hotelDTO.getPossibleClassPersonalizations()) {
 				ClassPersonalization classPersonalization  = em.find(ClassPersonalization.class, cp.getId());
 				
@@ -258,33 +311,71 @@ public class BaseProductEJB implements BaseProductEJBLocal {
 				if(classPersonalization == null) {
 					try {
 						classPersonalization  = em.createQuery("SELECT c FROM ClassPersonalization c WHERE c.class_=:class", ClassPersonalization.class).setParameter("class", cp.get_class()).getResultList().get(0);
-					}catch(NullPointerException e) {}	//No problem
+					}catch(IndexOutOfBoundsException e) {}	//No problem
 				}
 				
 				if(classPersonalization == null) {
 					//Create new classPersonalization
 					classPersonalization = new ClassPersonalization();
 					classPersonalization.setClass_(cp.get_class());
+					hotel.getClassPersonalizations().add(classPersonalization);
 				}
-				hotel.getClassPersonalizations().add(classPersonalization);
+				
+				
+				//Try to find the possibleClassPersonalization
+				PossibleClassPersonalizationHotel pcp = null;
+				try {
+					pcp = em.createQuery("SELECT p FROM PossibleClassPersonalizationHotel p WHERE p.hotel=:hotel AND p.classPersonalization=:class", PossibleClassPersonalizationHotel.class)
+																	.setParameter("hotel", hotel)
+																	.setParameter("class", classPersonalization)
+																	.getResultList().get(0);
+				} catch (IndexOutOfBoundsException e) {}	//No problem
+				
+				//create new
+				if(pcp == null) {
+					pcp = new PossibleClassPersonalizationHotel();
+					pcp.setHotel(hotel);
+					
+					pcp.setClassPersonalization(classPersonalization);
+				}
+				
+				//Extract the price from the map
+				Double price = hotelDTO.getPrices().get(cp);
+				
+				if(price == null) {
+					throw new NotValidBaseProductException();
+				}
+				pcp.setPrice(new BigDecimal(price.doubleValue()));
+		
+				hotel.addPossibleClassPersonalizationHotel(pcp);
+				
 			}
 			em.persist(hotel);
 		} else {
 			//The hotel is already present in the DB. Update it
 			hotel.setCompany(em.find(Company.class, hotelDTO.getCompany()));
 			hotel.setName(hotelDTO.getName());
-			hotel.setStars(hotelDTO.getStars());
+			
+			//Set the city
 			City city = null;
 			try {
-				city = em.createQuery("SELECT c FROM City c WHERE name=:name AND country=:country", City.class)
-											.setParameter("name", hotelDTO.getCity().getName())
-											.setParameter("country", hotelDTO.getCity().getCountry())
-											.getResultList().get(0);
-			} catch (NullPointerException e) {
+				city = em.createQuery("SELECT c FROM City c WHERE c.name=:name AND c.country=:country", City.class)
+							.setParameter("name", hotelDTO.getCity().getName())
+							.setParameter("country", hotelDTO.getCity().getCountry())
+							.getResultList()
+							.get(0);
+			} catch (IndexOutOfBoundsException e) {
 				throw new NotValidBaseProductException();
 			}
 			
 			hotel.setCity(city);
+			hotel.setStars(hotelDTO.getStars());	
+			
+			//PossibleClassPersonalization synchronization
+			List<PossibleClassPersonalizationHotel> oldClassList = em.createNativeQuery("SELECT * FROM POSSIBLE_CLASS_PERSONALIZATION_FLIGHT WHERE HotelId='"+hotel.getId()+"'", PossibleClassPersonalizationHotel.class)
+																		.getResultList();
+			List<PossibleClassPersonalizationHotel> newClassList = new ArrayList<PossibleClassPersonalizationHotel>();	//contains all matched personalizations
+		
 			for(ClassPersonalizationDTO cp : hotelDTO.getPossibleClassPersonalizations()) {
 				ClassPersonalization classPersonalization  = em.find(ClassPersonalization.class, cp.getId());
 				
@@ -292,81 +383,52 @@ public class BaseProductEJB implements BaseProductEJBLocal {
 				if(classPersonalization == null) {
 					try {
 						classPersonalization  = em.createQuery("SELECT c FROM ClassPersonalization c WHERE c.class_=:class", ClassPersonalization.class).setParameter("class", cp.get_class()).getResultList().get(0);
-					}catch(NullPointerException e) {}	//No problem
+					}catch(IndexOutOfBoundsException e) {}	//No problem
 				}
 				
 				if(classPersonalization == null) {
 					//Create new classPersonalization
 					classPersonalization = new ClassPersonalization();
 					classPersonalization.setClass_(cp.get_class());
+					hotel.getClassPersonalizations().add(classPersonalization);
 				}
-				hotel.getClassPersonalizations().add(classPersonalization);
+				
+				
+				//Try to find the possibleClassPersonalization
+				PossibleClassPersonalizationHotel pcp = null;
+				try {
+					pcp = em.createQuery("SELECT p FROM PossibleClassPersonalizationHotel p WHERE p.hotel=:hotel AND p.classPersonalization=:class", PossibleClassPersonalizationHotel.class)
+																	.setParameter("hotel", hotel)
+																	.setParameter("class", classPersonalization)
+																	.getResultList().get(0);
+				} catch (IndexOutOfBoundsException e) {}	//No problem
+				if(pcp == null) {
+					pcp = new PossibleClassPersonalizationHotel();
+					pcp.setHotel(hotel);
+					pcp.setClassPersonalization(classPersonalization);
+				} else {
+					newClassList.add(pcp);
+				}
+				
+				//Extract the price from the map
+				Double price = hotelDTO.getPrices().get(cp);
+				
+				if(price == null) {
+					throw new NotValidBaseProductException();
+				}
+				pcp.setPrice(new BigDecimal(price.doubleValue()));
+				
+				hotel.addPossibleClassPersonalizationHotel(pcp);
+				
 			}
 			em.merge(hotel);
-		}
-    }
-    public void saveExcursion(ExcursionDTO excursionDTO)  throws NotValidBaseProductException {
-    	Excursion excursion = em.find(Excursion.class, excursionDTO.getId());
-		
-		if(excursion == null) {
-			//The excursion is not present. Built it from scratch
-			excursion = new Excursion();
-			excursion.setCompany(em.find(Company.class, excursionDTO.getCompany()));
-			excursion.setName(excursionDTO.getName());
 			
-			//Search and set the city (that must exist)
-			City city = null;
-			try {
-				city = em.createQuery("SELECT c FROM City c WHERE name=:name AND country=:country", City.class)
-											.setParameter("name", excursionDTO.getCity().getName())
-											.setParameter("country", excursionDTO.getCity().getCountry())
-											.getResultList().get(0);
-			} catch (NullPointerException e) {
-				throw new NotValidBaseProductException();
-			}	
-			excursion.setCity(city);
-			
-			for(DatePersonalizationDTO dp : excursionDTO.getPossibleDatePersonalizations()) {
-				DatePersonalization datePersonalization  = em.find(DatePersonalization.class, dp.getId());
-				
-				if(datePersonalization == null) {
-					//Create new classPersonalization
-					datePersonalization = new DatePersonalization();
-					datePersonalization.setDate(dp.getInitialDate());
-					datePersonalization.setDuration(dp.getDuration());
-				}
-				excursion.getDatePersonalizations().add(datePersonalization);
+			//Eliminate all class personalization no more associated
+			for(PossibleClassPersonalizationHotel c : oldClassList) {
+				if(!newClassList.contains(c))
+					em.remove(c);
 			}
-			em.persist(excursion);
-		} else {
-			//The excursion is already present in the DB. Update it
-			excursion.setCompany(em.find(Company.class, excursionDTO.getCompany()));
-			excursion.setName(excursionDTO.getName());
-			
-			City city = null;
-			try {
-				city = em.createQuery("SELECT c FROM City c WHERE name=:name AND country=:country", City.class)
-											.setParameter("name", excursionDTO.getCity().getName())
-											.setParameter("country", excursionDTO.getCity().getCountry())
-											.getResultList().get(0);
-			} catch (NullPointerException e) {
-				throw new NotValidBaseProductException();
-			}
-			
-			excursion.setCity(city);
-
-			for(DatePersonalizationDTO dp : excursionDTO.getPossibleDatePersonalizations()) {
-				DatePersonalization datePersonalization  = em.find(DatePersonalization.class, dp.getId());
-				
-				if(datePersonalization == null) {
-					//Create new classPersonalization
-					datePersonalization = new DatePersonalization();
-					datePersonalization.setDate(dp.getInitialDate());
-					datePersonalization.setDuration(dp.getDuration());
-				}
-				excursion.getDatePersonalizations().add(datePersonalization);
-			}
-			em.merge(excursion);
+			em.flush();
 		}
     }
     

@@ -77,11 +77,12 @@ public class TestBean {
 	}
 	
 	public void testBaseProductEJB() {
-		FlightDTO flight = new FlightDTO("Volo di test","Alitalia","MXP","MXP",null,null, null);
-		ClassPersonalizationDTO cp = new ClassPersonalizationDTO("Economy");
+		FlightDTO flight = new FlightDTO("Volo di test 2","Alitalia","MXP","MXP",null,null,null);
+		ClassPersonalizationDTO cp = new ClassPersonalizationDTO("Business con vodka");
 		flight.getPossibleClassPersonalizations().add(cp);
 		flight.getPrices().put(cp, new Double(10));
-		DatePersonalizationDTO dp = new DatePersonalizationDTO(100, new Date(21,01,2013));
+		DatePersonalizationDTO dp = new DatePersonalizationDTO(100, new Date(114,0,13));
+		dp.setId(36);
 		flight.getPossibleDatePersonalizations().add(dp);
 		flight.getPrices().put(dp, new Double(20));
 		try {
@@ -90,6 +91,8 @@ public class TestBean {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		HotelDTO hotel = new HotelDTO()
 	}
 
 }
