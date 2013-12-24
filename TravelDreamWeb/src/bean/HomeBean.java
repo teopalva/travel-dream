@@ -2,13 +2,14 @@ package bean;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 import coreEJB.AuthenticationEJBLocal;
 import exceptions.EmptySelectionException;
 
 @ManagedBean(name = "Home")
-@ViewScoped
+@RequestScoped
 public class HomeBean {
 
 	/**
@@ -69,7 +70,7 @@ public class HomeBean {
 			System.out.printf("EmptySelectionException");
 			return null;
 		}
-		return "edit_package";
+		return "/user/edit_package?faces-redirect=true";
 	}
 
 	public String showOfferingsList() {

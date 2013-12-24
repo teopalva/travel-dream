@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import coreEJB.AuthenticationEJBLocal;
@@ -28,11 +29,18 @@ public class OfferingsListBean {
     private Integer hotelStars = null;
     private String hotelClass = null;
 
+    /**
+     * The package selected by the user for editing
+     */
+    private PackageDTO selectedPackage = null;
+    private Integer selectedPackageString = null;
+
+    
     @EJB
-    AuthenticationEJBLocal authenticationEJB;
+    private AuthenticationEJBLocal authenticationEJB;
 
     @EJB
-    PackageEJBLocal packageEJB;
+    private PackageEJBLocal packageEJB;
 
     // Bean properties:
 
@@ -100,6 +108,22 @@ public class OfferingsListBean {
 	return hotelStars;
     }
 
+    public void setSelectedPackage(PackageDTO p) {
+	selectedPackage = p;
+    }
+
+    public PackageDTO getSelectedPackage() {
+	return selectedPackage;
+    }
+    
+    public void setSelectedPackageString(Integer p) {
+	selectedPackageString = p;
+      }
+
+      public Integer getSelectedPackageString() {
+  	return selectedPackageString;
+      }
+
     // Action controller methods:
 
     /**
@@ -148,11 +172,20 @@ public class OfferingsListBean {
 
     }
 
-    public String showEditPackage() {
-	if (authenticationEJB.isTDC() || authenticationEJB.isTDE()) { // TODO if TDE...
-	    return "edit_package";
+    /**
+     * Shows edit_package page related to the selected package
+     * TODO: on click jsf has to set selectedPackage
+     * 
+     * @param p
+     *            the PackageDTO selected by the user
+     * @return URL String of the page
+     */
+    public String showEditPackage(Integer packageName) {
+	this.setSelectedPackageString(packageName);
+	if (authenticationEJB.isTDE()) {
+	    return "admin/edit_package";
 	} else {
-	    return "login";
+	    return "user/edit_package";
 	}
     }
 

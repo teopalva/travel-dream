@@ -7,9 +7,11 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>TEST</title>
+	<title>EDIT PACKAGE</title>
 </h:head>
 <h:body>
-		<h:link outcome="#{Header.showHome()}" value="Home" />
+	EDIT PACKAGE
+    The package you are editing is            
+    <p:outputLabel value="#{EditPackage.packageDto.id}" />
 </h:body>
 </html>

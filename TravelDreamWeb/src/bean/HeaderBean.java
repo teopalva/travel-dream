@@ -16,25 +16,25 @@ public class HeaderBean {
 
     public String showRegistration() {
 	String url = FacesContext.getCurrentInstance().getViewRoot().getViewId();
-	return "registration?faces-redirect=true&backurl=" + url;
+	return "/registration?faces-redirect=true&backurl=" + url;
 
     }
 
     public String showLogin() {
 //	String url = FacesContext.getCurrentInstance().getViewRoot().getViewId();
-	return "login";//?faces-redirect=true&backurl=" + url;
+	return "/login?faces-redirect=true";//?faces-redirect=true&backurl=" + url;
     }
 
     public String logout() {
 	FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-	return "home?faces-redirect=true";
+	return "/home?faces-redirect=true";
     }
 
     public String showHome() {
 	if (authEJB.isTDE()) {
 	    return "admin/panel";
 	} else {
-	    return "home";
+	    return "/home?faces-redirect=true";
 	}
     }
 
