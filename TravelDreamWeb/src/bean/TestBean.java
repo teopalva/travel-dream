@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import coreEJB.BaseProductEJBLocal;
+import coreEJB.BuyingListItemEJBLocal;
+import coreEJB.InvitationEJBLocal;
 import coreEJB.PackageEJBLocal;
 import coreEJB.UserEJBLocal;
 import dto.BaseProductDTO;
@@ -20,12 +22,16 @@ import dto.ExcursionDTO;
 import dto.FlightDTO;
 import dto.GiftListItemDTO;
 import dto.HotelDTO;
+import dto.InvitationDTO;
 import dto.PackageDTO;
 import dto.PersonalizedFlightDTO;
 import dto.PersonalizedProductDTO;
 import dto.UserDTO;
 import exceptions.NotValidBaseProductException;
+import exceptions.NotValidBuyingListException;
+import exceptions.NotValidInvitationException;
 import exceptions.NotValidPackageException;
+import exceptions.NotValidUserException;
 
 @ManagedBean(name="Test")
 @RequestScoped
@@ -39,6 +45,12 @@ public class TestBean {
 	
 	@EJB
 	BaseProductEJBLocal baseProductEJB;
+	
+	@EJB
+	InvitationEJBLocal invitationEJB;
+	
+	@EJB
+	BuyingListItemEJBLocal buyingListEJB;
 	
 	public void testUserEJB() {
 		UserDTO user = userEJB.getUser("gianluca.91@gmail.com");
@@ -128,5 +140,62 @@ public class TestBean {
 				}
 			}
 	}
+	
+	public void testInvitationEJB() {
+		InvitationDTO invitation = new InvitationDTO();
+		UserDTO user = new UserDTO();
+		UserDTO inviter = new UserDTO();
+		PackageDTO _package = new PackageDTO();
+		_package.setId(2);
+		inviter.setMail("gianluca.91@gmail.com");
+		user.setMail("gianluca.91@gmail.com");
+		invitation.setInvited(user);
+		invitation.setInviter(inviter);
+		invitation.set_package(_package);
+		try {
+			invitationEJB.sendInvitation(invitation);
+		} catch (NotValidInvitationException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void testBuyingListEJB() {
+		UserDTO user = new UserDTO();
+		user.setMail("gianluca.91@gmail.com");
+		PackageDTO _package = packageEJB.getOfferingPackages().get(0);
+		BuyingListItemDTO item = new BuyingListItemDTO(_package, new Date(115,1,1), false, false, user);
+		try {
+			buyingListEJB.saveBuyingListItem(item);
+		} catch (NotValidBuyingListException e) {
+			e.printStackTrace();
+		}
+		
+		item.setPaid(true);
+		item.setGifted(true);
+		
+		try {
+			buyingListEJB.saveBuyingListItem(item);
+		} catch (NotValidBuyingListException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void testDeleteBuyingListEJB() {
+		UserDTO user = userEJB.getUser("gianluca.91@gmail.com");
+		PackageDTO _package = null;
+		try {
+			_package = buyingListEJB.getBuyingListItem(user).get(0).get_package();
+		} catch (NotValidUserException e1) {
+			e1.printStackTrace();
+		}
+		BuyingListItemDTO item = new BuyingListItemDTO(_package, new Date(115,1,1), false, false, user);
+		try {
+			buyingListEJB.removeBuyingListItem(item);
+		} catch (NotValidBuyingListException e) {
+			e.printStackTrace();
+		}
+	}
+
+	
 
 }

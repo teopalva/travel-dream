@@ -16,4 +16,8 @@ abstract public class PossibleClassPersonalizationDTO extends PossiblePersonaliz
 		this.classId = classId;
 	}
 
+	@Override
+	public String toString() {
+		return "PossibleClassPersonalizationDTO [classId=" + classId + "]";
+	}
 }

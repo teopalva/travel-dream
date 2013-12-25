@@ -14,7 +14,6 @@ import dto.CityDTO;
 import dto.ClassPersonalizationDTO;
 import dto.DatePersonalizationDTO;
 import dto.ExcursionDTO;
-import dto.FieldNotPresentException;
 import dto.FlightDTO;
 import dto.HotelDTO;
 import dto.PossiblePersonalizationDTO;
@@ -30,6 +29,7 @@ import entity.PossibleClassPersonalizationFlight;
 import entity.PossibleClassPersonalizationHotel;
 import entity.PossibleDatePersonalizationExcursion;
 import entity.PossibleDatePersonalizationFlight;
+import exceptions.FieldNotPresentException;
 import exceptions.NotValidBaseProductException;
 
 /**
@@ -626,7 +626,7 @@ public class BaseProductEJB implements BaseProductEJBLocal {
     /**
      * Return a list of all base product and it garantee that all product has its own possible personalization
      */
-    public List<BaseProductDTO> getAllPersonalization() {
+    public List<BaseProductDTO> getAllPersonalizations() {
     	List<BaseProductDTO> list = new ArrayList<BaseProductDTO>();
     	
     	List<Flight> flights = em.createQuery("SELECT f FROM Flight f", Flight.class).getResultList();
@@ -655,7 +655,7 @@ public class BaseProductEJB implements BaseProductEJBLocal {
      * Return a list of all base product, but it not garantee that all product has its own personalization
      */
     public List<BaseProductDTO> getAllBaseProducts() {
-    	return getAllPersonalization();
+    	return getAllPersonalizations();
     }
     
     public List<CityDTO> getAllCities() {
@@ -676,7 +676,7 @@ public class BaseProductEJB implements BaseProductEJBLocal {
     	return list;
     }
     
-    public List<String> getAllAirposrts() {
+    public List<String> getAllAirports() {
     	List<Airport> airports = em.createQuery("SELECT a FROM Airport a", Airport.class).getResultList();
     	List<String> list = new ArrayList<String>();
     	for(Airport a : airports) {

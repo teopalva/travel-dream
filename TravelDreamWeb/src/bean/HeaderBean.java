@@ -17,12 +17,10 @@ public class HeaderBean {
     public String showRegistration() {
 	String url = FacesContext.getCurrentInstance().getViewRoot().getViewId();
 	return "/registration?faces-redirect=true&backurl=" + url;
-
     }
 
     public String showLogin() {
-//	String url = FacesContext.getCurrentInstance().getViewRoot().getViewId();
-	return "/login?faces-redirect=true";//?faces-redirect=true&backurl=" + url;
+	return "/login?faces-redirect=true";
     }
 
     public String logout() {
@@ -40,21 +38,21 @@ public class HeaderBean {
 
     public String showGiftList() {
 	if (authEJB.isTDC()) {
-	    return "gift_list";
+	    return "user/gift_list?faces-redirect=true";
 	} else
 	    return null;
     }
 
     public String showBuyingList() {
 	if (authEJB.isTDC()) {
-	    return "buying_list";
+	    return "user/buying_list?faces-redirect=true";
 	} else
 	    return null;
     }
 
     public String showInvitationList() {
 	if (authEJB.isTDC()) {
-	    return "invitation_list";
+	    return "user/invitation_list?faces-redirect=true";
 	} else
 	    return null;
     }

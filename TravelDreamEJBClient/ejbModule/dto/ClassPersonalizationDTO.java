@@ -48,7 +48,9 @@ public class ClassPersonalizationDTO extends PersonalizationDTO {
 			return false;
 		return true;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "ClassPersonalizationDTO [_class=" + _class + "]";
+	}
 }

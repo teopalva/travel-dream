@@ -17,4 +17,10 @@ public class PossibleDatePersonalizationFlightDTO extends
 	public void setFlightId(int flightId) {
 		this.flightId = flightId;
 	}
+
+	@Override
+	public String toString() {
+		return "PossibleDatePersonalizationFlightDTO [flightId=" + flightId
+				+ "]";
+	}
 }

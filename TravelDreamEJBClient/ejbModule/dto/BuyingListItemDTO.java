@@ -3,6 +3,7 @@ package dto;
 import java.util.Date;
 
 import entity.BuyingListItem;
+import exceptions.FieldNotPresentException;
 
 public class BuyingListItemDTO {
 	PackageDTO _package;
@@ -15,8 +16,8 @@ public class BuyingListItemDTO {
 		try {
 			this._package = new PackageDTO(item.get_package());
 			this.date = item.getDate();
-			this.gifted = item.getGifted()!=0;
-			this.paid = item.getPaid()!=0;
+			this.gifted = item.getGifted();
+			this.paid = item.getPaid();
 			this.user = new UserDTO(item.getUser());
 		}catch (NullPointerException e) {
 			throw new FieldNotPresentException();
@@ -62,8 +63,12 @@ public class BuyingListItemDTO {
 	public void setUser(UserDTO user) {
 		this.user = user;
 	}
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "BuyingListItemDTO [_package=" + _package + ", date=" + date
+				+ ", gifted=" + gifted + ", paid=" + paid + ", user=" + user
+				+ "]";
+	}
+	
 }
