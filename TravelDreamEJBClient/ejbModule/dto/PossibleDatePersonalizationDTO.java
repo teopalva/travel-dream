@@ -16,4 +16,8 @@ abstract public class PossibleDatePersonalizationDTO extends PossiblePersonaliza
 		this.dateId = dateId;
 	}
 
+	@Override
+	public String toString() {
+		return "PossibleDatePersonalizationDTO [dateId=" + dateId + "]";
+	}
 }

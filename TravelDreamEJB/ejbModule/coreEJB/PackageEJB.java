@@ -8,7 +8,6 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import dto.FieldNotPresentException;
 import dto.PackageDTO;
 import dto.PersonalizedExcursionDTO;
 import dto.PersonalizedFlightDTO;
@@ -25,6 +24,7 @@ import entity.Package;
 import entity.PersonalizedProductExcursion;
 import entity.PersonalizedProductFlight;
 import entity.PersonalizedProductHotel;
+import exceptions.FieldNotPresentException;
 import exceptions.NotValidPackageException;
 
 /**

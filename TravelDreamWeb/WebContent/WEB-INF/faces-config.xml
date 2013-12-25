@@ -4,13 +4,5 @@
     xmlns="http://xmlns.jcp.org/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     version="2.2">
-	<navigation-rule>
-		<display-name>home.xhtml</display-name>
-		<from-view-id>/home.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>showLogin</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
 
 </faces-config>

@@ -78,7 +78,10 @@ public class ExcursionDTO extends BaseProductDTO {
 			this.prices.remove(d);
 		}
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "ExcursionDTO [city=" + city + ", possibleDatePersonalizations="
+				+ possibleDatePersonalizations + ", prices=" + prices + "]";
+	}
 }

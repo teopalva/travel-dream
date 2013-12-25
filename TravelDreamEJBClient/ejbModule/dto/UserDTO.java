@@ -4,6 +4,7 @@ import java.util.List;
 
 import entity.Group;
 import entity.User;
+import exceptions.FieldNotPresentException;
 
 
 public class UserDTO {
@@ -69,5 +70,12 @@ public class UserDTO {
 	}
 	public void setGroup(String group) {
 		this.group = group;
+	}
+
+	@Override
+	public String toString() {
+		return "UserDTO [mail=" + mail + ", password=" + password
+				+ ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", group=" + group + "]";
 	}
 }

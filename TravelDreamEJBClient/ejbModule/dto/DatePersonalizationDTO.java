@@ -68,7 +68,10 @@ public class DatePersonalizationDTO extends PersonalizationDTO {
 			return false;
 		return true;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "DatePersonalizationDTO [duration=" + duration + ", date="
+				+ date + "]";
+	}
 }

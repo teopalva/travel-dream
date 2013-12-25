@@ -14,7 +14,6 @@ import dto.CityDTO;
 import dto.ClassPersonalizationDTO;
 import dto.DatePersonalizationDTO;
 import dto.ExcursionDTO;
-import dto.FieldNotPresentException;
 import dto.FlightDTO;
 import dto.HotelDTO;
 import dto.PossiblePersonalizationDTO;
@@ -30,6 +29,7 @@ import entity.PossibleClassPersonalizationFlight;
 import entity.PossibleClassPersonalizationHotel;
 import entity.PossibleDatePersonalizationExcursion;
 import entity.PossibleDatePersonalizationFlight;
+import exceptions.FieldNotPresentException;
 import exceptions.NotValidBaseProductException;
 
 /**

@@ -5,6 +5,7 @@ import java.util.List;
 
 import entity.User;
 import entity.Package;
+import exceptions.FieldNotPresentException;
 
 public class GiftListItemDTO {
 	PackageDTO _package;
@@ -38,7 +39,8 @@ public class GiftListItemDTO {
 	public void setUser(UserDTO user) {
 		this.user = user;
 	}
-	
-	
-
+	@Override
+	public String toString() {
+		return "GiftListItemDTO [_package=" + _package + ", user=" + user + "]";
+	}
 }

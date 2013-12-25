@@ -62,6 +62,11 @@ public class InvitationDTO {
 	public void setAccepted(boolean accepted) {
 		this.accepted = accepted;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "InvitationDTO [inviter=" + inviter + ", invited=" + invited
+				+ ", _package=" + _package + ", hash=" + hash + ", accepted="
+				+ accepted + "]";
+	}
 }

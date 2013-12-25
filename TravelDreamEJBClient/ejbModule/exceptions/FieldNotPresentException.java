@@ -1,4 +1,4 @@
-package dto;
+package exceptions;
 
 public class FieldNotPresentException extends Exception {
 }

@@ -17,6 +17,9 @@ public class PossibleClassPersonalizationHotelDTO extends
 	public void setHotelId(int hotelId) {
 		this.hotelId = hotelId;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "PossibleClassPersonalizationHotelDTO [hotelId=" + hotelId + "]";
+	}
 }

@@ -49,7 +49,22 @@
     	   			<f:ajax execute="panel" render="panel" />  
     	   		</h:commandButton>
   
+        </h:panelGrid> 
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test Buying list" actionListener="#{Test.testBuyingListEJB()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test Delete Buying list" actionListener="#{Test.testDeleteBuyingListEJB()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
         </h:panelGrid>  
+  
   
     </p:panel>  
   

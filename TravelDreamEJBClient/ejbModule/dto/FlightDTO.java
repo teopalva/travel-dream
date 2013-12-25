@@ -8,6 +8,7 @@ import java.util.Map;
 import entity.Flight;
 import entity.PossibleClassPersonalizationFlight;
 import entity.PossibleDatePersonalizationFlight;
+import exceptions.FieldNotPresentException;
 
 public class FlightDTO extends BaseProductDTO {
 	private String airportArrival;
@@ -128,5 +129,14 @@ public class FlightDTO extends BaseProductDTO {
 			this.prices.remove(c);
 		}
 	}
-	
+
+	@Override
+	public String toString() {
+		return "FlightDTO [airportArrival=" + airportArrival
+				+ ", airportDeparture=" + airportDeparture
+				+ ", possibleClassPersonalizations="
+				+ possibleClassPersonalizations
+				+ ", possibleDatePersonalizations="
+				+ possibleDatePersonalizations + ", prices=" + prices + "]";
+	}
 }

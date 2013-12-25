@@ -1,6 +1,7 @@
 package dto;
 
 import entity.PersonalizedProductFlight;
+import exceptions.FieldNotPresentException;
 
 
 public class PersonalizedFlightDTO extends PersonalizedProductDTO {
@@ -48,8 +49,11 @@ public class PersonalizedFlightDTO extends PersonalizedProductDTO {
 	public void setDatePersonalization(DatePersonalizationDTO datePersonalization) {
 		this.datePersonalization = datePersonalization;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "PersonalizedFlightDTO [flight=" + flight
+				+ ", classPersonalization=" + classPersonalization
+				+ ", datePersonalization=" + datePersonalization + "]";
+	}
 }

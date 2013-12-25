@@ -34,4 +34,10 @@ public class PersonalizedExcursionDTO extends PersonalizedProductDTO {
 	public void setDatePersonalization(DatePersonalizationDTO datePersonalization) {
 		this.datePersonalization = datePersonalization;
 	}
+
+	@Override
+	public String toString() {
+		return "PersonalizedExcursionDTO [excursion=" + excursion
+				+ ", datePersonalization=" + datePersonalization + "]";
+	}
 }
