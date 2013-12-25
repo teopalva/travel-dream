@@ -57,20 +57,26 @@ public class BuyingListItem implements Serializable {
 		this.date = date;
 	}
 
-	public byte getGifted() {
-		return this.gifted;
+	public boolean getGifted() {
+		return this.gifted != 0;
 	}
 
-	public void setGifted(byte gifted) {
-		this.gifted = gifted;
+	public void setGifted(boolean gifted) {
+		if(gifted)
+			this.gifted = new Byte("1");
+		else
+			this.gifted = new Byte("0");
 	}
 
-	public byte getPaid() {
-		return this.paid;
+	public boolean getPaid() {
+		return this.paid != 0;
 	}
 
-	public void setPaid(byte paid) {
-		this.paid = paid;
+	public void setPaid(boolean paid) {
+		if(paid)
+			this.paid = new Byte("1");
+		else
+			this.paid = new Byte("0");
 	}
 
 	public Package get_package() {

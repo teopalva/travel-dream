@@ -7,6 +7,7 @@ import java.util.Map;
 
 import entity.Hotel;
 import entity.PossibleClassPersonalizationHotel;
+import exceptions.FieldNotPresentException;
 
 public class HotelDTO extends BaseProductDTO {
 	private List<ClassPersonalizationDTO> possibleClassPersonalizations;
@@ -101,6 +102,11 @@ public class HotelDTO extends BaseProductDTO {
 			this.prices.remove(c);
 		}
 	}
-	
 
+	@Override
+	public String toString() {
+		return "HotelDTO [possibleClassPersonalizations="
+				+ possibleClassPersonalizations + ", stars=" + stars
+				+ ", city=" + city + ", prices=" + prices + "]";
+	}
 }

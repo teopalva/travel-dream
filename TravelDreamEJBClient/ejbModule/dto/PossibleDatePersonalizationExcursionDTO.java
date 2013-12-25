@@ -17,4 +17,10 @@ public class PossibleDatePersonalizationExcursionDTO extends
 	public void setExcursionId(int excursionId) {
 		this.excursionId = excursionId;
 	}
+
+	@Override
+	public String toString() {
+		return "PossibleDatePersonalizationExcursionDTO [excursionId="
+				+ excursionId + "]";
+	}
 }

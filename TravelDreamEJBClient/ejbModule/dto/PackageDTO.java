@@ -7,6 +7,7 @@ import entity.Package;
 import entity.PersonalizedProductExcursion;
 import entity.PersonalizedProductFlight;
 import entity.PersonalizedProductHotel;
+import exceptions.FieldNotPresentException;
 
 public class PackageDTO {
     private long imageId;
@@ -131,4 +132,11 @@ public class PackageDTO {
 	p = this.clone();
 	return p;
     }
+
+	@Override
+	public String toString() {
+		return "PackageDTO [imageId=" + imageId + ", numPeople=" + numPeople
+				+ ", name=" + name + ", reduction=" + reduction + ", id=" + id
+				+ ", personalizedProducts=" + personalizedProducts + "]";
+	}
 }

@@ -15,7 +15,9 @@ abstract public class PossiblePersonalizationDTO {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "PossiblePersonalizationDTO [price=" + price + "]";
+	}
 }

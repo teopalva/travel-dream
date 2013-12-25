@@ -1,6 +1,7 @@
 package dto;
 
 import entity.PersonalizedProductHotel;
+import exceptions.FieldNotPresentException;
 
 public class PersonalizedHotelDTO extends PersonalizedProductDTO {
 	private HotelDTO hotel;
@@ -35,5 +36,11 @@ public class PersonalizedHotelDTO extends PersonalizedProductDTO {
 
 	public void setClassPersonalization(ClassPersonalizationDTO classPersonalization) {
 		this.classPersonalization = classPersonalization;
+	}
+
+	@Override
+	public String toString() {
+		return "PersonalizedHotelDTO [hotel=" + hotel
+				+ ", classPersonalization=" + classPersonalization + "]";
 	}
 }

@@ -12,12 +12,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import dto.BuyingListItemDTO;
-import dto.FieldNotPresentException;
 import dto.GiftListItemDTO;
 import dto.UserDTO;
 import entity.BuyingListItem;
 import entity.Group;
 import entity.User;
+import exceptions.FieldNotPresentException;
 
 /**
  * Session Bean implementation class UserEJB
