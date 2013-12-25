@@ -5,13 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-
 import coreEJB.AuthenticationEJBLocal;
 import coreEJB.PackageEJBLocal;
 import dto.PackageDTO;
@@ -171,11 +166,11 @@ public class OfferingsListBean {
     }
 
     public void dropDownFilter() {
-
+	// TODO
     }
 
     /**
-     * Shows edit_package page related to the selected package TODO: on click jsf has to set selectedPackage
+     * Shows edit_package page related to the selected package
      * 
      * @param p
      *            the PackageDTO selected by the user

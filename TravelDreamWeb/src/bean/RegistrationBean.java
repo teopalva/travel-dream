@@ -11,7 +11,7 @@ import dto.UserDTO;
 @RequestScoped
 public class RegistrationBean {
     private String group = "TDC";
-    private String backurl = "home";
+    private String backurl = "/home?faces-redirect=true";
     private UserDTO user;
 
     @EJB
@@ -49,7 +49,6 @@ public class RegistrationBean {
 
     private String back() {
 	String URL = backurl + "?faces-redirect=true";
-	System.out.printf(URL);
 	return URL;
     }
 
