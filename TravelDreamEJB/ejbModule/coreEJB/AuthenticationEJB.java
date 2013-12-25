@@ -55,7 +55,7 @@ public class AuthenticationEJB implements AuthenticationEJBLocal {
     	return false;
     }
     
-    private UserDTO getAuthenticatedUser() throws NotAuthenticatedException {
+    public UserDTO getAuthenticatedUser() throws NotAuthenticatedException {
     	String mail = context.getCallerPrincipal().getName();
     	User user = null;
     	UserDTO userDTO = null;
