@@ -176,8 +176,18 @@ public class OfferingsListBean {
      *            the PackageDTO selected by the user
      * @return URL String of the page
      */
-    public String showEditPackage(String packageName) {
-	this.setSelectedPackageString(packageName);
+    public String showEditPackage(PackageDTO p) {
+	selectedPackage = p;
+	packageEJB.setTmpPackage(selectedPackage);
+	if (authenticationEJB.isTDE()) {
+	    return "admin/edit_package?faces-redirect=true";
+	} else {
+	    return "user/edit_package?faces-redirect=true";
+	}
+    }
+
+    public String showEditPackageByString(String packageName) {
+	selectedPackageString = packageName;
 	if (authenticationEJB.isTDE()) {
 	    return "admin/edit_package?faces-redirect=true";
 	} else {

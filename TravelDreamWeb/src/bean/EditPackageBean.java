@@ -8,22 +8,21 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 
 import coreEJB.BaseProductEJBLocal;
+import coreEJB.PackageEJBLocal;
 import dto.BaseProductDTO;
 import dto.ExcursionDTO;
 import dto.FlightDTO;
 import dto.HotelDTO;
 import dto.PackageDTO;
-import dto.PersonalizedHotelDTO;
 
 @ManagedBean(name = "EditPackage")
 @ViewScoped
 public class EditPackageBean {
     private String warningDiscount;
-    private PackageDTO packageDto;
+    private PackageDTO selectedPackage;
 
     private String departurePlace = null;
     private String arrivalPlace = null;
@@ -38,6 +37,9 @@ public class EditPackageBean {
     @EJB
     private BaseProductEJBLocal baseProductEJB;
 
+    @EJB
+    private PackageEJBLocal packageEJB;
+
     // @ManagedProperty("#{OfferingsList.selectedPackage}")
     // private PackageDTO selectedPackage; // TODO use this
 
@@ -45,7 +47,8 @@ public class EditPackageBean {
     private String selectedPackageString;
 
     public EditPackageBean() {
-	packageDto = new PackageDTO();
+	selectedPackage = new PackageDTO();
+	// selectedPackage = packageEJB.getTmpPackage(); //TODO activate
 	flights = new ArrayList<FlightDTO>();
 	hotels = new ArrayList<HotelDTO>();
 	excursions = new ArrayList<ExcursionDTO>();
@@ -53,17 +56,17 @@ public class EditPackageBean {
 
     @PostConstruct
     public void init() {
-	this.packageDto.setName(selectedPackageString);
+	this.selectedPackage.setName(selectedPackageString);
     }
 
     // Bean properties:
 
     public void setPackageDto(PackageDTO p) {
-	packageDto = p;
+	selectedPackage = p;
     }
 
     public PackageDTO getPackageDto() {
-	return packageDto;
+	return selectedPackage;
     }
 
     public String getselectedPackageString() {
@@ -136,6 +139,7 @@ public class EditPackageBean {
 		    if ((departurePlace.equals(((FlightDTO) bp).getAirportDeparture())) && arrivalPlace.equals(((FlightDTO) bp).getAirportArrival())
 		    // && departureDate.equals(((FlightDTO) bp).g) TODO fix with personalization date
 		    ) {
+			flights.add((FlightDTO) bp);
 		    }
 		}
 		if (bp instanceof ExcursionDTO) {
@@ -150,6 +154,7 @@ public class EditPackageBean {
     }
 
     public String showCheckout() {
+	packageEJB.setTmpPackage(selectedPackage);
 	return "user/checkout?faces-redirect=true";
     }
 }
