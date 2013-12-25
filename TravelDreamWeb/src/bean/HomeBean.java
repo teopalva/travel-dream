@@ -74,8 +74,7 @@ public class HomeBean {
 	}
 
 	public String showOfferingsList() {
-		// now it points to test, in next version please update to offerings_list - edited by cesco - i need al the calls to #class.method. thanks
-		return "offerings_list_test";
+		return "offerings_list";
 	}
 
 }
