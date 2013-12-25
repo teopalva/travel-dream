@@ -6,13 +6,43 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:body>
-<div id="floatedLeft">
-<h:link outcome="#{Header.showHome()}">
-<h:graphicImage library="images" name="logo.png" height="60"/>
-</h:link>
-</div>
-<div id="floatedRight">Login | Registrati</div>
-			
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <h:graphicImage library="images" name="logo.png" height="50"/>&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><h:link outcome="#{Header.showHome()}" value="Home" /></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Visualizza liste <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Lista regali</a></li>
+                <li><a href="#">Lista inviti</a></li>
+                <li><a href="#">Lista ordini</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Utente</li>
+                <li><h:link outcome="user/pagina_generica" value="Pagina utente" /></li>
+
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><h:link outcome="#{Header.showLogin()}" value="Login" /></li>
+            <li><h:link outcome="#{Header.showRegistration()}" value="Registrati" /></li>
+            <!-- <li class="active"><a href="./">Fixed top</a></li> -->
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
 </h:body>
 </html>
