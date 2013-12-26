@@ -21,23 +21,24 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><h:link outcome="#{Header.showHome()}" value="Home" /></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Visualizza liste <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pannello amministratore<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Lista regali</a></li>
-                <li><a href="#">Lista inviti</a></li>
-                <li><a href="#">Lista ordini</a></li>
+                <li class="dropdown-header">Prodotti base</li>
+                <li><a href="#">Creazione prodotto base</a></li>
+                <li><a href="#">Ricerca prodotti base</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Utente</li>
-                <li><h:link outcome="user/pagina_generica" value="Pagina utente" /></li>
-
+                <li class="dropdown-header">Pacchetti</li>
+                <li><a href="#">Creazione pacchetto</a></li>
+                <li><a href="#">Ricerca pacchetti</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Ordini</li>
+                <li><a href="#">Gestione ordini</a></li>
               </ul>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><h:link outcome="#{Header.showLogin()}" value="Login" /></li>
-            <li><h:link outcome="#{Header.showRegistration()}" value="Registrati" /></li>
+            <li><h:link outcome="#{Header.logout()}" value="Logout" /></li>
             <!-- <li class="active"><a href="./">Fixed top</a></li> -->
           </ul>
         </div><!--/.nav-collapse -->

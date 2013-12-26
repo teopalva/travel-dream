@@ -221,4 +221,10 @@ public class OfferingsListBean {
      * 
      * public String showEditPackage3(int n) { System.out.println("Hai scelto: " + n); return null; }
      */
+    
+    public Date getCurrentDate() {
+    	Date date = new Date();
+    	return date;
+    }
+    
 }
