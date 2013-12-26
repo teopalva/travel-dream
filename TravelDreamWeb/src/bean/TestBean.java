@@ -24,7 +24,9 @@ import dto.GiftListItemDTO;
 import dto.HotelDTO;
 import dto.InvitationDTO;
 import dto.PackageDTO;
+import dto.PersonalizedExcursionDTO;
 import dto.PersonalizedFlightDTO;
+import dto.PersonalizedHotelDTO;
 import dto.PersonalizedProductDTO;
 import dto.UserDTO;
 import exceptions.NotValidBaseProductException;
@@ -194,6 +196,37 @@ public class TestBean {
 		} catch (NotValidBuyingListException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void testPrice() {
+		List<PackageDTO> list = packageEJB.getOfferingPackages();
+		System.out.print(list.size());
+		PackageDTO _package = new PackageDTO();
+		_package.setName("Offerta test");
+		_package.setNumPeople(2);
+		_package.setReduction(0.1);
+		List<PersonalizedProductDTO> pp = new ArrayList<PersonalizedProductDTO>();
+		List<BaseProductDTO> baseProducts = baseProductEJB.getAllBaseProducts();
+		for(BaseProductDTO b : baseProducts) {
+			if(b instanceof HotelDTO) {
+				PersonalizedHotelDTO ph = new PersonalizedHotelDTO((HotelDTO) b);
+				ph.setClassPersonalization(ph.getHotel().getPossibleClassPersonalizations().get(0));
+				pp.add(ph);
+				
+			}
+			if(b instanceof FlightDTO) {
+				PersonalizedFlightDTO pf = new PersonalizedFlightDTO((FlightDTO) b);
+				pf.setClassPersonalization(pf.getFlight().getPossibleClassPersonalizations().get(0));
+				pp.add(pf);
+			}
+			if(b instanceof ExcursionDTO) {
+				PersonalizedExcursionDTO pe = new PersonalizedExcursionDTO((ExcursionDTO) b);
+				pe.setDatePersonalization(pe.getExcursion().getPossibleDatePersonalizations().get(0));
+				pp.add(pe);
+			}
+		}
+		_package.setPersonalizedProducts(pp);
+		System.out.println("Prezzo pacchetto: "+_package.getPrice());
 	}
 
 	

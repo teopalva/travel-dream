@@ -40,4 +40,11 @@ public class PersonalizedExcursionDTO extends PersonalizedProductDTO {
 		return "PersonalizedExcursionDTO [excursion=" + excursion
 				+ ", datePersonalization=" + datePersonalization + "]";
 	}
+	
+	public double getPrice() {
+		double price = 0;
+		if(datePersonalization != null)
+			price += excursion.getPrices().get(datePersonalization);
+		return price;
+	}
 }

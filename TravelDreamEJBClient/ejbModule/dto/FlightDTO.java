@@ -139,4 +139,38 @@ public class FlightDTO extends BaseProductDTO {
 				+ ", possibleDatePersonalizations="
 				+ possibleDatePersonalizations + ", prices=" + prices + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+				+ ((airportArrival == null) ? 0 : airportArrival.hashCode());
+		result = prime
+				* result
+				+ ((airportDeparture == null) ? 0 : airportDeparture.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FlightDTO other = (FlightDTO) obj;
+		if (airportArrival == null) {
+			if (other.airportArrival != null)
+				return false;
+		} else if (!airportArrival.equals(other.airportArrival))
+			return false;
+		if (airportDeparture == null) {
+			if (other.airportDeparture != null)
+				return false;
+		} else if (!airportDeparture.equals(other.airportDeparture))
+			return false;
+		return true;
+	}
 }

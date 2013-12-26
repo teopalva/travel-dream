@@ -57,80 +57,88 @@ public class PackageDTO {
     }
 
     public PackageDTO(long imageId, int numPeople, String name, double reduction, List<PersonalizedProductDTO> personalizedProducts) {
-	super();
-	this.id = -1;
-	this.imageId = imageId;
-	this.numPeople = numPeople;
-	this.name = name;
-	this.reduction = reduction;
-	this.personalizedProducts = personalizedProducts;
+    	super();
+    	this.id = -1;
+    	this.imageId = imageId;
+    	this.numPeople = numPeople;
+    	this.name = name;
+    	this.reduction = reduction;
+    	this.personalizedProducts = personalizedProducts;
     }
 
     public long getImageId() {
-	return imageId;
+    	return imageId;
     }
 
     public void setImageId(long imageId) {
-	this.imageId = imageId;
+    	this.imageId = imageId;
     }
 
     public int getNumPeople() {
-	return numPeople;
+    	return numPeople;
     }
 
     public void setNumPeople(int numPeople) {
-	this.numPeople = numPeople;
+    	this.numPeople = numPeople;
     }
 
     public String getName() {
-	return name;
+    	return name;
     }
 
     public void setName(String name) {
-	this.name = name;
+    	this.name = name;
     }
 
     public double getReduction() {
-	return reduction;
+    	return reduction;
     }
 
     public void setReduction(double reduction) {
-	this.reduction = reduction;
+    	this.reduction = reduction;
     }
 
     public List<PersonalizedProductDTO> getPersonalizedProducts() {
-	return personalizedProducts;
+    	return personalizedProducts;
     }
 
     public void setPersonalizedProducts(List<PersonalizedProductDTO> personalizedProducts) {
-	this.personalizedProducts = personalizedProducts;
+    	this.personalizedProducts = personalizedProducts;
     }
 
     public void addPersonalizedProduct(PersonalizedProductDTO product) {
-	personalizedProducts.add(product);
+    	personalizedProducts.add(product);
     }
 
     /**
      * Check if the package is valid or not
      */
     public boolean isValid() {
-	// TODO: implement the check
-	return false;
+    	// TODO: implement the check
+    	return false;
     }
 
     public int getId() {
-	return id;
+    	return id;
     }
 
     public void setId(int id) {
-	this.id = id;
+    	this.id = id;
+    }
+    
+    public double getPrice() {
+    	double price = 0;
+    	for(PersonalizedProductDTO p : personalizedProducts) {
+    		price += p.getPrice();
+    	}
+    	return price;
     }
 
     @Override
     public PackageDTO clone() {
-	PackageDTO p = new PackageDTO();
-	p = this.clone();
-	return p;
+    	PackageDTO p = new PackageDTO();
+    	p = this.clone();
+    	return p;
     }
 
 	@Override

@@ -19,6 +19,12 @@ public class PersonalizedFlightDTO extends PersonalizedProductDTO {
 			this.datePersonalization = new DatePersonalizationDTO(flight.getDatePersonalization());
 		}
 	}
+	
+	public PersonalizedFlightDTO(FlightDTO flight) {
+		super();
+		this.flight = flight;
+		this.id = -1;
+	}
 
 	public PersonalizedFlightDTO() {
 		super();
@@ -55,5 +61,14 @@ public class PersonalizedFlightDTO extends PersonalizedProductDTO {
 		return "PersonalizedFlightDTO [flight=" + flight
 				+ ", classPersonalization=" + classPersonalization
 				+ ", datePersonalization=" + datePersonalization + "]";
+	}
+	
+	public double getPrice() {
+		double price = 0;
+		if(classPersonalization != null)
+			price += flight.getPrices().get(classPersonalization);
+		if(datePersonalization != null)
+			price += flight.getPrices().get(datePersonalization);
+		return price;
 	}
 }
