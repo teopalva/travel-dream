@@ -10,6 +10,7 @@ import javax.faces.bean.RequestScoped;
 
 import coreEJB.BaseProductEJBLocal;
 import coreEJB.BuyingListItemEJBLocal;
+import coreEJB.GiftListItemEJBLocal;
 import coreEJB.InvitationEJBLocal;
 import coreEJB.PackageEJBLocal;
 import coreEJB.UserEJBLocal;
@@ -31,6 +32,7 @@ import dto.PersonalizedProductDTO;
 import dto.UserDTO;
 import exceptions.NotValidBaseProductException;
 import exceptions.NotValidBuyingListException;
+import exceptions.NotValidGiftListItemException;
 import exceptions.NotValidInvitationException;
 import exceptions.NotValidPackageException;
 import exceptions.NotValidUserException;
@@ -53,6 +55,9 @@ public class TestBean {
 	
 	@EJB
 	BuyingListItemEJBLocal buyingListEJB;
+	
+	@EJB
+	GiftListItemEJBLocal giftListEJB;
 	
 	public void testUserEJB() {
 		UserDTO user = userEJB.getUser("gianluca.91@gmail.com");
@@ -227,6 +232,22 @@ public class TestBean {
 		}
 		_package.setPersonalizedProducts(pp);
 		System.out.println("Prezzo pacchetto: "+_package.getPrice());
+	}
+	
+	public void testGiftListEJB() {
+		UserDTO user = userEJB.getUser("gianluca.91@gmail.com");
+		PackageDTO _package = packageEJB.getOfferingPackages().get(0);
+		GiftListItemDTO item = new GiftListItemDTO(_package, user);
+		try {
+			giftListEJB.saveGiftListItem(item);
+		} catch (NotValidUserException | NotValidGiftListItemException e) {
+			e.printStackTrace();
+		}
+		try {
+			giftListEJB.removeGiftListItem(item);
+		} catch (NotValidUserException | NotValidGiftListItemException e) {
+			e.printStackTrace();
+		}
 	}
 
 	
