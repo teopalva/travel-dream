@@ -78,6 +78,9 @@ public class PackageEJB implements PackageEJBLocal {
 		_package.setNumPeople(packageDTO.getNumPeople());
 		_package.setReduction(packageDTO.getReduction());
 		
+		if(_package.getName() == null)
+			throw new NotValidPackageException();
+		
 		try {
 			//Create personalized product list
 			for(PersonalizedProductDTO p : packageDTO.getPersonalizedProducts()) {
@@ -204,11 +207,13 @@ public class PackageEJB implements PackageEJBLocal {
 		} catch (NullPointerException e) {
 			throw new NotValidPackageException();
 		}
+		if(packageDTO.getId() >= 0)
+			removePackage(packageDTO);
 		em.persist(_package);
 	}
 	
     /**
-     * Remove the package, N.B.: it must contain a valid id
+     * Remove the package, N.B.: it must contains a valid id
      */
     public void removePackage(PackageDTO _package) throws NotValidPackageException{
 		em.getTransaction().begin();
