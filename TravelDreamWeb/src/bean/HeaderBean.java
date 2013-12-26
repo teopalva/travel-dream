@@ -57,4 +57,12 @@ public class HeaderBean {
 	    return null;
     }
 
+    /**
+     * Asks an EJB for the authentication status of the user
+     * 
+     * @return 0->not logged 1->TDC 2->TDE
+     */
+    public int getUserType() {
+	return authEJB.isTDC() ? 1 : authEJB.isTDE() ? 2 : 0;
+    }
 }

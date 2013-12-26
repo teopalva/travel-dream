@@ -7,7 +7,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
 import coreEJB.AuthenticationEJBLocal;
+import coreEJB.BaseProductEJBLocal;
 import coreEJB.PackageEJBLocal;
 import dto.PackageDTO;
 import dto.PersonalizedFlightDTO;
@@ -34,10 +36,13 @@ public class OfferingsListBean {
     private String selectedPackageString = "pacchetto non selezionato";
 
     @EJB
-    private AuthenticationEJBLocal authenticationEJB;
+    private AuthenticationEJBLocal authEJB;
 
     @EJB
     private PackageEJBLocal packageEJB;
+
+    @EJB
+    private BaseProductEJBLocal bpEJB;
 
     // Bean properties:
 
@@ -165,8 +170,23 @@ public class OfferingsListBean {
 	return filteredOfferings;
     }
 
-    public void dropDownFilter() {
+    public List<String> dropDownFilterFlight() {
+	List<String> flightClasses = new ArrayList<String>();
+	// bpEJB.getAllPersonalizations(); //TODO
+	return flightClasses;
+    }
+
+    public List<String> dropDownFilterHstars() {
+	List<String> hStars = new ArrayList<String>();
 	// TODO
+	return hStars;
+
+    }
+
+    public List<String> dropDownFilterHClasses() {
+	List<String> hClasses = new ArrayList<String>();
+	// TODO
+	return hClasses;
     }
 
     /**
@@ -176,9 +196,19 @@ public class OfferingsListBean {
      *            the PackageDTO selected by the user
      * @return URL String of the page
      */
-    public String showEditPackage(String packageName) {
-	this.setSelectedPackageString(packageName);
-	if (authenticationEJB.isTDE()) {
+    public String showEditPackage(PackageDTO p) {
+	selectedPackage = p;
+	packageEJB.setTmpPackage(selectedPackage);
+	if (authEJB.isTDE()) {
+	    return "admin/edit_package?faces-redirect=true";
+	} else {
+	    return "user/edit_package?faces-redirect=true";
+	}
+    }
+
+    public String showEditPackageByString(String packageName) {
+	selectedPackageString = packageName;
+	if (authEJB.isTDE()) {
 	    return "admin/edit_package?faces-redirect=true";
 	} else {
 	    return "user/edit_package?faces-redirect=true";

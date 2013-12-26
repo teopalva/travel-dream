@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+		<h:body>
+			<div class="container">
+
+				<div class="row row-offcanvas row-offcanvas-right">
+					<div class="col-xs-12 col-sm-3 sidebar-offcanvas" id="sidebar">
+						<div class="bs-sidebar hidden-print affix">
+							<div class="navbar navbar-default"
+								style="padding-left: 20px; padding-right: 20px">
+								<center><h3>Criteri di ricerca</h3></center>
+
+
+								<ul class="list-group" >
+									<li class="list-group-item"><p:inputText
+											styleClass="form-control" placeholder="partenza da" /></li>
+									<li class="list-group-item"><p:inputText
+											styleClass="form-control" placeholder="destinazione" /></li>
+									<li class="list-group-item"><p:inputText
+											styleClass="form-control" placeholder="data di partenza" /></li>
+									<li class="list-group-item"><p:inputText
+											styleClass="form-control" placeholder="data di ritorno" /></li>
+									<li class="list-group-item"><select class="form-control"><option>persone</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option></select></li>
+
+									<li class="list-group-item"><button type="submit"
+											class="btn btn-primary btn-lg btn-block">Cerca</button></li>
+								</ul>
+								
+								
+								<center><h3>Avanzate</h3></center>
+
+
+								<div class="list-group" >
+									<a class="list-group-item active">Volo</a>
+									<a class="list-group-item"><select class="form-control">
+											<option>classe del volo</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option></select>
+									</a>
+								</div>
+								<div class="list-group" >
+									<a class="list-group-item active">Hotel</a>
+									<a class="list-group-item"><select class="form-control">
+											<option>stelle</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option></select>
+									</a>
+									
+									<a class="list-group-item"><select class="form-control">
+											<option>tipo camera</option>
+											<option>2</option>
+											<option>3</option>
+											<option>4</option>
+											<option>5</option></select>
+									</a>
+
+
+								</div>
+
+
+
+							</div>
+
+
+						</div>
+					</div>
+					<!--/span-->
+
+					<div class="col-xs-12 col-sm-9">
+
+						<div class="row">
+
+							<!--  
+							<nav class="navbar navbar-default" role="navigation"> 
+							<div class="navbar-header">
+
+							</div>
+
+							
+							<div class="collapse navbar-collapse"
+								id="bs-example-navbar-collapse-1">
+								
+									<div class="row" style="margin-top:7px">
+									<div class="col-md-2"><p:inputText styleClass="form-control" placeholder="partenza da" /></div>
+									<div class="col-md-2"><p:inputText styleClass="form-control" placeholder="destinazione" /></div>
+									<div class="col-md-2"><p:inputText styleClass="form-control" placeholder="data di partenza" /></div>
+									<div class="col-md-2"><p:inputText styleClass="form-control" placeholder="data di ritorno" /></div>
+									<div class="col-md-2"><select class="form-control"><option>persone</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+									<div class="col-md-2"><button type="submit" class="btn btn-primary">Cerca</button></div>
+									</div>
+							
+								
+
+							</div>
+							</nav>
+-->
+
+
+							<div class="jumbotron">
+								<h2>Catalogo</h2>
+								<p>
+									Qui ti proponiamo i nostri pacchetti viaggio. Puoi raffinare la
+									ricerca tramite le barre presenti sopra e a fianco.<br></br>Selezionando
+									uno dei pacchetti puoi anche personalizzarlo.
+								</p>
+							</div>
+
+
+
+							<h:form>
+
+							</h:form>
+							<div class="row text-center">
+
+								<div class="col-lg-4 col-md-6 hero-feature">
+									<div class="thumbnail">
+										<h:graphicImage library="images" name="image_ny.png" />
+										<div class="caption">
+											<h3>Feature Label</h3>
+											<p>This would be a great spot to feature some brand new
+												products!</p>
+											<p>
+												<p:commandButton value="Vai" styleClass="btn btn-primary"
+													action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+												<p:commandButton value="Info" styleClass="btn btn-default"
+													action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-4 col-md-6 hero-feature">
+									<div class="thumbnail">
+										<h:graphicImage library="images" name="image_london.png" />
+										<div class="caption">
+											<h3>Feature Label</h3>
+											<p>This would be a great spot to feature some brand new
+												products!</p>
+											<p>
+												<p:commandButton value="Vai" styleClass="btn btn-primary"
+													action="#{OfferingsList.showEditPackage('Pacchetto2')}" />
+												<p:commandButton value="Info" styleClass="btn btn-default"
+													action="#{OfferingsList.showEditPackage('Pacchetto2')}" />
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-4 col-md-6 hero-feature">
+									<div class="thumbnail">
+										<h:graphicImage library="images" name="image_haw.png" />
+										<div class="caption">
+											<h3>Feature Label</h3>
+											<p>This would be a great spot to feature some brand new
+												products!</p>
+											<p>
+												<p:commandButton value="Vai" styleClass="btn btn-primary"
+													action="#{OfferingsList.showEditPackage('Pacchetto3')}" />
+												<p:commandButton value="Info" styleClass="btn btn-default"
+													action="#{OfferingsList.showEditPackage('Pacchetto3')}" />
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-lg-4 col-md-6 hero-feature">
+									<div class="thumbnail">
+										<h:graphicImage library="images" name="image_rome.png" />
+										<div class="caption">
+											<h3>Feature Label</h3>
+											<p>This would be a great spot to feature some brand new
+												products!</p>
+											<p>
+												<p:commandButton value="Vai" styleClass="btn btn-primary"
+													action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+												<p:commandButton value="Info" styleClass="btn btn-default"
+													action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+											</p>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-lg-4 col-md-6 hero-feature">
+									<div class="thumbnail">
+										<h:graphicImage library="images" name="image_venice.png" />
+										<div class="caption">
+											<h3>Feature Label</h3>
+											<p>This would be a great spot to feature some brand new
+												products!</p>
+											<p>
+												<p:commandButton value="Vai" styleClass="btn btn-primary"
+													action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+												<p:commandButton value="Info" styleClass="btn btn-default"
+													action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+											</p>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-lg-4 col-md-6 hero-feature">
+									<div class="thumbnail">
+										<h:graphicImage library="images" name="image_venice.png" />
+										<div class="caption">
+											<h3>Feature Label</h3>
+											<p>This would be a great spot to feature some brand new
+												products!</p>
+											<p>
+												<p:commandButton value="Vai" styleClass="btn btn-primary"
+													action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+												<p:commandButton value="Info" styleClass="btn btn-default"
+													action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+											</p>
+										</div>
+									</div>
+								</div>
+								
+								
+								<div class="col-lg-4 col-md-6 hero-feature">
+									<div class="thumbnail">
+										<h:graphicImage library="images" name="image_venice.png" />
+										<div class="caption">
+											<h3>Feature Label</h3>
+											<p>This would be a great spot to feature some brand new
+												products!</p>
+											<p>
+												<p:commandButton value="Vai" styleClass="btn btn-primary"
+													action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+												<p:commandButton value="Info" styleClass="btn btn-default"
+													action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+											</p>
+										</div>
+									</div>
+								</div>
+								
+								
+								<div class="col-lg-4 col-md-6 hero-feature">
+									<div class="thumbnail">
+										<h:graphicImage library="images" name="image_venice.png" />
+										<div class="caption">
+											<h3>Feature Label</h3>
+											<p>This would be a great spot to feature some brand new
+												products!</p>
+											<p>
+												<p:commandButton value="Vai" styleClass="btn btn-primary"
+													action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+												<p:commandButton value="Info" styleClass="btn btn-default"
+													action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+											</p>
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+							<!-- /.row -->
+
+
+						</div>
+						<!--/span-->
+
+					</div>
+
+
+
+				</div>
+				<!--/.container-->
+
+			</div>
+
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

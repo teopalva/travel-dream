@@ -70,12 +70,11 @@ public class HomeBean {
 			System.out.printf("EmptySelectionException");
 			return null;
 		}
-		return "/user/edit_package?faces-redirect=true";
+		return "user/edit_package?faces-redirect=true";
 	}
 
 	public String showOfferingsList() {
-
-		return "offerings_list";
+		return "/offerings_list?faces-redirect=true";
 	}
 
 }
