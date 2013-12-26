@@ -1,6 +1,7 @@
 package bean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -8,14 +9,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import coreEJB.AuthenticationEJB;
+import coreEJB.BuyingListItemEJBLocal;
 import coreEJB.InvitationEJBLocal;
 import coreEJB.PackageEJBLocal;
 import coreEJB.UserEJB;
+import dto.BuyingListItemDTO;
 import dto.GiftListItemDTO;
 import dto.InvitationDTO;
 import dto.PackageDTO;
 import dto.UserDTO;
 import exceptions.NotAuthenticatedException;
+import exceptions.NotValidBuyingListException;
 import exceptions.NotValidInvitationException;
 
 @ManagedBean(name = "Checkout")
@@ -38,8 +42,8 @@ public class CheckoutBean {
     @EJB
     private InvitationEJBLocal invitationEJB;
 
-    // @EJB
-    // private BuyingListItemEJBLocal buyingListEJB;
+    @EJB
+    private BuyingListItemEJBLocal buyingListEJB;
 
     public CheckoutBean() {
 	try {
@@ -47,7 +51,6 @@ public class CheckoutBean {
 	} catch (NotAuthenticatedException e) {
 	    // No problem: user area
 	}
-	// price=packageEJB.getTmpPackage().getPrice(); //TODO total price
 	emails = new ArrayList<String>(packageEJB.getTmpPackage().getNumPeople());
 	tmpPackage = packageEJB.getTmpPackage();
     }
@@ -69,13 +72,21 @@ public class CheckoutBean {
     }
 
     public String showPayment() {
-	// TODO add tmpPackage to buying
+ 	boolean gifted = false;//TODO
+	BuyingListItemDTO buyingItem = new BuyingListItemDTO(tmpPackage, new Date(), gifted, false, user);
+	try {
+	    buyingListEJB.saveBuyingListItem(buyingItem);
+	} catch (NotValidBuyingListException e) {
+	    System.err.printf("Qualcosa è andato storto, riprova.");
+	    e.printStackTrace();
+	    return null;
+	}
 	return ("user/payment?faces-redirect=true");
     }
 
     public String showGiftList() {
 	// add tmpPackage to giftList
-	userEJB.getGiftList(user).add(new GiftListItemDTO(tmpPackage, user));
+	userEJB.getGiftList(user).add(new GiftListItemDTO(tmpPackage, user));	//TODO act on database!
 	return ("user/gift_list?faces-redirect=true");
     }
 
@@ -83,14 +94,16 @@ public class CheckoutBean {
 	// send emails
 	for (String email : emails) {
 	    UserDTO invited = new UserDTO(email, null, null, null, null);
-	    String hash = "2";// TODO
 	    try {
-		invitationEJB.sendInvitation(new InvitationDTO(user, invited, tmpPackage, hash, false));
+		invitationEJB.sendInvitation(new InvitationDTO(user, invited, tmpPackage, null, false));
 	    } catch (NotValidInvitationException e) {
-		// TODO Auto-generated catch block
+		System.err.printf("Errore nell'invio delle mail, riprova.");
 		e.printStackTrace();
+		return null;
 	    }
 	}
+	// add tmpPackage to invitationList
+	//TODO
 	return ("user/invitation_list?faces-redirect=true");
     }
 

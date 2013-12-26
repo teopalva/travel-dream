@@ -17,12 +17,15 @@ import dto.ExcursionDTO;
 import dto.FlightDTO;
 import dto.HotelDTO;
 import dto.PackageDTO;
+import dto.PersonalizedHotelDTO;
+import dto.PersonalizedProductDTO;
 
 @ManagedBean(name = "EditPackage")
 @ViewScoped
 public class EditPackageBean {
     private String warningDiscount;
-    private PackageDTO selectedPackage;
+    private PackageDTO selectedPackage = null;
+    private double totalPrice;
 
     private String departurePlace = null;
     private String arrivalPlace = null;
@@ -47,8 +50,12 @@ public class EditPackageBean {
     private String selectedPackageString;
 
     public EditPackageBean() {
-	selectedPackage = new PackageDTO();
-	// selectedPackage = packageEJB.getTmpPackage(); //TODO activate
+	if (packageEJB.getTmpPackage() == null) {
+	    selectedPackage = new PackageDTO();
+	} else {
+	    selectedPackage = packageEJB.getTmpPackage();
+	    calculatePrice();
+	}
 	flights = new ArrayList<FlightDTO>();
 	hotels = new ArrayList<HotelDTO>();
 	excursions = new ArrayList<ExcursionDTO>();
@@ -117,6 +124,14 @@ public class EditPackageBean {
 	return numPeople;
     }
 
+    public void setTotalPrice(double n) {
+	totalPrice = n;
+    }
+
+    public double getTotalPrice() {
+	return totalPrice;
+    }
+
     // Bean methods:
 
     public void submitSearch() {
@@ -153,7 +168,19 @@ public class EditPackageBean {
 	}
     }
 
+    /**
+     * Recalculates the total cost of the current package
+     */
+    public void calculatePrice() {
+	for (PersonalizedProductDTO p : selectedPackage.getPersonalizedProducts()) {
+	    if (p instanceof PersonalizedHotelDTO) {
+		// TODO ((PersonalizedHotelDTO) p).getHotel().getPrices().get(personalization);
+	    }
+	}
+    }
+
     public String showCheckout() {
+	// TODO setter dei campi del pacchetto con aggiunta PB
 	packageEJB.setTmpPackage(selectedPackage);
 	return "user/checkout?faces-redirect=true";
     }
