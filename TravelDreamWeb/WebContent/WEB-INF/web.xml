@@ -6,12 +6,10 @@
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
-  
   <context-param>
-		<param-name>primefaces.THEME</param-name>
-		<param-value>bootstrap</param-value>
-	</context-param>
-  
+    <param-name>primefaces.THEME</param-name>
+    <param-value>bootstrap</param-value>
+  </context-param>
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
@@ -22,30 +20,30 @@
     <welcome-file>home.xhtml</welcome-file>
   </welcome-file-list>
   <login-config>
-		<auth-method>FORM</auth-method>
-		<form-login-config>
-			<form-login-page>/login.xhtml</form-login-page>
-			<form-error-page>/loginError.xhtml</form-error-page>
-		</form-login-config>
-	</login-config>
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>TDE Pages</web-resource-name>
-			<description />
-			<url-pattern>/admin/*</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>TDE</role-name>
-		</auth-constraint>
-	</security-constraint>
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>TDC Pages</web-resource-name>
-			<description />
-			<url-pattern>/user/*</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>TDC</role-name>
-		</auth-constraint>
-	</security-constraint>
+    <auth-method>FORM</auth-method>
+    <form-login-config>
+      <form-login-page>/login.xhtml</form-login-page>
+      <form-error-page>/loginError.xhtml</form-error-page>
+    </form-login-config>
+  </login-config>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>TDE Pages</web-resource-name>
+      <description></description>
+      <url-pattern>/admin/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>TDE</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>TDC Pages</web-resource-name>
+      <description></description>
+      <url-pattern>/user/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>TDC</role-name>
+    </auth-constraint>
+  </security-constraint>
 </web-app>

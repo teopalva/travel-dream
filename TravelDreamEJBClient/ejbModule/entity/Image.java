@@ -1,7 +1,9 @@
 package entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -18,8 +20,8 @@ public class Image implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
-	@Transient
-	private Object data;
+	@Lob
+	private byte[] data;
 
 	//bi-directional many-to-one association to Package
 	@OneToMany(mappedBy="image")
@@ -36,11 +38,11 @@ public class Image implements Serializable {
 		this.id = id;
 	}
 
-	public Object getData() {
+	public byte[] getData() {
 		return this.data;
 	}
 
-	public void setData(Object data) {
+	public void setData(byte[] data) {
 		this.data = data;
 	}
 

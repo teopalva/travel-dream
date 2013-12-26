@@ -22,4 +22,5 @@ public interface PackageEJBLocal {
 	public void setSelectedHotel(boolean selectedHotel);
 	public boolean isSelectedExcursion();
 	public void setSelectedExcursion(boolean selectedExcursion);
+	public byte[] getPackageImage(PackageDTO packageDTO) throws NotValidPackageException;
 }

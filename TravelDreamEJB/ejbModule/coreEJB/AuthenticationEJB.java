@@ -1,6 +1,7 @@
 package coreEJB;
 
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
 import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -66,6 +67,7 @@ public class AuthenticationEJB implements AuthenticationEJBLocal {
      * @return the authenticated user
      * @throws NotAuthenticatedException if there isn't an authenticated user in this session
      */
+    @PermitAll
     public UserDTO getAuthenticatedUser() throws NotAuthenticatedException {
     	String mail = context.getCallerPrincipal().getName();
     	User user = null;

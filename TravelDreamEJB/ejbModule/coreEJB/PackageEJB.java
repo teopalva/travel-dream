@@ -225,6 +225,18 @@ public class PackageEJB implements PackageEJBLocal {
 		em.getTransaction().commit();
 		
 	}
+    
+    public byte[] getPackageImage(PackageDTO packageDTO) throws NotValidPackageException {
+    	Package _package = null;
+    	try {
+    		_package = em.createQuery("SELECT p FROM Package p JOIN FETCH p.image WHERE p.id=:id", Package.class).setParameter("id", packageDTO.getId()).getResultList().get(0);
+    	} catch(IndexOutOfBoundsException e) {
+    		throw new NotValidPackageException();
+    	}
+    	if(_package == null)
+    		throw new NotValidPackageException();
+    	return _package.getImage().getData();
+    }
 
 	public PackageDTO getTmpPackage() {
 		return tmpPackage;
