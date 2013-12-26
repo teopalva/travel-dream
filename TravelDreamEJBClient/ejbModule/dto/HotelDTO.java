@@ -109,4 +109,32 @@ public class HotelDTO extends BaseProductDTO {
 				+ possibleClassPersonalizations + ", stars=" + stars
 				+ ", city=" + city + ", prices=" + prices + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + stars;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		HotelDTO other = (HotelDTO) obj;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (stars != other.stars)
+			return false;
+		return true;
+	}
 }

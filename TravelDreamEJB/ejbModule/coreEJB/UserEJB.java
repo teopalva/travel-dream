@@ -91,23 +91,49 @@ public class UserEJB implements UserEJBLocal {
     
     public void saveUser(UserDTO userDTO) {
     	try {
-	    	User user = new User();
-	    	List<Group> groups = new ArrayList<Group>();
-	    	Group group = new Group();
-	    	if(!userDTO.getGroup().equals("TDC")) {
-	    		System.err.println("User must be TDC!!");
-	    		throw new Exception();
-	    	}
-	    	group.setId("TDC");
-	    	groups.add(group);
-	    	user.setFirstName(userDTO.getFirstName());
-	    	user.setLastName(userDTO.getLastName());
-	    	user.setMail(userDTO.getMail());
-	    	user.setGroups(groups);
-	    	
-	    	//Calculate SHA-256 hash for the user
-	    	user.setPassword(encryptPassword(userDTO.getPassword()));
-	    	em.persist(user);
+    		User user = em.find(User.class, userDTO.getMail());
+    		if(user == null) {
+    			user = new User();
+    			List<Group> groups = new ArrayList<Group>();
+    			Group group = new Group();
+    			if(!userDTO.getGroup().equals("TDC")) {
+    				System.err.println("User must be TDC!!");
+    				throw new Exception();
+    			}
+    			group.setId("TDC");
+    			groups.add(group);
+    			user.setFirstName(userDTO.getFirstName());
+    			user.setLastName(userDTO.getLastName());
+    			user.setMail(userDTO.getMail());
+    			user.setGroups(groups);
+
+    			//Calculate SHA-256 hash for the user
+    			user.setPassword(encryptPassword(userDTO.getPassword()));
+    			em.persist(user);
+    		}
+    		else {
+    			if(user.getGroups().size() == 0) {
+    				List<Group> groups = new ArrayList<Group>();
+        			Group group = new Group();
+        			if(!userDTO.getGroup().equals("TDC")) {
+        				System.err.println("User must be TDC!!");
+        				throw new Exception();
+        			}
+        			group.setId("TDC");
+        			groups.add(group);
+        			user.setFirstName(userDTO.getFirstName());
+        			user.setLastName(userDTO.getLastName());
+        			user.setMail(userDTO.getMail());
+        			user.setGroups(groups);
+
+        			//Calculate SHA-256 hash for the user
+        			user.setPassword(encryptPassword(userDTO.getPassword()));
+        			em.merge(user);
+    			}
+    			else {
+    				throw new IllegalArgumentException();
+    			}
+    		}
     	} catch(Exception e) {
     		e.printStackTrace();
     		throw new IllegalArgumentException();

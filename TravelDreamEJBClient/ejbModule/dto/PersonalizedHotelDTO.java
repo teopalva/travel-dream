@@ -43,4 +43,13 @@ public class PersonalizedHotelDTO extends PersonalizedProductDTO {
 		return "PersonalizedHotelDTO [hotel=" + hotel
 				+ ", classPersonalization=" + classPersonalization + "]";
 	}
+	
+	
+	
+	public double getPrice() {
+		double price = 0;
+		if(classPersonalization != null)
+			price += hotel.getPrices().get(classPersonalization);
+		return price;
+	}
 }
