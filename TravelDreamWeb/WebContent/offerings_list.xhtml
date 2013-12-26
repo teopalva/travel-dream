@@ -141,12 +141,11 @@
 											<h:graphicImage library="images" name="image_ny.png" />
 											<div class="caption">
 												<h3>#{package.name}</h3>
-												<p>This would be a great spot to feature some brand new
-													products!</p>
-												<div id="demo1" class="collapse out">
+												<p>Prezzo: {package.price}</p>
+												<div id="info_#{package.id}" class="collapse out">
 													<table class="table" style="margin-bottom: 45px">
 														<caption style="padding-bottom: 5px">Dettagli
-															pacchetto</caption>
+															pacchetto #{package.id}</caption>
 														<tr>
 															<th>Volo</th>
 															<td>data</td>
@@ -166,10 +165,11 @@
 												</div>
 
 												<p>
+												<!--  da sistemare il bottone vai -->
 													<p:commandButton value="Vai" styleClass="btn btn-primary"
-														action="#{OfferingsList.showEditPackage('Pacchetto1')}" />
+														action="#{OfferingsList.showEditPackageByString(package.name)}" />
 													<button type="button" class="btn btn-default"
-														data-toggle="collapse" data-target="#demo1">Info</button>
+														data-toggle="collapse" data-target="#info_#{package.id}">Info</button>
 												</p>
 											</div>
 										</div>
