@@ -12,4 +12,5 @@ import exceptions.NotValidInvitationException;
 public interface InvitationEJBLocal {
 	 public void sendInvitation(InvitationDTO invitation) throws NotValidInvitationException;
 	 public List<InvitationDTO> getAllInvitation(UserDTO user);
+	 public InvitationDTO getInvitation(String hash);
 }

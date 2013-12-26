@@ -1,5 +1,8 @@
 package dto;
 
+import entity.Invitation;
+import exceptions.FieldNotPresentException;
+
 public class InvitationDTO {
 	UserDTO inviter;
 	UserDTO invited;
@@ -11,6 +14,15 @@ public class InvitationDTO {
 		hash = null;
 		inviter = null;
 		invited = null;
+		_package = null;
+		accepted = false;
+	}
+	public InvitationDTO(Invitation invitation) throws FieldNotPresentException {
+		hash = invitation.getHash();
+		inviter = new UserDTO(invitation.getUserInviter());
+		invited = new UserDTO(invitation.getUserInvited());
+		_package = new PackageDTO(invitation.getPackage());
+		accepted = invitation.getAccepted();
 	}
 	
 	public InvitationDTO(UserDTO inviter, UserDTO invited, PackageDTO _package,

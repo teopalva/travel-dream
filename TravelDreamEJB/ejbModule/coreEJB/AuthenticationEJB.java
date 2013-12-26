@@ -25,6 +25,9 @@ public class AuthenticationEJB implements AuthenticationEJBLocal {
     public AuthenticationEJB() {
     }
     
+    /**
+     * True if the user is authenticated and is TDE
+     */
     public boolean isTDE() {
     	System.out.println("isTDE");
     	UserDTO user;
@@ -40,6 +43,9 @@ public class AuthenticationEJB implements AuthenticationEJBLocal {
     	return false;
     }
     
+    /**
+     * True if the user is authenticated and is TDC
+     */
     public boolean isTDC() {
     	System.out.println("isTDC");
     	UserDTO user;
@@ -55,6 +61,11 @@ public class AuthenticationEJB implements AuthenticationEJBLocal {
     	return false;
     }
     
+    /**
+     * 
+     * @return the authenticated user
+     * @throws NotAuthenticatedException if there isn't an authenticated user in this session
+     */
     public UserDTO getAuthenticatedUser() throws NotAuthenticatedException {
     	String mail = context.getCallerPrincipal().getName();
     	User user = null;

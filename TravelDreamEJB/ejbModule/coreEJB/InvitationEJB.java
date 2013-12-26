@@ -23,8 +23,9 @@ import javax.persistence.PersistenceContext;
 import dto.InvitationDTO;
 import dto.UserDTO;
 import entity.Invitation;
-import entity.User;
 import entity.Package;
+import entity.User;
+import exceptions.FieldNotPresentException;
 import exceptions.NotValidInvitationException;
 
 /**
@@ -41,9 +42,6 @@ public class InvitationEJB implements InvitationEJBLocal {
 	
 	private static int MAX_TRY = 1000;
 
-    /**
-     * Default constructor. 
-     */
     public InvitationEJB() {
     }
     
@@ -75,7 +73,7 @@ public class InvitationEJB implements InvitationEJBLocal {
         	inv.setUserInviter(inviter);
         	inv.setHash(generateUniqueHash(invited.getMail()));
         	inv.setPackage(_package);
-        	inv.setAccepted(new Byte("0"));
+        	inv.setAccepted(false);
         	
         	em.persist(inv);
         	
@@ -107,9 +105,26 @@ public class InvitationEJB implements InvitationEJBLocal {
         }
       }
 	 
+    /**
+     * Return all invitations for passed user
+     */
 	 public List<InvitationDTO> getAllInvitation(UserDTO user) {
 		 List<InvitationDTO> list = new ArrayList<InvitationDTO>();
 		 return list;
+	 }
+	 
+	 /**
+	  * Get the invitation corresponding to passed hash
+	  */
+	 public InvitationDTO getInvitation(String hash) {
+		 Invitation invitation = em.find(Invitation.class, hash);
+		 if(invitation == null)
+			 return null;
+		 try {
+			return new InvitationDTO(invitation);
+		} catch (FieldNotPresentException e) {
+			return null;
+		}
 	 }
 	 
 	 private String generateUniqueHash(String mail) {

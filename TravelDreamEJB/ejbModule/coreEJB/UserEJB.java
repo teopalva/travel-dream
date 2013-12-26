@@ -28,11 +28,7 @@ public class UserEJB implements UserEJBLocal {
 	@PersistenceContext
 	EntityManager em;
 
-    /**
-     * Default constructor. 
-     */
     public UserEJB() {
-        // TODO Auto-generated constructor stub
     }
     
     public UserDTO getUser(String mail) {
@@ -42,7 +38,6 @@ public class UserEJB implements UserEJBLocal {
     	try {
 			return new UserDTO(user);
 		} catch (FieldNotPresentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	return null;

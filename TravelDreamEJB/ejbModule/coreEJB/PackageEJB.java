@@ -43,7 +43,6 @@ public class PackageEJB implements PackageEJBLocal {
     boolean selectedExcursion;
     
     public PackageEJB() {
-        // TODO Auto-generated constructor stub
     }
     
     /**

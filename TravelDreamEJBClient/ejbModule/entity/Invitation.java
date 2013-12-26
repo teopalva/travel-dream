@@ -51,12 +51,15 @@ public class Invitation implements Serializable {
 		this.hash = hash;
 	}
 
-	public byte getAccepted() {
-		return this.accepted;
+	public boolean getAccepted() {
+		return this.accepted != 0;
 	}
 
-	public void setAccepted(byte accepted) {
-		this.accepted = accepted;
+	public void setAccepted(boolean accepted) {
+		if(accepted)
+			this.accepted = new Byte("1");
+		else
+			this.accepted = new Byte("0");
 	}
 
 	public Package getPackage() {

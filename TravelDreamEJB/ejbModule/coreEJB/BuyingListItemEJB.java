@@ -28,11 +28,7 @@ public class BuyingListItemEJB implements BuyingListItemEJBLocal {
 	
 	BuyingListItemDTO tmpBuyingListItem = null;
 
-    /**
-     * Default constructor. 
-     */
     public BuyingListItemEJB() {
-        // TODO Auto-generated constructor stub
     }
     
     /**
