@@ -227,4 +227,8 @@ public class OfferingsListBean {
     	return date;
     }
     
+    public double getPrice(PackageDTO p){
+	return p.getPrice();
+    }
+    
 }

@@ -8,10 +8,12 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 import coreEJB.BaseProductEJBLocal;
 import coreEJB.PackageEJBLocal;
+import coreEJB.PagesEJBLocal;
 import dto.BaseProductDTO;
 import dto.ExcursionDTO;
 import dto.FlightDTO;
@@ -43,8 +45,11 @@ public class EditPackageBean {
     @EJB
     private PackageEJBLocal packageEJB;
 
+    @EJB
+    private PagesEJBLocal pagesEJB;
+
     // @ManagedProperty("#{OfferingsList.selectedPackage}")
-    // private PackageDTO selectedPackage; // TODO use this
+    // private PackageDTO selectedPackage;
 
     @ManagedProperty("#{OfferingsList.selectedPackageString}")
     private String selectedPackageString;
@@ -132,8 +137,23 @@ public class EditPackageBean {
 	return totalPrice;
     }
 
+    public List<HotelDTO> getHotels() {
+	return hotels;
+    }
+
+    public List<FlightDTO> getFlights() {
+	return flights;
+    }
+
+    public List<ExcursionDTO> getExcursions() {
+	return excursions;
+    }
+
     // Bean methods:
 
+    /**
+     * Refreshes the lists of base products. Do a new getHotels() with Ajax to get the refreshed list.
+     */
     public void submitSearch() {
 	refreshLists();
     }
@@ -152,7 +172,7 @@ public class EditPackageBean {
 		}
 		if (bp instanceof FlightDTO) {
 		    if ((departurePlace.equals(((FlightDTO) bp).getAirportDeparture())) && arrivalPlace.equals(((FlightDTO) bp).getAirportArrival())
-		    // && departureDate.equals(((FlightDTO) bp).g) TODO fix with personalization date
+		    // && departureDate.equals(((FlightDTO) bp).g) TODO fix with personalization date-->possibili
 		    ) {
 			flights.add((FlightDTO) bp);
 		    }
@@ -171,17 +191,14 @@ public class EditPackageBean {
     /**
      * Recalculates the total cost of the current package
      */
-    public void calculatePrice() {
-	for (PersonalizedProductDTO p : selectedPackage.getPersonalizedProducts()) {
-	    if (p instanceof PersonalizedHotelDTO) {
-		// TODO ((PersonalizedHotelDTO) p).getHotel().getPrices().get(personalization);
-	    }
-	}
+    public double calculatePrice() {
+	return selectedPackage.getPrice();
     }
 
     public String showCheckout() {
 	// TODO setter dei campi del pacchetto con aggiunta PB
 	packageEJB.setTmpPackage(selectedPackage);
+	pagesEJB.setPreviousPage("edit");
 	return "user/checkout?faces-redirect=true";
     }
 }

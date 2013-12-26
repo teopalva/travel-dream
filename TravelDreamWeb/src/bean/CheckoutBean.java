@@ -10,9 +10,10 @@ import javax.faces.bean.ViewScoped;
 
 import coreEJB.AuthenticationEJB;
 import coreEJB.BuyingListItemEJBLocal;
+import coreEJB.GiftListItemEJBLocal;
 import coreEJB.InvitationEJBLocal;
 import coreEJB.PackageEJBLocal;
-import coreEJB.UserEJB;
+import coreEJB.PagesEJBLocal;
 import dto.BuyingListItemDTO;
 import dto.GiftListItemDTO;
 import dto.InvitationDTO;
@@ -20,7 +21,10 @@ import dto.PackageDTO;
 import dto.UserDTO;
 import exceptions.NotAuthenticatedException;
 import exceptions.NotValidBuyingListException;
+import exceptions.NotValidGiftListItemException;
 import exceptions.NotValidInvitationException;
+import exceptions.NotValidPackageException;
+import exceptions.NotValidUserException;
 
 @ManagedBean(name = "Checkout")
 @ViewScoped
@@ -34,9 +38,6 @@ public class CheckoutBean {
     private PackageEJBLocal packageEJB;
 
     @EJB
-    private UserEJB userEJB;
-
-    @EJB
     private AuthenticationEJB authEJB;
 
     @EJB
@@ -44,6 +45,15 @@ public class CheckoutBean {
 
     @EJB
     private BuyingListItemEJBLocal buyingListEJB;
+
+    @EJB
+    private GiftListItemEJBLocal giftListEJB;
+
+    @EJB
+    private PagesEJBLocal pagesEJB;
+
+    // @ManagedProperty("#{GiftList.gifting}")
+    // private boolean gifting;
 
     public CheckoutBean() {
 	try {
@@ -72,39 +82,110 @@ public class CheckoutBean {
     }
 
     public String showPayment() {
- 	boolean gifted = false;//TODO
-	BuyingListItemDTO buyingItem = new BuyingListItemDTO(tmpPackage, new Date(), gifted, false, user);
-	try {
-	    buyingListEJB.saveBuyingListItem(buyingItem);
-	} catch (NotValidBuyingListException e) {
-	    System.err.printf("Qualcosa è andato storto, riprova.");
-	    e.printStackTrace();
-	    return null;
+	if (pagesEJB.getPreviousPage().equals("edit")) {
+	    try {
+		packageEJB.savePackage(tmpPackage);
+		boolean gifted = false;
+		BuyingListItemDTO buyingItem = new BuyingListItemDTO(tmpPackage, new Date(), gifted, false, user);
+		try {
+		    buyingListEJB.saveBuyingListItem(buyingItem);
+		} catch (NotValidBuyingListException e) {
+		    System.err.printf("Qualcosa è andato storto, riprova.");
+		    e.printStackTrace();
+		    packageEJB.removePackage(tmpPackage);
+		    return null;
+		}
+		return ("user/payment?faces-redirect=true");
+	    } catch (NotValidPackageException e1) {
+		System.err.printf("Qualcosa è andato storto, riprova.");
+		e1.printStackTrace();
+		return null;
+	    }
+	} else {
+	    if (pagesEJB.getPreviousPage().equals("gift")) {
+		boolean gifted = true;
+		BuyingListItemDTO buyingItem = new BuyingListItemDTO(tmpPackage, new Date(), gifted, false, user);
+		try {
+		    buyingListEJB.saveBuyingListItem(buyingItem);
+		} catch (NotValidBuyingListException e) {
+		    System.err.printf("Qualcosa è andato storto, riprova.");
+		    e.printStackTrace();
+		    return null;
+		}
+		return ("user/payment?faces-redirect=true");
+	    } else if (pagesEJB.getPreviousPage().equals("invitation")) {
+		boolean gifted = false;
+		BuyingListItemDTO buyingItem = new BuyingListItemDTO(tmpPackage, new Date(), gifted, false, user);
+		try {
+		    buyingListEJB.saveBuyingListItem(buyingItem);
+		} catch (NotValidBuyingListException e) {
+		    System.err.printf("Qualcosa è andato storto, riprova.");
+		    e.printStackTrace();
+		    return null;
+		}
+		return ("user/payment?faces-redirect=true");
+	    } else
+		return null;
 	}
-	return ("user/payment?faces-redirect=true");
     }
 
     public String showGiftList() {
-	// add tmpPackage to giftList
-	userEJB.getGiftList(user).add(new GiftListItemDTO(tmpPackage, user));	//TODO act on database!
-	return ("user/gift_list?faces-redirect=true");
+	try {
+	    packageEJB.savePackage(tmpPackage);
+	    GiftListItemDTO giftItem = new GiftListItemDTO(tmpPackage, user);
+	    try {
+		giftListEJB.saveGiftListItem(giftItem);
+	    } catch (NotValidUserException e) {
+		System.err.printf("Qualcosa è andato storto, riprova.");
+		e.printStackTrace();
+		packageEJB.removePackage(tmpPackage);
+		return null;
+	    } catch (NotValidGiftListItemException e) {
+		System.err.printf("Qualcosa è andato storto, riprova.");
+		e.printStackTrace();
+		packageEJB.removePackage(tmpPackage);
+		return null;
+	    }
+	    return ("user/gift_list?faces-redirect=true");
+	} catch (NotValidPackageException e1) {
+	    System.err.printf("Qualcosa è andato storto, riprova.");
+	    e1.printStackTrace();
+	    return null;
+	}
     }
 
     public String showInvitationList() {
-	// send emails
+	// send emails & add tmpPackage to invitationList
 	for (String email : emails) {
 	    UserDTO invited = new UserDTO(email, null, null, null, null);
 	    try {
 		invitationEJB.sendInvitation(new InvitationDTO(user, invited, tmpPackage, null, false));
 	    } catch (NotValidInvitationException e) {
-		System.err.printf("Errore nell'invio delle mail, riprova.");
+		System.err.printf("Errore durante l'operazione, riprova.");
 		e.printStackTrace();
 		return null;
 	    }
 	}
-	// add tmpPackage to invitationList
-	//TODO
 	return ("user/invitation_list?faces-redirect=true");
     }
 
+    /**
+     * 
+     * @return true if the "Add to giftList" section of the checkout is accesible to the user
+     */
+    public boolean isGiftActive() {
+	return pagesEJB.getPreviousPage().equals("edit") ? true : false;
+    }
+
+    /**
+     * 
+     * @return true if the "Invite your friends" section of the checkout is accesible to the user
+     */
+    public boolean isInviteActive() {
+	return pagesEJB.getPreviousPage().equals("edit") ? true : false;
+    }
+
+    /*
+     * private static void removeSessionScopedBean(String beanName) { FacesContext.getCurrentInstance().getViewRoot().getViewMap().remove(beanName); }
+     */
 }
