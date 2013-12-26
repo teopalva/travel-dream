@@ -206,16 +206,11 @@ public class OfferingsListBean {
 	}
     }
 
-    public String showEditPackageByString(String packageName) {
-	selectedPackageString = packageName;
-	if (authEJB.isTDE()) {
-	    return "admin/edit_package?faces-redirect=true";
-	} else {
-	    return "user/edit_package?faces-redirect=true";
-	}
-    }
-
     /*
+     * public String showEditPackageByString(String packageName) { selectedPackageString = packageName; if (authEJB.isTDE()) { return
+     * "admin/edit_package?faces-redirect=true"; } else { return "user/edit_package?faces-redirect=true"; } }
+     * 
+     * 
      * public void showEditPackage2(ActionEvent actionEvent) { FacesContext.getCurrentInstance().addMessage(null, new
      * FacesMessage(getSelectedPackageString())); }
      * 
@@ -225,6 +220,10 @@ public class OfferingsListBean {
     public Date getCurrentDate() {
     	Date date = new Date();
     	return date;
+    }
+    
+    public double getPrice(PackageDTO p){
+	return p.getPrice();
     }
     
 }
