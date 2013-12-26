@@ -206,16 +206,11 @@ public class OfferingsListBean {
 	}
     }
 
-    public String showEditPackageByString(String packageName) {
-	selectedPackageString = packageName;
-	if (authEJB.isTDE()) {
-	    return "admin/edit_package?faces-redirect=true";
-	} else {
-	    return "user/edit_package?faces-redirect=true";
-	}
-    }
-
     /*
+     * public String showEditPackageByString(String packageName) { selectedPackageString = packageName; if (authEJB.isTDE()) { return
+     * "admin/edit_package?faces-redirect=true"; } else { return "user/edit_package?faces-redirect=true"; } }
+     * 
+     * 
      * public void showEditPackage2(ActionEvent actionEvent) { FacesContext.getCurrentInstance().addMessage(null, new
      * FacesMessage(getSelectedPackageString())); }
      * 

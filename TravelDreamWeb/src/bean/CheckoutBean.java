@@ -52,9 +52,7 @@ public class CheckoutBean {
     @EJB
     private PagesEJBLocal pagesEJB;
 
-    // @ManagedProperty("#{GiftList.gifting}")
-    // private boolean gifting;
-
+    
     public CheckoutBean() {
 	try {
 	    user = authEJB.getAuthenticatedUser();
