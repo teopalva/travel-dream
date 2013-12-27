@@ -12,9 +12,12 @@ import javax.faces.bean.SessionScoped;
 import coreEJB.AuthenticationEJBLocal;
 import coreEJB.BaseProductEJBLocal;
 import coreEJB.PackageEJBLocal;
+import dto.CityDTO;
 import dto.PackageDTO;
+import dto.PersonalizedExcursionDTO;
 import dto.PersonalizedFlightDTO;
-import dto.PersonalizedProductDTO;
+import dto.PersonalizedHotelDTO;
+import exceptions.PackageNotValidException;
 
 @ManagedBean(name = "OfferingsList")
 @SessionScoped
@@ -119,7 +122,7 @@ public class OfferingsListBean {
     // Action controller methods:
 
     /**
-     * Packages to be retrieved directly from jsf: http://goo.gl/dfVYp4
+     * Packages to be retrieved directly from jsf
      * 
      * @return
      */
@@ -130,34 +133,85 @@ public class OfferingsListBean {
     }
 
     /**
-     * Now only considering flight filters
+     * 
      * 
      * @param offerings
      * @return
      */
     public List<PackageDTO> searchFilter(List<PackageDTO> offerings) {
-	boolean filter = true;
 	List<PackageDTO> filteredOfferings = new ArrayList<PackageDTO>();
 	for (PackageDTO pack : offerings) {
-	    if (numPeople == null || pack.getNumPeople() == numPeople) {
-		for (PersonalizedProductDTO pers : pack.getPersonalizedProducts()) {
-		    if (pers instanceof PersonalizedFlightDTO) {
-			if ((departurePlace == null || (departurePlace.equals(((PersonalizedFlightDTO) pers).getFlight().getAirportDeparture())))
-				&& (arrivalPlace == null || arrivalPlace.equals(((PersonalizedFlightDTO) pers).getFlight().getAirportArrival()))
-				&& (departureDate == null || departureDate.equals(((PersonalizedFlightDTO) pers).getDatePersonalization().getInitialDate()))
-				&& (returnDate == null || returnDate.equals(((PersonalizedFlightDTO) pers).getDatePersonalization().getFinalDate()))) {
-			    filter = true;
-			} else {
-			    filter = false;
-			}
-		    }
+	    PackageDTO rp;
+	    try {
+		rp = reorderPackage(pack);
+		if (numPeopleCheck(rp) && departurePlaceCheck(rp) && arrivalPlaceCheck(rp) && departureDateCheck(rp) && returnDateCheck(rp)) {
+		    filteredOfferings.add(rp);
 		}
-	    }
-	    if (filter) {
-		filteredOfferings.add(pack); // .clone()
+	    } catch (PackageNotValidException e) {
+		System.err.print("Package not valid.");
+		e.printStackTrace();
 	    }
 	}
 	return filteredOfferings;
+    }
+
+    private boolean numPeopleCheck(PackageDTO reorderedPackage) {
+	return (numPeople == null || reorderedPackage.getNumPeople() == numPeople) ? true : false;
+    }
+
+    private boolean departurePlaceCheck(PackageDTO reorderedPackage) {
+	return (departurePlace == null || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityDeparture().getName().equals(departurePlace)) ? true : false;
+    }
+
+    private boolean arrivalPlaceCheck(PackageDTO reorderedPackage) {
+	return (arrivalPlace == null || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityArrival().getName().equals(arrivalPlace)) ? true : false;
+    }
+
+    private boolean departureDateCheck(PackageDTO reorderedPackage) {
+	return (departureDate == null || departureDate.equals(((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getDatePersonalization().getInitialDate())) ? true : false;
+    }
+
+    private boolean returnDateCheck(PackageDTO reorderedPackage) {
+	return (returnDate == null || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(1)).getDatePersonalization().getInitialDate().equals(returnDate)) ? true : false;
+    }
+
+    private PackageDTO reorderPackage(PackageDTO pack) throws PackageNotValidException {
+	if (pack.getPersonalizedProducts().size() < 4) {
+	    throw new PackageNotValidException();
+	}
+	PackageDTO reorderedPackage = new PackageDTO(pack);
+	reorderedPackage.setId(pack.getId());
+	CityDTO destinationCity = null;
+	// understand which is the outbound flight & set hotel at index 2
+	boolean flag = false;
+	for (int i = 0; i < pack.getPersonalizedProducts().size() && !flag; i++) {
+	    if (pack.getPersonalizedProducts().get(i) instanceof PersonalizedHotelDTO) {
+		destinationCity = ((PersonalizedHotelDTO) pack.getPersonalizedProducts().get(i)).getHotel().getCity();
+		reorderedPackage.getPersonalizedProducts().set(2, pack.getPersonalizedProducts().get(i));
+		flag = true;
+	    }
+	}
+	// set outbound/return flight at index 0/1
+	for (int i = 0; i < pack.getPersonalizedProducts().size(); i++) {
+	    if (pack.getPersonalizedProducts().get(i) instanceof PersonalizedFlightDTO) {
+		if (((PersonalizedFlightDTO) pack.getPersonalizedProducts().get(i)).getFlight().getCityArrival().equals(destinationCity)) {
+		    // this is the outbound flight:
+		    reorderedPackage.getPersonalizedProducts().set(0, pack.getPersonalizedProducts().get(i));
+		} else {
+		    // this is the return flight:
+		    reorderedPackage.getPersonalizedProducts().set(1, pack.getPersonalizedProducts().get(i));
+		}
+	    }
+	}
+	// set excursion at index 3
+	flag = false;
+	for (int i = 0; i < pack.getPersonalizedProducts().size() && !flag; i++) {
+	    if (pack.getPersonalizedProducts().get(i) instanceof PersonalizedExcursionDTO) {
+		reorderedPackage.getPersonalizedProducts().set(3, pack.getPersonalizedProducts().get(i));
+		flag = true;
+	    }
+	}
+	return reorderedPackage;
     }
 
     public List<String> dropDownFilterFlight() {
@@ -206,10 +260,6 @@ public class OfferingsListBean {
     public Date getCurrentDate() {
 	Date date = new Date();
 	return date;
-    }
-
-    public double getPrice(PackageDTO p) {
-	return p.getPrice();
     }
 
 }

@@ -153,14 +153,14 @@
 											<h:graphicImage library="images" name="image_ny.png" />
 											<div class="caption">
 												<h3>#{package.getName()}</h3>
-												<p>Areoporto di partenza: #{package.personalizedProducts[0].flight.airportDeparture}</p>
-												<p>Areoporto di arrivo: #{package.personalizedProducts[0].flight.airportArrival}</p>
+												<p>Areoporto di partenza: #{package.personalizedProducts[0].flight.cityDeparture.name} #{package.personalizedProducts[0].flight.airportDeparture}</p>
+												<p>Areoporto di arrivo: #{package.personalizedProducts[0].flight.cityArrival.name} #{package.personalizedProducts[0].flight.airportArrival}</p>
 												<div id="info_#{package.id}" class="collapse out">
 													<table class="table" style="margin-bottom: 45px">
 														<caption style="padding-bottom: 5px">Dettagli
 															pacchetto #{package.id}</caption>
 														<tr>
-															<th>Volo</th>
+															<th>Volo (andata)</th>
 															<td>#{package.personalizedProducts[0].flight.name}</td>
 															<td>#{package.personalizedProducts[0].flight.company}</td>
 														</tr>
@@ -171,8 +171,8 @@
 														</tr>
 														<tr>
 															<th>Escursione</th>
-															<td>#{package.personalizedProducts[1].excursion.name}</td>
-															<td>#{package.personalizedProducts[1].excursion.company}</td>
+															<td>#{package.personalizedProducts[3].excursion.name}</td>
+															<td>#{package.personalizedProducts[3].excursion.company}</td>
 														</tr>
 													</table>
 												</div>
