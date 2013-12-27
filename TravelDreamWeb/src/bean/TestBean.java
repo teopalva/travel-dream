@@ -249,6 +249,19 @@ public class TestBean {
 			e.printStackTrace();
 		}
 	}
+	
+	public void testBuyPackageDeepCopy() {
+		PackageDTO _package = packageEJB.getOfferingPackages().get(0);
+		UserDTO user = userEJB.getUser("gianluca.91@gmail.com");
+		PackageDTO boughtPackage = new PackageDTO(_package);
+		BuyingListItemDTO item = new BuyingListItemDTO(boughtPackage,new Date(114,1,1),false,false,user);
+		try {
+			buyingListEJB.saveBuyingListItem(item);
+		} catch (NotValidBuyingListException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	
 

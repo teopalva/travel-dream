@@ -10,7 +10,7 @@ import entity.PersonalizedProductHotel;
 import exceptions.FieldNotPresentException;
 
 public class PackageDTO {
-    private long imageId;
+    private int imageId;
     private int numPeople;
     private String name;
     private double reduction;
@@ -56,14 +56,17 @@ public class PackageDTO {
 	}
     }
 
-    public PackageDTO(long imageId, int numPeople, String name, double reduction, List<PersonalizedProductDTO> personalizedProducts) {
+    public PackageDTO(int imageId, int numPeople, String name, double reduction, List<PersonalizedProductDTO> personalizedProducts) {
     	super();
     	this.id = -1;
     	this.imageId = imageId;
     	this.numPeople = numPeople;
     	this.name = name;
     	this.reduction = reduction;
-    	this.personalizedProducts = personalizedProducts;
+    	if(personalizedProducts != null)
+    		this.personalizedProducts = new ArrayList<PersonalizedProductDTO>(personalizedProducts);
+    	else
+    		this.personalizedProducts = new ArrayList<PersonalizedProductDTO>();
     }
     
     /**
@@ -72,25 +75,25 @@ public class PackageDTO {
      * @param packageDTO the package that must be (deep) copied
      */
     public PackageDTO(PackageDTO packageDTO) {
-		PackageDTO _package = new PackageDTO(packageDTO.imageId, packageDTO.numPeople, packageDTO.name, packageDTO.reduction, null);
+		this(packageDTO.imageId, packageDTO.numPeople, packageDTO.name, packageDTO.reduction, null);
 		for(PersonalizedProductDTO p : packageDTO.personalizedProducts) {
 			if(p instanceof PersonalizedFlightDTO) {
-				_package.addPersonalizedProduct(new PersonalizedFlightDTO((PersonalizedFlightDTO)p));
+				this.addPersonalizedProduct(new PersonalizedFlightDTO((PersonalizedFlightDTO)p));
 			}
 			if(p instanceof PersonalizedExcursionDTO) {
-				_package.addPersonalizedProduct(new PersonalizedExcursionDTO((PersonalizedExcursionDTO)p));
+				this.addPersonalizedProduct(new PersonalizedExcursionDTO((PersonalizedExcursionDTO)p));
 			}
 			if(p instanceof PersonalizedHotelDTO) {
-				_package.addPersonalizedProduct(new PersonalizedHotelDTO((PersonalizedHotelDTO)p));
+				this.addPersonalizedProduct(new PersonalizedHotelDTO((PersonalizedHotelDTO)p));
 			}
 		}
 	}
 
-    public long getImageId() {
+    public int getImageId() {
     	return imageId;
     }
 
-    public void setImageId(long imageId) {
+    public void setImageId(int imageId) {
     	this.imageId = imageId;
     }
 

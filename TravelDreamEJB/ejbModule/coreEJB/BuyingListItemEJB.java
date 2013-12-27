@@ -3,6 +3,7 @@ package coreEJB;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,6 +16,7 @@ import entity.Package;
 import entity.User;
 import exceptions.FieldNotPresentException;
 import exceptions.NotValidBuyingListException;
+import exceptions.NotValidPackageException;
 import exceptions.NotValidUserException;
 
 /**
@@ -25,6 +27,9 @@ public class BuyingListItemEJB implements BuyingListItemEJBLocal {
 	
 	@PersistenceContext
 	EntityManager em;
+	
+	@EJB
+	PackageEJB packageEJB;
 	
 	BuyingListItemDTO tmpBuyingListItem = null;
 
@@ -43,8 +48,18 @@ public class BuyingListItemEJB implements BuyingListItemEJBLocal {
     	//Extract from DB
     	Package _package = em.find(Package.class, packageDTO.getId());
     	User user = em.find(User.class, userDTO.getMail());
-    	if(user == null || _package == null)
+    	if(user == null)
     		throw new NotValidBuyingListException();
+    	
+    	if(_package == null) {
+    		try {
+				packageEJB.savePackage(packageDTO);
+				_package = em.find(Package.class, packageDTO.getId());
+			} catch (NotValidPackageException e) {
+				e.printStackTrace();
+				throw new NotValidBuyingListException();
+			}
+    	}
     	
     	BuyingListItem item = null;
     	try {
