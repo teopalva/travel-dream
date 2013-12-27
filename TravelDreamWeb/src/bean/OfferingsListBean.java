@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import coreEJB.AuthenticationEJBLocal;
@@ -29,12 +30,6 @@ public class OfferingsListBean {
     private Integer hotelStars = null;
     private String hotelClass = null;
 
-    /**
-     * The package selected by the user for editing
-     */
-    private PackageDTO selectedPackage = null;
-    private String selectedPackageString = "pacchetto non selezionato";
-
     @EJB
     private AuthenticationEJBLocal authEJB;
 
@@ -44,7 +39,18 @@ public class OfferingsListBean {
     @EJB
     private BaseProductEJBLocal bpEJB;
 
+    @ManagedProperty("#{SessionStorage}")
+    private SessionStorageBean sessionStorage;
+
     // Bean properties:
+
+    public SessionStorageBean getSessionStorage() {
+	return sessionStorage;
+    }
+
+    public void setSessionStorage(SessionStorageBean sessionStorage) {
+	this.sessionStorage = sessionStorage;
+    }
 
     public void setDeparturePlace(String p) {
 	departurePlace = p;
@@ -108,22 +114,6 @@ public class OfferingsListBean {
 
     public Integer getHotelStars() {
 	return hotelStars;
-    }
-
-    public void setSelectedPackage(PackageDTO p) {
-	selectedPackage = p;
-    }
-
-    public PackageDTO getSelectedPackage() {
-	return selectedPackage;
-    }
-
-    public void setSelectedPackageString(String p) {
-	selectedPackageString = p;
-    }
-
-    public String getSelectedPackageString() {
-	return selectedPackageString;
     }
 
     // Action controller methods:
@@ -197,8 +187,7 @@ public class OfferingsListBean {
      * @return URL String of the page
      */
     public String showEditPackage(PackageDTO p) {
-	selectedPackage = p;
-	packageEJB.setTmpPackage(selectedPackage);
+	sessionStorage.setSelectedPackage(p);
 	if (authEJB.isTDE()) {
 	    return "admin/edit_package?faces-redirect=true";
 	} else {
@@ -207,23 +196,20 @@ public class OfferingsListBean {
     }
 
     /*
-     * public String showEditPackageByString(String packageName) { selectedPackageString = packageName; if (authEJB.isTDE()) { return
-     * "admin/edit_package?faces-redirect=true"; } else { return "user/edit_package?faces-redirect=true"; } }
-     * 
      * 
      * public void showEditPackage2(ActionEvent actionEvent) { FacesContext.getCurrentInstance().addMessage(null, new
      * FacesMessage(getSelectedPackageString())); }
      * 
      * public String showEditPackage3(int n) { System.out.println("Hai scelto: " + n); return null; }
      */
-    
+
     public Date getCurrentDate() {
-    	Date date = new Date();
-    	return date;
+	Date date = new Date();
+	return date;
     }
-    
-    public double getPrice(PackageDTO p){
+
+    public double getPrice(PackageDTO p) {
 	return p.getPrice();
     }
-    
+
 }

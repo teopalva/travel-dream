@@ -7,11 +7,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import coreEJB.BaseProductEJBLocal;
-import coreEJB.PackageEJBLocal;
-import coreEJB.PagesEJBLocal;
 import dto.BaseProductDTO;
 import dto.DatePersonalizationDTO;
 import dto.ExcursionDTO;
@@ -44,17 +43,8 @@ public class EditPackageBean {
     @EJB
     private BaseProductEJBLocal baseProductEJB;
 
-    @EJB
-    private PackageEJBLocal packageEJB;
-
-    @EJB
-    private PagesEJBLocal pagesEJB;
-
-    // @ManagedProperty("#{OfferingsList.selectedPackage}")
-    // private PackageDTO selectedPackage;
-
-    // @ManagedProperty("#{OfferingsList.selectedPackageString}")
-    // private String selectedPackageString;
+    @ManagedProperty("#{SessionStorage}")
+    private SessionStorageBean sessionStorage;
 
     public EditPackageBean() {
 	outboundFlights = new ArrayList<PersonalizedFlightDTO>();
@@ -65,11 +55,10 @@ public class EditPackageBean {
 
     @PostConstruct
     public void init() {
-	// this.selectedPackage.setName(selectedPackageString);
-	if (packageEJB.getTmpPackage() == null) {
+	if (sessionStorage.getSelectedPackage() == null) {
 	    selectedPackage = new PackageDTO();
 	} else {
-	    selectedPackage = packageEJB.getTmpPackage();
+	    selectedPackage = sessionStorage.getSelectedPackage();
 	}
     }
 
@@ -83,11 +72,13 @@ public class EditPackageBean {
 	return selectedPackage;
     }
 
-    /*
-     * public String getselectedPackageString() { return selectedPackageString; }
-     * 
-     * public void setselectedPackageString(String s) { selectedPackageString = s; }
-     */
+    public SessionStorageBean getSessionStorage() {
+	return sessionStorage;
+    }
+
+    public void setSessionStorage(SessionStorageBean sessionStorage) {
+	this.sessionStorage = sessionStorage;
+    }
 
     public void setDeparturePlace(String p) {
 	departurePlace = p;
@@ -229,8 +220,8 @@ public class EditPackageBean {
     }
 
     public String showCheckout() {
-	packageEJB.setTmpPackage(selectedPackage);
-	pagesEJB.setPreviousPage("edit");
+	sessionStorage.setSelectedPackage(selectedPackage);
+	sessionStorage.setPreviousPage("edit");
 	return "user/checkout?faces-redirect=true";
     }
 }

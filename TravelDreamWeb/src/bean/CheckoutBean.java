@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import coreEJB.AuthenticationEJB;
@@ -13,7 +15,6 @@ import coreEJB.BuyingListItemEJBLocal;
 import coreEJB.GiftListItemEJBLocal;
 import coreEJB.InvitationEJBLocal;
 import coreEJB.PackageEJBLocal;
-import coreEJB.PagesEJBLocal;
 import dto.BuyingListItemDTO;
 import dto.GiftListItemDTO;
 import dto.InvitationDTO;
@@ -32,7 +33,7 @@ public class CheckoutBean {
     private List<String> emails;
     private int price;
     private UserDTO user;
-    private PackageDTO tmpPackage;
+    private PackageDTO selectedPackage;
 
     @EJB
     private PackageEJBLocal packageEJB;
@@ -49,18 +50,29 @@ public class CheckoutBean {
     @EJB
     private GiftListItemEJBLocal giftListEJB;
 
-    @EJB
-    private PagesEJBLocal pagesEJB;
+    @ManagedProperty("#{SessionStorage}")
+    private SessionStorageBean sessionStorage;
 
-    
     public CheckoutBean() {
 	try {
 	    user = authEJB.getAuthenticatedUser();
 	} catch (NotAuthenticatedException e) {
 	    // No problem: user area
 	}
-	emails = new ArrayList<String>(packageEJB.getTmpPackage().getNumPeople());
-	tmpPackage = packageEJB.getTmpPackage();
+    }
+
+    @PostConstruct
+    public void init() {
+	emails = new ArrayList<String>(sessionStorage.getSelectedPackage().getNumPeople());
+	selectedPackage = sessionStorage.getSelectedPackage();
+    }
+
+    public SessionStorageBean getSessionStorage() {
+	return sessionStorage;
+    }
+
+    public void setSessionStorage(SessionStorageBean sessionStorage) {
+	this.sessionStorage = sessionStorage;
     }
 
     public void setEmails(List<String> emails) {
@@ -80,17 +92,17 @@ public class CheckoutBean {
     }
 
     public String showPayment() {
-	if (pagesEJB.getPreviousPage().equals("edit")) {
+	if (sessionStorage.getPreviousPage().equals("edit")) {
 	    try {
-		packageEJB.savePackage(tmpPackage);
+		packageEJB.savePackage(selectedPackage);
 		boolean gifted = false;
-		BuyingListItemDTO buyingItem = new BuyingListItemDTO(tmpPackage, new Date(), gifted, false, user);
+		BuyingListItemDTO buyingItem = new BuyingListItemDTO(selectedPackage, new Date(), gifted, false, user);
 		try {
 		    buyingListEJB.saveBuyingListItem(buyingItem);
 		} catch (NotValidBuyingListException e) {
 		    System.err.printf("Qualcosa è andato storto, riprova.");
 		    e.printStackTrace();
-		    packageEJB.removePackage(tmpPackage);
+		    packageEJB.removePackage(selectedPackage);
 		    return null;
 		}
 		return ("user/payment?faces-redirect=true");
@@ -100,9 +112,9 @@ public class CheckoutBean {
 		return null;
 	    }
 	} else {
-	    if (pagesEJB.getPreviousPage().equals("gift")) {
+	    if (sessionStorage.getPreviousPage().equals("gift")) {
 		boolean gifted = true;
-		BuyingListItemDTO buyingItem = new BuyingListItemDTO(tmpPackage, new Date(), gifted, false, user);
+		BuyingListItemDTO buyingItem = new BuyingListItemDTO(selectedPackage, new Date(), gifted, false, user);
 		try {
 		    buyingListEJB.saveBuyingListItem(buyingItem);
 		} catch (NotValidBuyingListException e) {
@@ -111,9 +123,9 @@ public class CheckoutBean {
 		    return null;
 		}
 		return ("user/payment?faces-redirect=true");
-	    } else if (pagesEJB.getPreviousPage().equals("invitation")) {
+	    } else if (sessionStorage.getPreviousPage().equals("invitation")) {
 		boolean gifted = false;
-		BuyingListItemDTO buyingItem = new BuyingListItemDTO(tmpPackage, new Date(), gifted, false, user);
+		BuyingListItemDTO buyingItem = new BuyingListItemDTO(selectedPackage, new Date(), gifted, false, user);
 		try {
 		    buyingListEJB.saveBuyingListItem(buyingItem);
 		} catch (NotValidBuyingListException e) {
@@ -129,19 +141,19 @@ public class CheckoutBean {
 
     public String showGiftList() {
 	try {
-	    packageEJB.savePackage(tmpPackage);
-	    GiftListItemDTO giftItem = new GiftListItemDTO(tmpPackage, user);
+	    packageEJB.savePackage(selectedPackage);
+	    GiftListItemDTO giftItem = new GiftListItemDTO(selectedPackage, user);
 	    try {
 		giftListEJB.saveGiftListItem(giftItem);
 	    } catch (NotValidUserException e) {
 		System.err.printf("Qualcosa è andato storto, riprova.");
 		e.printStackTrace();
-		packageEJB.removePackage(tmpPackage);
+		packageEJB.removePackage(selectedPackage);
 		return null;
 	    } catch (NotValidGiftListItemException e) {
 		System.err.printf("Qualcosa è andato storto, riprova.");
 		e.printStackTrace();
-		packageEJB.removePackage(tmpPackage);
+		packageEJB.removePackage(selectedPackage);
 		return null;
 	    }
 	    return ("user/gift_list?faces-redirect=true");
@@ -157,7 +169,7 @@ public class CheckoutBean {
 	for (String email : emails) {
 	    UserDTO invited = new UserDTO(email, null, null, null, null);
 	    try {
-		invitationEJB.sendInvitation(new InvitationDTO(user, invited, tmpPackage, null, false));
+		invitationEJB.sendInvitation(new InvitationDTO(user, invited, selectedPackage, null, false));
 	    } catch (NotValidInvitationException e) {
 		System.err.printf("Errore durante l'operazione, riprova.");
 		e.printStackTrace();
@@ -172,7 +184,7 @@ public class CheckoutBean {
      * @return true if the "Add to giftList" section of the checkout is accesible to the user
      */
     public boolean isGiftActive() {
-	return pagesEJB.getPreviousPage().equals("edit") ? true : false;
+	return sessionStorage.getPreviousPage().equals("edit") ? true : false;
     }
 
     /**
@@ -180,10 +192,7 @@ public class CheckoutBean {
      * @return true if the "Invite your friends" section of the checkout is accesible to the user
      */
     public boolean isInviteActive() {
-	return pagesEJB.getPreviousPage().equals("edit") ? true : false;
+	return sessionStorage.getPreviousPage().equals("edit") ? true : false;
     }
 
-    /*
-     * private static void removeSessionScopedBean(String beanName) { FacesContext.getCurrentInstance().getViewRoot().getViewMap().remove(beanName); }
-     */
 }
