@@ -13,6 +13,8 @@ import exceptions.FieldNotPresentException;
 public class FlightDTO extends BaseProductDTO {
 	private String airportArrival;
 	private String airportDeparture;
+	private CityDTO cityArrival;
+	private CityDTO cityDeparture;
 	private List<ClassPersonalizationDTO> possibleClassPersonalizations;
 	private List<DatePersonalizationDTO> possibleDatePersonalizations;
 	private Map<PersonalizationDTO,Double> prices;
@@ -30,6 +32,8 @@ public class FlightDTO extends BaseProductDTO {
 			
 			this.airportArrival = flight.getAirportArrival().getId();
 			this.airportDeparture = flight.getAirportDeparture().getId();
+			this.cityArrival = new CityDTO(flight.getAirportDeparture().getCity());
+			this.cityDeparture = new CityDTO(flight.getAirportArrival().getCity());
 			this.name = flight.getName();
 			this.company = flight.getCompany().getName();
 			this.id = flight.getId();
@@ -105,6 +109,22 @@ public class FlightDTO extends BaseProductDTO {
 		this.prices = prices;
 	}
 	
+	public CityDTO getCityArrival() {
+		return cityArrival;
+	}
+
+	public void setCityArrival(CityDTO cityArrival) {
+		this.cityArrival = cityArrival;
+	}
+
+	public CityDTO getCityDeparture() {
+		return cityDeparture;
+	}
+
+	public void setCityDeparture(CityDTO cityDeparture) {
+		this.cityDeparture = cityDeparture;
+	}
+
 	public void addPersonalization(PersonalizationDTO personalization, double price) {
 		if(personalization instanceof DatePersonalizationDTO) {
 			DatePersonalizationDTO d = (DatePersonalizationDTO)personalization;
