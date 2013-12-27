@@ -11,7 +11,6 @@
 <ui:composition template="/WEB-INF/template/default.xhtml">
 	<ui:define name="content">
 		<h:body>
-		
 			<div class="container">
 
 				<div class="row row-offcanvas row-offcanvas-right">
@@ -20,65 +19,74 @@
 							<div class="navbar navbar-default"
 								style="padding-left: 20px; padding-right: 20px">
 								<center>
-									<h3>Criteri di ricerca</h3>
+									<h3>Ricerca</h3>
 								</center>
 
+<h:form>
 
 								<ul class="list-group">
 									<li class="list-group-item">
-										<p:calendar value="#{OfferingsList.getCurrentDate()}" id="departureCal" locale="it" pattern="dd/MM/yyyy" /></li>
+										Data di partenza:<br></br>
+										<p:calendar value="#{OfferingsList.departureDate}" id="departureCal" locale="it" pattern="dd/MM/yyyy">
+			
+										</p:calendar>
+										</li>
 									<li class="list-group-item">
-										<p:calendar value="#{OfferingsList.getCurrentDate()}" id="returnCal" locale="it" pattern="dd/MM/yyyy"/> </li>
+										Data di ritorno:<br></br>
+										<p:calendar  id="returnCal" locale="it" pattern="dd/MM/yyyy"/> </li>
 									<li class="list-group-item"><p:inputText
-											styleClass="form-control" placeholder="data di partenza" /></li>
+											styleClass="form-control" placeholder="Partenza" id="departure"/></li>
 									<li class="list-group-item"><p:inputText
-											styleClass="form-control" placeholder="data di ritorno" /></li>
-									<li class="list-group-item"><select class="form-control"><option>persone</option>
+											styleClass="form-control" placeholder="Destinazione" id="arrival" /></li>
+									<li class="list-group-item"><select class="form-control"><option>Persone</option>
+											<option>1</option>
 											<option>2</option>
 											<option>3</option>
 											<option>4</option>
 											<option>5</option></select></li>
 
-									<li class="list-group-item"><button type="submit"
-											class="btn btn-primary btn-lg btn-block">Cerca</button></li>
+									<li class="list-group-item">
+					
+										<p:commandButton value="Cerca" ajax="true" action="#{OfferingsList.submitSearch()}" update=":packages" styleClass="btn btn-primary btn-lg btn-block" id="buttonSearch"/>
+											
+										<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="collapse" data-target="#avanzate">Avanzate</button>
+									</li>
 								</ul>
+</h:form>											
+							
 
-
-								<center>
-									<h3>Avanzate</h3>
-								</center>
+								<div id="avanzate" class="collapse out">
+								
 
 
 								<div class="list-group">
 									<a class="list-group-item active">Volo</a> <a
 										class="list-group-item"><select class="form-control">
-											<option>classe del volo</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
+											<option>Classe del volo</option>
+											<option>Economica</option>
+											<option>Business</option>
 									</select> </a>
 								</div>
 								<div class="list-group">
 									<a class="list-group-item active">Hotel</a> <a
 										class="list-group-item"><select class="form-control">
-											<option>stelle</option>
+											<option>Stelle</option>
+											<option>1</option>
 											<option>2</option>
 											<option>3</option>
 											<option>4</option>
 											<option>5</option>
 									</select> </a> <a class="list-group-item"><select class="form-control">
-											<option>tipo camera</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-											<option>5</option>
+											<option>Camera</option>
+											<option>Classic</option>
+											<option>Business</option>
+											<option>Deluxe</option>
 									</select> </a>
 
 
 								</div>
-
-
+</div>
+							
 
 							</div>
 
@@ -123,7 +131,10 @@
 									Qui ti proponiamo i nostri pacchetti viaggio. Puoi raffinare la
 									ricerca tramite le barre presenti sopra e a fianco.<br></br>Selezionando
 									uno dei pacchetti puoi anche personalizzarlo.
+									
 								</p>
+								
+								
 							</div>
 
 
@@ -133,50 +144,53 @@
 							</h:form>
 							<div class="row text-center">
 
-
-
+							
+							 <h:panelGroup id="packages" >
 								<ui:repeat value="#{OfferingsList.submitSearch()}" var="package">
+								
 									<div class="col-lg-4 col-md-6 hero-feature">
 										<div class="thumbnail">
 											<h:graphicImage library="images" name="image_ny.png" />
 											<div class="caption">
-												<h3>#{package.name}</h3>
-												<p>Prezzo: {package.price}</p>
+												<h3>#{package.getName()}</h3>
+												<p>Areoporto di partenza: #{package.personalizedProducts[0].flight.airportDeparture}</p>
+												<p>Areoporto di arrivo: #{package.personalizedProducts[0].flight.airportArrival}</p>
 												<div id="info_#{package.id}" class="collapse out">
 													<table class="table" style="margin-bottom: 45px">
 														<caption style="padding-bottom: 5px">Dettagli
 															pacchetto #{package.id}</caption>
 														<tr>
 															<th>Volo</th>
-															<td>data</td>
-															<td>Prezzo</td>
+															<td>#{package.personalizedProducts[0].flight.name}</td>
+															<td>#{package.personalizedProducts[0].flight.company}</td>
 														</tr>
 														<tr>
 															<th>Hotel</th>
-															<td>data</td>
-															<td>Prezzo</td>
+															<td>#{package.personalizedProducts[2].hotel.name}</td>
+															<td>#{package.personalizedProducts[2].hotel.company}</td>
 														</tr>
 														<tr>
 															<th>Escursione</th>
-															<td>data</td>
-															<td>Prezzo</td>
+															<td>#{package.personalizedProducts[1].excursion.name}</td>
+															<td>#{package.personalizedProducts[1].excursion.company}</td>
 														</tr>
 													</table>
 												</div>
 
 												<p>
-												<!--  da sistemare il bottone vai -->
+												
 													<p:commandButton value="Vai" styleClass="btn btn-primary"
 														action="#{OfferingsList.showEditPackage(package)}" />
-													<button type="button" class="btn btn-default"
-														data-toggle="collapse" data-target="#info_#{package.id}">Info</button>
+													<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#info_#{package.id}">Info</button>
 												</p>
 											</div>
 										</div>
 									</div>
+							
 								</ui:repeat>
-
-
+</h:panelGroup>
+					
+									
 							</div>
 							<!-- /.row -->
 
@@ -196,4 +210,7 @@
 		</h:body>
 	</ui:define>
 </ui:composition>
+
+
+
 </html>
