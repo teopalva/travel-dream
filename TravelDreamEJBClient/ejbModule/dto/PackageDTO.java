@@ -65,6 +65,26 @@ public class PackageDTO {
     	this.reduction = reduction;
     	this.personalizedProducts = personalizedProducts;
     }
+    
+    /**
+     * Make a deep copy of the packageDTO, useful in order to duplicate package.
+     * Initialize the package without the id, full compatible with savePackage (meaning: create new package) in PackageEJB
+     * @param packageDTO the package that must be (deep) copied
+     */
+    public PackageDTO(PackageDTO packageDTO) {
+		PackageDTO _package = new PackageDTO(packageDTO.imageId, packageDTO.numPeople, packageDTO.name, packageDTO.reduction, null);
+		for(PersonalizedProductDTO p : packageDTO.personalizedProducts) {
+			if(p instanceof PersonalizedFlightDTO) {
+				_package.addPersonalizedProduct(new PersonalizedFlightDTO((PersonalizedFlightDTO)p));
+			}
+			if(p instanceof PersonalizedExcursionDTO) {
+				_package.addPersonalizedProduct(new PersonalizedExcursionDTO((PersonalizedExcursionDTO)p));
+			}
+			if(p instanceof PersonalizedHotelDTO) {
+				_package.addPersonalizedProduct(new PersonalizedHotelDTO((PersonalizedHotelDTO)p));
+			}
+		}
+	}
 
     public long getImageId() {
     	return imageId;

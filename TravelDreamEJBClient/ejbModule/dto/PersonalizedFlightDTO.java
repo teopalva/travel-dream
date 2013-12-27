@@ -25,6 +25,13 @@ public class PersonalizedFlightDTO extends PersonalizedProductDTO {
 		this.flight = flight;
 		this.id = -1;
 	}
+	
+	public PersonalizedFlightDTO(PersonalizedFlightDTO flight) {
+		this.flight = flight.flight;
+		this.id = -1;
+		this.classPersonalization = flight.classPersonalization;
+		this.datePersonalization = flight.datePersonalization;
+	}
 
 	public PersonalizedFlightDTO() {
 		super();

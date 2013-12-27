@@ -20,6 +20,12 @@ public class PersonalizedExcursionDTO extends PersonalizedProductDTO {
 		this.id = -1;
 	}
 	
+	public PersonalizedExcursionDTO(PersonalizedExcursionDTO excursion) {
+		this.excursion = excursion.excursion;
+		this.id = -1;
+		this.datePersonalization = excursion.datePersonalization;
+	}
+	
 	public ExcursionDTO getExcursion() {
 		return excursion;
 	}

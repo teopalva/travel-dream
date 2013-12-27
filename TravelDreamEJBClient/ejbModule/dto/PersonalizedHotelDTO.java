@@ -21,6 +21,12 @@ public class PersonalizedHotelDTO extends PersonalizedProductDTO {
 		this.hotel = hotel;
 		this.id = -1;
 	}
+	
+	public PersonalizedHotelDTO(PersonalizedHotelDTO hotel) {
+		this.hotel = hotel.hotel;
+		this.id = -1;
+		this.classPersonalization = hotel.classPersonalization;
+	}
 
 	public HotelDTO getHotel() {
 		return hotel;
