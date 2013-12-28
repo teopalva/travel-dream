@@ -26,6 +26,8 @@ public class ExcursionDTO extends BaseProductDTO {
 		this();
 		this.city = new CityDTO(excursion.getCity());
 		this.id = excursion.getId();
+		this.name = excursion.getName();
+		this.company = excursion.getCompany().getName();
 		try {
 			for(PossibleDatePersonalizationExcursion cp: excursion.getPossibleDatePersonalizationExcursions()) {
 				DatePersonalizationDTO d = new DatePersonalizationDTO(cp.getDatePersonalization());
