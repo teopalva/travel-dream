@@ -160,11 +160,11 @@ public class OfferingsListBean {
     }
 
     private boolean departurePlaceCheck(PackageDTO reorderedPackage) {
-	return (departurePlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityDeparture().getName().equals(departurePlace)) ? true : false;
+	return (departurePlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityDeparture().getName().equalsIgnoreCase(departurePlace)) ? true : false;
     }
 
     private boolean arrivalPlaceCheck(PackageDTO reorderedPackage) {
-	return (arrivalPlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityArrival().getName().equals(arrivalPlace)) ? true : false;
+	return (arrivalPlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityArrival().getName().equalsIgnoreCase(arrivalPlace)) ? true : false;
     }
 
     private boolean departureDateCheck(PackageDTO reorderedPackage) {
