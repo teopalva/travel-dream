@@ -80,7 +80,7 @@ public class OfferingsListBeanTest {
 	bean.setArrivalPlace(null);
 	bean.setDepartureDate(new Date(2013, 06, 22));
 	bean.setReturnDate(new Date(2013, 06, 29));
-	bean.setNumPeople(null);
+	bean.setNumPeople(0);
 	// ------------------------------
 	bean.setFlightClass(null);
 	bean.setHotelStars(null);

@@ -7,7 +7,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.view.ViewScoped;
 
 import coreEJB.AuthenticationEJBLocal;
 import coreEJB.BaseProductEJBLocal;
@@ -20,14 +20,14 @@ import dto.PersonalizedHotelDTO;
 import exceptions.PackageNotValidException;
 
 @ManagedBean(name = "OfferingsList")
-@SessionScoped
+@ViewScoped
 public class OfferingsListBean {
 
-    private String departurePlace = null;
-    private String arrivalPlace = null; // To be set directly from home.jsf when filling search form
+    private String departurePlace = "";
+    private String arrivalPlace = ""; // To be set directly from home.jsf when filling search form
     private Date departureDate = null;
     private Date returnDate = null;
-    private Integer numPeople = null;
+    private int numPeople = 0;
     // ------------------------------
     private String flightClass = null;
     private Integer hotelStars = null;
@@ -87,11 +87,11 @@ public class OfferingsListBean {
 	return returnDate;
     }
 
-    public void setNumPeople(Integer n) {
+    public void setNumPeople(int n) {
 	numPeople = n;
     }
 
-    public Integer getNumPeople() {
+    public int getNumPeople() {
 	return numPeople;
     }
 
@@ -156,15 +156,15 @@ public class OfferingsListBean {
     }
 
     private boolean numPeopleCheck(PackageDTO reorderedPackage) {
-	return (numPeople == null || reorderedPackage.getNumPeople() == numPeople) ? true : false;
+	return (numPeople == 0 || reorderedPackage.getNumPeople() == numPeople) ? true : false;
     }
 
     private boolean departurePlaceCheck(PackageDTO reorderedPackage) {
-	return (departurePlace == null || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityDeparture().getName().equals(departurePlace)) ? true : false;
+	return (departurePlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityDeparture().getName().equals(departurePlace)) ? true : false;
     }
 
     private boolean arrivalPlaceCheck(PackageDTO reorderedPackage) {
-	return (arrivalPlace == null || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityArrival().getName().equals(arrivalPlace)) ? true : false;
+	return (arrivalPlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityArrival().getName().equals(arrivalPlace)) ? true : false;
     }
 
     private boolean departureDateCheck(PackageDTO reorderedPackage) {
