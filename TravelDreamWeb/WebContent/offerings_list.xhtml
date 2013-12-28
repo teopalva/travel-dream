@@ -32,14 +32,14 @@
 											</p:calendar>
 										</li>
 										<li class="list-group-item">Data di ritorno:<br></br> <p:calendar
-												id="returnCal" locale="it" pattern="dd/MM/yyyy" />
+												id="returnCal" value="#{OfferingsList.returnDate}" locale="it" pattern="dd/MM/yyyy" />
 										</li>
 										<li class="list-group-item"><p:inputText
 												styleClass="form-control" placeholder="Partenza"
-												id="departure" /></li>
+												id="departure" value="#{OfferingsList.departurePlace}"/></li>
 										<li class="list-group-item"><p:inputText
 												styleClass="form-control" placeholder="Destinazione"
-												id="arrival" /></li>
+												id="arrival" value="#{OfferingsList.arrivalPlace}"/></li>
 										<li class="list-group-item"><select class="form-control"><option>Persone</option>
 												<option>1</option>
 												<option>2</option>
@@ -148,6 +148,12 @@
 																<td>#{package.personalizedProducts[0].flight.name}</td>
 																<td>#{package.personalizedProducts[0].flight.company}</td>
 															</tr>
+															<tr>
+																<th>Volo (ritorno)</th>
+																<td>#{package.personalizedProducts[1].flight.name}</td>
+																<td>#{package.personalizedProducts[1].flight.company}</td>
+															</tr>
+															
 															<tr>
 																<th>Hotel</th>
 																<td>#{package.personalizedProducts[2].hotel.name}</td>
