@@ -45,7 +45,7 @@
 								</div>
 								<div class="col-md-2 column" style="margin-left: 20px">
 									Numero persone:
-									<p:inputText value="#{EditPackage.numPeople}" id="numPeople" />
+									<p:spinner id="people" value="#{EditPackage.numPeople}" min="0" max="10" size="2"  style="border: 0px; height:30px;"/>
 								</div>
 								<div class="col-md-1 column"
 									style="margin-left: 20px; padding-top: 20px">
@@ -68,12 +68,12 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Volo di andata</h3>
 								</div>
-								<div class="panel-body">risultati...</div>
-								<ui:repeat value="#{EditPackage.getOutboundFlights()}"
-									var="flight">
-									<div class="panel-body">#{flight.name}</div>
+								<ul class="list-group">
+								
+								<ui:repeat value="#{EditPackage.getOutboundFlights()}" var="flight">
+									<li class="list-group-item">#{flight.name}</li>
 								</ui:repeat>
-
+								</ul>
 
 							</div>
 						</h:panelGroup>
@@ -83,12 +83,12 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Volo di ritorno</h3>
 								</div>
-								<div class="panel-body">risultati...</div>
+								<ul class="list-group">
 								<ui:repeat value="#{EditPackage.getReturnFlights()}"
 									var="flight">
-									<div class="panel-body">#{flight.name}</div>
+									<li class="list-group-item">#{flight.name}</li>
 								</ui:repeat>
-
+								</ul>
 
 							</div>
 						</h:panelGroup>
@@ -176,10 +176,11 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Seleziona un hotel</h3>
 								</div>
-								<div class="panel-body">risultati...</div>
+								<ul class="list-group">
 								<ui:repeat value="#{EditPackage.getHotels()}" var="hotel">
-									<div class="panel-body">#{hotel.name}</div>
+									 <li class="list-group-item">#{hotel.hotel.name}</li>
 								</ui:repeat>
+								</ul>
 
 							</div>
 						</h:panelGroup>
@@ -190,11 +191,11 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Seleziona un escursione</h3>
 								</div>
-								<div class="panel-body">risultati...</div>
+								<ul class="list-group">
 								<ui:repeat value="#{EditPackage.getExcursions()}" var="exc">
-									<div class="panel-body">#{exc.name}</div>
+									 <li class="list-group-item">#{exc.name}</li>
 								</ui:repeat>
-
+								</ul>
 							</div>
 						</h:panelGroup>
 
