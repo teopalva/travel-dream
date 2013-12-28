@@ -30,9 +30,9 @@ public class OfferingsListBean {
     private Date returnDate = null;
     private int numPeople = 0;
     // ------------------------------
-    private String flightClass = null;
-    private Integer hotelStars = null;
-    private String hotelClass = null;
+    private String flightClass = "null";
+    private int hotelStars = 0;
+    private String hotelClass = "null";
 
     @EJB
     private AuthenticationEJBLocal authEJB;
@@ -50,11 +50,13 @@ public class OfferingsListBean {
     private void init() {
 	if (!sessionStorage.getDeparturePlace().equals("")) {
 	    departurePlace = sessionStorage.getDeparturePlace();
+	    sessionStorage.setDeparturePlace("");
 	}
 	if (!sessionStorage.getArrivalPlace().equals("")) {
 	    arrivalPlace = sessionStorage.getArrivalPlace();
+	    sessionStorage.setArrivalPlace("");
 	}
-	submitSearch();
+//	submitSearch();
     }
 
     // Bean properties:
@@ -156,8 +158,12 @@ public class OfferingsListBean {
 	    PackageDTO rp;
 	    try {
 		rp = reorderPackage(pack);
+		//basic search filters
 		if (numPeopleCheck(rp) && departurePlaceCheck(rp) && arrivalPlaceCheck(rp) && departureDateCheck(rp) && returnDateCheck(rp)) {
-		    filteredOfferings.add(rp);
+		    //advanced filters
+		    if(flightClassCheck(rp) && hotelStarsCheck(rp) && hotelClassCheck(rp)) {
+			filteredOfferings.add(rp);
+		    }
 		}
 	    } catch (PackageNotValidException e) {
 		System.err.print("Package not valid.");
@@ -167,6 +173,12 @@ public class OfferingsListBean {
 	return filteredOfferings;
     }
 
+    /**
+     * 0<=numPeople<=10
+     * 
+     * @param reorderedPackage
+     * @return
+     */
     private boolean numPeopleCheck(PackageDTO reorderedPackage) {
 	return (numPeople == 0 || reorderedPackage.getNumPeople() == numPeople) ? true : false;
     }
@@ -187,6 +199,31 @@ public class OfferingsListBean {
 
     private boolean returnDateCheck(PackageDTO reorderedPackage) {
 	return (returnDate == null || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(1)).getDatePersonalization().getInitialDate().equals(returnDate)) ? true : false;
+    }
+
+    /**
+     * Both the outbound and return flights have the desired class
+     * @param reorderedPackage
+     * @return
+     */
+    private boolean flightClassCheck(PackageDTO reorderedPackage) {
+	return (flightClass.equals("null") || (((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getClassPersonalization().get_class().equalsIgnoreCase(flightClass) 
+		&& ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(1)).getClassPersonalization().get_class().equalsIgnoreCase(flightClass)))
+		? true : false;
+    }
+
+    /**
+     * 0<=hotelStars<=5
+     * 
+     * @param reorderedPackage
+     * @return
+     */
+    private boolean hotelStarsCheck(PackageDTO reorderedPackage) {
+	return (hotelStars == 0 || ((PersonalizedHotelDTO) reorderedPackage.getPersonalizedProducts().get(2)).getHotel().getStars() == hotelStars) ? true : false;
+    }
+
+    private boolean hotelClassCheck(PackageDTO reorderedPackage) {
+	return (hotelClass.equals("null") || ((PersonalizedHotelDTO) reorderedPackage.getPersonalizedProducts().get(2)).getClassPersonalization().get_class().equalsIgnoreCase(hotelClass)) ? true : false;
     }
 
     private PackageDTO reorderPackage(PackageDTO pack) throws PackageNotValidException {
