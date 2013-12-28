@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+		<h:body>
+			<div class="container">
+
+				<div class="row clearfix" style="margin-top: 20px;border-bottom:1px solid #e7e7e7;">
+					<div class="col-md-12 column">
+						
+							<center><h1>Checkout</h1></center>
+						
+					</div>
+				</div>
+
+				<div class="row clearfix" style="padding-top: 30px">
+					<div class="col-md-4 column" style="height: 340px;">
+						<h2>Acquista</h2>
+						<p>Selezionando questa opzione, decidi di acquistare il
+							pacchetto.</p>
+
+						<button type="button"
+							class="btn btn-success btn-default btn-block"
+							style="margin-top: 140px">Acquista</button>
+					</div>
+					<div class="col-md-4 column">
+						<h2>Lista regali</h2>
+						<p>Tramite questa opzione aggiungi il pacchetto che hai creato
+							alla lista regali, in modo da conservarlo e renderlo disponibile
+							ai tuoi amici in modo che possano regalartelo</p>
+
+						<button type="button" class="btn btn-block btn-info"
+							style="margin-top: 100px">Inserisci in lista regali</button>
+					</div>
+					<div class="col-md-4 column">
+						<h2>Invita degli amici</h2>
+						<p>Qui puoi invitare degli amici ad unirsi al tuo viaggio!</p>
+						<p:inputText styleClass="form-control" placeholder="e-mail"
+							id="friend1" />
+						<br></br>
+						<p:inputText styleClass="form-control" placeholder="e-mail"
+							id="friend2" />
+						<button type="button" class="btn btn-block btn-warning"
+							style="margin-top: 60px">Invita amici</button>
+					</div>
+				</div>
+				<div class="row clearfix" style="margin-bottom: 10px">
+					<div class="col-md-12 column">
+						<div class="alert alert-danger">
+							<b>Attenzione</b> L'opzione selezionata è definitiva!
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>
+
+
+
+</html>

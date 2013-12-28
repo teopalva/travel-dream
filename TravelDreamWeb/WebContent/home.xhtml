@@ -24,16 +24,17 @@
         			<h:form id="wheretogo" styleClass="form-inline">
         			
   						<div class="form-group">
-  							<p:inputText id="from"  name="j_username" styleClass="form-control" placeholder="partenza da" />
+  							<p:inputText id="from"  name="j_username" styleClass="form-control" placeholder="partenza da" value="#{SessionStorage.departurePlace}"/>
     						<!--  <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">-->
   						</div>
  						 <div class="form-group">
- 						 	<p:inputText id="to"  styleClass="form-control" placeholder="destinazione" />
-   							<!-- <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password"> -->
+ 						 	<p:inputText id="to"  styleClass="form-control" placeholder="destinazione" value="#{SessionStorage.arrivalPlace}"/>
+   			
    							
   						</div>
   						<div class="form-group">
-  						<h:commandButton id="go"  value="Cerca" styleClass="btn btn-default" />
+  						<!--  fixare! creare un metodo in home che passi i parametri a offeringslist! -->
+  						<h:commandButton id="go"  value="Cerca" styleClass="btn btn-default" action="#{Home.showOfferingsList()}" />
   						</div>
 
 					</h:form>

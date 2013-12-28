@@ -12,6 +12,17 @@ footer {
 
 .listScroll {
     overflow: scroll;
-    height: 600px;
+    height: 250px;
     padding-right:12px;
+}
+
+.ui-selectonemenu{
+     width: 100% !important;
+}
+.ui-selectonemenu-label{
+     width: 100% !important;
+} 
+
+.ui-selectonemenu-panel {
+   width:170px !important;
 }

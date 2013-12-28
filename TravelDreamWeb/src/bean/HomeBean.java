@@ -13,7 +13,7 @@ import exceptions.EmptySelectionException;
 public class HomeBean {
 
     /**
-     * To be checked directly from edit_package.jsf before rendering the page
+     * To be checked directly from edit_package.jsf before rendering the page	//TODO
      */
     private Boolean hotelSelected;
     private Boolean flightSelected;

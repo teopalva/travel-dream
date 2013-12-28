@@ -10,7 +10,7 @@ import dto.UserDTO;
 @ManagedBean(name = "Registration")
 @RequestScoped
 public class RegistrationBean {
-    private String group = "TDC";
+    private final static String GROUP = "TDC";
     private String backurl = "/home?faces-redirect=true";
     private UserDTO user;
 
@@ -19,7 +19,7 @@ public class RegistrationBean {
 
     public RegistrationBean() {
 	user = new UserDTO();
-	user.setGroup(group);
+	user.setGroup(GROUP);
     }
 
     // Bean properties:

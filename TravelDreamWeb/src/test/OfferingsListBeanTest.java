@@ -23,6 +23,7 @@ public class OfferingsListBeanTest {
     /**
      * Adds fake packages to offeringsList
      */
+    @SuppressWarnings("deprecation")
     @Before
     public void searchFilterTestBefore() {
 	// Package1
@@ -73,6 +74,7 @@ public class OfferingsListBeanTest {
 	list.add(package2);
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     public void searchFilterTest() {
 	OfferingsListBean bean = new OfferingsListBean();
@@ -80,7 +82,7 @@ public class OfferingsListBeanTest {
 	bean.setArrivalPlace(null);
 	bean.setDepartureDate(new Date(2013, 06, 22));
 	bean.setReturnDate(new Date(2013, 06, 29));
-	bean.setNumPeople(null);
+	bean.setNumPeople(0);
 	// ------------------------------
 	bean.setFlightClass(null);
 	bean.setHotelStars(null);
