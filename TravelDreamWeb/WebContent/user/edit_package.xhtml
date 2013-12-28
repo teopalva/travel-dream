@@ -5,7 +5,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="/WEB-INF/template/default.xhtml">
 	<ui:define name="content">
@@ -20,7 +21,7 @@ function handleDrop(event, ui) {
 	offset = ui.offset; //absolute position of draggable helper
 	
 	//draggable.hide();
-	alert("ok");
+	alert(draggable.attr("id"));
 	
 } 
 
@@ -84,9 +85,11 @@ function handleDrop(event, ui) {
 								</div>
 								<ul class="list-group">
 								
-								<ui:repeat value="#{EditPackage.getOutboundFlights()}" var="flight">
-									<li class="list-group-item">#{flight.flight.name}</li>
-								</ui:repeat>
+								
+								<c:forEach items="#{EditPackage.getOutboundFlights()}" var="items">
+										 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="_2_#{items.flight.id}"  styleClass="well well-sm" >#{items.flight.name} <p:draggable scope="departure" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+								</c:forEach>
+								
 								</ul>
 
 							</div>
@@ -98,10 +101,12 @@ function handleDrop(event, ui) {
 									<h3 class="panel-title">Volo di ritorno</h3>
 								</div>
 								<ul class="list-group">
-								<ui:repeat value="#{EditPackage.getReturnFlights()}"
-									var="flight">
-									<li class="list-group-item">#{flight.flight.name}</li>
-								</ui:repeat>
+								
+								<c:forEach items="#{EditPackage.getReturnFlights()}" var="items">
+										 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="_2_#{items.flight.id}"  styleClass="well well-sm" >#{items.flight.name} <p:draggable scope="return" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+								</c:forEach>
+								
+								
 								</ul>
 
 							</div>
@@ -150,47 +155,55 @@ function handleDrop(event, ui) {
 						
 									
 									
-										<p:panel header="Volo di andata" style="height:80px;margin-bottom:20px">
+										<p:panel id="departureFlight" header="Volo di andata" style="height:80px;margin-bottom:20px">
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.name}</center>
 											</div>
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}</center>
 											</div>
-											<p:droppable onDrop="handleDrop"/>
+											<p:droppable scope="departure" onDrop="handleDrop">
+												<p:ajax listener="#{EditPackage.onDrop}" />
+											</p:droppable>
 										</p:panel> 
 									
 							
 
-										<p:panel header="Volo di ritorno" style="height:80px;margin-bottom:20px">
+										<p:panel id="returnFlight" header="Volo di ritorno" style="height:80px;margin-bottom:20px">
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.name}</center>
 											</div>
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.company}</center>
 											</div>
-											<p:droppable onDrop="handleDrop"/>
+											<p:droppable scope="return" onDrop="handleDrop">
+												<p:ajax listener="#{EditPackage.onDrop}" />
+											</p:droppable>
 										</p:panel> 
 
 									
-										<p:panel header="Hotel" style="height:80px;margin-bottom:20px">
+										<p:panel id="hotel" header="Hotel" style="height:80px;margin-bottom:20px">
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.name}</center>
 											</div>
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.company}</center>
 											</div>
-											<p:droppable onDrop="handleDrop"/>
+											<p:droppable scope="hotel" onDrop="handleDrop">
+												<p:ajax listener="#{EditPackage.onDrop}" />
+											</p:droppable>
 										</p:panel> 
 										
-										<p:panel header="Escursione" style="height:80px">
+										<p:panel id="excursion" header="Escursione" style="height:80px">
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.name}</center>
 											</div>
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.company}</center>
 											</div>
-											<p:droppable onDrop="handleDrop"/>
+											<p:droppable scope="excursion" onDrop="handleDrop">
+												<p:ajax listener="#{EditPackage.onDrop}" />
+											</p:droppable>
 										</p:panel> 
 
 
@@ -216,9 +229,11 @@ function handleDrop(event, ui) {
 									<h3 class="panel-title">Seleziona un hotel</h3>
 								</div>
 								<ul class="list-group">
-								<ui:repeat value="#{EditPackage.getHotels()}" var="hotel">
-									 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="pnl" styleClass="well well-sm" >#{hotel.hotel.name} <p:draggable revert="true" opacity="0.5" helper="clone"/></p:outputPanel></li>
-								</ui:repeat>
+
+								<c:forEach items="#{EditPackage.getHotels()}" var="items">
+										 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="_2_#{items.hotel.id}"  styleClass="well well-sm" >#{items.hotel.name} <p:draggable scope="hotel" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+								</c:forEach>
+								
 								</ul>
 
 							</div>
@@ -231,9 +246,14 @@ function handleDrop(event, ui) {
 									<h3 class="panel-title">Seleziona un escursione</h3>
 								</div>
 								<ul class="list-group">
-								<ui:repeat value="#{EditPackage.getExcursions()}" var="exc">
-									 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="pnl" styleClass="well well-sm" >#{exc.excursion.id} <p:draggable revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
-								</ui:repeat>
+								<!--  <ui:repeat value="#{EditPackage.getExcursions()}" var="exc">-->
+								<c:forEach items="#{EditPackage.getExcursions()}" var="item">
+										 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="_3_#{item.excursion.id}"  styleClass="well well-sm" >#{item.excursion.name} <p:draggable scope="excursion" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+								</c:forEach>
+									 
+									
+								
+								<!--  </ui:repeat>-->
 								</ul>
 							</div>
 						</h:panelGroup>
