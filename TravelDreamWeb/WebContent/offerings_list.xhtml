@@ -71,9 +71,9 @@
 										<a class="list-group-item active">Volo</a> <a
 											class="list-group-item">
 											<p:selectOneMenu value="#{OfferingsList.flightClass}">
-												<f:selectItem itemLabel="Classe del volo" itemValue="0"/>
-												<f:selectItem itemLabel="Economy" itemValue="1" />
-												<f:selectItem itemLabel="Business" itemValue="2" />
+												<f:selectItem itemLabel="Classe del volo" itemValue="null"/>
+												<f:selectItem itemLabel="Economy" itemValue="economy" />
+												<f:selectItem itemLabel="Business" itemValue="business" />
 											</p:selectOneMenu>
 											 </a>
 									</div>
@@ -94,11 +94,11 @@
 
 										</a> <a class="list-group-item">
 											<p:selectOneMenu value="#{OfferingsList.hotelClass}">
-												<f:selectItem itemLabel="Camera" itemValue="0" />
-												<f:selectItem itemLabel="Economy" itemValue="1" />
-												<f:selectItem itemLabel="Classic" itemValue="2" />
-												<f:selectItem itemLabel="Business" itemValue="3" />
-												<f:selectItem itemLabel="Deluxe" itemValue="4" />
+												<f:selectItem itemLabel="Camera" itemValue="null" />
+												<f:selectItem itemLabel="Economy" itemValue="economy" />
+												<f:selectItem itemLabel="Classic" itemValue="classic" />
+												<f:selectItem itemLabel="Business" itemValue="business" />
+												<f:selectItem itemLabel="Deluxe" itemValue="deluxe" />
 											</p:selectOneMenu>
 										</a>
 
@@ -176,7 +176,7 @@
 															</tr>
 															<tr>
 																<th>Escursione</th>
-																<td>#{package.personalizedProducts[3].excursion}</td>
+																<td>#{package.personalizedProducts[3].excursion.id}</td>
 																<td>#{package.personalizedProducts[3].excursion.company}</td>
 															</tr>
 														</table>
