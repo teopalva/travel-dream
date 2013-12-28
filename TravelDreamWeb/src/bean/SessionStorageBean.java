@@ -15,6 +15,9 @@ public class SessionStorageBean {
     private PackageDTO selectedPackage;
     private String previousPage = null;
 
+    private String departurePlace = "";
+    private String arrivalPlace = ""; // To be set directly from home.jsf when filling search form
+
     public PackageDTO getSelectedPackage() {
 	return selectedPackage;
     }
@@ -32,6 +35,22 @@ public class SessionStorageBean {
      */
     public void setPreviousPage(String page) {
 	previousPage = page;
+    }
+
+    public String getDeparturePlace() {
+	return departurePlace;
+    }
+
+    public void setDeparturePlace(String departurePlace) {
+	this.departurePlace = departurePlace;
+    }
+
+    public String getArrivalPlace() {
+	return arrivalPlace;
+    }
+
+    public void setArrivalPlace(String arrivalPlace) {
+	this.arrivalPlace = arrivalPlace;
     }
 
 }

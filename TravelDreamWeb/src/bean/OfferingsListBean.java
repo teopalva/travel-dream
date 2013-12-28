@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -24,7 +25,7 @@ import exceptions.PackageNotValidException;
 public class OfferingsListBean {
 
     private String departurePlace = "";
-    private String arrivalPlace = ""; // To be set directly from home.jsf when filling search form
+    private String arrivalPlace = "";
     private Date departureDate = null;
     private Date returnDate = null;
     private int numPeople = 0;
@@ -44,6 +45,17 @@ public class OfferingsListBean {
 
     @ManagedProperty("#{SessionStorage}")
     private SessionStorageBean sessionStorage;
+
+    @PostConstruct
+    private void init() {
+	if (!sessionStorage.getDeparturePlace().equals("")) {
+	    departurePlace = sessionStorage.getDeparturePlace();
+	}
+	if (!sessionStorage.getArrivalPlace().equals("")) {
+	    arrivalPlace = sessionStorage.getArrivalPlace();
+	}
+	submitSearch();
+    }
 
     // Bean properties:
 
@@ -160,11 +172,13 @@ public class OfferingsListBean {
     }
 
     private boolean departurePlaceCheck(PackageDTO reorderedPackage) {
-	return (departurePlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityDeparture().getName().equalsIgnoreCase(departurePlace)) ? true : false;
+	return (departurePlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityDeparture().getName().equalsIgnoreCase(departurePlace)) ? true
+		: false;
     }
 
     private boolean arrivalPlaceCheck(PackageDTO reorderedPackage) {
-	return (arrivalPlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityArrival().getName().equalsIgnoreCase(arrivalPlace)) ? true : false;
+	return (arrivalPlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityArrival().getName().equalsIgnoreCase(arrivalPlace)) ? true
+		: false;
     }
 
     private boolean departureDateCheck(PackageDTO reorderedPackage) {
