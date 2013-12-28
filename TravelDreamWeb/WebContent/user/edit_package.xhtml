@@ -11,6 +11,20 @@
 	<ui:define name="content">
 		<h:body>
 
+<script>
+function handleDrop(event, ui) {
+
+	var draggable = ui.draggable, //draggable element, a jQuery object
+	helper = ui.helper, //helper element of draggable, a jQuery object
+	position = ui.position, //position of draggable helper
+	offset = ui.offset; //absolute position of draggable helper
+	
+	//draggable.hide();
+	alert("ok");
+	
+} 
+
+</script>
 			<div class="container">
 				<div class="row clearfix">
 					<div class="col-md-12 column">
@@ -71,7 +85,7 @@
 								<ul class="list-group">
 								
 								<ui:repeat value="#{EditPackage.getOutboundFlights()}" var="flight">
-									<li class="list-group-item">#{flight.name}</li>
+									<li class="list-group-item">#{flight.flight.name}</li>
 								</ui:repeat>
 								</ul>
 
@@ -86,7 +100,7 @@
 								<ul class="list-group">
 								<ui:repeat value="#{EditPackage.getReturnFlights()}"
 									var="flight">
-									<li class="list-group-item">#{flight.name}</li>
+									<li class="list-group-item">#{flight.flight.name}</li>
 								</ui:repeat>
 								</ul>
 
@@ -132,34 +146,60 @@
 
 								</div>
 
+<p:outputPanel id="slot">
+						
+									
+									
+										<p:panel header="Volo di andata" style="height:80px;margin-bottom:20px">
+											<div class="col-md-6">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.name}</center>
+											</div>
+											<div class="col-md-6">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}</center>
+											</div>
+											<p:droppable onDrop="handleDrop"/>
+										</p:panel> 
+									
+							
 
-								<table class="table" style="margin-bottom: 45px">
+										<p:panel header="Volo di ritorno" style="height:80px;margin-bottom:20px">
+											<div class="col-md-6">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.name}</center>
+											</div>
+											<div class="col-md-6">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.company}</center>
+											</div>
+											<p:droppable onDrop="handleDrop"/>
+										</p:panel> 
 
-									<tr>
-										<th>Volo di andata</th>
-										<td>#{EditPackage.selectedPackage.personalizedProducts[0].flight.name}</td>
-										<td>#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}</td>
-	
-									</tr>
+									
+										<p:panel header="Hotel" style="height:80px;margin-bottom:20px">
+											<div class="col-md-6">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.name}</center>
+											</div>
+											<div class="col-md-6">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.company}</center>
+											</div>
+											<p:droppable onDrop="handleDrop"/>
+										</p:panel> 
+										
+										<p:panel header="Escursione" style="height:80px">
+											<div class="col-md-6">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.name}</center>
+											</div>
+											<div class="col-md-6">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.company}</center>
+											</div>
+											<p:droppable onDrop="handleDrop"/>
+										</p:panel> 
 
-									<tr>
-										<th>Volo di ritorno</th>
-										<td>#{EditPackage.selectedPackage.personalizedProducts[1].flight.name}</td>
-										<td>#{EditPackage.selectedPackage.personalizedProducts[1].flight.company}</td>
-									</tr>
 
-									<tr>
-										<th>Hotel</th>
-										<td>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.name}</td>
-										<td>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.company}</td>
-									</tr>
-									<tr>
-										<th>Escursione</th>
-										<td>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.name}</td>
-										<td>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.company}</td>
-									</tr>
-								</table>
+									
 
+									
+						
+
+</p:outputPanel>
 
 								<p></p>
 							</div>
@@ -177,7 +217,7 @@
 								</div>
 								<ul class="list-group">
 								<ui:repeat value="#{EditPackage.getHotels()}" var="hotel">
-									 <li class="list-group-item">#{hotel.hotel.name}</li>
+									 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="pnl" styleClass="well well-sm" >#{hotel.hotel.name} <p:draggable revert="true" opacity="0.5" helper="clone"/></p:outputPanel></li>
 								</ui:repeat>
 								</ul>
 
@@ -192,7 +232,7 @@
 								</div>
 								<ul class="list-group">
 								<ui:repeat value="#{EditPackage.getExcursions()}" var="exc">
-									 <li class="list-group-item">#{exc.name}</li>
+									 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="pnl" styleClass="well well-sm" >#{exc.excursion.id} <p:draggable revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
 								</ui:repeat>
 								</ul>
 							</div>
@@ -208,8 +248,7 @@
 				</div>
 			</div>
 
-			<!--  <p>The package you are editing is
-				#{EditPackage.selectedPackage.name}</p>-->
+
 		</h:body>
 	</ui:define>
 </ui:composition>
