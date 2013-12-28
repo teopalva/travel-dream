@@ -102,12 +102,13 @@ public class HotelDTO extends BaseProductDTO {
 			this.prices.remove(c);
 		}
 	}
-
+	
 	@Override
 	public String toString() {
 		return "HotelDTO [possibleClassPersonalizations="
 				+ possibleClassPersonalizations + ", stars=" + stars
-				+ ", city=" + city + ", prices=" + prices + "]";
+				+ ", city=" + city + ", prices=" + prices + ", name=" + name
+				+ ", company=" + company + ", id=" + id + "]";
 	}
 
 	@Override

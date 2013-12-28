@@ -262,6 +262,20 @@ public class TestBean {
 			e.printStackTrace();
 		}
 	}
+	
+	public void testIsValidPackage() {
+		List<PackageDTO> packages = packageEJB.getOfferingPackages();
+		for(PackageDTO _package : packages)
+			if(packageEJB.isValidForOffering(_package)) {
+				System.out.println("Valid for offering");
+				System.out.println(packageEJB.dateDeparture(_package));
+				System.out.println(packageEJB.dateReturn(_package));
+				System.out.println(packageEJB.cityArrival(_package));
+				System.out.println(packageEJB.cityReturn(_package));
+			}
+			else
+				System.err.println(":-( NOT Valid for offerings");
+	}
 
 	
 

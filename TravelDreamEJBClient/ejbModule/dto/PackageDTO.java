@@ -1,8 +1,18 @@
 package dto;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import coreEJB.BaseProductEJBLocal;
 import entity.Package;
 import entity.PersonalizedProductExcursion;
 import entity.PersonalizedProductFlight;
@@ -17,43 +27,43 @@ public class PackageDTO {
     private int id;
 
     List<PersonalizedProductDTO> personalizedProducts;
-
+    
     public PackageDTO() {
-	this.id = -1;
+    	this.id = -1;
     }
 
     public PackageDTO(Package _package) throws FieldNotPresentException {
-	try {
-	    if (_package.getImage() != null)
-		this.imageId = _package.getImage().getId();
-	    else
-		this.imageId = -1;
-	    this.numPeople = _package.getNumPeople();
-	    this.name = _package.getName();
-	    this.reduction = _package.getReduction();
-	    this.personalizedProducts = new ArrayList<PersonalizedProductDTO>();
-	    this.id = _package.getId();
-	    try {
-		for (PersonalizedProductFlight flight : _package.getPersonalizedProductFlights()) {
-		    personalizedProducts.add(new PersonalizedFlightDTO(flight));
-		}
-	    } catch (NullPointerException e) {
-	    } // No problem
-	    try {
-		for (PersonalizedProductExcursion excursion : _package.getPersonalizedProductExcursions()) {
-		    personalizedProducts.add(new PersonalizedExcursionDTO(excursion));
-		}
-	    } catch (NullPointerException e) {
-	    } // No problem
-	    try {
-		for (PersonalizedProductHotel hotel : _package.getPersonalizedProductHotels()) {
-		    personalizedProducts.add(new PersonalizedHotelDTO(hotel));
-		}
-	    } catch (NullPointerException e) {
-	    } // No problem
-	} catch (Exception e) {
-	    throw new FieldNotPresentException();
-	}
+    	try {
+    		if (_package.getImage() != null)
+    			this.imageId = _package.getImage().getId();
+    		else
+    			this.imageId = -1;
+    		this.numPeople = _package.getNumPeople();
+    		this.name = _package.getName();
+    		this.reduction = _package.getReduction();
+    		this.personalizedProducts = new ArrayList<PersonalizedProductDTO>();
+    		this.id = _package.getId();
+    		try {
+    			for (PersonalizedProductFlight flight : _package.getPersonalizedProductFlights()) {
+    				personalizedProducts.add(new PersonalizedFlightDTO(flight));
+    			}
+    		} catch (NullPointerException e) {
+    		} // No problem
+    		try {
+    			for (PersonalizedProductExcursion excursion : _package.getPersonalizedProductExcursions()) {
+    				personalizedProducts.add(new PersonalizedExcursionDTO(excursion));
+    			}
+    		} catch (NullPointerException e) {
+    		} // No problem
+    		try {
+    			for (PersonalizedProductHotel hotel : _package.getPersonalizedProductHotels()) {
+    				personalizedProducts.add(new PersonalizedHotelDTO(hotel));
+    			}
+    		} catch (NullPointerException e) {
+    		} // No problem
+    	} catch (Exception e) {
+    		throw new FieldNotPresentException();
+    	}
     }
 
     public PackageDTO(int imageId, int numPeople, String name, double reduction, List<PersonalizedProductDTO> personalizedProducts) {
@@ -131,14 +141,6 @@ public class PackageDTO {
 
     public void addPersonalizedProduct(PersonalizedProductDTO product) {
     	personalizedProducts.add(product);
-    }
-
-    /**
-     * Check if the package is valid or not
-     */
-    public boolean isValid() {
-    	// TODO: implement the check
-    	return false;
     }
 
     public int getId() {

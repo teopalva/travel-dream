@@ -18,4 +18,5 @@ public interface BaseProductEJBLocal {
     public List<String> getAllAirports();
     public List <BaseProductDTO> getAllPersonalizations();
     public List <BaseProductDTO> getAllBaseProducts();
+    public CityDTO getCity(String airport);
 }

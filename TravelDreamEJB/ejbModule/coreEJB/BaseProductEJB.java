@@ -679,6 +679,12 @@ public class BaseProductEJB implements BaseProductEJBLocal {
     	return list;
     }
     
+    public CityDTO getCity(String airport) {
+    	Airport a = em.find(Airport.class, airport);
+    	CityDTO city = new CityDTO(a.getCity());
+    	return city;
+    }
+    
     public List<String> getAllCompanies() {
     	List<Company> companies = em.createQuery("SELECT c FROM Company c", Company.class).getResultList();
     	List<String> list = new ArrayList<String>();

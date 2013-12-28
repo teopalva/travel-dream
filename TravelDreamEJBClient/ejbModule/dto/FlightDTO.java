@@ -149,15 +149,18 @@ public class FlightDTO extends BaseProductDTO {
 			this.prices.remove(c);
 		}
 	}
-
+	
 	@Override
 	public String toString() {
 		return "FlightDTO [airportArrival=" + airportArrival
-				+ ", airportDeparture=" + airportDeparture
+				+ ", airportDeparture=" + airportDeparture + ", cityArrival="
+				+ cityArrival + ", cityDeparture=" + cityDeparture
 				+ ", possibleClassPersonalizations="
 				+ possibleClassPersonalizations
 				+ ", possibleDatePersonalizations="
-				+ possibleDatePersonalizations + ", prices=" + prices + "]";
+				+ possibleDatePersonalizations + ", prices=" + prices
+				+ ", name=" + name + ", company=" + company + ", id=" + id
+				+ "]";
 	}
 
 	@Override
