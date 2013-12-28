@@ -85,7 +85,7 @@ public class OfferingsListBeanTest {
 	bean.setNumPeople(0);
 	// ------------------------------
 	bean.setFlightClass(null);
-	bean.setHotelStars(null);
+	bean.setHotelStars(0);
 	bean.setHotelClass(null);
 
 	result = bean.searchFilter(list);

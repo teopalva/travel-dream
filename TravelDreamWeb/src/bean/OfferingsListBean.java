@@ -56,7 +56,7 @@ public class OfferingsListBean {
 	    arrivalPlace = sessionStorage.getArrivalPlace();
 	    sessionStorage.setArrivalPlace("");
 	}
-//	submitSearch();
+	// submitSearch();
     }
 
     // Bean properties:
@@ -125,11 +125,11 @@ public class OfferingsListBean {
 	return hotelClass;
     }
 
-    public void setHotelStars(Integer s) {
+    public void setHotelStars(int s) {
 	hotelStars = s;
     }
 
-    public Integer getHotelStars() {
+    public int getHotelStars() {
 	return hotelStars;
     }
 
@@ -158,15 +158,15 @@ public class OfferingsListBean {
 	    PackageDTO rp;
 	    try {
 		rp = reorderPackage(pack);
-		//basic search filters
+		// basic search filters
 		if (numPeopleCheck(rp) && departurePlaceCheck(rp) && arrivalPlaceCheck(rp) && departureDateCheck(rp) && returnDateCheck(rp)) {
-		    //advanced filters
-		    if(flightClassCheck(rp) && hotelStarsCheck(rp) && hotelClassCheck(rp)) {
+		    // advanced filters
+		    if (hotelStarsCheck(rp)) { // && flightClassCheck(rp) && hotelClassCheck(rp)) {
 			filteredOfferings.add(rp);
 		    }
 		}
 	    } catch (PackageNotValidException e) {
-		System.err.print("Package not valid.");
+		System.err.print("Pacchetto non valido.");
 		e.printStackTrace();
 	    }
 	}
@@ -203,13 +203,13 @@ public class OfferingsListBean {
 
     /**
      * Both the outbound and return flights have the desired class
+     * 
      * @param reorderedPackage
      * @return
      */
     private boolean flightClassCheck(PackageDTO reorderedPackage) {
-	return (flightClass.equals("null") || (((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getClassPersonalization().get_class().equalsIgnoreCase(flightClass) 
-		&& ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(1)).getClassPersonalization().get_class().equalsIgnoreCase(flightClass)))
-		? true : false;
+	return (flightClass.equals("null") || (((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getClassPersonalization().get_class().equalsIgnoreCase(flightClass) && ((PersonalizedFlightDTO) reorderedPackage
+		.getPersonalizedProducts().get(1)).getClassPersonalization().get_class().equalsIgnoreCase(flightClass))) ? true : false;
     }
 
     /**
@@ -223,13 +223,14 @@ public class OfferingsListBean {
     }
 
     private boolean hotelClassCheck(PackageDTO reorderedPackage) {
-	return (hotelClass.equals("null") || ((PersonalizedHotelDTO) reorderedPackage.getPersonalizedProducts().get(2)).getClassPersonalization().get_class().equalsIgnoreCase(hotelClass)) ? true : false;
+	return (hotelClass.equals("null") || ((PersonalizedHotelDTO) reorderedPackage.getPersonalizedProducts().get(2)).getClassPersonalization().get_class().equalsIgnoreCase(hotelClass)) ? true
+		: false;
     }
 
     private PackageDTO reorderPackage(PackageDTO pack) throws PackageNotValidException {
-	if (pack.getPersonalizedProducts().size() < 4) {
-	    throw new PackageNotValidException();
-	}
+	// if (!packageEJB.isValidForOffering(pack)) { TODO: activate!
+	// throw new PackageNotValidException();
+	// }
 	PackageDTO reorderedPackage = new PackageDTO(pack);
 	reorderedPackage.setId(pack.getId());
 	CityDTO destinationCity = null;
