@@ -32,20 +32,22 @@
 											</p:calendar>
 										</li>
 										<li class="list-group-item">Data di ritorno:<br></br> <p:calendar
-												id="returnCal" value="#{OfferingsList.returnDate}" locale="it" pattern="dd/MM/yyyy" />
+												id="returnCal" value="#{OfferingsList.returnDate}"
+												locale="it" pattern="dd/MM/yyyy" />
 										</li>
-										<li class="list-group-item"><p:inputText
-												styleClass="form-control" placeholder="Partenza"
-												id="departure" value="#{OfferingsList.departurePlace}"/></li>
-										<li class="list-group-item"><p:inputText
-												styleClass="form-control" placeholder="Destinazione"
-												id="arrival" value="#{OfferingsList.arrivalPlace}"/></li>
-										<li class="list-group-item"><select class="form-control"><option>Persone</option>
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
-												<option>5</option></select></li>
+										<li class="list-group-item">
+										Luogo di partenza:
+										<p:inputText
+												styleClass="form-control" 
+												id="departure" value="#{OfferingsList.departurePlace}" /></li>
+										<li class="list-group-item">
+										Luogo di destinazione:<p:inputText
+												styleClass="form-control" 
+												id="arrival" value="#{OfferingsList.arrivalPlace}" /></li>
+										<li class="list-group-item">
+												Persone:<br></br>
+											    <p:spinner id="people" value="#{OfferingsList.numPeople}" min="0" max="10" styleClass="form-control" style="border: 0px; height:30px;"/>  
+											</li>
 
 										<li class="list-group-item"><p:commandButton
 												value="Cerca" ajax="true"
@@ -67,27 +69,38 @@
 
 									<div class="list-group">
 										<a class="list-group-item active">Volo</a> <a
-											class="list-group-item"><select class="form-control">
-												<option>Classe del volo</option>
-												<option>Economica</option>
-												<option>Business</option>
-										</select> </a>
+											class="list-group-item">
+											<p:selectOneMenu value="#{OfferingsList.flightClass}">
+												<f:selectItem itemLabel="Classe del volo" itemValue="0"/>
+												<f:selectItem itemLabel="Economy" itemValue="1" />
+												<f:selectItem itemLabel="Business" itemValue="2" />
+											</p:selectOneMenu>
+											 </a>
 									</div>
+
 									<div class="list-group">
+
 										<a class="list-group-item active">Hotel</a> <a
-											class="list-group-item"><select class="form-control">
-												<option>Stelle</option>
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>4</option>
-												<option>5</option>
-										</select> </a> <a class="list-group-item"><select class="form-control">
-												<option>Camera</option>
-												<option>Classic</option>
-												<option>Business</option>
-												<option>Deluxe</option>
-										</select> </a>
+											class="list-group-item"> 
+											<p:selectOneMenu value="#{OfferingsList.hotelStars}">
+												<f:selectItem itemLabel="Stelle" itemValue="0" />
+												<f:selectItem itemLabel="1" itemValue="1" />
+												<f:selectItem itemLabel="2" itemValue="2" />
+												<f:selectItem itemLabel="3" itemValue="3" />
+												<f:selectItem itemLabel="4" itemValue="4" />
+												<f:selectItem itemLabel="5" itemValue="5" />
+											</p:selectOneMenu>
+
+
+										</a> <a class="list-group-item">
+											<p:selectOneMenu value="#{OfferingsList.hotelClass}">
+												<f:selectItem itemLabel="Camera" itemValue="0" />
+												<f:selectItem itemLabel="Economy" itemValue="1" />
+												<f:selectItem itemLabel="Classic" itemValue="2" />
+												<f:selectItem itemLabel="Business" itemValue="3" />
+												<f:selectItem itemLabel="Deluxe" itemValue="4" />
+											</p:selectOneMenu>
+										</a>
 
 
 									</div>
@@ -130,15 +143,17 @@
 									<ui:repeat value="#{OfferingsList.submitSearch()}"
 										var="package">
 
-										<div class="col-lg-4 col-md-6 hero-feature">
+										<div class="col-md-4 hero-feature">
 											<div class="thumbnail">
 												<h:graphicImage library="images" name="image_ny.png" />
 												<div class="caption">
 													<h4>#{package.getName()}</h4>
 													<p>Partenza:
-														#{package.personalizedProducts[0].flight.getCityDeparture().getName()} #{package.personalizedProducts[0].flight.getAirportDeparture()}</p>
+														#{package.personalizedProducts[0].flight.getCityDeparture().getName()}
+														#{package.personalizedProducts[0].flight.getAirportDeparture()}</p>
 													<p>Destinazione:
-														#{package.personalizedProducts[0].flight.getCityArrival().getName()} #{package.personalizedProducts[0].flight.getAirportArrival()}</p>
+														#{package.personalizedProducts[0].flight.getCityArrival().getName()}
+														#{package.personalizedProducts[0].flight.getAirportArrival()}</p>
 													<div id="info_#{package.id}" class="collapse out">
 														<table class="table" style="margin-bottom: 45px">
 															<caption style="padding-bottom: 5px">Dettagli
@@ -153,7 +168,7 @@
 																<td>#{package.personalizedProducts[1].flight.name}</td>
 																<td>#{package.personalizedProducts[1].flight.company}</td>
 															</tr>
-															
+
 															<tr>
 																<th>Hotel</th>
 																<td>#{package.personalizedProducts[2].hotel.name}</td>
@@ -161,7 +176,7 @@
 															</tr>
 															<tr>
 																<th>Escursione</th>
-																<td>#{package.personalizedProducts[3].excursion.name}</td>
+																<td>#{package.personalizedProducts[3].excursion}</td>
 																<td>#{package.personalizedProducts[3].excursion.company}</td>
 															</tr>
 														</table>
