@@ -216,13 +216,13 @@ public class EditPackageBean {
     }
 
     /**
-     * Substitutes current product at index based on its type with the selected one (new)
+     * Substitutes current product at index based on its type with the selected one
      * 
      * @param _new
      * @param index
      */
-    public void updatePackage(PersonalizedProductDTO _new, int index) {
-	selectedPackage.getPersonalizedProducts().set(index, _new);
+    private void updatePackage(int category, PersonalizedProductDTO p) {
+	selectedPackage.getPersonalizedProducts().set(category, p);
     }
 
     public String showCheckout() {
@@ -230,27 +230,58 @@ public class EditPackageBean {
 	sessionStorage.setPreviousPage("edit");
 	return "user/checkout?faces-redirect=true";
     }
-    
+
     /**
-     * Function called by the jsf when a drag and drop happens
-     * String is draggedId type _category_id
-     * Example: for excursion (category = 3) and with id 11 the string is _3_11
-     *			for hotels (category = 2) and with id 23 string is _2_23
+     * Function called by the jsf when a drag and drop happens String is draggedId type _category_id Example: for excursion (category = 3) and with id
+     * 11 the string is _3_11 for hotels (category = 2) and with id 23 string is _2_23
      */
     public void onDrop(DragDropEvent ddEvent) {
-    	
-    	String draggedId = ddEvent.getDragId();
-        String[] parts = draggedId.split("_");
-        
-        String category = parts[1];
-        String id = parts[2];
-        
-        // now you have the variables category and id ready ;) by cesco :) VERY HAPPY!
-        
-        System.out.println("Categoria: "+category);
-        System.out.println("ID: "+id);
-    	
+
+	String draggedId = ddEvent.getDragId();
+	String[] parts = draggedId.split("_");
+
+	int category = Integer.parseInt(parts[1]);
+	int id = Integer.parseInt(parts[2]);
+
+	// now you have the variables category and id ready ;) by cesco :) VERY HAPPY!
+
+	System.out.println("Categoria: " + category);
+	System.out.println("ID: " + id);
+
+	switch (category) {
+	    case 0:
+		for (PersonalizedFlightDTO of : outboundFlights) {
+		    if (of.getId() == id) {
+			updatePackage(category, of);
+			break;
+		    }
+		}
+		break;
+	    case 1:
+		for (PersonalizedFlightDTO rf : returnFlights) {
+		    if (rf.getId() == id) {
+			updatePackage(category, rf);
+			break;
+		    }
+		}
+		break;
+	    case 2:
+		for (PersonalizedHotelDTO h : hotels) {
+		    if (h.getId() == id) {
+			updatePackage(category, h);
+			break;
+		    }
+		}
+		break;
+	    case 3:
+		for (PersonalizedExcursionDTO e : excursions) {
+		    if (e.getId() == id) {
+			updatePackage(category, e);
+			break;
+		    }
+		}
+		break;
+	}
+
     }
-    
-    
 }
