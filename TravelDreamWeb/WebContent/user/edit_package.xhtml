@@ -22,27 +22,39 @@
 							id="bs-example-navbar-collapse-1">
 
 
-							<form class="navbar-form navbar-left" role="search">
+							<h:form class="navbar-form navbar-left" role="search">
 								<div class="col-md-2 column">
-									Partenza da:<input type="text" class="form-control" />
+									Partenza da:
+									<p:inputText value="#{EditPackage.departurePlace}"
+										id="departurePlace" />
 								</div>
-								<div class="col-md-2 column">
-									Destinazione:<input type="text" class="form-control" />
+								<div class="col-md-2 column" style="margin-left: 10px">
+									Destinazione:
+									<p:inputText value="#{EditPackage.arrivalPlace}"
+										id="arrivalPlace" />
 								</div>
-								<div class="col-md-2 column">
-									Data partenza:<input type="text" class="form-control" />
+								<div class="col-md-2 column" style="margin-left: 20px">
+									Data partenza:
+									<p:calendar value="#{EditPackage.departureDate}"
+										id="departureCal" locale="it" pattern="dd/MM/yyyy" />
 								</div>
-								<div class="col-md-2 column">
-									Data ritorno:<input type="text" class="form-control" />
+								<div class="col-md-2 column" style="margin-left: 10px">
+									Data ritorno:
+									<p:calendar value="#{EditPackage.returnDate}" id="returnCal"
+										locale="it" pattern="dd/MM/yyyy" />
 								</div>
-								<div class="col-md-2 column">
-									Numero persone:<input type="text" class="form-control" />
+								<div class="col-md-2 column" style="margin-left: 20px">
+									Numero persone:
+									<p:inputText value="#{EditPackage.numPeople}" id="numPeople" />
 								</div>
-								<div class="col-md-2 column">
-									<button type="submit" class="btn btn-default"
-										style="margin-top: 20px">Cerca</button>
+								<div class="col-md-1 column"
+									style="margin-left: 20px; padding-top: 20px">
+									<p:commandButton value="Cerca" ajax="true"
+										action="#{EditPackage.submitSearch()}"
+										update=":p_flights_d,:p_flights_r,:p_hotels,:p_exc"
+										styleClass="btn btn-primary" id="buttonSearch" />
 								</div>
-							</form>
+							</h:form>
 
 						</div>
 
@@ -51,70 +63,36 @@
 				</div>
 				<div class="row clearfix">
 					<div class="col-md-3 column">
-						<div class="listScroll">
+						<h:panelGroup styleClass="listScroll" id="p_flights_d">
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h3 class="panel-title">Seleziona un volo</h3>
+									<h3 class="panel-title">Volo di andata</h3>
 								</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
+								<div class="panel-body">risultati...</div>
+								<ui:repeat value="#{EditPackage.getOutboundFlights()}"
+									var="flight">
+									<div class="panel-body">#{flight.name}</div>
+								</ui:repeat>
 
 
-								<div class="panel-footer">Panel footer</div>
 							</div>
-						</div>
+						</h:panelGroup>
+
+						<h:panelGroup styleClass="listScroll" id="p_flights_r">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Volo di ritorno</h3>
+								</div>
+								<div class="panel-body">risultati...</div>
+								<ui:repeat value="#{EditPackage.getReturnFlights()}"
+									var="flight">
+									<div class="panel-body">#{flight.name}</div>
+								</ui:repeat>
+
+
+							</div>
+						</h:panelGroup>
+
 					</div>
 					<div class="col-md-6 column">
 
@@ -130,7 +108,7 @@
 
 								<div class="col-md-4 column"
 									style="padding-right: 24px; margin-top: 16px">
-									<p:commandButton value="Vai"
+									<p:commandButton value="Ordina"
 										styleClass="btn btn-primary btn-lg btn-block"
 										action="#{OfferingsList.showEditPackage(package)}" />
 								</div>
@@ -150,7 +128,7 @@
 
 										<div class="col-md-8 column"
 											style="margin-top: -20px; margin-left: -40px">
-											<h4>Prezzo totale:</h4>
+											<h4>Prezzo totale: #{EditPackage.calculatePrice()} €</h4>
 										</div>
 									</div>
 
@@ -160,10 +138,17 @@
 								<table class="table" style="margin-bottom: 45px">
 
 									<tr>
-										<th>Volo (andata)</th>
+										<th>Volo di andata</th>
 										<td>#{EditPackage.selectedPackage.personalizedProducts[0].flight.name}</td>
 										<td>#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}</td>
 									</tr>
+
+									<tr>
+										<th>Volo di ritorno</th>
+										<td>#{EditPackage.selectedPackage.personalizedProducts[0].flight.name}</td>
+										<td>#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}</td>
+									</tr>
+
 									<tr>
 										<th>Hotel</th>
 										<td>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.name}</td>
@@ -171,8 +156,8 @@
 									</tr>
 									<tr>
 										<th>Escursione</th>
-										<td>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.name}</td>
-										<td>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.company}</td>
+										<td>#{EditPackage.selectedPackage.personalizedProducts[1].excursion.name}</td>
+										<td>#{EditPackage.selectedPackage.personalizedProducts[1].excursion.company}</td>
 									</tr>
 								</table>
 
@@ -186,29 +171,37 @@
 
 					</div>
 					<div class="col-md-3 column">
-						<div class="listScroll">
+						<h:panelGroup styleClass="listScroll" id="p_hotels">
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">Seleziona un hotel</h3>
 								</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-body">Panel content</div>
-								<div class="panel-footer">Panel footer</div>
+								<div class="panel-body">risultati...</div>
+								<ui:repeat value="#{EditPackage.getHotels()}" var="hotel">
+									<div class="panel-body">#{hotel.name}</div>
+								</ui:repeat>
+
 							</div>
-						</div>
+						</h:panelGroup>
+
+
+						<h:panelGroup styleClass="listScroll" id="p_exc">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Seleziona un escursione</h3>
+								</div>
+								<div class="panel-body">risultati...</div>
+								<ui:repeat value="#{EditPackage.getExcursions()}" var="exc">
+									<div class="panel-body">#{exc.name}</div>
+								</ui:repeat>
+
+							</div>
+						</h:panelGroup>
+
+
+
 					</div>
+
 				</div>
 				<div class="row clearfix">
 					<div class="col-md-12 column"></div>
