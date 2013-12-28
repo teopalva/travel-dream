@@ -26,6 +26,8 @@ public class ExcursionDTO extends BaseProductDTO {
 		this();
 		this.city = new CityDTO(excursion.getCity());
 		this.id = excursion.getId();
+		this.name = excursion.getName();
+		this.company = excursion.getCompany().getName();
 		try {
 			for(PossibleDatePersonalizationExcursion cp: excursion.getPossibleDatePersonalizationExcursions()) {
 				DatePersonalizationDTO d = new DatePersonalizationDTO(cp.getDatePersonalization());
@@ -78,11 +80,13 @@ public class ExcursionDTO extends BaseProductDTO {
 			this.prices.remove(d);
 		}
 	}
-
+	
 	@Override
 	public String toString() {
 		return "ExcursionDTO [city=" + city + ", possibleDatePersonalizations="
-				+ possibleDatePersonalizations + ", prices=" + prices + "]";
+				+ possibleDatePersonalizations + ", prices=" + prices
+				+ ", name=" + name + ", company=" + company + ", id=" + id
+				+ "]";
 	}
 
 	@Override

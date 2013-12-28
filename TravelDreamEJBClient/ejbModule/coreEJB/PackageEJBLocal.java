@@ -1,10 +1,17 @@
 package coreEJB;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
 
+import dto.CityDTO;
 import dto.PackageDTO;
+import dto.PersonalizedExcursionDTO;
+import dto.PersonalizedFlightDTO;
+import dto.PersonalizedHotelDTO;
+import dto.PersonalizedProductDTO;
 import exceptions.NotValidPackageException;
 
 @Local
@@ -12,6 +19,14 @@ public interface PackageEJBLocal {
 	public List<PackageDTO> getOfferingPackages();
 	public void savePackage(PackageDTO _package)  throws NotValidPackageException;
 	public void removePackage(PackageDTO _package)  throws NotValidPackageException;
+	
+	//PackageDTO helper functions
+    public boolean isValidForOffering(PackageDTO packageDTO);
+    public boolean isValidForTDC(PackageDTO packageDTO);
+    public Date dateDeparture(PackageDTO packageDTO);
+    public Date dateReturn(PackageDTO packageDTO);
+    public CityDTO cityArrival(PackageDTO packageDTO);
+    public CityDTO cityReturn(PackageDTO packageDTO);
 	
 	//Getters and setters
 	public PackageDTO getTmpPackage();

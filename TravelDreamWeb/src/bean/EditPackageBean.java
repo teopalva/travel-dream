@@ -204,19 +204,23 @@ public class EditPackageBean {
      * Recalculates the total cost of the current package
      */
     public double calculatePrice() {
-	return selectedPackage.getPrice();
+	double p = 0;
+	try {
+	    p = selectedPackage.getPrice();
+	} catch (NullPointerException e) {
+	    System.err.print("Empty Package is free!");
+	}
+	return p;
     }
 
     /**
-     * Substitutes current product (old) with the selected one (new)
+     * Substitutes current product at index based on its type with the selected one (new)
      * 
-     * @param bp
+     * @param _new
+     * @param index
      */
-    public void updatePackage(PersonalizedProductDTO _new, PersonalizedProductDTO _old) {
-	if (_old != null) {
-	    selectedPackage.getPersonalizedProducts().remove(_old);
-	}
-	selectedPackage.addPersonalizedProduct(_new);
+    public void updatePackage(PersonalizedProductDTO _new, int index) {
+	selectedPackage.getPersonalizedProducts().set(index, _new);
     }
 
     public String showCheckout() {

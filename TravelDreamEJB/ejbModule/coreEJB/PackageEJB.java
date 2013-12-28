@@ -1,14 +1,16 @@
 package coreEJB;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
+import dto.CityDTO;
 import dto.PackageDTO;
 import dto.PersonalizedExcursionDTO;
 import dto.PersonalizedFlightDTO;
@@ -38,6 +40,9 @@ public class PackageEJB implements PackageEJBLocal {
 
 	@PersistenceContext
 	EntityManager em;
+	
+	@EJB
+	BaseProductEJB baseProductEJB;
 
 	PackageDTO tmpPackage;
 	boolean selectedFlight;
@@ -282,5 +287,337 @@ public class PackageEJB implements PackageEJBLocal {
 	public void setSelectedExcursion(boolean selectedExcursion) {
 		this.selectedExcursion = selectedExcursion;
 	}
+	
+    /** 
+     * @return true if the package contains at least 2 flight and 1 hotel (1 excursion is optional).
+     * 			If the hotel and flights (or excursion) are incompatible in dates return false.
+     * 			Dates can be omitted 
+     */
+    public boolean isValidForOffering(PackageDTO packageDTO) {
+    	List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
+    	PersonalizedHotelDTO hotel = null;
+    	PersonalizedExcursionDTO excursion = null;
+    	
+    	for(PersonalizedProductDTO p : packageDTO.getPersonalizedProducts()) {
+    		if(p instanceof PersonalizedFlightDTO) {
+    			flights.add((PersonalizedFlightDTO)p);
+			}
+			if(p instanceof PersonalizedHotelDTO) {
+				if(hotel == null)
+					hotel = (PersonalizedHotelDTO)p;
+				else
+					return false;
+			}
+			if(p instanceof PersonalizedExcursionDTO) {
+				if(excursion == null)
+					excursion = (PersonalizedExcursionDTO)p;
+				else
+					return false;
+			}
+    	}
+    	
+    	if(flights.size() != 2 || hotel == null)
+    		return false;
+    	
+    	//Check validity of airports
+    	CityDTO city1 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportDeparture());
+    	CityDTO city2 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportArrival());
+    	CityDTO city3 = baseProductEJB.getCity(flights.get(1).getFlight().getAirportDeparture());
+    	CityDTO city4 = baseProductEJB.getCity(flights.get(1).getFlight().getAirportArrival());
+    	
+    	if(city1 == null || city2 == null || city3 == null || city4 == null)
+    		return false;
+    	
+    	if(!city1.equals(city4) || !city2.equals(city3))
+    		return false;
+    		
+    	//Check validity of city of airports + hotel + excursion
+    	CityDTO hotelCity = hotel.getHotel().getCity();
+    	CityDTO excursionCity = null;
+    	Date excursionDate = null;
+    	
+    	if(hotelCity == null)
+    		return false;
+    	
+    	if(excursion != null) {	//Excursion is optional
+    		excursionCity = excursion.getExcursion().getCity();
+    		excursionDate = excursion.getDatePersonalization().getInitialDate();
+    		
+    		if(excursionCity == null)
+    			return false;
+    		if(!excursionCity.equals(hotelCity))
+    			return false;
+    	}
+    	
+    	if(!hotelCity.equals(city1) && !hotelCity.equals(city2))
+    		return false;
+    	
+    	if(hotelCity.equals(city1)) {
+    		//flights[0] return flight
+    		//flights[1] departure flight
+    		Date dateFlightDeparture = flights.get(1).getDatePersonalization().getFinalDate();
+    		Date dateFlightReturn = flights.get(0).getDatePersonalization().getInitialDate();
+    		if(dateFlightDeparture != null && dateFlightReturn != null) {
+	    		if(dateFlightDeparture.after(dateFlightReturn))
+	    			return false;
+	    		if(excursionDate != null) {
+	    			if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn))
+	    				return false;
+	    		}
+    		}
+    	}
+    	else {
+    		//flights[1] return flight
+    		//flights[0] departure flight
+    		Date dateFlightDeparture = flights.get(0).getDatePersonalization().getFinalDate();
+    		Date dateFlightReturn = flights.get(1).getDatePersonalization().getInitialDate();
+    		if(dateFlightDeparture != null && dateFlightReturn != null) {
+	    		if(dateFlightDeparture.after(dateFlightReturn))
+	    			return false;
+	    		if(excursionDate != null) {
+	    			if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn))
+	    				return false;
+	    		}
+    		}
+    	}
+    		
+    	return true;
+    }
+    
+    /** 
+     * Same as isValidForOffering() but dates can't be omitted
+     * @return true if the package contains at least 2 flight and 1 hotel (1 excursion is optional).
+     * 			If the hotel and flights (or excursion) are incompatible in dates return false. 
+     */
+    public boolean isValidForTDC(PackageDTO packageDTO) {
+    	List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
+    	PersonalizedHotelDTO hotel = null;
+    	PersonalizedExcursionDTO excursion = null;
+
+    	for(PersonalizedProductDTO p : packageDTO.getPersonalizedProducts()) {
+    		if(p instanceof PersonalizedFlightDTO) {
+    			flights.add((PersonalizedFlightDTO)p);
+    		}
+    		if(p instanceof PersonalizedHotelDTO) {
+    			if(hotel == null)
+    				hotel = (PersonalizedHotelDTO)p;
+    			else
+    				return false;
+    		}
+    		if(p instanceof PersonalizedExcursionDTO) {
+    			if(excursion == null)
+    				excursion = (PersonalizedExcursionDTO)p;
+    			else
+    				return false;
+    		}
+    	}
+
+    	if(flights.size() != 2 || hotel == null)
+    		return false;
+
+    	//Check validity of airports
+    	CityDTO city1 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportDeparture());
+    	CityDTO city2 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportArrival());
+    	CityDTO city3 = baseProductEJB.getCity(flights.get(1).getFlight().getAirportDeparture());
+    	CityDTO city4 = baseProductEJB.getCity(flights.get(1).getFlight().getAirportArrival());
+
+    	if(city1 == null || city2 == null || city3 == null || city4 == null)
+    		return false;
+
+    	if(!city1.equals(city4) || !city2.equals(city3))
+    		return false;
+
+    	//Check validity of city of airports + hotel + excursion
+    	CityDTO hotelCity = hotel.getHotel().getCity();
+    	CityDTO excursionCity = null;
+    	Date excursionDate = null;
+
+    	if(hotelCity == null)
+    		return false;
+
+    	if(excursion != null) {	//Excursion is optional
+    		excursionCity = excursion.getExcursion().getCity();
+    		excursionDate = excursion.getDatePersonalization().getInitialDate();
+
+    		if(excursionCity == null)
+    			return false;
+    		if(!excursionCity.equals(hotelCity))
+    			return false;
+    	}
+
+    	if(!hotelCity.equals(city1) && !hotelCity.equals(city2))
+    		return false;
+
+    	if(hotelCity.equals(city1)) {
+    		//flights[0] return flight
+    		//flights[1] departure flight
+    		Date dateFlightDeparture = flights.get(1).getDatePersonalization().getFinalDate();
+    		Date dateFlightReturn = flights.get(0).getDatePersonalization().getInitialDate();
+    		if(dateFlightDeparture.after(dateFlightReturn))
+    			return false;
+    		if(excursionDate != null) {
+    			if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn))
+    				return false;
+    		}
+    	}
+    	else {
+    		//flights[1] return flight
+    		//flights[0] departure flight
+    		Date dateFlightDeparture = flights.get(0).getDatePersonalization().getFinalDate();
+    		Date dateFlightReturn = flights.get(1).getDatePersonalization().getInitialDate();
+    		if(dateFlightDeparture.after(dateFlightReturn))
+    			return false;
+    		if(excursionDate != null) {
+    			if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn))
+    				return false;
+    		}
+    	}
+
+    	return true;
+    }
+    
+    /**
+     * @return the date of the departure (departure flight)
+     * 		The package must be isValidForTDC()
+     */
+    public Date dateDeparture(PackageDTO packageDTO) {
+    	if(!isValidForTDC(packageDTO))
+    		return null;
+    	
+    	List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
+    	PersonalizedHotelDTO hotel = null;
+
+    	for(PersonalizedProductDTO p : packageDTO.getPersonalizedProducts()) {
+    		if(p instanceof PersonalizedFlightDTO) {
+    			flights.add((PersonalizedFlightDTO)p);
+    		}
+    		if(p instanceof PersonalizedHotelDTO) {
+    			hotel = (PersonalizedHotelDTO)p;
+    		}
+    	}
+    	
+    	CityDTO city1 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportDeparture());
+    	CityDTO hotelCity = hotel.getHotel().getCity();
+    	
+    	if(hotelCity.equals(city1)) {
+    		//flights[0] return flight
+    		//flights[1] departure flight
+    		Date dateFlightDeparture = flights.get(1).getDatePersonalization().getFinalDate();
+    		return dateFlightDeparture;
+    	}
+    	else {
+    		//flights[1] return flight
+    		//flights[0] departure flight
+    		Date dateFlightDeparture = flights.get(0).getDatePersonalization().getFinalDate();
+    		return dateFlightDeparture;
+    	}
+    }
+    
+    /**
+     * @return the date of the return (return flight)
+     * 		The package must be isValidForTDC()
+     */
+    public Date dateReturn(PackageDTO packageDTO) {
+    	if(!isValidForTDC(packageDTO))
+    		return null;
+    	
+    	List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
+    	PersonalizedHotelDTO hotel = null;
+
+    	for(PersonalizedProductDTO p : packageDTO.getPersonalizedProducts()) {
+    		if(p instanceof PersonalizedFlightDTO) {
+    			flights.add((PersonalizedFlightDTO)p);
+    		}
+    		if(p instanceof PersonalizedHotelDTO) {
+    			hotel = (PersonalizedHotelDTO)p;
+    		}
+    	}
+    	
+    	CityDTO city1 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportDeparture());
+    	CityDTO hotelCity = hotel.getHotel().getCity();
+    	
+    	if(hotelCity.equals(city1)) {
+    		//flights[0] return flight
+    		//flights[1] departure flight
+    		Date dateFlightReturn = flights.get(0).getDatePersonalization().getInitialDate();
+    		return dateFlightReturn;
+    	}
+    	else {
+    		//flights[1] return flight
+    		//flights[0] departure flight
+    		Date dateFlightReturn = flights.get(1).getDatePersonalization().getInitialDate();
+    		return dateFlightReturn;
+    	}
+    }
+    
+    /**
+     * @return the city of the departure of the first flight
+     */
+    public CityDTO cityArrival(PackageDTO packageDTO) {
+    	if(!isValidForTDC(packageDTO))
+    		return null;
+    	
+    	List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
+    	PersonalizedHotelDTO hotel = null;
+
+    	for(PersonalizedProductDTO p : packageDTO.getPersonalizedProducts()) {
+    		if(p instanceof PersonalizedFlightDTO) {
+    			flights.add((PersonalizedFlightDTO)p);
+    		}
+    		if(p instanceof PersonalizedHotelDTO) {
+    			hotel = (PersonalizedHotelDTO)p;
+    		}
+    	}
+    	
+    	CityDTO city1 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportDeparture());
+    	CityDTO city2 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportArrival());
+    	CityDTO hotelCity = hotel.getHotel().getCity();
+    	
+    	if(hotelCity.equals(city1)) {
+    		//flights[0] return flight
+    		//flights[1] departure flight
+    		return city1;
+    	}
+    	else {
+    		//flights[1] return flight
+    		//flights[0] departure flight
+    		return city2;
+    	}
+    }
+    
+    /**
+     * @return the city of the hotel [and excursion (optional)]
+     */
+    public CityDTO cityReturn(PackageDTO packageDTO) {
+    	if(!isValidForTDC(packageDTO))
+    		return null;
+    	
+    	List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
+    	PersonalizedHotelDTO hotel = null;
+
+    	for(PersonalizedProductDTO p : packageDTO.getPersonalizedProducts()) {
+    		if(p instanceof PersonalizedFlightDTO) {
+    			flights.add((PersonalizedFlightDTO)p);
+    		}
+    		if(p instanceof PersonalizedHotelDTO) {
+    			hotel = (PersonalizedHotelDTO)p;
+    		}
+    	}
+    	
+    	CityDTO city1 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportDeparture());
+    	CityDTO city2 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportArrival());
+    	CityDTO hotelCity = hotel.getHotel().getCity();
+    	
+    	if(hotelCity.equals(city1)) {
+    		//flights[0] return flight
+    		//flights[1] departure flight
+    		return city2;
+    	}
+    	else {
+    		//flights[1] return flight
+    		//flights[0] departure flight
+    		return city1;
+    	}
+    }
 
 }
