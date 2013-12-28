@@ -29,8 +29,8 @@
 		<class>entity.PossibleDatePersonalizationFlightPK</class>
 		<class>entity.User</class>	
 		<properties>
-			<property name="eclipselink.logging.level" value="FINEST"/>
-			<property name="eclipselink.logging.level.sql" value="FINEST"/>
+			<property name="eclipselink.logging.level" value="WARNING"/>
+			<property name="eclipselink.logging.level.sql" value="WARNING"/>
 			<property name="eclipselink.logging.parameters" value="true"/>
 		</properties>
 	</persistence-unit>
