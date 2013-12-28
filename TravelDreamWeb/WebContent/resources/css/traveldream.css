@@ -12,7 +12,7 @@ footer {
 
 .listScroll {
     overflow: scroll;
-    height: 250px;
+    height: 100px;
     padding-right:12px;
 }
 
