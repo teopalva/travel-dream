@@ -32,8 +32,8 @@ public class FlightDTO extends BaseProductDTO {
 			
 			this.airportArrival = flight.getAirportArrival().getId();
 			this.airportDeparture = flight.getAirportDeparture().getId();
-			this.cityArrival = new CityDTO(flight.getAirportDeparture().getCity());
-			this.cityDeparture = new CityDTO(flight.getAirportArrival().getCity());
+			this.cityArrival = new CityDTO(flight.getAirportArrival().getCity());
+			this.cityDeparture = new CityDTO(flight.getAirportDeparture().getCity());
 			this.name = flight.getName();
 			this.company = flight.getCompany().getName();
 			this.id = flight.getId();
