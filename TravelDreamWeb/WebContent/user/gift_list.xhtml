@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+		<h:body>
+
+			<div class="container">
+				<center>
+					<h1 style="padding-bottom: 30px">La mia lista regali</h1>
+				</center>
+				<div class="row clearfix">
+					<div class="col-md-6 column">
+						<div class="list-group">
+							<a href="#" class="list-group-item active">Pacchetti</a> <a
+								class="list-group-item"><span class="badge">Confermato</span>Pacchetto
+								1</a>
+						</div>
+
+					</div>
+					<div class="col-md-6 column">
+
+
+
+						<div class="col-md-12 hero-feature">
+							<div class="thumbnail">
+
+								<div class="caption">
+									<h4>#{package.getName()}</h4>
+									<p>Partenza:
+										#{package.personalizedProducts[0].flight.getCityDeparture().getName()}
+										#{package.personalizedProducts[0].flight.getAirportDeparture()}</p>
+									<p>Destinazione:
+										#{package.personalizedProducts[0].flight.getCityArrival().getName()}
+										#{package.personalizedProducts[0].flight.getAirportArrival()}</p>
+									<div id="info_#{package.id}">
+										<table class="table" style="margin-bottom: 45px">
+											<caption style="padding-bottom: 5px">Dettagli
+												pacchetto #{package.id}</caption>
+											<tr>
+												<th>Volo (andata)</th>
+												<td>#{package.personalizedProducts[0].flight.name}</td>
+												<td>#{package.personalizedProducts[0].flight.company}</td>
+											</tr>
+											<tr>
+												<th>Volo (ritorno)</th>
+												<td>#{package.personalizedProducts[1].flight.name}</td>
+												<td>#{package.personalizedProducts[1].flight.company}</td>
+											</tr>
+
+											<tr>
+												<th>Hotel</th>
+												<td>#{package.personalizedProducts[2].hotel.name}</td>
+												<td>#{package.personalizedProducts[2].hotel.company}</td>
+											</tr>
+											<tr>
+												<th>Escursione</th>
+												<td>#{package.personalizedProducts[3].excursion.name}</td>
+												<td>#{package.personalizedProducts[3].excursion.company}</td>
+											</tr>
+										</table>
+									</div>
+
+									<p>
+
+										<p:commandButton value="Vai" styleClass="btn btn-primary"
+											action="#{OfferingsList.showEditPackage(package)}" />
+
+									</p>
+								</div>
+							</div>
+						</div>
+
+
+
+
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						Lista amico:
+						<button type="button" class="btn btn-default">Cerca</button>
+					</div>
+
+				</div>
+			</div>
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>
+
+
+
+</html>
