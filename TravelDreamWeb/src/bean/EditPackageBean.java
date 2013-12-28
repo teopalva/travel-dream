@@ -10,6 +10,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.event.DragDropEvent;
+
 import coreEJB.BaseProductEJBLocal;
 import dto.BaseProductDTO;
 import dto.DatePersonalizationDTO;
@@ -228,4 +230,27 @@ public class EditPackageBean {
 	sessionStorage.setPreviousPage("edit");
 	return "user/checkout?faces-redirect=true";
     }
+    
+    /**
+     * Function called by the jsf when a drag and drop happens
+     * String is draggedId type _category_id
+     * Example: for excursion (category = 3) and with id 11 the string is _3_11
+     *			for hotels (category = 2) and with id 23 string is _2_23
+     */
+    public void onDrop(DragDropEvent ddEvent) {
+    	
+    	String draggedId = ddEvent.getDragId();
+        String[] parts = draggedId.split("_");
+        
+        String category = parts[1];
+        String id = parts[2];
+        
+        // now you have the variables category and id ready ;) by cesco :) VERY HAPPY!
+        
+        System.out.println("Categoria: "+category);
+        System.out.println("ID: "+id);
+    	
+    }
+    
+    
 }
