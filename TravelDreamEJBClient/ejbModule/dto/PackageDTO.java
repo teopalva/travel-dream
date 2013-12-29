@@ -30,6 +30,7 @@ public class PackageDTO {
     
     public PackageDTO() {
     	this.id = -1;
+    	this.personalizedProducts = new ArrayList<PersonalizedProductDTO>();
     }
 
     public PackageDTO(Package _package) throws FieldNotPresentException {
