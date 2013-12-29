@@ -87,7 +87,7 @@ function handleDrop(event, ui) {
 								
 								
 								<c:forEach items="#{EditPackage.getOutboundFlights()}" var="item">
-										 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="_2_#{item.dropIndex}"  styleClass="well well-sm" >#{item.flight.name} <p:draggable scope="departure" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+										 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="_0_#{item.dropIndex}"  styleClass="well well-sm" >#{item.flight.name} <p:draggable scope="departure" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
 								</c:forEach>
 								<li class="panel-footer list-group-item"></li>
 								</ul>
@@ -103,7 +103,7 @@ function handleDrop(event, ui) {
 								<ul class="list-group">
 								
 								<c:forEach items="#{EditPackage.getReturnFlights()}" var="item">
-										 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="_2_#{item.dropIndex}"  styleClass="well well-sm" >#{item.flight.name} <p:draggable scope="return" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+										 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="_1_#{item.dropIndex}"  styleClass="well well-sm" >#{item.flight.name} <p:draggable scope="return" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
 								</c:forEach>
 								
 								<li class="panel-footer list-group-item"></li>
