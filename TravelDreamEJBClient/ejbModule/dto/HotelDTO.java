@@ -26,7 +26,7 @@ public class HotelDTO extends BaseProductDTO {
 		try {
 			this.company = hotel.getCompany().getName();
 			this.name = hotel.getName();
-			this.stars = stars;
+			this.stars = hotel.getStars();
 			this.id = hotel.getId();
 			this.city = new CityDTO(hotel.getCity());
 			try {
