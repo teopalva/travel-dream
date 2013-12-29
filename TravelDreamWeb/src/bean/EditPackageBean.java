@@ -168,7 +168,7 @@ public class EditPackageBean {
 	try {
 	    for (BaseProductDTO bp : list) {
 		if (bp instanceof HotelDTO) {
-		    if (arrivalPlace.equals(((HotelDTO) bp).getCity().getName())) {
+		    if (arrivalPlace.equalsIgnoreCase(((HotelDTO) bp).getCity().getName())) {
 			PersonalizedHotelDTO h = new PersonalizedHotelDTO((HotelDTO) bp);
 			h.setDropIndex(i);
 			i++;
@@ -176,7 +176,7 @@ public class EditPackageBean {
 		    }
 		}
 		if (bp instanceof FlightDTO) {
-		    if ((departurePlace.equals(((FlightDTO) bp).getCityDeparture().getName())) && arrivalPlace.equals(((FlightDTO) bp).getCityArrival().getName())) {
+		    if ((departurePlace.equalsIgnoreCase(((FlightDTO) bp).getCityDeparture().getName())) && arrivalPlace.equalsIgnoreCase(((FlightDTO) bp).getCityArrival().getName())) {
 			for (DatePersonalizationDTO d : ((FlightDTO) bp).getPossibleDatePersonalizations()) {
 			    if (departureDate.equals(d.getInitialDate())) {
 				PersonalizedFlightDTO f = new PersonalizedFlightDTO((FlightDTO) bp);
@@ -187,7 +187,7 @@ public class EditPackageBean {
 			    }
 			}
 		    } else {
-			if ((departurePlace.equals(((FlightDTO) bp).getCityArrival().getName())) && arrivalPlace.equals(((FlightDTO) bp).getCityDeparture().getName())) {
+			if ((departurePlace.equalsIgnoreCase(((FlightDTO) bp).getCityArrival().getName())) && arrivalPlace.equalsIgnoreCase(((FlightDTO) bp).getCityDeparture().getName())) {
 			    for (DatePersonalizationDTO d : ((FlightDTO) bp).getPossibleDatePersonalizations()) {
 				if (returnDate.equals(d.getInitialDate())) {
 				    PersonalizedFlightDTO f = new PersonalizedFlightDTO((FlightDTO) bp);
@@ -201,7 +201,7 @@ public class EditPackageBean {
 		    }
 		}
 		if (bp instanceof ExcursionDTO) {
-		    if (arrivalPlace.equals(((ExcursionDTO) bp).getCity().getName())) {
+		    if (arrivalPlace.equalsIgnoreCase(((ExcursionDTO) bp).getCity().getName())) {
 			PersonalizedExcursionDTO e = new PersonalizedExcursionDTO((ExcursionDTO) bp);
 			e.setDropIndex(z);
 			z++;
