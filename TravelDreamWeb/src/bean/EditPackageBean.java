@@ -161,11 +161,17 @@ public class EditPackageBean {
 	returnFlights.clear();
 	excursions.clear();
 	List<BaseProductDTO> list = baseProductEJB.getAllPersonalizations();
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	int z = 0;
 	try {
 	    for (BaseProductDTO bp : list) {
 		if (bp instanceof HotelDTO) {
 		    if (arrivalPlace.equals(((HotelDTO) bp).getCity().getName())) {
 			PersonalizedHotelDTO h = new PersonalizedHotelDTO((HotelDTO) bp);
+			h.setDropIndex(i);
+			i++;
 			hotels.add(h);
 		    }
 		}
@@ -175,6 +181,8 @@ public class EditPackageBean {
 			    if (departureDate.equals(d.getInitialDate())) {
 				PersonalizedFlightDTO f = new PersonalizedFlightDTO((FlightDTO) bp);
 				f.setDatePersonalization(d);
+				f.setDropIndex(j);
+				j++;
 				outboundFlights.add(f);
 			    }
 			}
@@ -184,6 +192,8 @@ public class EditPackageBean {
 				if (returnDate.equals(d.getInitialDate())) {
 				    PersonalizedFlightDTO f = new PersonalizedFlightDTO((FlightDTO) bp);
 				    f.setDatePersonalization(d);
+				    f.setDropIndex(k);
+				    k++;
 				    returnFlights.add(f);
 				}
 			    }
@@ -193,6 +203,8 @@ public class EditPackageBean {
 		if (bp instanceof ExcursionDTO) {
 		    if (arrivalPlace.equals(((ExcursionDTO) bp).getCity().getName())) {
 			PersonalizedExcursionDTO e = new PersonalizedExcursionDTO((ExcursionDTO) bp);
+			e.setDropIndex(z);
+			z++;
 			excursions.add(e);
 		    }
 		}
@@ -241,48 +253,34 @@ public class EditPackageBean {
 	String[] parts = draggedId.split("_");
 
 	int category = Integer.parseInt(parts[1]);
-	int id = Integer.parseInt(parts[2]);
+	int index = Integer.parseInt(parts[2]);
 
 	// now you have the variables category and id ready ;) by cesco :) VERY HAPPY!
 
 	System.out.println("Categoria: " + category);
-	System.out.println("ID: " + id);
+	System.out.println("Indice: " + index);
+
+	/*
+	 * switch (category) { case 0: for (PersonalizedFlightDTO of : outboundFlights) { if (of.getId() == id) { updatePackage(category, of); break;
+	 * } } break; case 1: for (PersonalizedFlightDTO rf : returnFlights) { if (rf.getId() == id) { updatePackage(category, rf); break; } } break;
+	 * case 2: for (PersonalizedHotelDTO h : hotels) { if (h.getId() == id) { updatePackage(category, h); break; } } break; case 3: for
+	 * (PersonalizedExcursionDTO e : excursions) { if (e.getId() == id) { updatePackage(category, e); break; } } break; default: // do nothing }
+	 */
 
 	switch (category) {
 	    case 0:
-		for (PersonalizedFlightDTO of : outboundFlights) {
-		    if (of.getId() == id) {
-			updatePackage(category, of);
-			break;
-		    }
-		}
+		updatePackage(category, outboundFlights.get(index));
 		break;
 	    case 1:
-		for (PersonalizedFlightDTO rf : returnFlights) {
-		    if (rf.getId() == id) {
-			updatePackage(category, rf);
-			break;
-		    }
-		}
+		updatePackage(category, returnFlights.get(index));
 		break;
 	    case 2:
-		for (PersonalizedHotelDTO h : hotels) {
-		    if (h.getId() == id) {
-			updatePackage(category, h);
-			break;
-		    }
-		}
+		updatePackage(category, hotels.get(index));
 		break;
 	    case 3:
-		for (PersonalizedExcursionDTO e : excursions) {
-		    if (e.getId() == id) {
-			updatePackage(category, e);
-			break;
-		    }
-		}
+		updatePackage(category, excursions.get(index));
 		break;
 	    default: // do nothing
 	}
-
     }
 }

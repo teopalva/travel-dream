@@ -159,11 +159,11 @@ public class OfferingsListBean {
 	    try {
 		rp = reorderPackage(pack);
 		// basic search filters
-		if (numPeopleCheck(rp) && departurePlaceCheck(rp) && arrivalPlaceCheck(rp) && departureDateCheck(rp) && returnDateCheck(rp)) {
+		if (numPeopleCheck(rp) && departurePlaceCheck(rp) && arrivalPlaceCheck(rp) && departureDateCheck(rp) && returnDateCheck(rp) && hotelStarsCheck(rp)) {
 		    // advanced filters
-		    if (hotelStarsCheck(rp)) { // && flightClassCheck(rp) && hotelClassCheck(rp)) {
+	//	    if (hotelStarsCheck(rp)) { // && flightClassCheck(rp) && hotelClassCheck(rp)) {
 			filteredOfferings.add(rp);
-		    }
+	//	    }
 		}
 	    } catch (PackageNotValidException e) {
 		System.err.print("Pacchetto non valido.");

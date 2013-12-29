@@ -8,6 +8,7 @@ public class PersonalizedFlightDTO extends PersonalizedProductDTO {
 	private FlightDTO flight;
 	private ClassPersonalizationDTO classPersonalization;
 	private DatePersonalizationDTO datePersonalization;
+	private int dropIndex;
 	
 	public PersonalizedFlightDTO(PersonalizedProductFlight flight) throws FieldNotPresentException {
 		this.flight = new FlightDTO(flight.getFlight());
@@ -61,6 +62,14 @@ public class PersonalizedFlightDTO extends PersonalizedProductDTO {
 
 	public void setDatePersonalization(DatePersonalizationDTO datePersonalization) {
 		this.datePersonalization = datePersonalization;
+	}
+
+	public int getDropIndex() {
+	    return dropIndex;
+	}
+
+	public void setDropIndex(int dropIndex) {
+	    this.dropIndex = dropIndex;
 	}
 
 	@Override
