@@ -230,8 +230,8 @@ function handleDrop(event, ui) {
 								</div>
 								<ul class="list-group">
 
-								<c:forEach items="#{EditPackage.getHotels()}" var="items">
-										 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="_2_#{items.hotel.id}"  styleClass="well well-sm" >#{items.hotel.name} <p:draggable scope="hotel" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+								<c:forEach items="#{EditPackage.getHotels()}" var="item">
+										 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="_2_#{item.hotel.id}"  styleClass="well well-sm" >#{item.id} <p:draggable scope="hotel" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
 								</c:forEach>
 								
 								</ul>
@@ -248,7 +248,7 @@ function handleDrop(event, ui) {
 								<ul class="list-group">
 								<!--  <ui:repeat value="#{EditPackage.getExcursions()}" var="exc">-->
 								<c:forEach items="#{EditPackage.getExcursions()}" var="item">
-										 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="_3_#{item.excursion.id}"  styleClass="well well-sm" >#{item.excursion.name} <p:draggable scope="excursion" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+										 <li class="list-group-item" style="margin-bottom:-20px"><p:outputPanel id="_3_#{item.excursion.id}"  styleClass="well well-sm" >#{item.id} <p:draggable scope="excursion" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
 								</c:forEach>
 									 
 									
