@@ -11,8 +11,9 @@
 <ui:composition template="/WEB-INF/template/default.xhtml">
 	<ui:define name="content">
 		<h:body>
-			<div class="container">
 
+			<div class="container">
+				
 				<div class="row row-offcanvas row-offcanvas-right">
 					<div class="col-xs-12 col-sm-3 sidebar-offcanvas" id="sidebar">
 						<div class="bs-sidebar hidden-print affix">
@@ -22,8 +23,8 @@
 									<h3>Ricerca</h3>
 								</center>
 
+						
 								<h:form>
-
 									<ul class="list-group">
 										<li class="list-group-item">Data di partenza:<br></br> <p:calendar
 												value="#{OfferingsList.departureDate}" id="departureCal"
@@ -35,19 +36,19 @@
 												id="returnCal" value="#{OfferingsList.returnDate}"
 												locale="it" pattern="dd/MM/yyyy" />
 										</li>
-										<li class="list-group-item">
-										Luogo di partenza:
-										<p:inputText
-												styleClass="form-control" 
-												id="departure" value="#{OfferingsList.departurePlace}" placeholder="#{SessionStorage.departurePlace}" /></li>
-										<li class="list-group-item">
-										Luogo di destinazione:<p:inputText
-												styleClass="form-control" 
-												id="arrival" value="#{OfferingsList.arrivalPlace}" placeholder="#{SessionStorage.arrivalPlace}"/></li>
-										<li class="list-group-item">
-												Persone:<br></br>
-											    <p:spinner id="people" value="#{OfferingsList.numPeople}" min="0" max="10" styleClass="form-control" style="border: 0px; height:30px;"/>  
-											</li>
+										<li class="list-group-item">Luogo di partenza: <p:inputText
+												styleClass="form-control" id="departure"
+												value="#{OfferingsList.departurePlace}"
+												placeholder="#{SessionStorage.departurePlace}" /></li>
+										<li class="list-group-item">Luogo di destinazione:<p:inputText
+												styleClass="form-control" id="arrival"
+												value="#{OfferingsList.arrivalPlace}"
+												placeholder="#{SessionStorage.arrivalPlace}" /></li>
+										<li class="list-group-item">Persone:<br></br> <p:spinner
+												id="people" value="#{OfferingsList.numPeople}" min="0"
+												max="10" styleClass="form-control"
+												style="border: 0px; height:30px;" />
+										</li>
 
 										<li class="list-group-item"><p:commandButton
 												value="Cerca" ajax="true"
@@ -57,32 +58,32 @@
 
 											<button type="button"
 												class="btn btn-default btn-lg btn-block"
-												data-toggle="collapse" data-target="#avanzate">Avanzate</button>
+												data-toggle="collapse" data-target="#avanzateBar">Avanzate</button>
 										</li>
 									</ul>
 								</h:form>
 
-
+								<!-- 
 								<div id="avanzate" class="collapse out">
 
 
 
 									<div class="list-group">
 										<a class="list-group-item active">Volo</a> <a
-											class="list-group-item">
-											<p:selectOneMenu value="#{OfferingsList.flightClass}">
-												<f:selectItem itemLabel="Classe del volo" itemValue="null"/>
+											class="list-group-item"> <p:selectOneMenu
+												value="#{OfferingsList.flightClass}">
+												<f:selectItem itemLabel="Classe del volo" itemValue="null" />
 												<f:selectItem itemLabel="Economy" itemValue="economy" />
 												<f:selectItem itemLabel="Business" itemValue="business" />
 											</p:selectOneMenu>
-											 </a>
+										</a>
 									</div>
 
 									<div class="list-group">
 
 										<a class="list-group-item active">Hotel</a> <a
-											class="list-group-item"> 
-											<p:selectOneMenu value="#{OfferingsList.hotelStars}">
+											class="list-group-item"> <p:selectOneMenu
+												value="#{OfferingsList.hotelStars}">
 												<f:selectItem itemLabel="Stelle" itemValue="0" />
 												<f:selectItem itemLabel="1" itemValue="1" />
 												<f:selectItem itemLabel="2" itemValue="2" />
@@ -92,8 +93,8 @@
 											</p:selectOneMenu>
 
 
-										</a> <a class="list-group-item">
-											<p:selectOneMenu value="#{OfferingsList.hotelClass}">
+										</a> <a class="list-group-item"> <p:selectOneMenu
+												value="#{OfferingsList.hotelClass}">
 												<f:selectItem itemLabel="Camera" itemValue="null" />
 												<f:selectItem itemLabel="Economy" itemValue="economy" />
 												<f:selectItem itemLabel="Classic" itemValue="classic" />
@@ -105,16 +106,61 @@
 
 									</div>
 								</div>
-
+ -->
 
 							</div>
 
 
 						</div>
 					</div>
-					<!--/span-->
+
 
 					<div class="col-xs-12 col-sm-9">
+						<h:form>
+						<div id="avanzateBar" class="panel panel-default collapse out">
+							<div class="panel-body">
+
+								<div>
+									<div style="margin-top: 10px">
+										<div class="col-md-3 column">
+											<p:selectOneMenu value="#{OfferingsList.flightClass}">
+												<f:selectItem itemLabel="Classe del volo" itemValue="null" />
+												<f:selectItem itemLabel="Economy" itemValue="economy" />
+												<f:selectItem itemLabel="Business" itemValue="business" />
+											</p:selectOneMenu>
+										</div>
+										<div class="col-md-3 column">
+											<p:selectOneMenu value="#{OfferingsList.hotelStars}">
+												<f:selectItem itemLabel="Stelle" itemValue="0" />
+												<f:selectItem itemLabel="1" itemValue="1" />
+												<f:selectItem itemLabel="2" itemValue="2" />
+												<f:selectItem itemLabel="3" itemValue="3" />
+												<f:selectItem itemLabel="4" itemValue="4" />
+												<f:selectItem itemLabel="5" itemValue="5" />
+											</p:selectOneMenu>
+										</div>
+										<div class="col-md-3 column">
+											<p:selectOneMenu value="#{OfferingsList.hotelClass}">
+												<f:selectItem itemLabel="Camera" itemValue="null" />
+												<f:selectItem itemLabel="Economy" itemValue="economy" />
+												<f:selectItem itemLabel="Classic" itemValue="classic" />
+												<f:selectItem itemLabel="Business" itemValue="business" />
+												<f:selectItem itemLabel="Deluxe" itemValue="deluxe" />
+											</p:selectOneMenu>
+										</div>
+
+									</div>
+									<div class="col-md-3 column">
+										<p:commandButton value="Affina" ajax="true"
+											action="#{OfferingsList.submitSearch()}" update=":packages"
+											styleClass="btn btn-default" id="buttonAdvSearch" />
+									</div>
+								</div>
+							</div>
+						</div>
+				</h:form>
+
+
 
 						<div class="row">
 
@@ -139,7 +185,7 @@
 							<div class="row text-center">
 
 
-								<h:panelGroup id="packages">
+								<h:panelGroup id="packages"> #{OfferingsList.flightClass} #{OfferingsList.hotelStars} #{OfferingsList.hotelClass}
 									<ui:repeat value="#{OfferingsList.submitSearch()}"
 										var="package">
 
@@ -181,7 +227,7 @@
 															</tr>
 														</table>
 													</div>
-
+													
 													<p>
 
 														<p:commandButton value="Vai" styleClass="btn btn-primary"
