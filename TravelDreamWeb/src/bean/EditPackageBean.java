@@ -281,6 +281,7 @@ public class EditPackageBean {
 		    }
 		}
 		break;
+	    default: // do nothing
 	}
 
     }

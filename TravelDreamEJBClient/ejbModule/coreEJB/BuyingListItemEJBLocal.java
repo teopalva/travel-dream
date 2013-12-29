@@ -11,12 +11,14 @@ import exceptions.NotValidUserException;
 
 @Local
 public interface BuyingListItemEJBLocal {
-	public void saveBuyingListItem(BuyingListItemDTO buyingListItemDTO) throws NotValidBuyingListException;
-	public void removeBuyingListItem(BuyingListItemDTO buyingListItemDTO) throws NotValidBuyingListException;
-	public List<BuyingListItemDTO> getBuyingListItem(UserDTO userDTO) throws NotValidUserException;
-	
-	
-	public BuyingListItemDTO getTmpBuyingListItem();
-	public void setTmpBuyingListItem(BuyingListItemDTO tmpBuyingListItem);
+    public void saveBuyingListItem(BuyingListItemDTO buyingListItemDTO) throws NotValidBuyingListException;
+
+    public void removeBuyingListItem(BuyingListItemDTO buyingListItemDTO) throws NotValidBuyingListException;
+
+    public List<BuyingListItemDTO> getBuyingListItem(UserDTO userDTO) throws NotValidUserException;
+
+    public BuyingListItemDTO getTmpBuyingListItem();
+
+    public void setTmpBuyingListItem(BuyingListItemDTO tmpBuyingListItem);
 
 }
