@@ -176,7 +176,7 @@ public class EditPackageBean {
 		    }
 		}
 		if (bp instanceof FlightDTO) {
-		    if ((departurePlace.equals(((FlightDTO) bp).getAirportDeparture())) && arrivalPlace.equals(((FlightDTO) bp).getAirportArrival())) {
+		    if ((departurePlace.equals(((FlightDTO) bp).getCityDeparture().getName())) && arrivalPlace.equals(((FlightDTO) bp).getCityArrival().getName())) {
 			for (DatePersonalizationDTO d : ((FlightDTO) bp).getPossibleDatePersonalizations()) {
 			    if (departureDate.equals(d.getInitialDate())) {
 				PersonalizedFlightDTO f = new PersonalizedFlightDTO((FlightDTO) bp);
@@ -187,7 +187,7 @@ public class EditPackageBean {
 			    }
 			}
 		    } else {
-			if ((departurePlace.equals(((FlightDTO) bp).getAirportArrival())) && arrivalPlace.equals(((FlightDTO) bp).getAirportDeparture())) {
+			if ((departurePlace.equals(((FlightDTO) bp).getCityArrival().getName())) && arrivalPlace.equals(((FlightDTO) bp).getCityDeparture().getName())) {
 			    for (DatePersonalizationDTO d : ((FlightDTO) bp).getPossibleDatePersonalizations()) {
 				if (returnDate.equals(d.getInitialDate())) {
 				    PersonalizedFlightDTO f = new PersonalizedFlightDTO((FlightDTO) bp);
@@ -229,9 +229,6 @@ public class EditPackageBean {
 
     /**
      * Substitutes current product at index based on its type with the selected one
-     * 
-     * @param _new
-     * @param index
      */
     private void updatePackage(int category, PersonalizedProductDTO p) {
 	selectedPackage.getPersonalizedProducts().set(category, p);
@@ -255,17 +252,8 @@ public class EditPackageBean {
 	int category = Integer.parseInt(parts[1]);
 	int index = Integer.parseInt(parts[2]);
 
-	// now you have the variables category and id ready ;) by cesco :) VERY HAPPY!
-
 	System.out.println("Categoria: " + category);
 	System.out.println("Indice: " + index);
-
-	/*
-	 * switch (category) { case 0: for (PersonalizedFlightDTO of : outboundFlights) { if (of.getId() == id) { updatePackage(category, of); break;
-	 * } } break; case 1: for (PersonalizedFlightDTO rf : returnFlights) { if (rf.getId() == id) { updatePackage(category, rf); break; } } break;
-	 * case 2: for (PersonalizedHotelDTO h : hotels) { if (h.getId() == id) { updatePackage(category, h); break; } } break; case 3: for
-	 * (PersonalizedExcursionDTO e : excursions) { if (e.getId() == id) { updatePackage(category, e); break; } } break; default: // do nothing }
-	 */
 
 	switch (category) {
 	    case 0:
