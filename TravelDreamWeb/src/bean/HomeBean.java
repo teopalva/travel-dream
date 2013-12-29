@@ -67,7 +67,7 @@ public class HomeBean {
 	    return "TDC";
 	if (authenticationEJB.isTDE())
 	    return "TDE";
-	return "NON AUTENTICATO";
+	return "Utente non registrato";
     }
 
     // -------------------------------------

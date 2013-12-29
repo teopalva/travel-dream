@@ -6,6 +6,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import coreEJB.AuthenticationEJBLocal;
+import exceptions.NotAuthenticatedException;
 
 @ManagedBean(name = "Header")
 @SessionScoped
@@ -38,21 +39,21 @@ public class HeaderBean {
 
     public String showGiftList() {
 	if (authEJB.isTDC()) {
-	    return "user/gift_list?faces-redirect=true";
+	    return "/user/gift_list?faces-redirect=true";
 	} else
 	    return null;
     }
 
     public String showBuyingList() {
 	if (authEJB.isTDC()) {
-	    return "user/buying_list?faces-redirect=true";
+	    return "/user/buying_list?faces-redirect=true";
 	} else
 	    return null;
     }
 
     public String showInvitationList() {
 	if (authEJB.isTDC()) {
-	    return "user/invitation_list?faces-redirect=true";
+	    return "/user/invitation_list?faces-redirect=true";
 	} else
 	    return null;
     }
@@ -64,5 +65,12 @@ public class HeaderBean {
      */
     public int getUserType() {
 	return authEJB.isTDC() ? 1 : authEJB.isTDE() ? 2 : 0;
+
+    }
+    
+    public String getUserName() throws NotAuthenticatedException {
+    	if(authEJB.isTDC() || authEJB.isTDE()) 
+    		return 	authEJB.getAuthenticatedUser().getFirstName();
+    	else return "Utente non registrato";
     }
 }
