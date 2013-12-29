@@ -11,8 +11,8 @@ footer {
 }
 
 .listScroll {
-    overflow: scroll;
-    height: 100px;
+    overflow: visible;
+    height: 200px;
     padding-right:12px;
 }
 
