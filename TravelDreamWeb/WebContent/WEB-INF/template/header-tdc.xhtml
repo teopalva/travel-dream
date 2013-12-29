@@ -23,11 +23,11 @@
           <ul class="nav navbar-nav">
             <li class="active"><h:link outcome="#{Header.showHome()}" value="Home"/></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Visualizza liste <b class="caret"></b></a>
+              <a class="dropdown-toggle" data-toggle="dropdown">Visualizza liste <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Lista regali</a></li>
-                <li><a href="#">Lista inviti</a></li>
-                <li><a href="#">Lista ordini</a></li>
+                <li><h:link outcome="#{Header.showGiftList()}" value="Lista regali"/></li>
+                <li><h:link outcome="#{Header.showInvitationList()}" value="Lista inviti"/></li>
+                <li><h:link outcome="#{Header.showBuyingList()}" value="Lista ordini"/></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Utente</li>
                 <li><h:link outcome="user/pagina_generica" value="Pagina utente" /></li>
