@@ -26,3 +26,15 @@ footer {
 .ui-selectonemenu-panel {
    width:170px !important;
 }
+
+
+#draggable ul {
+
+    height: 200px;
+    overflow: auto;
+}
+
+#draggable ul li {
+  padding: 10px 15px;
+}
+
