@@ -12,6 +12,20 @@
 	<ui:define name="content">
 		<h:body>
 
+<script>
+
+function showDetail(id,text,btn) {
+	
+	var list = document.getElementsByClassName("thumbnail");
+	var len = list.length;
+
+	while(len--) {
+		list[len].style.display = "none";
+	}
+	document.getElementById(id).style.display = "block";
+}
+
+</script>
 			<div class="container">
 				<center>
 					<h1 style="padding-bottom: 30px">Lista acquisti</h1>
@@ -19,9 +33,10 @@
 				<div class="row clearfix">
 					<div class="col-md-6 column">
 						<div class="list-group">
-							<a href="#" class="list-group-item active">Pacchetti</a> <a
-								class="list-group-item"><span class="badge">Confermato</span>Pacchetto
-								1</a>
+							<a href="#" class="list-group-item active">Pacchetti</a>
+							<ui:repeat value="#{BuyingList.retrieveList()}" var="item">
+							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;"><span class="badge">Confermato</span>#{item._package.name}</a>
+							 </ui:repeat>
 						</div>
 
 					</div>
@@ -30,39 +45,42 @@
 
 
 						<div class="col-md-12 hero-feature">
-							<div class="thumbnail">
-
+						<ui:repeat value="#{BuyingList.retrieveList()}" var="item">
+							<div class="thumbnail" id="item_#{item._package.id}" style="display:none">
+							
+							 
 								<div class="caption">
-									<h4>#{package.getName()}</h4>
+									<h4>#{item._package.name}</h4>
 									<p>Partenza:
-										#{package.personalizedProducts[0].flight.getCityDeparture().getName()}
-										#{package.personalizedProducts[0].flight.getAirportDeparture()}</p>
+										#{item._package.personalizedProducts[0].flight.getCityDeparture().getName()}
+										#{item._package.personalizedProducts[0].flight.getAirportDeparture()}</p>
 									<p>Destinazione:
-										#{package.personalizedProducts[0].flight.getCityArrival().getName()}
-										#{package.personalizedProducts[0].flight.getAirportArrival()}</p>
-									<div id="info_#{package.id}">
+										#{item._package.personalizedProducts[0].flight.getCityArrival().getName()}
+										#{item._package.personalizedProducts[0].flight.getAirportArrival()}</p>
+									<div>
 										<table class="table" style="margin-bottom: 45px">
 
 											<tr>
 												<th>Volo (andata)</th>
-												<td>#{package.personalizedProducts[0].flight.name}</td>
-												<td>#{package.personalizedProducts[0].flight.company}</td>
+												<td>#{item._package.personalizedProducts[0].flight.name}</td>
+												<td>#{item._package.personalizedProducts[0].flight.company}</td>
 											</tr>
 											<tr>
 												<th>Volo (ritorno)</th>
-												<td>#{package.personalizedProducts[1].flight.name}</td>
-												<td>#{package.personalizedProducts[1].flight.company}</td>
+												<td>#{item._package.personalizedProducts[1].flight.name}</td>
+												<td>#{item._package.personalizedProducts[1].flight.company}</td>
 											</tr>
 
 											<tr>
 												<th>Hotel</th>
-												<td>#{package.personalizedProducts[2].hotel.name}</td>
-												<td>#{package.personalizedProducts[2].hotel.company}</td>
+												<!--  hotel e escursione hanno indici scambiati 2/3, cosi per ora x vedere quel li ho scambiati pure io -->
+												<td>#{item._package.personalizedProducts[2].excursion.name}</td>
+												<td>#{item._package.personalizedProducts[2].excursion.company}</td>
 											</tr>
 											<tr>
 												<th>Escursione</th>
-												<td>#{package.personalizedProducts[3].excursion.name}</td>
-												<td>#{package.personalizedProducts[3].excursion.company}</td>
+												<td>#{item._package.personalizedProducts[3].hotel.name}</td>
+												<td>#{item._package.personalizedProducts[3].hotel.company}</td>
 											</tr>
 										</table>
 									</div>
@@ -72,7 +90,9 @@
 
 									</p>
 								</div>
+								
 							</div>
+							</ui:repeat>
 						</div>
 
 
@@ -80,13 +100,7 @@
 
 					</div>
 				</div>
-				<div class="row clearfix">
-					<div class="col-md-12 column">
-						Lista amico:
-						<button type="button" class="btn btn-default">Cerca</button>
-					</div>
 
-				</div>
 			</div>
 
 

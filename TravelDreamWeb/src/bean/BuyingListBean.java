@@ -2,6 +2,7 @@ package bean;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -25,6 +26,11 @@ public class BuyingListBean {
     private AuthenticationEJBLocal authEJB;
 
     public BuyingListBean() {
+    	
+    }
+    
+    @PostConstruct
+    public void init() {
 	try {
 	    user = authEJB.getAuthenticatedUser();
 	} catch (NotAuthenticatedException e) {
