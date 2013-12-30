@@ -53,15 +53,16 @@ public class CheckoutBean {
     private SessionStorageBean sessionStorage;
 
     public CheckoutBean() {
+
+    }
+
+    @PostConstruct
+    public void init() {
 	try {
 	    user = authEJB.getAuthenticatedUser();
 	} catch (NotAuthenticatedException e) {
 	    // No problem: user area
 	}
-    }
-
-    @PostConstruct
-    public void init() {
 	emails = new ArrayList<String>(sessionStorage.getSelectedPackage().getNumPeople());
 	selectedPackage = sessionStorage.getSelectedPackage();
     }

@@ -159,11 +159,11 @@ public class OfferingsListBean {
 	    try {
 		rp = reorderPackage(pack);
 		// basic search filters
-		if (numPeopleCheck(rp) && departurePlaceCheck(rp) && arrivalPlaceCheck(rp) && departureDateCheck(rp) && returnDateCheck(rp) && hotelStarsCheck(rp)) {
+		if (numPeopleCheck(rp) && departurePlaceCheck(rp) && arrivalPlaceCheck(rp) && departureDateCheck(rp) && returnDateCheck(rp)) {
 		    // advanced filters
-	//	    if (hotelStarsCheck(rp)) { // && flightClassCheck(rp) && hotelClassCheck(rp)) {
+		    if (hotelStarsCheck(rp) && flightClassCheck(rp) && hotelClassCheck(rp)) {
 			filteredOfferings.add(rp);
-	//	    }
+		    }
 		}
 	    } catch (PackageNotValidException e) {
 		System.err.print("Pacchetto non valido.");
@@ -173,12 +173,6 @@ public class OfferingsListBean {
 	return filteredOfferings;
     }
 
-    /**
-     * 0<=numPeople<=10
-     * 
-     * @param reorderedPackage
-     * @return
-     */
     private boolean numPeopleCheck(PackageDTO reorderedPackage) {
 	return (numPeople == 0 || reorderedPackage.getNumPeople() == numPeople) ? true : false;
     }
@@ -295,9 +289,9 @@ public class OfferingsListBean {
     public String showEditPackage(PackageDTO p) {
 	sessionStorage.setSelectedPackage(p);
 	if (authEJB.isTDE()) {
-	    return "admin/edit_package?faces-redirect=true";
+	    return "/admin/edit_package?faces-redirect=true";
 	} else {
-	    return "user/edit_package?faces-redirect=true";
+	    return "/user/edit_package?faces-redirect=true";
 	}
     }
 
