@@ -237,7 +237,7 @@ public class EditPackageBean {
     public String showCheckout() {
 	sessionStorage.setSelectedPackage(selectedPackage);
 	sessionStorage.setPreviousPage("edit");
-	return "user/checkout?faces-redirect=true";
+	return "/user/checkout?faces-redirect=true";
     }
 
     /**

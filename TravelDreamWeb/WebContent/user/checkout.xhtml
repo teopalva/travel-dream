@@ -26,19 +26,18 @@
 						<h2>Acquista</h2>
 						<p>Selezionando questa opzione, decidi di acquistare il
 							pacchetto.</p>
+						
+						<p:commandButton id="buy" value="Acquista" styleClass="btn btn-success btn-default btn-block" style="margin-top: 140px" action="#{Checkout.showPayment()}" />
 
-						<button type="button"
-							class="btn btn-success btn-default btn-block"
-							style="margin-top: 140px">Acquista</button>
 					</div>
 					<div class="col-md-4 column">
 						<h2>Lista regali</h2>
 						<p>Tramite questa opzione aggiungi il pacchetto che hai creato
 							alla lista regali, in modo da conservarlo e renderlo disponibile
 							ai tuoi amici in modo che possano regalartelo</p>
+						
+						<p:commandButton id="giftlist" value="Inserisci in lista regali" styleClass="btn btn-block btn-info" style="margin-top: 100px" action="#{Checkout.showGiftList()}" />
 
-						<button type="button" class="btn btn-block btn-info"
-							style="margin-top: 100px">Inserisci in lista regali</button>
 					</div>
 					<div class="col-md-4 column">
 						<h2>Invita degli amici</h2>
@@ -48,8 +47,9 @@
 						<br></br>
 						<p:inputText styleClass="form-control" placeholder="e-mail"
 							id="friend2" />
-						<button type="button" class="btn btn-block btn-warning"
-							style="margin-top: 60px">Invita amici</button>
+							
+						<p:commandButton id="invitelist" value="Inserisci in lista regali" styleClass="btn btn-block btn-warning" style="margin-top: 72px" action="#{Checkout.showInvitationList()}" />
+
 					</div>
 				</div>
 				<div class="row clearfix" style="margin-bottom: 10px">

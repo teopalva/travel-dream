@@ -104,7 +104,7 @@ public class CheckoutBean {
 		// packageEJB.removePackage(selectedPackage);
 		return null;
 	    }
-	    return ("user/payment?faces-redirect=true");
+	    return ("/user/payment?faces-redirect=true");
 	} else {
 	    if (sessionStorage.getPreviousPage().equals("gift")) {
 		PackageDTO p = new PackageDTO(selectedPackage);
@@ -117,7 +117,7 @@ public class CheckoutBean {
 		    e.printStackTrace();
 		    return null;
 		}
-		return ("user/payment?faces-redirect=true");
+		return ("/user/payment?faces-redirect=true");
 	    } else if (sessionStorage.getPreviousPage().equals("invitation")) {
 		PackageDTO p = new PackageDTO(selectedPackage);
 		boolean gifted = false;
@@ -129,7 +129,7 @@ public class CheckoutBean {
 		    e.printStackTrace();
 		    return null;
 		}
-		return ("user/payment?faces-redirect=true");
+		return ("/user/payment?faces-redirect=true");
 	    } else
 		return null;
 	}
@@ -152,7 +152,7 @@ public class CheckoutBean {
 	    // packageEJB.removePackage(selectedPackage);
 	    return null;
 	}
-	return ("user/gift_list?faces-redirect=true");
+	return ("/user/gift_list?faces-redirect=true");
     }
 
     public String showInvitationList() {
@@ -167,7 +167,7 @@ public class CheckoutBean {
 		return null;
 	    }
 	}
-	return ("user/invitation_list?faces-redirect=true");
+	return ("/user/invitation_list?faces-redirect=true");
     }
 
     /**
