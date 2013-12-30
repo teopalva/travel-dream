@@ -12,11 +12,11 @@
 	<ui:define name="content">
 		<h:body>
 
-			<div class="container">
+			<div class="container" style="margin-top:20px">
 				
 				<div class="row row-offcanvas row-offcanvas-right">
 					<div class="col-xs-12 col-sm-3 sidebar-offcanvas" id="sidebar">
-						<div class="bs-sidebar hidden-print affix">
+						<div class="bs-sidebar hidden-print">
 							<div class="navbar navbar-default"
 								style="padding-left: 20px; padding-right: 20px">
 								<center>
@@ -50,39 +50,26 @@
 												style="border: 0px; height:30px;" />
 										</li>
 
-										<li class="list-group-item"><p:commandButton
-												value="Cerca" ajax="true"
-												action="#{OfferingsList.submitSearch()}" update=":packages"
-												styleClass="btn btn-primary btn-lg btn-block"
-												id="buttonSearch" />
 
-											<button type="button"
-												class="btn btn-default btn-lg btn-block"
-												data-toggle="collapse" data-target="#avanzateBar">Avanzate</button>
-										</li>
 									</ul>
-								</h:form>
+									
+									<ul class="list-group collapse out" id="avanzate">
+									
 
-								<!-- 
-								<div id="avanzate" class="collapse out">
-
-
-
-									<div class="list-group">
-										<a class="list-group-item active">Volo</a> <a
-											class="list-group-item"> <p:selectOneMenu
+									<li class="list-group-item">
+										
+										<p:selectOneMenu
 												value="#{OfferingsList.flightClass}">
 												<f:selectItem itemLabel="Classe del volo" itemValue="null" />
 												<f:selectItem itemLabel="Economy" itemValue="economy" />
 												<f:selectItem itemLabel="Business" itemValue="business" />
 											</p:selectOneMenu>
-										</a>
-									</div>
+										
+									</li>
 
-									<div class="list-group">
+									<li class="list-group-item">
 
-										<a class="list-group-item active">Hotel</a> <a
-											class="list-group-item"> <p:selectOneMenu
+										<p:selectOneMenu
 												value="#{OfferingsList.hotelStars}">
 												<f:selectItem itemLabel="Stelle" itemValue="0" />
 												<f:selectItem itemLabel="1" itemValue="1" />
@@ -93,7 +80,7 @@
 											</p:selectOneMenu>
 
 
-										</a> <a class="list-group-item"> <p:selectOneMenu
+										 <p:selectOneMenu
 												value="#{OfferingsList.hotelClass}">
 												<f:selectItem itemLabel="Camera" itemValue="null" />
 												<f:selectItem itemLabel="Economy" itemValue="economy" />
@@ -101,12 +88,32 @@
 												<f:selectItem itemLabel="Business" itemValue="business" />
 												<f:selectItem itemLabel="Deluxe" itemValue="deluxe" />
 											</p:selectOneMenu>
-										</a>
+									
 
 
+									</li>
+									
+									</ul>
+									
+									
+									
+									
+									<div style="margin-top:10px;margin-bottom:20px">
+									<p:commandButton
+												value="Cerca" ajax="true"
+												action="#{OfferingsList.submitSearch()}" update=":packages"
+												styleClass="btn btn-primary btn-lg btn-block"
+												id="buttonSearch" />
+
+											<button type="button"
+												class="btn btn-default btn-lg btn-block"
+												data-toggle="collapse" data-target="#avanzate">Avanzate</button>
 									</div>
-								</div>
- -->
+								</h:form>
+
+							
+								
+
 
 							</div>
 
@@ -116,64 +123,15 @@
 
 
 					<div class="col-xs-12 col-sm-9">
-						<h:form>
-						<div id="avanzateBar" class="panel panel-default collapse out">
-							<div class="panel-body">
-
-								<div>
-									<div style="margin-top: 10px">
-										<div class="col-md-3 column">
-											<p:selectOneMenu value="#{OfferingsList.flightClass}">
-												<f:selectItem itemLabel="Classe del volo" itemValue="null" />
-												<f:selectItem itemLabel="Economy" itemValue="economy" />
-												<f:selectItem itemLabel="Business" itemValue="business" />
-											</p:selectOneMenu>
-										</div>
-										<div class="col-md-3 column">
-											<p:selectOneMenu value="#{OfferingsList.hotelStars}">
-												<f:selectItem itemLabel="Stelle" itemValue="0" />
-												<f:selectItem itemLabel="1" itemValue="1" />
-												<f:selectItem itemLabel="2" itemValue="2" />
-												<f:selectItem itemLabel="3" itemValue="3" />
-												<f:selectItem itemLabel="4" itemValue="4" />
-												<f:selectItem itemLabel="5" itemValue="5" />
-											</p:selectOneMenu>
-										</div>
-										<div class="col-md-3 column">
-											<p:selectOneMenu value="#{OfferingsList.hotelClass}">
-												<f:selectItem itemLabel="Camera" itemValue="null" />
-												<f:selectItem itemLabel="Economy" itemValue="economy" />
-												<f:selectItem itemLabel="Classic" itemValue="classic" />
-												<f:selectItem itemLabel="Business" itemValue="business" />
-												<f:selectItem itemLabel="Deluxe" itemValue="deluxe" />
-											</p:selectOneMenu>
-										</div>
-
-									</div>
-									<div class="col-md-3 column">
-										<p:commandButton value="Affina" ajax="true"
-											action="#{OfferingsList.submitSearch()}" update=":packages"
-											styleClass="btn btn-default" id="buttonAdvSearch" />
-									</div>
-								</div>
-							</div>
-						</div>
-				</h:form>
+						
 
 
 
 						<div class="row">
 
 
-							<div class="jumbotron">
-								<h2>Catalogo</h2>
-								<p>
-									Qui ti proponiamo i nostri pacchetti viaggio. Puoi raffinare la
-									ricerca tramite le barre presenti sopra e a fianco.<br></br>Selezionando
-									uno dei pacchetti puoi anche personalizzarlo.
-
-								</p>
-
+							<div class="alert alert-info">
+							<h3 style="margin-top:5px">Catalogo <small><br></br>Puoi scegliere di effettuare una ricerca con la barra laterale oppure puoi semplicemente sfogliare le nostre offerte.</small></h3>
 
 							</div>
 
@@ -185,7 +143,7 @@
 							<div class="row text-center">
 
 
-								<h:panelGroup id="packages"> #{OfferingsList.flightClass} #{OfferingsList.hotelStars} #{OfferingsList.hotelClass}
+								<h:panelGroup id="packages"> 
 									<ui:repeat value="#{OfferingsList.submitSearch()}"
 										var="package">
 

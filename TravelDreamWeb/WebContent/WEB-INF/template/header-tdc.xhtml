@@ -5,6 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+
 <h:body>
 
     <!-- Fixed navbar -->
@@ -25,12 +26,13 @@
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">Visualizza liste <b class="caret"></b></a>
               <ul class="dropdown-menu">
+                
                 <li><h:link outcome="#{Header.showGiftList()}" value="Lista regali"/></li>
                 <li><h:link outcome="#{Header.showInvitationList()}" value="Lista inviti"/></li>
                 <li><h:link outcome="#{Header.showBuyingList()}" value="Lista ordini"/></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Utente</li>
-                <li><h:link outcome="user/pagina_generica" value="Pagina utente" /></li>
+                <li><h:link outcome="/user/pagina_generica" value="Pagina utente" /></li>
 
               </ul>
             </li>
