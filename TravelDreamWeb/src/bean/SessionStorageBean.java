@@ -1,5 +1,7 @@
 package bean;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -7,8 +9,9 @@ import dto.PackageDTO;
 
 @ManagedBean(name = "SessionStorage")
 @SessionScoped
-public class SessionStorageBean {
-
+public class SessionStorageBean implements Serializable {
+    private static final long serialVersionUID = -339896506641421282L;
+    
     /**
      * The package selected by the user for editing
      */

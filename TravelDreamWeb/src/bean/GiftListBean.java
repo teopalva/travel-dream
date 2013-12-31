@@ -21,7 +21,7 @@ import exceptions.NotValidUserException;
 @ViewScoped
 public class GiftListBean {
     private UserDTO user;
-    private PackageDTO selectedPackage = null;
+//    private PackageDTO selectedPackage = null;
 
     private String friendMail;
 
@@ -54,14 +54,6 @@ public class GiftListBean {
 	this.friendMail = friendMail;
     }
 
-    public PackageDTO getSelectedPackage() {
-	return selectedPackage;
-    }
-
-    public void setSelectedPackage(PackageDTO selectedPackage) {
-	this.selectedPackage = selectedPackage;
-    }
-
     /*
      * public List<GiftListItemDTO> retrieveMyList() {
      * return getList(user);
@@ -90,10 +82,9 @@ public class GiftListBean {
       }
      
 
-    public String showCheckout() {
-	sessionStorage.setSelectedPackage(selectedPackage);
-	List<GiftListItemDTO> l;
-	if (retrieveMyList().contains(selectedPackage)) {
+    public String showCheckout(PackageDTO p) {
+	sessionStorage.setSelectedPackage(p);
+	if (retrieveMyList().contains(p)) {
 	    sessionStorage.setPreviousPage("gift_user");
 	} else {
 	    sessionStorage.setPreviousPage("gift_friend");

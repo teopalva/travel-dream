@@ -1,5 +1,7 @@
 package bean;
 
+import java.io.Serializable;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -10,7 +12,8 @@ import exceptions.NotAuthenticatedException;
 
 @ManagedBean(name = "Header")
 @SessionScoped
-public class HeaderBean {
+public class HeaderBean implements Serializable {
+    private static final long serialVersionUID = -7084933713605366856L;
 
     @EJB
     private AuthenticationEJBLocal authEJB;
@@ -67,10 +70,11 @@ public class HeaderBean {
 	return authEJB.isTDC() ? 1 : authEJB.isTDE() ? 2 : 0;
 
     }
-    
+
     public String getUserName() throws NotAuthenticatedException {
-    	if(authEJB.isTDC() || authEJB.isTDE()) 
-    		return 	authEJB.getAuthenticatedUser().getFirstName();
-    	else return "Utente non registrato";
+	if (authEJB.isTDC() || authEJB.isTDE())
+	    return authEJB.getAuthenticatedUser().getFirstName();
+	else
+	    return "Utente non registrato";
     }
 }
