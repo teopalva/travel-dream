@@ -107,9 +107,14 @@ public class CheckoutBean {
 	    }
 	    return ("/user/payment?faces-redirect=true");
 	} else {
-	    if (sessionStorage.getPreviousPage().equals("gift")) {
+	    if (sessionStorage.getPreviousPage().equals("gift_user") || sessionStorage.getPreviousPage().equals("gift_friend")) {
 		PackageDTO p = new PackageDTO(selectedPackage);
-		boolean gifted = true;
+		boolean gifted;
+		if (sessionStorage.getPreviousPage().equals("gift_friend")) {
+		    gifted = true;
+		} else {
+		    gifted = false;
+		}
 		BuyingListItemDTO buyingItem = new BuyingListItemDTO(p, new Date(), gifted, false, user);
 		try {
 		    buyingListEJB.saveBuyingListItem(buyingItem);

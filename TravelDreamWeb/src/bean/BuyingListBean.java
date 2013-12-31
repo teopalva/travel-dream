@@ -20,15 +20,11 @@ public class BuyingListBean {
     private UserDTO user;
 
     @EJB
-    private BuyingListItemEJBLocal buyngListEJB;
+    private BuyingListItemEJBLocal buyingListEJB;
 
     @EJB
     private AuthenticationEJBLocal authEJB;
 
-    public BuyingListBean() {
-    	
-    }
-    
     @PostConstruct
     public void init() {
 	try {
@@ -41,7 +37,7 @@ public class BuyingListBean {
     public List<BuyingListItemDTO> retrieveList() {
 	List<BuyingListItemDTO> l = null;
 	try {
-	    l = buyngListEJB.getBuyingListItem(user);
+	    l = buyingListEJB.getBuyingListItem(user);
 	} catch (NotValidUserException e) {
 	    System.err.print("NotValidUserException");
 	    e.printStackTrace();

@@ -31,7 +31,7 @@ public class HeaderBean {
 
     public String showHome() {
 	if (authEJB.isTDE()) {
-	    return "admin/panel";
+	    return "/admin/panel";
 	} else {
 	    return "/home?faces-redirect=true";
 	}
