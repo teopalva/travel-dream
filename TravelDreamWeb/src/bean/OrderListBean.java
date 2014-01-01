@@ -15,6 +15,14 @@ public class OrderListBean {
     @ManagedProperty("#{SessionStorage}")
     private SessionStorageBean sessionStorage;
 
+    public SessionStorageBean getSessionStorage() {
+	return sessionStorage;
+    }
+
+    public void setSessionStorage(SessionStorageBean sessionStorage) {
+	this.sessionStorage = sessionStorage;
+    }
+
     public List<PackageDTO> retrieveBoughtList() {
 
 	return null;
