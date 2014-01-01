@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -8,15 +10,140 @@ import javax.faces.bean.ViewScoped;
 
 import coreEJB.BaseProductEJBLocal;
 import dto.BaseProductDTO;
-import dto.PackageDTO;
+import dto.CityDTO;
+import dto.DatePersonalizationDTO;
 
 @ManagedBean(name = "EditBaseProduct")
 @ViewScoped
 public class EditBaseProductBean {
-    private Boolean flight;
-    private Boolean hotel;
-    private Boolean excursion;
+    private boolean flight;
+    private boolean hotel;
+    private boolean excursion;
     private BaseProductDTO selectedProduct;
+
+    @EJB
+    private BaseProductEJBLocal bpEJB;
+
+    // -----FLIGHT-----
+    private String name;
+    private String company;
+    private String departureAirport;
+    private String cityDeparture; // TODO serve?
+    private String arrivalAirport;
+    private String cityArrival;
+    private DatePersonalizationDTO flightDate;
+    private String flightClass;
+
+    public List<String> dropDownFilterCompany() {
+	return bpEJB.getAllCompanies();
+    }
+
+    public List<String> dropDownFilterAirport() {
+	return bpEJB.getAllAirports();
+    }
+
+    public String getName() {
+	return name;
+    }
+
+    public void setName(String name) {
+	this.name = name;
+    }
+
+    public String getCompany() {
+	return company;
+    }
+
+    public void setCompany(String company) {
+	this.company = company;
+    }
+
+    public String getDepartureAirport() {
+	return departureAirport;
+    }
+
+    public void setDepartureAirport(String departureAirport) {
+	this.departureAirport = departureAirport;
+    }
+
+    public String getArrivalAirport() {
+	return arrivalAirport;
+    }
+
+    public void setArrivalAirport(String arrivalAirport) {
+	this.arrivalAirport = arrivalAirport;
+    }
+
+    public DatePersonalizationDTO getFlightDate() {
+	return flightDate;
+    }
+
+    public void setFlightDate(DatePersonalizationDTO flightDate) {
+	this.flightDate = flightDate;
+    }
+
+    public String getFlightClass() {
+	return flightClass;
+    }
+
+    public void setFlightClass(String flightClass) {
+	this.flightClass = flightClass;
+    }
+
+    // -----HOTEL-----
+    // name
+    // company
+    private int hotelStars;
+    private String hotelCity;
+    private String hotelClass;
+
+    public int getHotelStars() {
+	return hotelStars;
+    }
+
+    public void setHotelStars(int hotelStars) {
+	this.hotelStars = hotelStars;
+    }
+
+    public String getHotelCity() {
+	return hotelCity;
+    }
+
+    public void setHotelCity(String hotelCity) {
+	this.hotelCity = hotelCity;
+    }
+
+    public String getHotelClass() {
+	return hotelClass;
+    }
+
+    public void setHotelClass(String hotelClass) {
+	this.hotelClass = hotelClass;
+    }
+
+    // -----EXCURSION-----
+    // name
+    // company
+    private String excursionCity;
+    private DatePersonalizationDTO escursionDate;
+
+    public String getExcursionCity() {
+	return excursionCity;
+    }
+
+    public void setExcursionCity(String excursionCity) {
+	this.excursionCity = excursionCity;
+    }
+
+    public DatePersonalizationDTO getEscursionDate() {
+	return escursionDate;
+    }
+
+    public void setEscursionDate(DatePersonalizationDTO escursionDate) {
+	this.escursionDate = escursionDate;
+    }
+
+    // ----------
 
     @EJB
     private BaseProductEJBLocal baseProductEJB;
@@ -42,15 +169,15 @@ public class EditBaseProductBean {
     }
 
     public void addPersonalization() {
-
+	// TODO
     }
 
     public void removePersonalization() {
-
+	// TODO
     }
 
     public void confirm() {
-
+	// TODO
     }
 
 }
