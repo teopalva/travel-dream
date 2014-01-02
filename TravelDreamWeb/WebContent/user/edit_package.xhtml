@@ -154,7 +154,7 @@ function handleDrop(event, ui) {
 						
 									
 									
-										<p:panel id="departureFlight" header="Volo di andata" style="height:80px;margin-bottom:20px">
+										<p:panel id="departureFlight" header="Volo di andata" style="display:block;overflow:auto;margin-bottom:20px">
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.name}</center>
 											</div>
@@ -168,7 +168,7 @@ function handleDrop(event, ui) {
 									
 							
 
-										<p:panel id="returnFlight" header="Volo di ritorno" style="height:80px;margin-bottom:20px">
+										<p:panel id="returnFlight" header="Volo di ritorno" style="display:block;overflow:auto;margin-bottom:20px">
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.name}</center>
 											</div>
@@ -181,7 +181,7 @@ function handleDrop(event, ui) {
 										</p:panel> 
 
 									
-										<p:panel id="hotel" header="Hotel" style="height:80px;margin-bottom:20px">
+										<p:panel id="hotel" header="Hotel" style="display:block;overflow:auto;margin-bottom:20px">
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.name}</center>
 											</div>
@@ -193,8 +193,8 @@ function handleDrop(event, ui) {
 											</p:droppable>
 										</p:panel> 
 										
-										<p:panel id="excursion" header="Escursione" style="height:80px">
-											<div class="col-md-6">
+										<p:panel id="excursion" header="Escursione" style="display:block;overflow:auto">
+											<div class="col-md-6" >
 												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.name}</center>
 											</div>
 											<div class="col-md-6">
