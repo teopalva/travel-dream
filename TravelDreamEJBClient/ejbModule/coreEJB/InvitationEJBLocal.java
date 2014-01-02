@@ -5,12 +5,16 @@ import java.util.List;
 import javax.ejb.Local;
 
 import dto.InvitationDTO;
+import dto.PackageDTO;
 import dto.UserDTO;
 import exceptions.NotValidInvitationException;
+import exceptions.NotValidPackageException;
+import exceptions.NotValidUserException;
 
 @Local
 public interface InvitationEJBLocal {
 	 public void sendInvitation(InvitationDTO invitation) throws NotValidInvitationException;
-	 public List<InvitationDTO> getAllInvitation(UserDTO user);
+	 public List<InvitationDTO> getInvitations(UserDTO userDTO) throws NotValidUserException;
+	 public List<InvitationDTO> getInvitations(PackageDTO packageDTO) throws NotValidPackageException;
 	 public InvitationDTO getInvitation(String hash);
 }

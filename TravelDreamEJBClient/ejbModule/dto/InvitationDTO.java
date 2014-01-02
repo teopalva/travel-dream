@@ -1,6 +1,10 @@
 package dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import entity.Invitation;
+import entity.User;
 import exceptions.FieldNotPresentException;
 
 public class InvitationDTO {
@@ -33,6 +37,20 @@ public class InvitationDTO {
 		this._package = _package;
 		this.hash = hash;
 		this.accepted = accepted;
+	}
+	
+	public static List<InvitationDTO> getInvitations(User user) {
+		List<InvitationDTO> list = new ArrayList<InvitationDTO>();
+		
+		List<Invitation> invitedList = user.getInviteds();
+		for(Invitation invitation : invitedList) {
+			try {
+				list.add(new InvitationDTO(invitation));
+			} catch (FieldNotPresentException e) {
+				e.printStackTrace();
+			}
+		}	
+		return list;
 	}
 
 	public UserDTO getInviter() {

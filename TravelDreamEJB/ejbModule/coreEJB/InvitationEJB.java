@@ -21,12 +21,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import dto.InvitationDTO;
+import dto.PackageDTO;
 import dto.UserDTO;
 import entity.Invitation;
 import entity.Package;
 import entity.User;
 import exceptions.FieldNotPresentException;
 import exceptions.NotValidInvitationException;
+import exceptions.NotValidPackageException;
+import exceptions.NotValidUserException;
 
 /**
  * Session Bean implementation class InvitationEJB
@@ -106,15 +109,38 @@ public class InvitationEJB implements InvitationEJBLocal {
       }
 	 
     /**
-     * Return all invitations for passed user
+     * Return all invitations for user
      */
-	 public List<InvitationDTO> getAllInvitation(UserDTO user) {
-		 List<InvitationDTO> list = new ArrayList<InvitationDTO>();
+	 public List<InvitationDTO> getInvitations(UserDTO userDTO) throws NotValidUserException {
+		 List<InvitationDTO> list = null;
+		 User user = em.find(User.class, userDTO.getMail());
+		 list = InvitationDTO.getInvitations(user);
+		 if(list == null)
+			 throw new NotValidUserException();
 		 return list;
 	 }
 	 
 	 /**
-	  * Get the invitation corresponding to passed hash
+	  * Return all invitations for a package
+	  */
+	 public List<InvitationDTO> getInvitations(PackageDTO packageDTO) throws NotValidPackageException {
+		 List<InvitationDTO> list = new ArrayList<InvitationDTO>();
+		 if(packageDTO.getId() < 0)
+			 throw new NotValidPackageException();
+		 List<Invitation> invitationList = em.createNativeQuery("SELECT * FROM INVITATION WHERE PackageId='"+packageDTO.getId()+"'", Invitation.class).getResultList();
+		 
+		 for(Invitation invitation : invitationList) {
+			 try {
+				list.add(new InvitationDTO(invitation));
+			} catch (FieldNotPresentException e) {
+				e.printStackTrace();
+			}
+		 }
+		 return list;
+	 }
+	 
+	 /**
+	  * Get the invitation corresponding to hash
 	  */
 	 public InvitationDTO getInvitation(String hash) {
 		 Invitation invitation = em.find(Invitation.class, hash);

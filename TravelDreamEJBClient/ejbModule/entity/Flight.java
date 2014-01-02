@@ -60,11 +60,11 @@ public class Flight implements Serializable {
 	private List<PersonalizedProductFlight> personalizedProductFlights;
 
 	//bi-directional many-to-one association to PossibleClassPersonalizationFlight
-	@OneToMany(mappedBy="flight", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="flight", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<PossibleClassPersonalizationFlight> possibleClassPersonalizationFlights;
 
 	//bi-directional many-to-one association to PossibleDatePersonalizationFlight
-	@OneToMany(mappedBy="flight", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="flight", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<PossibleDatePersonalizationFlight> possibleDatePersonalizationFlights;
 
 	public Flight() {

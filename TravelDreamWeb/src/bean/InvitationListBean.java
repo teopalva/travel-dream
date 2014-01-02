@@ -66,10 +66,12 @@ public class InvitationListBean {
 
     public List<InvitationDTO> retrieveInvitationList(PackageDTO p) {
 	List<InvitationDTO> l = new ArrayList<InvitationDTO>();
+	/*
 	for (InvitationDTO i : invitationEJB.getAllInvitation(user))
 	    if (i.get_package().equals(p)) {
 		l.add(i);
 	    }
+	    */
 	return l;
     }
 

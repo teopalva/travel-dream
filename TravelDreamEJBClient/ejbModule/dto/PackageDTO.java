@@ -1,18 +1,8 @@
 package dto;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Properties;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
-import coreEJB.BaseProductEJBLocal;
 import entity.Package;
 import entity.PersonalizedProductExcursion;
 import entity.PersonalizedProductFlight;
@@ -99,6 +89,30 @@ public class PackageDTO {
 			}
 		}
 	}
+    
+    public static List<PackageDTO> getAllPackagesFromInvitation(List<InvitationDTO> invitations) {
+    	List<PackageDTO> list = new ArrayList<PackageDTO>();
+    	for(InvitationDTO invitation : invitations) {
+    		list.add(invitation.get_package());
+    	}
+    	return list;
+    }
+    
+    public static List<PackageDTO> getAllPackagesFromBuying(List<BuyingListItemDTO> buyingList) {
+    	List<PackageDTO> list = new ArrayList<PackageDTO>();
+    	for(BuyingListItemDTO item : buyingList) {
+    		list.add(item.get_package());
+    	}
+    	return list;
+    }
+    
+    public static List<PackageDTO> getAllPackagesFromGift(List<GiftListItemDTO> giftList) {
+    	List<PackageDTO> list = new ArrayList<PackageDTO>();
+    	for(GiftListItemDTO item : giftList) {
+    		list.add(item.get_package());
+    	}
+    	return list;
+    } 
 
     public int getImageId() {
     	return imageId;

@@ -104,6 +104,23 @@ public class BuyingListItemEJB implements BuyingListItemEJBLocal {
     	em.remove(item);
 	}
 	
+	public List<BuyingListItemDTO> getAllBuyingListItem() {
+		List<BuyingListItemDTO> list = new ArrayList<BuyingListItemDTO>();
+
+		List<BuyingListItem> items = new ArrayList<BuyingListItem>();
+		items = em.createNativeQuery("SELECT * FROM BUYING_LIST_ITEM", BuyingListItem.class).getResultList();
+
+		for(BuyingListItem item : items) {
+			try {
+				list.add(new BuyingListItemDTO(item));
+			} catch (FieldNotPresentException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+	}
+	
 	public List<BuyingListItemDTO> getBuyingListItem(UserDTO userDTO) throws NotValidUserException {
 		List<BuyingListItemDTO> list = new ArrayList<BuyingListItemDTO>();
     	
@@ -127,6 +144,25 @@ public class BuyingListItemEJB implements BuyingListItemEJBLocal {
     	}
     	
     	return list;
+	}
+	
+	public void setPaid(int buyingListItemId) throws NotValidBuyingListException{
+		BuyingListItem item = em.find(BuyingListItem.class, buyingListItemId);
+		if(item == null)
+			throw new NotValidBuyingListException();
+		
+		BuyingListItemDTO itemDTO = null;
+		try {
+			itemDTO = new BuyingListItemDTO(item);
+		} catch (FieldNotPresentException e) {
+			e.printStackTrace();
+		}
+		itemDTO.setPaid(true);
+		try {
+			saveBuyingListItem(itemDTO);
+		} catch (NotValidBuyingListException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public BuyingListItemDTO getTmpBuyingListItem() {

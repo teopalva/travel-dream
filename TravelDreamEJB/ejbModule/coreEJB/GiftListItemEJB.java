@@ -1,18 +1,20 @@
 package coreEJB;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import dto.GiftListItemDTO;
+import dto.UserDTO;
+import entity.Package;
+import entity.User;
 import exceptions.FieldNotPresentException;
-import exceptions.NotValidBuyingListException;
 import exceptions.NotValidGiftListItemException;
 import exceptions.NotValidPackageException;
 import exceptions.NotValidUserException;
-import entity.User;
-import entity.Package;
 
 /**
  * Session Bean implementation class GiftListItemEJB
@@ -69,4 +71,27 @@ public class GiftListItemEJB implements GiftListItemEJBLocal {
     		throw new NotValidGiftListItemException();
     	}
     }
+    
+    public List<GiftListItemDTO> getGiftListItem(UserDTO userDTO) throws NotValidUserException {
+		List<GiftListItemDTO> list = null;
+    	
+		if(userDTO == null || userDTO.getMail() == null)
+			throw new NotValidUserException();
+		
+    	//Extract from DB
+    	User user = em.find(User.class, userDTO.getMail());
+    	if(user == null)
+    		throw new NotValidUserException();
+    	
+    	try {
+			list = GiftListItemDTO.getGiftList(user);
+		} catch (FieldNotPresentException e) {
+			throw new NotValidUserException();
+		}
+    	
+    	if(list == null)
+    		throw new NotValidUserException();
+    	
+    	return list;
+	}
 }

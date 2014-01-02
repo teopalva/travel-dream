@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,6 +19,7 @@ import entity.BuyingListItem;
 import entity.Group;
 import entity.User;
 import exceptions.FieldNotPresentException;
+import exceptions.NotValidUserException;
 
 /**
  * Session Bean implementation class UserEJB
@@ -27,6 +29,12 @@ public class UserEJB implements UserEJBLocal {
 	
 	@PersistenceContext
 	EntityManager em;
+	
+	@EJB
+	GiftListItemEJB giftListEJB;
+	
+	@EJB
+	BuyingListItemEJB buyingListEJB;
 
     public UserEJB() {
     }
@@ -44,7 +52,8 @@ public class UserEJB implements UserEJBLocal {
     	
     }
     
-    public List<BuyingListItemDTO> getBuyingList(UserDTO userDTO){
+    public List<BuyingListItemDTO> getBuyingList(UserDTO userDTO) throws NotValidUserException{
+    	/*
     	List<BuyingListItemDTO> list = new ArrayList<BuyingListItemDTO>();
     	User user = em.find(User.class, userDTO.getMail());
     	if(user == null)
@@ -57,8 +66,11 @@ public class UserEJB implements UserEJBLocal {
 			}
     	}
     	return list;
+    	*/
+    	return buyingListEJB.getBuyingListItem(userDTO);
     }
-    public List<GiftListItemDTO> getGiftList(UserDTO userDTO){
+    public List<GiftListItemDTO> getGiftList(UserDTO userDTO) throws NotValidUserException{
+    	/*
     	List<GiftListItemDTO> list = new ArrayList<GiftListItemDTO>();
     	User user = em.find(User.class, userDTO.getMail());
     	if(user == null)
@@ -69,6 +81,8 @@ public class UserEJB implements UserEJBLocal {
 			e.printStackTrace();
 		}
     	return list;
+    	*/
+    	return giftListEJB.getGiftListItem(userDTO);
     	
     }
     public List<BuyingListItemDTO> getAllBuyingList(){

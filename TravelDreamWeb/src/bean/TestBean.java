@@ -59,7 +59,7 @@ public class TestBean {
 	@EJB
 	GiftListItemEJBLocal giftListEJB;
 	
-	public void testUserEJB() {
+	public void testUserEJB() throws NotValidUserException {
 		UserDTO user = userEJB.getUser("gianluca.91@gmail.com");
 		System.out.println(user.getGroup());
 		List<BuyingListItemDTO> list = userEJB.getBuyingList(user);
@@ -276,7 +276,17 @@ public class TestBean {
 			else
 				System.err.println(":-( NOT Valid for offerings");
 	}
-
 	
+	public void testGetInvitations() {
+		PackageDTO packageDTO = new PackageDTO();
+		packageDTO.setId(9);
+		List<InvitationDTO> invitations = null;
+		try {
+			invitations = invitationEJB.getInvitations(packageDTO);
+		} catch (NotValidPackageException e) {
+			e.printStackTrace();
+		}
+		System.out.println(invitations.size());
+	}	
 
 }
