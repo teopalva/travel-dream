@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import dto.BaseProductDTO;
+import dto.BuyingListItemDTO;
 import dto.PackageDTO;
 
 @ManagedBean(name = "SessionStorage")
@@ -18,6 +19,7 @@ public class SessionStorageBean implements Serializable {
      */
     private PackageDTO selectedPackage;
     private BaseProductDTO selectedProduct;
+    private BuyingListItemDTO selectedItem;
     private String previousPage = null;
     private String departurePlace = "";
     private String arrivalPlace = ""; // To be set directly from home.jsf when filling search form
@@ -36,6 +38,14 @@ public class SessionStorageBean implements Serializable {
 
     public void setSelectedProduct(BaseProductDTO selectedProduct) {
 	this.selectedProduct = selectedProduct;
+    }
+
+    public BuyingListItemDTO getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(BuyingListItemDTO selectedItem) {
+        this.selectedItem = selectedItem;
     }
 
     public String getPreviousPage() {

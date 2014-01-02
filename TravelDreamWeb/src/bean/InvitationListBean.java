@@ -1,6 +1,5 @@
 package bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,11 +10,11 @@ import javax.faces.bean.ViewScoped;
 
 import coreEJB.AuthenticationEJBLocal;
 import coreEJB.InvitationEJBLocal;
-import dto.BuyingListItemDTO;
 import dto.InvitationDTO;
 import dto.PackageDTO;
 import dto.UserDTO;
 import exceptions.NotAuthenticatedException;
+import exceptions.NotValidPackageException;
 import exceptions.NotValidUserException;
 
 @ManagedBean(name = "InvitationList")
@@ -29,7 +28,7 @@ public class InvitationListBean {
 
     @EJB
     private AuthenticationEJBLocal authEJB;
-    
+
     @ManagedProperty("#{SessionStorage}")
     private SessionStorageBean sessionStorage;
 
@@ -43,41 +42,61 @@ public class InvitationListBean {
     }
 
     public SessionStorageBean getSessionStorage() {
-        return sessionStorage;
+	return sessionStorage;
     }
 
     public void setSessionStorage(SessionStorageBean sessionStorage) {
-        this.sessionStorage = sessionStorage;
+	this.sessionStorage = sessionStorage;
     }
 
     public PackageDTO getSelectedPackage() {
-        return selectedPackage;
+	return selectedPackage;
     }
 
     public void setSelectedPackage(PackageDTO selectedPackage) {
-        this.selectedPackage = selectedPackage;
+	this.selectedPackage = selectedPackage;
     }
-    
-    /*
-    public List<PackageDTO> retrieveList() {
-  	return invitationEJB.getPackages(user);
-      }
-    */
 
+    public List<PackageDTO> retrieveList() {
+	try {
+	    return PackageDTO.getAllPackagesFromInvitation(invitationEJB.getInvitations(user));
+	} catch (NotValidUserException e) {
+	    e.printStackTrace();
+	}
+	return null;
+    }
+
+    /**
+     * 
+     * @param p the selected PackageDTO
+     * @return the list of the invitations linked to the package p
+     */
     public List<InvitationDTO> retrieveInvitationList(PackageDTO p) {
-	List<InvitationDTO> l = new ArrayList<InvitationDTO>();
 	/*
-	for (InvitationDTO i : invitationEJB.getAllInvitation(user))
-	    if (i.get_package().equals(p)) {
-		l.add(i);
+	List<InvitationDTO> l = new ArrayList<InvitationDTO>();
+	try {
+	    for (InvitationDTO i : invitationEJB.getInvitations(user)) {
+		if (i.get_package().equals(p)) {
+		    l.add(i);
+		}
 	    }
-	    */
+	} catch (NotValidUserException e) {
+	    e.printStackTrace();
+	}
 	return l;
+	*/
+	try {
+	    return invitationEJB.getInvitations(p);
+	} catch (NotValidPackageException e) {
+	    System.err.print("Pacchetto non valido.");
+	    e.printStackTrace();
+	}
+	return null;
     }
 
     public String showCheckout() {
 	sessionStorage.setSelectedPackage(selectedPackage);
-	    sessionStorage.setPreviousPage("invitation");
+	sessionStorage.setPreviousPage("invitation");
 	return "/user/checkout?faces-redirect=true";
     }
 }

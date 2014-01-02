@@ -21,8 +21,6 @@ import exceptions.NotValidUserException;
 @ViewScoped
 public class GiftListBean {
     private UserDTO user;
-//    private PackageDTO selectedPackage = null;
-
     private String friendMail;
 
     @EJB
@@ -46,6 +44,14 @@ public class GiftListBean {
 	}
     }
 
+    public SessionStorageBean getSessionStorage() {
+        return sessionStorage;
+    }
+
+    public void setSessionStorage(SessionStorageBean sessionStorage) {
+        this.sessionStorage = sessionStorage;
+    }
+
     public String getFriendMail() {
 	return friendMail;
     }
@@ -54,33 +60,28 @@ public class GiftListBean {
 	this.friendMail = friendMail;
     }
 
-    /*
-     * public List<GiftListItemDTO> retrieveMyList() {
-     * return getList(user);
-     * }
-     * 
-     * 
-     * public List<GiftListItemDTO> retrieveFriendList() {
-     * return getList(new UserDTO(friendMail, null, null, null, null));
-     * }
-     */
+    public List<GiftListItemDTO> retrieveMyList() {
+	return getList(user);
+    }
+
+    public List<GiftListItemDTO> retrieveFriendList() {
+	return getList(new UserDTO(friendMail, null, null, null, null));
+    }
 
     public String retrieveFriendName() {
 	return userEJB.getUser(friendMail).getFirstName();
     }
 
-   /*
-      private List<GiftListItemDTO> getList(UserDTO user) {
-      List<GiftListItemDTO> l = null;
-      try {
-      l = giftListEJB.getGiftListItem(user);
-      } catch (NotValidUserException e) {
-      System.err.print("NotValidUserException");
-      e.printStackTrace();
-      }
-      return l;
-      }
-     
+    private List<GiftListItemDTO> getList(UserDTO user) {
+	List<GiftListItemDTO> l = null;
+	try {
+	    l = giftListEJB.getGiftListItem(user);
+	} catch (NotValidUserException e) {
+	    System.err.print("NotValidUserException");
+	    e.printStackTrace();
+	}
+	return l;
+    }
 
     public String showCheckout(PackageDTO p) {
 	sessionStorage.setSelectedPackage(p);
@@ -91,6 +92,5 @@ public class GiftListBean {
 	}
 	return "/user/checkout?faces-redirect=true";
     }
-    */
 
 }

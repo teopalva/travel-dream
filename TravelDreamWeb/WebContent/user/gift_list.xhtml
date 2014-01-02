@@ -34,7 +34,7 @@ function showDetail(id,text,btn) {
           <div class="col-md-6 column">
             <div class="list-group">
               <a href="#" class="list-group-item active">Pacchetti</a>
-              <ui:repeat value="#{BuyingList.retrieveList()}" var="item">
+              <ui:repeat value="#{GiftList.retrieveMyList()}" var="item">
                <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;"><span class="badge">Confermato</span>#{item._package.name}</a>
                </ui:repeat>
             </div>
@@ -45,7 +45,7 @@ function showDetail(id,text,btn) {
 
 
             <div class="col-md-12 hero-feature">
-            <ui:repeat value="#{GiftList.retrieveList()}" var="item">
+            <ui:repeat value="#{GiftList.retrieveMyList()}" var="item">
               <div class="thumbnail" id="item_#{item._package.id}" style="display:none">
               
                

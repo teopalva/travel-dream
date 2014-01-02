@@ -8,6 +8,7 @@ import javax.faces.bean.ViewScoped;
 
 import coreEJB.BuyingListItemEJBLocal;
 import dto.PackageDTO;
+import exceptions.NotValidBuyingListException;
 
 @ManagedBean(name = "OrderDetail")
 @ViewScoped
@@ -34,7 +35,13 @@ public class OrderDetailBean {
     }
 
     public void confirmPayment() {
-	// buyingListEJB. TODO setta pagato sul buyinglist item
+	sessionStorage.getSelectedItem();
+	try {
+	    buyingListEJB.setPaid(0);	//TODO
+	} catch (NotValidBuyingListException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
     }
 
 }
