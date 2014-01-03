@@ -86,7 +86,7 @@ function handleDrop(event, ui) {
 								<div id="draggable">
 								<ul class="list-group">
 								<c:forEach items="#{EditPackage.getOutboundFlights()}" var="item">
-										 <li style="margin-bottom:-30px"><p:outputPanel id="_0_#{item.dropIndex}"  styleClass="well well-sm" style="z-index:10;">#{item.flight.name} <p:draggable scope="departure" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+										 <li style="margin-bottom:-30px"><p:outputPanel id="_0_#{item.dropIndex}"  styleClass="well well-sm" style="z-index:10;">#{item.flight.name} <p:draggable scope="departureFlight" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
 								</c:forEach>
 								</ul>
 								</div>
@@ -103,7 +103,7 @@ function handleDrop(event, ui) {
 								<div id="draggable">
 								<ul class="list-group">
 								<c:forEach items="#{EditPackage.getReturnFlights()}" var="item">
-										 <li style="margin-bottom:-30px"><p:outputPanel id="_1_#{item.dropIndex}"  styleClass="well well-sm"  style="z-index:10;">#{item.flight.name} <p:draggable scope="return" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+										 <li style="margin-bottom:-30px"><p:outputPanel id="_1_#{item.dropIndex}"  styleClass="well well-sm"  style="z-index:10;">#{item.flight.name} <p:draggable scope="returnFlight" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
 								</c:forEach>
 								</ul>
 								</div>
@@ -161,7 +161,7 @@ function handleDrop(event, ui) {
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}</center>
 											</div>
-											<p:droppable scope="departure" onDrop="handleDrop">
+											<p:droppable scope="departureFlight" onDrop="handleDrop">
 												<p:ajax listener="#{EditPackage.onDrop}" update=":departureFlight" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
@@ -175,8 +175,8 @@ function handleDrop(event, ui) {
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.company}</center>
 											</div>
-											<p:droppable scope="return" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" />
+											<p:droppable scope="returnFlight" onDrop="handleDrop">
+												<p:ajax listener="#{EditPackage.onDrop}" update=":returnFlight" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
 
