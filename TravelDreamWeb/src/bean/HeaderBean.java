@@ -18,20 +18,36 @@ public class HeaderBean implements Serializable {
     @EJB
     private AuthenticationEJBLocal authEJB;
 
+    /**
+     * 
+     * @return the registration page URL
+     */
     public String showRegistration() {
 	String url = FacesContext.getCurrentInstance().getViewRoot().getViewId();
 	return "/registration?faces-redirect=true&backurl=" + url;
     }
 
+    /**
+     * 
+     * @return the login page URL
+     */
     public String showLogin() {
 	return "/login?faces-redirect=true";
     }
 
+    /**
+     * 
+     * @return the home page URL
+     */
     public String logout() {
 	FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 	return "/home?faces-redirect=true";
     }
 
+    /**
+     * 
+     * @return the home page URL. Admin panel if TDE
+     */
     public String showHome() {
 	if (authEJB.isTDE()) {
 	    return "/admin/panel";
@@ -40,6 +56,10 @@ public class HeaderBean implements Serializable {
 	}
     }
 
+    /**
+     * 
+     * @return the gift_list page URL
+     */
     public String showGiftList() {
 	if (authEJB.isTDC()) {
 	    return "/user/gift_list?faces-redirect=true";
@@ -47,6 +67,10 @@ public class HeaderBean implements Serializable {
 	    return null;
     }
 
+    /**
+     * 
+     * @return the buying_list page URL
+     */
     public String showBuyingList() {
 	if (authEJB.isTDC()) {
 	    return "/user/buying_list?faces-redirect=true";
@@ -54,6 +78,10 @@ public class HeaderBean implements Serializable {
 	    return null;
     }
 
+    /**
+     * 
+     * @return the invitation_list page URL
+     */
     public String showInvitationList() {
 	if (authEJB.isTDC()) {
 	    return "/user/invitation_list?faces-redirect=true";
@@ -62,7 +90,7 @@ public class HeaderBean implements Serializable {
     }
 
     /**
-     * Asks an EJB for the authentication status of the user
+     * Asks an EJB for the authentication status of the user.
      * 
      * @return 0->not logged 1->TDC 2->TDE
      */
@@ -71,6 +99,11 @@ public class HeaderBean implements Serializable {
 
     }
 
+    /**
+     * Retrieves the name of the authenticated user.
+     * @return user name
+     * @throws NotAuthenticatedException
+     */
     public String getUserName() throws NotAuthenticatedException {
 	if (authEJB.isTDC() || authEJB.isTDE())
 	    return authEJB.getAuthenticatedUser().getFirstName();

@@ -29,7 +29,7 @@ public class OfferingsListBean {
     private Date departureDate = null;
     private Date returnDate = null;
     private int numPeople = 0;
-    // ------------------------------
+
     private String flightClass = "null";
     private int hotelStars = 0;
     private String hotelClass = "null";
@@ -136,9 +136,8 @@ public class OfferingsListBean {
     // Action controller methods:
 
     /**
-     * Packages to be retrieved directly from jsf
-     * 
-     * @return
+     * Performs the search by calling the search engine which filters the packages.
+     * @return the list of filtered offerings
      */
     public List<PackageDTO> submitSearch() {
 	List<PackageDTO> offerings;
@@ -147,10 +146,9 @@ public class OfferingsListBean {
     }
 
     /**
-     * 
-     * 
-     * @param offerings
-     * @return
+     * Filters the list of packages based on the selected criteria.
+     * @param offerings the list of all of the packages into the db
+     * @return the list of filtered offerings
      */
     public List<PackageDTO> searchFilter(List<PackageDTO> offerings) {
 	List<PackageDTO> filteredOfferings = new ArrayList<PackageDTO>();
@@ -173,33 +171,58 @@ public class OfferingsListBean {
 	return filteredOfferings;
     }
 
+    /**
+     * Compares the searched number of people with that of a specific base product.
+     * @param reorderedPackage
+     * @return boolean answer
+     */
     private boolean numPeopleCheck(PackageDTO reorderedPackage) {
 	return (numPeople == 0 || reorderedPackage.getNumPeople() == numPeople) ? true : false;
     }
 
+    /**
+     * Compares the searched departurePlace with that of a specific base product.
+     * @param reorderedPackage
+     * @return boolean answer
+     */
     private boolean departurePlaceCheck(PackageDTO reorderedPackage) {
 	return (departurePlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityDeparture().getName().equalsIgnoreCase(departurePlace)) ? true
 		: false;
     }
 
+    /**
+     * Compares the searched arrivalPlace with that of a specific base product.
+     * @param reorderedPackage
+     * @return boolean answer
+     */
     private boolean arrivalPlaceCheck(PackageDTO reorderedPackage) {
 	return (arrivalPlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityArrival().getName().equalsIgnoreCase(arrivalPlace)) ? true
 		: false;
     }
 
+    /**
+     * Compares the searched departureDate with that of a specific base product.
+     * @param reorderedPackage
+     * @return boolean answer
+     */
     private boolean departureDateCheck(PackageDTO reorderedPackage) {
 	return (departureDate == null || departureDate.equals(((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getDatePersonalization().getInitialDate())) ? true : false;
     }
 
+    /**
+     * Compares the searched returnDate with that of a specific base product.
+     * @param reorderedPackage
+     * @return boolean answer
+     */
     private boolean returnDateCheck(PackageDTO reorderedPackage) {
 	return (returnDate == null || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(1)).getDatePersonalization().getInitialDate().equals(returnDate)) ? true : false;
     }
 
     /**
-     * Both the outbound and return flights have the desired class
-     * 
+     * Compares the searched flightClass with that of a specific base product.
+     * Both the outbound and return flights must have the desired class!
      * @param reorderedPackage
-     * @return
+     * @return boolean answer
      */
     private boolean flightClassCheck(PackageDTO reorderedPackage) {
 	return (flightClass.equals("null") || (((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getClassPersonalization().get_class().equalsIgnoreCase(flightClass) && ((PersonalizedFlightDTO) reorderedPackage
@@ -207,20 +230,35 @@ public class OfferingsListBean {
     }
 
     /**
+     * Compares the searched hotelStars with that of a specific base product.
      * 0<=hotelStars<=5
-     * 
      * @param reorderedPackage
-     * @return
+     * @return boolean answer
      */
     private boolean hotelStarsCheck(PackageDTO reorderedPackage) {
 	return (hotelStars == 0 || ((PersonalizedHotelDTO) reorderedPackage.getPersonalizedProducts().get(2)).getHotel().getStars() == hotelStars) ? true : false;
     }
 
+    /**
+     * Compares the searched hotelClass with that of a specific base product.
+     * @param reorderedPackage
+     * @return boolean answer
+     */
     private boolean hotelClassCheck(PackageDTO reorderedPackage) {
 	return (hotelClass.equals("null") || ((PersonalizedHotelDTO) reorderedPackage.getPersonalizedProducts().get(2)).getClassPersonalization().get_class().equalsIgnoreCase(hotelClass)) ? true
 		: false;
     }
 
+    /**
+     * Reorders a package by putting its PersonalizedProducts into specific positions based on their type:
+     * [0]->outbound flight
+     * [1]->return flight
+     * [2]->hotel
+     * [3]->excursion
+     * @param pack
+     * @return the reordered PackageDTO
+     * @throws PackageNotValidException
+     */
     private PackageDTO reorderPackage(PackageDTO pack) throws PackageNotValidException {
 	// if (!packageEJB.isValidForOffering(pack)) { TODO: activate!
 	// throw new PackageNotValidException();
@@ -280,10 +318,9 @@ public class OfferingsListBean {
     }
 
     /**
-     * Shows edit_package page related to the selected package
+     * Shows edit_package page related to the selected package.
      * 
-     * @param p
-     *            the PackageDTO selected by the user
+     * @param p the PackageDTO selected by the user
      * @return URL String of the page
      */
     public String showEditPackage(PackageDTO p) {
@@ -295,14 +332,10 @@ public class OfferingsListBean {
 	}
     }
 
-    /*
+    /**
      * 
-     * public void showEditPackage2(ActionEvent actionEvent) { FacesContext.getCurrentInstance().addMessage(null, new
-     * FacesMessage(getSelectedPackageString())); }
-     * 
-     * public String showEditPackage3(int n) { System.out.println("Hai scelto: " + n); return null; }
+     * @return the Date at the moment of its invocation.
      */
-
     public Date getCurrentDate() {
 	Date date = new Date();
 	return date;

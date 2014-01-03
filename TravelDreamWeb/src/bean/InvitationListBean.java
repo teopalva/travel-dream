@@ -57,6 +57,10 @@ public class InvitationListBean {
 	this.selectedPackage = selectedPackage;
     }
 
+    /**
+     * 
+     * @return the list of PackageDTOs for which the user has sent invitations
+     */
     public List<PackageDTO> retrieveList() {
 	try {
 	    return PackageDTO.getAllPackagesFromInvitation(invitationEJB.getInvitations(user));
@@ -94,6 +98,10 @@ public class InvitationListBean {
 	return null;
     }
 
+    /**
+     * 
+     * @return the checkout page URL
+     */
     public String showCheckout() {
 	sessionStorage.setSelectedPackage(selectedPackage);
 	sessionStorage.setPreviousPage("invitation");

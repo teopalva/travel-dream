@@ -91,6 +91,11 @@ public class CheckoutBean {
 	return price;
     }
 
+    /**
+     * Button "Acquista". Does all the needed checks.
+     * 
+     * @return the payment page URL
+     */
     public String showPayment() {
 	if (sessionStorage.getPreviousPage().equals("edit")) {
 	    // packageEJB.savePackage(selectedPackage);
@@ -141,6 +146,11 @@ public class CheckoutBean {
 	}
     }
 
+    /**
+     * Button "Aggiungi a lista regali". Does all the needed checks.
+     * 
+     * @return the gift_list page URL
+     */
     public String showGiftList() {
 	// packageEJB.savePackage(selectedPackage);
 	PackageDTO p = new PackageDTO(selectedPackage);
@@ -161,6 +171,11 @@ public class CheckoutBean {
 	return ("/user/gift_list?faces-redirect=true");
     }
 
+    /**
+     * Button "Invita i tuoi amici". Does all the needed checks.
+     * 
+     * @return the invitation_list page URL
+     */
     public String showInvitationList() {
 	// send emails & add tmpPackage to invitationList
 	for (String email : emails) {

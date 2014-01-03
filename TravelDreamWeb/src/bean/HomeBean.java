@@ -72,6 +72,10 @@ public class HomeBean {
 
     // -------------------------------------
 
+    /**
+     * 
+     * @return the edit_package page URL
+     */
     public String showEditPackage() {
 	try {
 	    if (!flightSelected && !hotelSelected && !excursionSelected) {
@@ -85,6 +89,10 @@ public class HomeBean {
 	return "user/edit_package?faces-redirect=true";
     }
 
+    /**
+     * 
+     * @return the offerings_list page URL
+     */
     public String showOfferingsList() {
 	return "/offerings_list?faces-redirect=true";
     }

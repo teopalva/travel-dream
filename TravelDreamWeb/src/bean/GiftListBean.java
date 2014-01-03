@@ -60,18 +60,35 @@ public class GiftListBean {
 	this.friendMail = friendMail;
     }
 
+    /**
+     * 
+     * @return the user's gift list
+     */
     public List<GiftListItemDTO> retrieveMyList() {
 	return getList(user);
     }
 
+    /**
+     * 
+     * @return the user's friend's gift list
+     */
     public List<GiftListItemDTO> retrieveFriendList() {
 	return getList(new UserDTO(friendMail, null, null, null, null));
     }
 
+    /**
+     * 
+     * @return the name of the friend searched by mail
+     */
     public String retrieveFriendName() {
 	return userEJB.getUser(friendMail).getFirstName();
     }
 
+    /**
+     * Retrieves the gift list of a user.
+     * @param user a UserDTO
+     * @return
+     */
     private List<GiftListItemDTO> getList(UserDTO user) {
 	List<GiftListItemDTO> l = null;
 	try {
@@ -83,6 +100,11 @@ public class GiftListBean {
 	return l;
     }
 
+    /**
+     * 
+     * @param p the selected PackageDTO
+     * @return the checkout page URL
+     */
     public String showCheckout(PackageDTO p) {
 	sessionStorage.setSelectedPackage(p);
 	if (retrieveMyList().contains(p)) {

@@ -1,5 +1,6 @@
 package bean;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,8 +11,8 @@ import javax.faces.bean.ViewScoped;
 
 import coreEJB.BaseProductEJBLocal;
 import dto.BaseProductDTO;
-import dto.CityDTO;
 import dto.DatePersonalizationDTO;
+import dto.PossibleDatePersonalizationDTO;
 
 @ManagedBean(name = "EditBaseProduct")
 @ViewScoped
@@ -31,7 +32,7 @@ public class EditBaseProductBean {
     private String cityDeparture; // TODO serve?
     private String arrivalAirport;
     private String cityArrival;
-    private DatePersonalizationDTO flightDate;
+    private List<DatePersonalizationDTO> flightDates;
     private String flightClass;
 
     public List<String> dropDownFilterCompany() {
@@ -74,12 +75,12 @@ public class EditBaseProductBean {
 	this.arrivalAirport = arrivalAirport;
     }
 
-    public DatePersonalizationDTO getFlightDate() {
-	return flightDate;
+    public List<DatePersonalizationDTO> getFlightDate() {
+	return flightDates;
     }
 
-    public void setFlightDate(DatePersonalizationDTO flightDate) {
-	this.flightDate = flightDate;
+    public void setFlightDate(List<DatePersonalizationDTO> flightDate) {
+	this.flightDates = flightDate;
     }
 
     public String getFlightClass() {
@@ -168,14 +169,30 @@ public class EditBaseProductBean {
 	}
     }
 
-    public void addPersonalization() {
+    /**
+     * Button "+ partenza". Call this method on form confirm.
+     */
+    public void addDatePersonalization(double price, Date date, int duration) {
+//	flightDates.add(new PossibleDatePersonalizationDTO());	TODO
+    }
+    
+    /**
+     * Button "+ classe". Call this method on form confirm.
+     */
+    public void addClassPersonalization() {
 	// TODO
     }
 
+    /**
+     * Button "x" delete on personalization. Call this method on form confirm.
+     */
     public void removePersonalization() {
 	// TODO
     }
 
+    /**
+     * Button "Conferma". Confirms and executes the operations on the edited product.
+     */
     public void confirm() {
 	// TODO
     }

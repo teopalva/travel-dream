@@ -50,6 +50,9 @@ public class OrderListBean {
 	return paidList;
     }
 
+    /**
+     * Updates the two lists boughtList and paidList from db.
+     */
     private void retrieveLists() {
 	for (BuyingListItemDTO item : buyingListEJB.getAllBuyingListItem()) {
 	    if (!item.isPaid()) {
@@ -62,12 +65,10 @@ public class OrderListBean {
 
     /**
      * 
-     * @param p
-     *            the selected BuyingListItem
-     * @return
+     * @param p the selected BuyingListItem
+     * @return the order_detail page URL
      */
     public String showOrderDetail(BuyingListItemDTO item) {
-	sessionStorage.setSelectedPackage(item.get_package());
 	sessionStorage.setSelectedItem(item);
 	return ("/admin/order_detail?faces-redirect=true");
     }

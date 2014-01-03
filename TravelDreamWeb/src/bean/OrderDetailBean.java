@@ -7,13 +7,13 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import coreEJB.BuyingListItemEJBLocal;
-import dto.PackageDTO;
+import dto.BuyingListItemDTO;
 import exceptions.NotValidBuyingListException;
 
 @ManagedBean(name = "OrderDetail")
 @ViewScoped
 public class OrderDetailBean {
-    private PackageDTO selectedPackage = null;
+    private BuyingListItemDTO selectedItem = null;
 
     @EJB
     private BuyingListItemEJBLocal buyingListEJB;
@@ -23,23 +23,33 @@ public class OrderDetailBean {
 
     @PostConstruct
     public void init() {
-	selectedPackage = sessionStorage.getSelectedPackage();
+	selectedItem = sessionStorage.getSelectedItem();
     }
 
-    public PackageDTO getSelectedPackage() {
-	return selectedPackage;
+    public SessionStorageBean getSessionStorage() {
+	return sessionStorage;
     }
 
-    public void setSelectedPackage(PackageDTO selectedPackage) {
-	this.selectedPackage = selectedPackage;
+    public void setSessionStorage(SessionStorageBean sessionStorage) {
+	this.sessionStorage = sessionStorage;
     }
 
+    public BuyingListItemDTO getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(BuyingListItemDTO selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+
+    /**
+     * Sets the item paid attribute into the db to true.
+     */
     public void confirmPayment() {
 	sessionStorage.getSelectedItem();
 	try {
-	    buyingListEJB.setPaid(0);	//TODO
+	    buyingListEJB.setPaid(0); // pass selectedItem
 	} catch (NotValidBuyingListException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }

@@ -155,6 +155,9 @@ public class EditPackageBean {
 	refreshLists();
     }
 
+    /**
+     * Refreshes the lists of base products based on the selected criteria.
+     */
     private void refreshLists() {
 	hotels.clear();
 	outboundFlights.clear();
@@ -215,7 +218,7 @@ public class EditPackageBean {
     }
 
     /**
-     * Recalculates the total cost of the current package
+     * Recalculates the total cost of the current package.
      */
     public double calculatePrice() {
 	double p = 0;
@@ -228,21 +231,15 @@ public class EditPackageBean {
     }
 
     /**
-     * Substitutes current product at index based on its type with the selected one
+     * Substitutes current product at index based on its type with the selected one.
      */
     private void updatePackage(int category, PersonalizedProductDTO p) {
 	selectedPackage.getPersonalizedProducts().set(category, p);
     }
 
-    public String showCheckout() {
-	sessionStorage.setSelectedPackage(selectedPackage);
-	sessionStorage.setPreviousPage("edit");
-	return "/user/checkout?faces-redirect=true";
-    }
-
     /**
      * Function called by the jsf when a drag and drop happens String is draggedId type _category_id Example: for excursion (category = 3) and with id
-     * 11 the string is _3_11 for hotels (category = 2) and with id 23 string is _2_23
+     * 11 the string is _3_11 for hotels (category = 2) and with id 23 string is _2_23.
      */
     public void onDrop(DragDropEvent ddEvent) {
 
@@ -270,5 +267,15 @@ public class EditPackageBean {
 		break;
 	    default: // do nothing
 	}
+    }
+
+    /**
+     * 
+     * @return the checkout page URL
+     */
+    public String showCheckout() {
+	sessionStorage.setSelectedPackage(selectedPackage);
+	sessionStorage.setPreviousPage("edit");
+	return "/user/checkout?faces-redirect=true";
     }
 }

@@ -34,6 +34,10 @@ public class BuyingListBean {
 	}
     }
 
+    /**
+     * Retrieves the user's buying list form db.
+     * @return the list of BuyingListItemDTOs of the buying list
+     */
     public List<BuyingListItemDTO> retrieveList() {
 	List<BuyingListItemDTO> l = null;
 	try {

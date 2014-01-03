@@ -42,11 +42,19 @@ public class RegistrationBean {
 
     // Action controller methods:
 
+    /**
+     * 
+     * @return the register page URL
+     */
     public String register() {
 	userEJB.saveUser(user);
 	return back();
     }
 
+    /**
+     * 
+     * @return the previous visited page URL
+     */
     private String back() {
 	String URL = backurl + "?faces-redirect=true";
 	return URL;
