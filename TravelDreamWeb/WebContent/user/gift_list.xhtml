@@ -2,17 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:ui="http://java.sun.com/jsf/facelets"
-  xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:f="http://java.sun.com/jsf/core"
-  xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 
 <ui:composition template="/WEB-INF/template/default.xhtml">
-  <ui:define name="content">
-    <h:body>
+	<ui:define name="content">
+		<h:body>
 
-<script>
+			<script>
 
 function showDetail(id,text,btn) {
   
@@ -26,112 +26,110 @@ function showDetail(id,text,btn) {
 }
 
 </script>
-      <div class="container">
-        <center>
-          <h1 style="padding-bottom: 30px">Lista regali</h1>
-        </center>
-        <div class="row clearfix">
-          <div class="col-md-6 column">
-            <div class="list-group">
-              <a href="#" class="list-group-item active">Pacchetti</a>
-              <ui:repeat value="#{GiftList.retrieveMyList()}" var="item">
-               <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;"><span class="badge">Confermato</span>#{item._package.name}</a>
-               </ui:repeat>
-            </div>
+			<div class="container">
+				<h:panelGroup id="heading">
+					<center>
+						<h1 style="padding-bottom: 30px">#{GiftList.retrieveName()}</h1>
+					</center>
+				</h:panelGroup>
 
-          </div>
-          <div class="col-md-6 column">
+				<div class="row clearfix">
+					<div class="col-md-6 column">
+						<div class="list-group">
+							<a href="#" class="list-group-item active">Pacchetti</a>
 
-
-
-            <div class="col-md-12 hero-feature">
-            <ui:repeat value="#{GiftList.retrieveMyList()}" var="item">
-              <div class="thumbnail" id="item_#{item._package.id}" style="display:none">
-              
-               
-                <div class="caption">
-                  <h4>#{item._package.name}</h4>
-                  <p>Partenza:
-                    #{item._package.personalizedProducts[0].flight.getCityDeparture().getName()}
-                    #{item._package.personalizedProducts[0].flight.getAirportDeparture()}</p>
-                  <p>Destinazione:
-                    #{item._package.personalizedProducts[0].flight.getCityArrival().getName()}
-                    #{item._package.personalizedProducts[0].flight.getAirportArrival()}</p>
-                  <div>
-                    <table class="table" style="margin-bottom: 45px">
-
-                      <tr>
-                        <th>Volo (andata)</th>
-                        <td>#{item._package.personalizedProducts[0].flight.name}</td>
-                        <td>#{item._package.personalizedProducts[0].flight.company}</td>
-                      </tr>
-                      <tr>
-                        <th>Volo (ritorno)</th>
-                        <td>#{item._package.personalizedProducts[1].flight.name}</td>
-                        <td>#{item._package.personalizedProducts[1].flight.company}</td>
-                      </tr>
-
-                      <tr>
-                        <th>Hotel</th>
-                        <!--  hotel e escursione hanno indici scambiati 2/3, cosi per ora x vedere quel li ho scambiati pure io -->
-                        <td>#{item._package.personalizedProducts[2].excursion.name}</td>
-                        <td>#{item._package.personalizedProducts[2].excursion.company}</td>
-                      </tr>
-                      <tr>
-                        <th>Escursione</th>
-                        <td>#{item._package.personalizedProducts[3].hotel.name}</td>
-                        <td>#{item._package.personalizedProducts[3].hotel.company}</td>
-                      </tr>
-                    </table>
-                  </div>
-
-                  <p>
-
-
-                  </p>
-                </div>
-                
-              </div>
-              </ui:repeat>
-            </div>
-
-
-
-
-          </div>
-        </div>
-        
-        				<div class="row clearfix">
-					<div class="col-md-12 column">
-					
-						<div class="panel panel-success">
-				
-        				<div class="panel-heading">Cerca lista amico</div>
-        				
-						<div class="panel-body">
-						<h:form>
-							<p:inputText value="#{GiftList.friendMail}" id="friendMail" style="margin-left:20px;"/>
-
-						
-						<p:commandButton value="Cerca" ajax="true"
-										action="#{GiftList.searchFriend()}"
-										
-										styleClass="btn btn-default" style="margin-left:20px;" id="buttonSearch" />
-						
-						</h:form>
+							<h:panelGroup id="giftList">
+								<ui:repeat value="#{GiftList.retrieveGiftList()}" var="item">
+									<a class="list-group-item" href="#"
+										onclick="showDetail('item_#{item._package.id}','',this); return false;"><span
+										class="badge">Confermato</span>#{item._package.name}</a>
+								</ui:repeat>
+							</h:panelGroup>
 						</div>
+
+					</div>
+					<div class="col-md-6 column">
+
+
+
+						<div class="col-md-12 hero-feature">
+							<h:panelGroup id="giftDetail">
+								<ui:repeat value="#{GiftList.retrieveGiftList()}" var="item">
+									<div class="thumbnail" id="item_#{item._package.id}"
+										style="display: none">
+
+
+										<div class="caption">
+											<h4>#{item._package.name}</h4>
+											<p>Partenza:
+												#{item._package.personalizedProducts[0].flight.getCityDeparture().getName()}
+												#{item._package.personalizedProducts[0].flight.getAirportDeparture()}</p>
+											<p>Destinazione:
+												#{item._package.personalizedProducts[0].flight.getCityArrival().getName()}
+												#{item._package.personalizedProducts[0].flight.getAirportArrival()}</p>
+											<div>
+												<table class="table" style="margin-bottom: 45px">
+
+													<tr>
+														<th>Volo (andata)</th>
+														<td>#{item._package.personalizedProducts[0].flight.name}</td>
+														<td>#{item._package.personalizedProducts[0].flight.company}</td>
+													</tr>
+													<tr>
+														<th>Volo (ritorno)</th>
+														<td>#{item._package.personalizedProducts[1].flight.name}</td>
+														<td>#{item._package.personalizedProducts[1].flight.company}</td>
+													</tr>
+
+												</table>
+											</div>
+
+											<p></p>
+										</div>
+
+									</div>
+								</ui:repeat>
+							</h:panelGroup>
+						</div>
+
+
+
+
+					</div>
+				</div>
+
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+
+						<div class="panel panel-success">
+
+							<div class="panel-heading">Cerca lista amico</div>
+
+							<div class="panel-body">
+								<h:form>
+									<p:inputText value="#{GiftList.friendMail}" id="friendMail"
+										style="margin-left:20px;" />
+
+
+									<p:commandButton value="Cerca" ajax="true"
+										update=":giftList,:giftDetail,:heading"
+										styleClass="btn btn-default" style="margin-left:20px;"
+										id="buttonSearch" />
+
+								</h:form>
+							</div>
 						</div>
 					</div>
 
 				</div>
 
-      </div>
+			</div>
 
 
 
-    </h:body>
+		</h:body>
 
-  </ui:define>
+	</ui:define>
 </ui:composition>
 
 

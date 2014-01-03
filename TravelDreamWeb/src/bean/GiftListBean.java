@@ -21,7 +21,7 @@ import exceptions.NotValidUserException;
 @ViewScoped
 public class GiftListBean {
     private UserDTO user;
-    private String friendMail;
+    private String friendMail = "";
 
     @EJB
     private GiftListItemEJBLocal giftListEJB;
@@ -64,24 +64,27 @@ public class GiftListBean {
      * 
      * @return the user's gift list
      */
-    public List<GiftListItemDTO> retrieveMyList() {
-	return getList(user);
+    public List<GiftListItemDTO> retrieveGiftList() {
+    	if (friendMail.isEmpty()) return getList(user);
+    	else return getList(new UserDTO(friendMail, null, null, null, null));
     }
 
     /**
      * 
      * @return the user's friend's gift list
      */
-    public List<GiftListItemDTO> retrieveFriendList() {
-	return getList(new UserDTO(friendMail, null, null, null, null));
-    }
+    //public List<GiftListItemDTO> retrieveFriendList() {
+	//return getList(new UserDTO(friendMail, null, null, null, null));
+   // }
 
     /**
      * 
      * @return the name of the friend searched by mail
+     * @throws NotAuthenticatedException 
      */
-    public String retrieveFriendName() {
-	return userEJB.getUser(friendMail).getFirstName();
+    public String retrieveName() throws NotAuthenticatedException {
+    	if (friendMail.isEmpty()) return "La mia lista regali";
+    	else return "Lista regali di " + userEJB.getUser(friendMail).getFirstName();
     }
 
     /**
@@ -107,7 +110,7 @@ public class GiftListBean {
      */
     public String showCheckout(PackageDTO p) {
 	sessionStorage.setSelectedPackage(p);
-	if (retrieveMyList().contains(p)) {
+	if (retrieveGiftList().contains(p)) {
 	    sessionStorage.setPreviousPage("gift_user");
 	} else {
 	    sessionStorage.setPreviousPage("gift_friend");
