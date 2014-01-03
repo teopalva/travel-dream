@@ -59,6 +59,10 @@ public class EditPackageBean {
     public void init() {
 	if (sessionStorage.getSelectedPackage() == null) {
 	    selectedPackage = new PackageDTO();
+	    selectedPackage.getPersonalizedProducts().add(new PersonalizedFlightDTO());
+	    selectedPackage.getPersonalizedProducts().add(new PersonalizedFlightDTO());
+	    selectedPackage.getPersonalizedProducts().add(new PersonalizedHotelDTO());
+	    selectedPackage.getPersonalizedProducts().add(new PersonalizedExcursionDTO());
 	} else {
 	    selectedPackage = sessionStorage.getSelectedPackage();
 	}
