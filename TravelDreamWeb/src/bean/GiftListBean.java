@@ -16,6 +16,7 @@ import dto.PackageDTO;
 import dto.UserDTO;
 import exceptions.NotAuthenticatedException;
 import exceptions.NotValidUserException;
+import exceptions.PackageNotValidException;
 
 @ManagedBean(name = "GiftList")
 @ViewScoped
@@ -45,11 +46,11 @@ public class GiftListBean {
     }
 
     public SessionStorageBean getSessionStorage() {
-        return sessionStorage;
+	return sessionStorage;
     }
 
     public void setSessionStorage(SessionStorageBean sessionStorage) {
-        this.sessionStorage = sessionStorage;
+	this.sessionStorage = sessionStorage;
     }
 
     public String getFriendMail() {
@@ -65,30 +66,37 @@ public class GiftListBean {
      * @return the user's gift list
      */
     public List<GiftListItemDTO> retrieveGiftList() {
-    	if (friendMail.isEmpty()) return getList(user);
-    	else return getList(new UserDTO(friendMail, null, null, null, null));
+	if (friendMail.equals(""))
+	    return getList(user);
+	else
+	    return getList(new UserDTO(friendMail, null, null, null, null));
     }
 
     /**
      * 
      * @return the user's friend's gift list
      */
-    //public List<GiftListItemDTO> retrieveFriendList() {
-	//return getList(new UserDTO(friendMail, null, null, null, null));
-   // }
+    // public List<GiftListItemDTO> retrieveFriendList() {
+    // return getList(new UserDTO(friendMail, null, null, null, null));
+    // }
 
     /**
      * 
      * @return the name of the friend searched by mail
-     * @throws NotAuthenticatedException 
+     * @throws NotAuthenticatedException
      */
     public String retrieveName() throws NotAuthenticatedException {
-    	if (friendMail.isEmpty()) return "La mia lista regali";
-    	else return "Lista regali di " + userEJB.getUser(friendMail).getFirstName();
+	if (friendMail.equals("")) {
+	    return "La mia lista regali";
+	    // } else {
+	    // return "Lista regali di " + userEJB.getUser(friendMail).getFirstName();
+	}
+	return null;
     }
 
     /**
      * Retrieves the gift list of a user.
+     * 
      * @param user a UserDTO
      * @return
      */
@@ -99,6 +107,14 @@ public class GiftListBean {
 	} catch (NotValidUserException e) {
 	    System.err.print("NotValidUserException");
 	    e.printStackTrace();
+	}
+	for (GiftListItemDTO i : l) {
+	    try {
+		PackageDTO rp = OfferingsListBean.reorderPackage(i.get_package());
+		i.set_package(rp);
+	    } catch (PackageNotValidException e) {
+		e.printStackTrace();
+	    }
 	}
 	return l;
     }
