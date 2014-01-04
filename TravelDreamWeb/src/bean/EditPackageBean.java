@@ -13,6 +13,7 @@ import javax.faces.bean.ViewScoped;
 import org.primefaces.event.DragDropEvent;
 
 import coreEJB.BaseProductEJBLocal;
+import coreEJB.PackageEJBLocal;
 import dto.BaseProductDTO;
 import dto.DatePersonalizationDTO;
 import dto.ExcursionDTO;
@@ -44,6 +45,9 @@ public class EditPackageBean {
 
     @EJB
     private BaseProductEJBLocal baseProductEJB;
+
+    @EJB
+    private PackageEJBLocal packageEJB;
 
     @ManagedProperty("#{SessionStorage}")
     private SessionStorageBean sessionStorage;
@@ -281,5 +285,13 @@ public class EditPackageBean {
 	sessionStorage.setSelectedPackage(selectedPackage);
 	sessionStorage.setPreviousPage("edit");
 	return "/user/checkout?faces-redirect=true";
+    }
+
+    /**
+     * Checks the consistency of the current package.
+     * @return boolean
+     */
+    public boolean isValidForTDC() {
+	return packageEJB.isValidForTDC(selectedPackage);
     }
 }
