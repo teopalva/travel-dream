@@ -22,6 +22,16 @@ public abstract class PersonalizedProductDTO {
 	public void setDropIndex(int dropIndex) {
 	    this.dropIndex = dropIndex;
 	}
+	
+	@Override 
+	public PersonalizedProductDTO clone() {
+		try {
+			return (PersonalizedProductDTO)super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	@Override
 	public String toString() {

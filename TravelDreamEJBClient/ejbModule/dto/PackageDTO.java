@@ -64,8 +64,13 @@ public class PackageDTO {
     	this.numPeople = numPeople;
     	this.name = name;
     	this.reduction = reduction;
-    	if(personalizedProducts != null)
-    		this.personalizedProducts = new ArrayList<PersonalizedProductDTO>(personalizedProducts);
+    	if(personalizedProducts != null) {
+    		this.personalizedProducts = new ArrayList<PersonalizedProductDTO>();
+    		//this.personalizedProducts = new ArrayList<PersonalizedProductDTO>(personalizedProducts);
+    		for(PersonalizedProductDTO p : personalizedProducts) {
+    			this.personalizedProducts.add(p.clone());
+    		}
+    	}
     	else
     		this.personalizedProducts = new ArrayList<PersonalizedProductDTO>();
     }
@@ -176,8 +181,7 @@ public class PackageDTO {
 
     @Override
     public PackageDTO clone() {
-    	PackageDTO p = new PackageDTO();
-    	p = this.clone();
+    	PackageDTO p = new PackageDTO(imageId, numPeople, name, reduction, personalizedProducts);
     	return p;
     }
 

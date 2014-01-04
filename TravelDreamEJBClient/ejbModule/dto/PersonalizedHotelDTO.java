@@ -52,6 +52,13 @@ public class PersonalizedHotelDTO extends PersonalizedProductDTO {
     public String toString() {
 	return "PersonalizedHotelDTO [hotel=" + hotel + ", classPersonalization=" + classPersonalization + "]";
     }
+    
+    @Override 
+	public PersonalizedHotelDTO clone() {
+    	PersonalizedHotelDTO hotel = new PersonalizedHotelDTO(this.hotel);
+		hotel.setClassPersonalization(classPersonalization);
+		return hotel;
+	}
 
     public double getPrice() {
 	double price = 0;

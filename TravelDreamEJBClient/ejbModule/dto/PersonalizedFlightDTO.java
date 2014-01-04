@@ -79,6 +79,14 @@ public class PersonalizedFlightDTO extends PersonalizedProductDTO {
 				+ ", datePersonalization=" + datePersonalization + "]";
 	}
 	
+	@Override 
+	public PersonalizedFlightDTO clone() {
+		PersonalizedFlightDTO flight = new PersonalizedFlightDTO(this.flight);
+		flight.setDatePersonalization(datePersonalization);
+		flight.setClassPersonalization(classPersonalization);
+		return flight;
+	}
+	
 	public double getPrice() {
 		double price = 0;
 		if(classPersonalization != null)
