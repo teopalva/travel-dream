@@ -13,43 +13,37 @@
 	<ui:define name="content">
 		<h:body>
 
+
 			<div class="container">
 				<div class="row clearfix">
 					<div class="col-md-12 column" style="margin-top: 60px">
 						<h:form id="boughtForm">
+						
 							<p:dataTable id="boughtList" var="bought"
 								value="#{OrderList.getBoughtList()}" rowKey="#{bought.date}"
 								selection="#{OrderList.selectedItem}" selectionMode="single">
 
-								<f:facet name="header">  
-            Storico ordini in attesa di pagamento 
-        </f:facet>
+						
 
-								<p:column headerText="Data">  
-           #{bought.date} 
-        </p:column>
+								<f:facet name="header">Storico ordini in attesa di pagamento </f:facet>
 
-								<p:column headerText="Cliente">  
-            #{bought.user.firstName} #{bought.user.lastName}  
-        </p:column>
+								<p:column headerText="Data" sortBy="date">  #{bought.date}  </p:column>
 
-								<p:column headerText="Email">  
-            #{bought.user.mail}  
-        </p:column>
+								<p:column headerText="Cliente">  #{bought.user.firstName} #{bought.user.lastName}   </p:column>
 
-								<p:column headerText="Pacchetto">  
-            #{bought._package.name}  
-        </p:column>
+								<p:column headerText="Email" sortBy="user.mail" >  #{bought.user.mail}    </p:column>
 
+								<p:column headerText="Pacchetto" sortBy="_package.name">  #{bought._package.name}  </p:column>
+								<p:column headerText="Pagamento"> <p:commandButton action="#{OrderList.confirmPayment(bought)}" value="Ricevuto"  styleClass="btn-block" /> </p:column>
+
+																
 								<f:facet name="footer">
-									<p:commandButton id="viewBoughtButton" value="Dettaglio"
-										icon="ui-icon-search" update=":boughtForm:display"
-										oncomplete="PF('boughtDialog').show()" />
+									<p:commandButton id="viewButton" value="Dettaglio"
+										icon="ui-icon-search" update=":boughtForm:display" oncomplete="PF('boughtDialog').show()" />
 								</f:facet>
 
-
 							</p:dataTable>
-
+					
 
 							<p:dialog id="boughtDialog" widgetVar="boughtDialog" resizable="false" style="margin-top:300px"
 								header="Dettaglio ordine"
@@ -114,7 +108,7 @@
 
 											<div class="col-md-12 column"
 												style="margin-top: 16px">
-												<p:commandButton id="checkout" action="#{OrderList.confirmPayment()}" value="Conferma pagamento"  update=":boughtForm,:paidForm" ajax="true" styleClass="btn-block" />
+												
 											</div>
 											
 								</h:panelGroup>
@@ -127,29 +121,20 @@
 					<div class="col-md-12 column" style="margin-top: 60px">
 
 						<h:form id="paidForm">
+							<h:panelGroup id="displayPaid">
 							<p:dataTable id="paidList" var="paid"
 								value="#{OrderList.getPaidList()}" rowKey="#{paid.date}"
 								selection="#{OrderList.selectedItem}" selectionMode="single">
 
-								<f:facet name="header">  
-            Storico ordini completati 
-        </f:facet>
+								<f:facet name="header">  Storico ordini completati  </f:facet>
 
-								<p:column headerText="Data">  
-           #{paid.date} 
-        </p:column>
+								<p:column headerText="Data" sortBy="date">   #{paid.date}  </p:column>
 
-								<p:column headerText="Cliente">  
-            #{paid.user.firstName} #{paid.user.lastName}  
-        </p:column>
+								<p:column headerText="Cliente">   #{paid.user.firstName} #{paid.user.lastName}  </p:column>
 
-								<p:column headerText="Email">  
-            #{paid.user.mail}  
-        </p:column>
+								<p:column headerText="Email" sortBy="user.mail">   #{paid.user.mail}  </p:column>
 
-								<p:column headerText="Pacchetto">  
-            #{paid._package.name}  
-        </p:column>
+								<p:column headerText="Pacchetto" sortBy="_package.name">   #{paid._package.name}  </p:column>
 
 								<f:facet name="footer">
 									<p:commandButton id="viewButton" value="Dettaglio"
@@ -159,7 +144,7 @@
 
 
 							</p:dataTable>
-
+							</h:panelGroup>
 
 							<p:dialog id="paidDialog" widgetVar="paidDialog" resizable="false" style="margin-top:300px"
 								header="Dettaglio ordine"
@@ -231,11 +216,6 @@
 					</div>
 				</div>
 			</div>
-
-
-
-
-
 
 
 		</h:body>
