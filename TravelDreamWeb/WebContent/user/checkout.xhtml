@@ -42,11 +42,10 @@
 					<div class="col-md-4 column">
 						<h2>Invita degli amici</h2>
 						<p>Qui puoi invitare degli amici ad unirsi al tuo viaggio!</p>
-						<p:inputText styleClass="form-control" placeholder="e-mail"
-							id="friend1" />
+						<ui:repeat value="#{Checkout.getNumPeople()}" var="item"> <!--  da rivedere  -->
+							<p:inputText styleClass="form-control" placeholder="e-mail" />
 						<br></br>
-						<p:inputText styleClass="form-control" placeholder="e-mail"
-							id="friend2" />
+						</ui:repeat>
 							
 						<p:commandButton id="invitelist" value="Invita amici" styleClass="btn btn-block btn-warning" style="margin-top: 72px" action="#{Checkout.showInvitationList()}" />
 

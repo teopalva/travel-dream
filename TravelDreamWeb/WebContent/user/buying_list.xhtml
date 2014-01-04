@@ -35,7 +35,7 @@ function showDetail(id,text,btn) {
 						<div class="list-group">
 							<a href="#" class="list-group-item active">Pacchetti</a>
 							<ui:repeat value="#{BuyingList.retrieveList()}" var="item">
-							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;"><span class="badge">Confermato</span>#{item._package.name}</a>
+							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;"><h:panelGroup rendered="#{item.isPaid()}"><span class="badge">Pagamento ricevuto</span></h:panelGroup>#{item._package.name}</a>
 							 </ui:repeat>
 						</div>
 
