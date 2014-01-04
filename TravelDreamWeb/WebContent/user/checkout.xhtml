@@ -47,8 +47,17 @@
 							<p:inputText styleClass="form-control" placeholder="e-mail" value="#{Checkout.emails[id.index]}"/>
 						<br></br>
 						</ui:repeat>
+								
 							
-						<p:commandButton id="invitelist" value="Invita amici" styleClass="btn btn-block btn-warning" style="margin-bottom: 72px" action="#{Checkout.showInvitationList()}" />
+						<p:commandButton id="invitelist" value="Invita amici" styleClass="btn btn-block btn-warning"  action="#{Checkout.showInvitationList()}" />
+						<p:ajaxStatus id="ajaxStatusPanel" style="margin-top:20px;margin-bottom:30px">  
+    						<f:facet name="start">  
+    							<h:graphicImage library="images" name="ajaxloading.gif" style="width:16px;height:16px;"/> Invio email in corso... 
+  							</f:facet>  
+      						<f:facet name="complete">  
+        						<h:outputText value="" />  
+							</f:facet>  
+						</p:ajaxStatus> 
 						</h:form>
 					</div>
 				</div>
