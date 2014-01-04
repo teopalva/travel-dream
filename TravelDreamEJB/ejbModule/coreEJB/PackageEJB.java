@@ -78,6 +78,11 @@ public class PackageEJB implements PackageEJBLocal {
 	 * may contain Class/DataPersonalization)
 	 */
 	public void savePackage(PackageDTO packageDTO) throws NotValidPackageException {
+		//Protection against not valid packages
+		if(isValidForOffering(packageDTO) == false) {
+			throw new NotValidPackageException();
+		}
+		
 		Package _package = new Package();
 		_package.setName(packageDTO.getName());
 		_package.setNumPeople(packageDTO.getNumPeople());
@@ -390,90 +395,94 @@ public class PackageEJB implements PackageEJBLocal {
      * 			If the hotel and flights (or excursion) are incompatible in dates return false. 
      */
     public boolean isValidForTDC(PackageDTO packageDTO) {
-    	List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
-    	PersonalizedHotelDTO hotel = null;
-    	PersonalizedExcursionDTO excursion = null;
+    	try{ 
+    		List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
+    		PersonalizedHotelDTO hotel = null;
+    		PersonalizedExcursionDTO excursion = null;
 
-    	for(PersonalizedProductDTO p : packageDTO.getPersonalizedProducts()) {
-    		if(p instanceof PersonalizedFlightDTO) {
-    			flights.add((PersonalizedFlightDTO)p);
+    		for(PersonalizedProductDTO p : packageDTO.getPersonalizedProducts()) {
+    			if(p instanceof PersonalizedFlightDTO) {
+    				flights.add((PersonalizedFlightDTO)p);
+    			}
+    			if(p instanceof PersonalizedHotelDTO) {
+    				if(hotel == null)
+    					hotel = (PersonalizedHotelDTO)p;
+    				else
+    					return false;
+    			}
+    			if(p instanceof PersonalizedExcursionDTO) {
+    				if(excursion == null)
+    					excursion = (PersonalizedExcursionDTO)p;
+    				else
+    					return false;
+    			}
     		}
-    		if(p instanceof PersonalizedHotelDTO) {
-    			if(hotel == null)
-    				hotel = (PersonalizedHotelDTO)p;
-    			else
+
+    		if(flights.size() != 2 || hotel == null)
+    			return false;
+
+    		//Check validity of airports
+    		CityDTO city1 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportDeparture());
+    		CityDTO city2 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportArrival());
+    		CityDTO city3 = baseProductEJB.getCity(flights.get(1).getFlight().getAirportDeparture());
+    		CityDTO city4 = baseProductEJB.getCity(flights.get(1).getFlight().getAirportArrival());
+
+    		if(city1 == null || city2 == null || city3 == null || city4 == null)
+    			return false;
+
+    		if(!city1.equals(city4) || !city2.equals(city3))
+    			return false;
+
+    		//Check validity of city of airports + hotel + excursion
+    		CityDTO hotelCity = hotel.getHotel().getCity();
+    		CityDTO excursionCity = null;
+    		Date excursionDate = null;
+
+    		if(hotelCity == null)
+    			return false;
+
+    		if(excursion != null) {	//Excursion is optional
+    			excursionCity = excursion.getExcursion().getCity();
+    			excursionDate = excursion.getDatePersonalization().getInitialDate();
+
+    			if(excursionCity == null)
+    				return false;
+    			if(!excursionCity.equals(hotelCity))
     				return false;
     		}
-    		if(p instanceof PersonalizedExcursionDTO) {
-    			if(excursion == null)
-    				excursion = (PersonalizedExcursionDTO)p;
-    			else
+
+    		if(!hotelCity.equals(city1) && !hotelCity.equals(city2))
+    			return false;
+
+    		if(hotelCity.equals(city1)) {
+    			//flights[0] return flight
+    			//flights[1] departure flight
+    			Date dateFlightDeparture = flights.get(1).getDatePersonalization().getFinalDate();
+    			Date dateFlightReturn = flights.get(0).getDatePersonalization().getInitialDate();
+    			if(dateFlightDeparture.after(dateFlightReturn))
     				return false;
+    			if(excursionDate != null) {
+    				if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn))
+    					return false;
+    			}
     		}
-    	}
-
-    	if(flights.size() != 2 || hotel == null)
-    		return false;
-
-    	//Check validity of airports
-    	CityDTO city1 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportDeparture());
-    	CityDTO city2 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportArrival());
-    	CityDTO city3 = baseProductEJB.getCity(flights.get(1).getFlight().getAirportDeparture());
-    	CityDTO city4 = baseProductEJB.getCity(flights.get(1).getFlight().getAirportArrival());
-
-    	if(city1 == null || city2 == null || city3 == null || city4 == null)
-    		return false;
-
-    	if(!city1.equals(city4) || !city2.equals(city3))
-    		return false;
-
-    	//Check validity of city of airports + hotel + excursion
-    	CityDTO hotelCity = hotel.getHotel().getCity();
-    	CityDTO excursionCity = null;
-    	Date excursionDate = null;
-
-    	if(hotelCity == null)
-    		return false;
-
-    	if(excursion != null) {	//Excursion is optional
-    		excursionCity = excursion.getExcursion().getCity();
-    		excursionDate = excursion.getDatePersonalization().getInitialDate();
-
-    		if(excursionCity == null)
-    			return false;
-    		if(!excursionCity.equals(hotelCity))
-    			return false;
-    	}
-
-    	if(!hotelCity.equals(city1) && !hotelCity.equals(city2))
-    		return false;
-
-    	if(hotelCity.equals(city1)) {
-    		//flights[0] return flight
-    		//flights[1] departure flight
-    		Date dateFlightDeparture = flights.get(1).getDatePersonalization().getFinalDate();
-    		Date dateFlightReturn = flights.get(0).getDatePersonalization().getInitialDate();
-    		if(dateFlightDeparture.after(dateFlightReturn))
-    			return false;
-    		if(excursionDate != null) {
-    			if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn))
+    		else {
+    			//flights[1] return flight
+    			//flights[0] departure flight
+    			Date dateFlightDeparture = flights.get(0).getDatePersonalization().getFinalDate();
+    			Date dateFlightReturn = flights.get(1).getDatePersonalization().getInitialDate();
+    			if(dateFlightDeparture.after(dateFlightReturn))
     				return false;
+    			if(excursionDate != null) {
+    				if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn))
+    					return false;
+    			}
     		}
-    	}
-    	else {
-    		//flights[1] return flight
-    		//flights[0] departure flight
-    		Date dateFlightDeparture = flights.get(0).getDatePersonalization().getFinalDate();
-    		Date dateFlightReturn = flights.get(1).getDatePersonalization().getInitialDate();
-    		if(dateFlightDeparture.after(dateFlightReturn))
-    			return false;
-    		if(excursionDate != null) {
-    			if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn))
-    				return false;
-    		}
-    	}
 
-    	return true;
+    		return true;
+    	} catch(NullPointerException e) {
+    		return false;
+    	}
     }
     
     /**

@@ -42,6 +42,7 @@ public class BuyingListItemEJB implements BuyingListItemEJBLocal {
     public void saveBuyingListItem(BuyingListItemDTO buyingListItemDTO) throws NotValidBuyingListException {
     	if(packageEJB.isValidForTDC(buyingListItemDTO.get_package()) == false) {
     		//The package is not valid
+    		System.err.println("The Package can't be bought because it is not valid");
     		throw new NotValidBuyingListException();
     	}
     	

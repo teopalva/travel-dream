@@ -42,7 +42,7 @@ public class InvitationDTO {
 	public static List<InvitationDTO> getInvitations(User user) {
 		List<InvitationDTO> list = new ArrayList<InvitationDTO>();
 		
-		List<Invitation> invitedList = user.getInviteds();
+		List<Invitation> invitedList = user.getInvites();
 		for(Invitation invitation : invitedList) {
 			try {
 				list.add(new InvitationDTO(invitation));
