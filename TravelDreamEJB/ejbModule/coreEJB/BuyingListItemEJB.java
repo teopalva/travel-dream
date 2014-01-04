@@ -40,6 +40,11 @@ public class BuyingListItemEJB implements BuyingListItemEJBLocal {
      * Required packageDTO, userDTO inside buyingListItemDTO (you must specify also the date)
      */
     public void saveBuyingListItem(BuyingListItemDTO buyingListItemDTO) throws NotValidBuyingListException {
+    	if(packageEJB.isValidForTDC(buyingListItemDTO.get_package()) == false) {
+    		//The package is not valid
+    		throw new NotValidBuyingListException();
+    	}
+    	
     	PackageDTO packageDTO = buyingListItemDTO.get_package();
     	UserDTO userDTO = buyingListItemDTO.getUser();
     	if(userDTO == null || packageDTO == null)
