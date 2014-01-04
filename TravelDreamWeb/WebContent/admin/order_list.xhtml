@@ -15,7 +15,7 @@
 
 			<div class="container">
 				<div class="row clearfix">
-					<div class="col-md-12 column" style="margin-top:60px">
+					<div class="col-md-12 column" style="margin-top: 60px">
 						<h:form id="boughtForm">
 							<p:dataTable id="boughtList" var="bought"
 								value="#{OrderList.getBoughtList()}" rowKey="#{bought.date}"
@@ -51,18 +51,74 @@
 							</p:dataTable>
 
 
-							<p:dialog id="boughtDialog" header="Dettaglio ordine"
-								widgetVar="boughtDialog" resizable="false" width="500"
-								height="300" hideEffect="puff">
+							<p:dialog id="dialog" widgetVar="paidDialog" resizable="false" style="margin-top:300px"
+								header="Dettaglio ordine"
+								width="640" height="480" hideEffect="puff">
 
-								<h:panelGrid id="display" columns="2" cellpadding="4">
+								<h:panelGroup id="display">
 
-									<f:facet name="header">
-										<h:outputText value="#{OrderList.selectedItem._package.name}" />
-									</f:facet>
+									
+
+											<div class="well" style="margin-top: 10px">
+
+												<div>
+													<div class="col-md-4 column"></div>
+
+													<div class="col-md-8 column"
+														style="margin-top: -20px; margin-left: -40px">
+														<h4>Prezzo totale: €</h4>
+													</div>
+												</div>
+
+											</div>
+
+												<p:panel id="departureFlight" header="Volo di andata" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[0].flight.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[0].flight.company}</center>
+													</div>
+												</p:panel>
 
 
-								</h:panelGrid>
+
+												<p:panel id="returnFlight" header="Volo di ritorno" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[1].flight.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[1].flight.company}</center>
+													</div>
+												</p:panel>
+
+
+												<p:panel id="hotel" header="Hotel" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[2].hotel.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[2].hotel.company}</center>
+													</div>
+												</p:panel>
+
+												<p:panel id="excursion" header="Escursione" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[3].excursion.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[3].excursion.company}</center>
+													</div>
+
+												</p:panel>
+
+											<div class="col-md-12 column"
+												style="margin-top: 16px">
+												<p:commandButton id="checkout" value="Conferma pagamento"
+													styleClass="btn-block" />
+											</div>
+											
+								</h:panelGroup>
 							</p:dialog>
 
 						</h:form>
@@ -106,18 +162,74 @@
 							</p:dataTable>
 
 
-							<p:dialog id="dialog"
-								widgetVar="paidDialog" resizable="false" width="500"
-								height="300" showEffect="size" hideEffect="puff">
+							<p:dialog id="dialog" widgetVar="paidDialog" resizable="false" style="margin-top:300px"
+								header="Dettaglio ordine"
+								width="640" height="480" hideEffect="puff">
 
-								<h:panelGrid id="display" columns="2" cellpadding="4">
+								<h:panelGroup id="display">
 
-									<f:facet name="header">
-										<h:outputText value="#{OrderList.selectedItem._package.name}" />
-									</f:facet>
+									
+
+											<div class="well" style="margin-top: 10px">
+
+												<div>
+													<div class="col-md-4 column"></div>
+
+													<div class="col-md-8 column"
+														style="margin-top: -20px; margin-left: -40px">
+														<h4>Prezzo totale: €</h4>
+													</div>
+												</div>
+
+											</div>
+
+												<p:panel id="departureFlight" header="Volo di andata" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[0].flight.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[0].flight.company}</center>
+													</div>
+												</p:panel>
 
 
-								</h:panelGrid>
+
+												<p:panel id="returnFlight" header="Volo di ritorno" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[1].flight.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[1].flight.company}</center>
+													</div>
+												</p:panel>
+
+
+												<p:panel id="hotel" header="Hotel" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[2].hotel.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[2].hotel.company}</center>
+													</div>
+												</p:panel>
+
+												<p:panel id="excursion" header="Escursione" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[3].excursion.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[3].excursion.company}</center>
+													</div>
+
+												</p:panel>
+
+											<div class="col-md-12 column"
+												style="margin-top: 16px">
+												<p:commandButton id="checkout" value="Conferma pagamento"
+													styleClass="btn-block" />
+											</div>
+											
+								</h:panelGroup>
 							</p:dialog>
 
 						</h:form>
