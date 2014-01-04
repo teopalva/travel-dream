@@ -80,11 +80,13 @@ public class OrderListBean {
      * Called from order detail. Sets the item paid attribute into the db to true.
      */
     public void confirmPayment() {
+    	/*
 	try {
 	    buyingListEJB.setPaid(0); // TODO pass selectedItem
 	} catch (NotValidBuyingListException e) {
 	    e.printStackTrace();
 	}
+	*/
     }
 
 }

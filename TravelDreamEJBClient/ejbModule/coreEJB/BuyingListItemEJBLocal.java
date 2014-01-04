@@ -13,7 +13,7 @@ import exceptions.NotValidUserException;
 public interface BuyingListItemEJBLocal {
     public void saveBuyingListItem(BuyingListItemDTO buyingListItemDTO) throws NotValidBuyingListException;
 
-    public void setPaid(int buyingListItemId) throws NotValidBuyingListException;
+    public void setPaid(BuyingListItemDTO itemDTO) throws NotValidBuyingListException;
     
     public void removeBuyingListItem(BuyingListItemDTO buyingListItemDTO) throws NotValidBuyingListException;
 
