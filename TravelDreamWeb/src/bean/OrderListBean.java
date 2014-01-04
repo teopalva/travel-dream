@@ -17,6 +17,7 @@ import dto.BuyingListItemDTO;
 public class OrderListBean {
     private List<BuyingListItemDTO> boughtList;
     private List<BuyingListItemDTO> paidList;
+    private BuyingListItemDTO selectedItem;
 
     @EJB
     private BuyingListItemEJBLocal buyingListEJB;
@@ -72,5 +73,13 @@ public class OrderListBean {
 	sessionStorage.setSelectedItem(item);
 	return ("/admin/order_detail?faces-redirect=true");
     }
+
+	public BuyingListItemDTO getSelectedItem() {
+		return selectedItem;
+	}
+
+	public void setSelectedItem(BuyingListItemDTO selectedItem) {
+		this.selectedItem = selectedItem;
+	}
 
 }
