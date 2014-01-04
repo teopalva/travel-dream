@@ -291,7 +291,7 @@ public class EditPackageBean {
      * Checks the consistency of the current package.
      * @return boolean
      */
-    public boolean isValidForTDC() {
-	return packageEJB.isValidForTDC(selectedPackage);
+    public boolean isNotValidForTDC() {
+	return !packageEJB.isValidForTDC(selectedPackage);
     }
 }

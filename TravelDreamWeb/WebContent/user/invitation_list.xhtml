@@ -34,6 +34,7 @@ function showDetail(id,text,btn) {
 					<div class="col-md-6 column">
 						<div class="list-group">
 							<a href="#" class="list-group-item active">Pacchetti</a>
+							
 							<ui:repeat value="#{InvitationList.retrieveList()}" var="item">
 							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item.id}','',this); return false;"><span class="badge">Confermato</span>#{item.name}</a>
 							 </ui:repeat>
