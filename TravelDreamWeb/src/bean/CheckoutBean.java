@@ -79,6 +79,14 @@ public class CheckoutBean {
 	this.emails = emails;
     }
 
+    public int getNumPeople() {
+	return sessionStorage.getSelectedPackage().getNumPeople();
+    }
+
+    public void addMail(String mail) {
+	this.emails.add(mail);
+    }
+
     public List<String> getEmails() {
 	return emails;
     }

@@ -10,9 +10,11 @@ import javax.faces.bean.ViewScoped;
 import coreEJB.AuthenticationEJBLocal;
 import coreEJB.BuyingListItemEJBLocal;
 import dto.BuyingListItemDTO;
+import dto.PackageDTO;
 import dto.UserDTO;
 import exceptions.NotAuthenticatedException;
 import exceptions.NotValidUserException;
+import exceptions.PackageNotValidException;
 
 @ManagedBean(name = "BuyingList")
 @ViewScoped
@@ -36,6 +38,7 @@ public class BuyingListBean {
 
     /**
      * Retrieves the user's buying list form db.
+     * 
      * @return the list of BuyingListItemDTOs of the buying list
      */
     public List<BuyingListItemDTO> retrieveList() {
@@ -45,6 +48,14 @@ public class BuyingListBean {
 	} catch (NotValidUserException e) {
 	    System.err.print("NotValidUserException");
 	    e.printStackTrace();
+	}
+	for (BuyingListItemDTO i : l) {
+	    try {
+		PackageDTO rp = OfferingsListBean.reorderPackage(i.get_package());
+		i.set_package(rp);
+	    } catch (PackageNotValidException e) {
+		e.printStackTrace();
+	    }
 	}
 	return l;
     }
