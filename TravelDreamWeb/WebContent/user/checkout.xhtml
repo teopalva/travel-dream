@@ -42,13 +42,14 @@
 					<div class="col-md-4 column">
 						<h2>Invita degli amici</h2>
 						<p>Qui puoi invitare degli amici ad unirsi al tuo viaggio!</p>
+						<h:form>
 						<ui:repeat value="#{Checkout.emails}" var="item" varStatus="id"> 
 							<p:inputText styleClass="form-control" placeholder="e-mail" value="#{Checkout.emails[id.index]}"/>
 						<br></br>
 						</ui:repeat>
 							
 						<p:commandButton id="invitelist" value="Invita amici" styleClass="btn btn-block btn-warning" style="margin-bottom: 72px" action="#{Checkout.showInvitationList()}" />
-
+						</h:form>
 					</div>
 				</div>
 				<div class="row clearfix" style="margin-bottom: 10px">
