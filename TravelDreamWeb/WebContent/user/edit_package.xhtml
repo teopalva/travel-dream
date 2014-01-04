@@ -141,11 +141,12 @@ function handleDrop(event, ui) {
 												class="img-rounded"
 												style="width:130%;height:130%;margin-top:-50px;margin-left:-70px;" />
 										</div>
-
+										<p:outputPanel id="price">
 										<div class="col-md-8 column"
 											style="margin-top: -20px; margin-left: -40px">
 											<h4>Prezzo totale: #{EditPackage.calculatePrice()} €</h4>
 										</div>
+										</p:outputPanel>
 									</div>
 
 								</div>
@@ -162,7 +163,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}</center>
 											</div>
 											<p:droppable scope="departureFlight" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update=":departureFlight" ajax="true"/>
+												<p:ajax listener="#{EditPackage.onDrop}" update=":departureFlight,:price" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
 									
@@ -176,7 +177,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.company}</center>
 											</div>
 											<p:droppable scope="returnFlight" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update=":returnFlight" ajax="true"/>
+												<p:ajax listener="#{EditPackage.onDrop}" update=":returnFlight,:price" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
 
@@ -189,7 +190,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.company}</center>
 											</div>
 											<p:droppable scope="hotel" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update=":hotel" ajax="true" />
+												<p:ajax listener="#{EditPackage.onDrop}" update=":hotel,:price" ajax="true" />
 											</p:droppable>
 										</p:panel> 
 										
@@ -201,7 +202,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.company}</center>
 											</div>
 											<p:droppable scope="excursion" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update="excursion" ajax="false"/>
+												<p:ajax listener="#{EditPackage.onDrop}" update=":excursion,:price" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
 
