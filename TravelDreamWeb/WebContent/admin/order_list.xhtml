@@ -51,7 +51,7 @@
 							</p:dataTable>
 
 
-							<p:dialog id="dialog" widgetVar="paidDialog" resizable="false" style="margin-top:300px"
+							<p:dialog id="boughtDialog" widgetVar="boughtDialog" resizable="false" style="margin-top:300px"
 								header="Dettaglio ordine"
 								width="640" height="480" hideEffect="puff">
 
@@ -114,8 +114,7 @@
 
 											<div class="col-md-12 column"
 												style="margin-top: 16px">
-												<p:commandButton id="checkout" value="Conferma pagamento"
-													styleClass="btn-block" />
+												<p:commandButton id="checkout" action="#{OrderList.confirmPayment()}" value="Conferma pagamento"  update=":boughtForm,:paidForm" ajax="true" styleClass="btn-block" />
 											</div>
 											
 								</h:panelGroup>
@@ -127,7 +126,7 @@
 				<div class="row clearfix">
 					<div class="col-md-12 column" style="margin-top: 60px">
 
-						<h:form id="form">
+						<h:form id="paidForm">
 							<p:dataTable id="paidList" var="paid"
 								value="#{OrderList.getPaidList()}" rowKey="#{paid.date}"
 								selection="#{OrderList.selectedItem}" selectionMode="single">
@@ -154,7 +153,7 @@
 
 								<f:facet name="footer">
 									<p:commandButton id="viewButton" value="Dettaglio"
-										icon="ui-icon-search" update=":form:display"
+										icon="ui-icon-search" update=":paidForm:display"
 										oncomplete="PF('paidDialog').show()" />
 								</f:facet>
 
@@ -162,7 +161,7 @@
 							</p:dataTable>
 
 
-							<p:dialog id="dialog" widgetVar="paidDialog" resizable="false" style="margin-top:300px"
+							<p:dialog id="paidDialog" widgetVar="paidDialog" resizable="false" style="margin-top:300px"
 								header="Dettaglio ordine"
 								width="640" height="480" hideEffect="puff">
 
@@ -223,11 +222,6 @@
 
 												</p:panel>
 
-											<div class="col-md-12 column"
-												style="margin-top: 16px">
-												<p:commandButton id="checkout" value="Conferma pagamento"
-													styleClass="btn-block" />
-											</div>
 											
 								</h:panelGroup>
 							</p:dialog>
