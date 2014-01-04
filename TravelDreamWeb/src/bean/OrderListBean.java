@@ -6,11 +6,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import coreEJB.BuyingListItemEJBLocal;
 import dto.BuyingListItemDTO;
+import exceptions.NotValidBuyingListException;
 
 @ManagedBean(name = "OrderList")
 @ViewScoped
@@ -22,9 +22,6 @@ public class OrderListBean {
     @EJB
     private BuyingListItemEJBLocal buyingListEJB;
 
-    @ManagedProperty("#{SessionStorage}")
-    private SessionStorageBean sessionStorage;
-
     public OrderListBean() {
 	boughtList = new ArrayList<BuyingListItemDTO>();
 	paidList = new ArrayList<BuyingListItemDTO>();
@@ -35,12 +32,12 @@ public class OrderListBean {
 	retrieveLists();
     }
 
-    public SessionStorageBean getSessionStorage() {
-	return sessionStorage;
+    public BuyingListItemDTO getSelectedItem() {
+	return selectedItem;
     }
 
-    public void setSessionStorage(SessionStorageBean sessionStorage) {
-	this.sessionStorage = sessionStorage;
+    public void setSelectedItem(BuyingListItemDTO selectedItem) {
+	this.selectedItem = selectedItem;
     }
 
     public List<BuyingListItemDTO> getBoughtList() {
@@ -64,22 +61,22 @@ public class OrderListBean {
 	}
     }
 
-    /**
-     * 
-     * @param p the selected BuyingListItem
-     * @return the order_detail page URL
+    /*
+     * public String showOrderDetail(BuyingListItemDTO item) {
+     * sessionStorage.setSelectedItem(item);
+     * return ("/admin/order_detail?faces-redirect=true");
+     * }
      */
-    public String showOrderDetail(BuyingListItemDTO item) {
-	sessionStorage.setSelectedItem(item);
-	return ("/admin/order_detail?faces-redirect=true");
+
+    /**
+     * Called from order detail. Sets the item paid attribute into the db to true.
+     */
+    public void confirmPayment() {
+	try {
+	    buyingListEJB.setPaid(0); // TODO pass selectedItem
+	} catch (NotValidBuyingListException e) {
+	    e.printStackTrace();
+	}
     }
-
-	public BuyingListItemDTO getSelectedItem() {
-		return selectedItem;
-	}
-
-	public void setSelectedItem(BuyingListItemDTO selectedItem) {
-		this.selectedItem = selectedItem;
-	}
 
 }
