@@ -63,7 +63,11 @@ public class CheckoutBean {
 	} catch (NotAuthenticatedException e) {
 	    // No problem: user area
 	}
-	emails = new ArrayList<String>(sessionStorage.getSelectedPackage().getNumPeople());
+	int numPeople = getNumPeople();
+	emails = new ArrayList<String>(numPeople);
+	for (int i = 0; i < numPeople; i++) {
+	    emails.add("");
+	}
 	selectedPackage = sessionStorage.getSelectedPackage();
     }
 
