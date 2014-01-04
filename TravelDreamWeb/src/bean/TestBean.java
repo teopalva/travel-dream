@@ -288,5 +288,17 @@ public class TestBean {
 		}
 		System.out.println(invitations.size());
 	}	
+	
+	public void testPaid() {
+		try {
+			PackageDTO _package = new PackageDTO();
+			_package.setId(11);
+			UserDTO user = new UserDTO();
+			user.setMail("gianluca.91@gmail.com");
+			buyingListEJB.setPaid(new BuyingListItemDTO(_package, null, false, false, user));
+		} catch (NotValidBuyingListException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

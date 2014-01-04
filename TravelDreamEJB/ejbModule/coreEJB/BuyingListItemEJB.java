@@ -146,23 +146,9 @@ public class BuyingListItemEJB implements BuyingListItemEJBLocal {
     	return list;
 	}
 	
-	public void setPaid(int buyingListItemId) throws NotValidBuyingListException{
-		BuyingListItem item = em.find(BuyingListItem.class, buyingListItemId);
-		if(item == null)
-			throw new NotValidBuyingListException();
-		
-		BuyingListItemDTO itemDTO = null;
-		try {
-			itemDTO = new BuyingListItemDTO(item);
-		} catch (FieldNotPresentException e) {
-			e.printStackTrace();
-		}
+	public void setPaid(BuyingListItemDTO itemDTO) throws NotValidBuyingListException{
 		itemDTO.setPaid(true);
-		try {
-			saveBuyingListItem(itemDTO);
-		} catch (NotValidBuyingListException e) {
-			e.printStackTrace();
-		}
+		saveBuyingListItem(itemDTO);
 	}
 
 	public BuyingListItemDTO getTmpBuyingListItem() {

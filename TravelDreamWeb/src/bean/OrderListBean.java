@@ -69,19 +69,12 @@ public class OrderListBean {
 	}
     }
 
-    /*
-     * public String showOrderDetail(BuyingListItemDTO item) {
-     * sessionStorage.setSelectedItem(item);
-     * return ("/admin/order_detail?faces-redirect=true");
-     * }
-     */
-
     /**
      * Called from order detail. Sets the item paid attribute into the db to true.
      */
     public void confirmPayment() {
 	try {
-	    buyingListEJB.setPaid(0); // TODO pass selectedItem
+	    buyingListEJB.setPaid(selectedItem);
 	} catch (NotValidBuyingListException e) {
 	    e.printStackTrace();
 	}
