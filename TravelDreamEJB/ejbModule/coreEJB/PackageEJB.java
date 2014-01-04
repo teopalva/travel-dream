@@ -42,7 +42,7 @@ public class PackageEJB implements PackageEJBLocal {
 	EntityManager em;
 	
 	@EJB
-	BaseProductEJB baseProductEJB;
+	BaseProductEJBLocal baseProductEJB;
 
 	PackageDTO tmpPackage;
 	boolean selectedFlight;

@@ -88,10 +88,10 @@ public class GiftListBean {
     public String retrieveName() throws NotAuthenticatedException {
 	if (friendMail.equals("")) {
 	    return "La mia lista regali";
-	    // } else {
-	    // return "Lista regali di " + userEJB.getUser(friendMail).getFirstName();
+	     } else {
+	     return "Lista regali di " + userEJB.getUser(friendMail).getFirstName();
 	}
-	return null;
+	//return null;
     }
 
     /**

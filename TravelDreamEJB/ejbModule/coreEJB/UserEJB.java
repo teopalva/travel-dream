@@ -31,10 +31,10 @@ public class UserEJB implements UserEJBLocal {
 	EntityManager em;
 	
 	@EJB
-	GiftListItemEJB giftListEJB;
+	GiftListItemEJBLocal giftListEJB;
 	
 	@EJB
-	BuyingListItemEJB buyingListEJB;
+	BuyingListItemEJBLocal buyingListEJB;
 
     public UserEJB() {
     }
