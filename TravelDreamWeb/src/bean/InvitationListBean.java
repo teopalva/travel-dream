@@ -1,5 +1,6 @@
 package bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -22,6 +23,7 @@ import exceptions.NotValidUserException;
 public class InvitationListBean {
     private UserDTO user;
     private PackageDTO selectedPackage = null;
+    private List<InvitationDTO> invitationList;
 
     @EJB
     private InvitationEJBLocal invitationEJB;
@@ -31,6 +33,10 @@ public class InvitationListBean {
 
     @ManagedProperty("#{SessionStorage}")
     private SessionStorageBean sessionStorage;
+
+    public InvitationListBean() {
+	invitationList = new ArrayList<InvitationDTO>();
+    }
 
     @PostConstruct
     public void init() {
@@ -76,26 +82,13 @@ public class InvitationListBean {
      * @return the list of the invitations linked to the package p
      */
     public List<InvitationDTO> retrieveInvitationList(PackageDTO p) {
-	/*
-	List<InvitationDTO> l = new ArrayList<InvitationDTO>();
 	try {
-	    for (InvitationDTO i : invitationEJB.getInvitations(user)) {
-		if (i.get_package().equals(p)) {
-		    l.add(i);
-		}
-	    }
-	} catch (NotValidUserException e) {
-	    e.printStackTrace();
-	}
-	return l;
-	*/
-	try {
-	    return invitationEJB.getInvitations(p);
+	    invitationList = invitationEJB.getInvitations(p);
 	} catch (NotValidPackageException e) {
 	    System.err.print("Pacchetto non valido.");
 	    e.printStackTrace();
 	}
-	return null;
+	return invitationList;
     }
 
     /**

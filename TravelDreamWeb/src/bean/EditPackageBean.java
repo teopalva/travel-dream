@@ -282,13 +282,18 @@ public class EditPackageBean {
      * @return the checkout page URL
      */
     public String showCheckout() {
-	sessionStorage.setSelectedPackage(selectedPackage);
-	sessionStorage.setPreviousPage("edit");
-	return "/user/checkout?faces-redirect=true";
+//	if (packageEJB.isValidForTDC(selectedPackage)) {
+	    sessionStorage.setSelectedPackage(selectedPackage);
+	    sessionStorage.setPreviousPage("edit");
+	    return "/user/checkout?faces-redirect=true";
+//	} else {
+//	    return null;
+//	}
     }
 
     /**
      * Checks the consistency of the current package.
+     * 
      * @return boolean
      */
     public boolean isNotValidForTDC() {
