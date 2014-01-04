@@ -42,14 +42,23 @@
 					<div class="col-md-4 column">
 						<h2>Invita degli amici</h2>
 						<p>Qui puoi invitare degli amici ad unirsi al tuo viaggio!</p>
-						<p:inputText styleClass="form-control" placeholder="e-mail"
-							id="friend1" />
+						<h:form>
+						<ui:repeat value="#{Checkout.emails}" var="item" varStatus="id"> 
+							<p:inputText styleClass="form-control" placeholder="e-mail" value="#{Checkout.emails[id.index]}"/>
 						<br></br>
-						<p:inputText styleClass="form-control" placeholder="e-mail"
-							id="friend2" />
+						</ui:repeat>
+								
 							
-						<p:commandButton id="invitelist" value="Invita amici" styleClass="btn btn-block btn-warning" style="margin-top: 72px" action="#{Checkout.showInvitationList()}" />
-
+						<p:commandButton id="invitelist" value="Invita amici" styleClass="btn btn-block btn-warning"  action="#{Checkout.showInvitationList()}" />
+						<p:ajaxStatus id="ajaxStatusPanel" style="margin-top:20px;margin-bottom:30px">  
+    						<f:facet name="start">  
+    							<h:graphicImage library="images" name="ajaxloading.gif" style="width:16px;height:16px;"/> Invio email in corso... 
+  							</f:facet>  
+      						<f:facet name="complete">  
+        						<h:outputText value="" />  
+							</f:facet>  
+						</p:ajaxStatus> 
+						</h:form>
 					</div>
 				</div>
 				<div class="row clearfix" style="margin-bottom: 10px">

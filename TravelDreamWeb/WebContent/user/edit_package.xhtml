@@ -75,7 +75,16 @@ function handleDrop(event, ui) {
 
 						</nav>
 					</div>
+					
 				</div>
+				
+				
+				<h:panelGroup rendered="#{EditPackage.isNotValidForTDC()}">
+						<div class="alert alert-danger">
+									<b>Attenzione</b> Il pacchetto non è completato correttamente!
+						</div>
+				</h:panelGroup>
+				
 				<div class="row clearfix">
 					<div class="col-md-3 column">
 						<h:panelGroup styleClass="listScroll" id="p_flights_d">
@@ -112,12 +121,16 @@ function handleDrop(event, ui) {
 						</h:panelGroup>
 
 					</div>
+					
+		
+					
 					<div class="col-md-6 column">
 
 
 
 
 						<div class="thumbnail" style="z-index:0;">
+
 
 							<div class="row clearfix" style="margin-top: 10px">
 								<div class="col-md-8 column" style="padding-left: 24px">
@@ -126,7 +139,9 @@ function handleDrop(event, ui) {
 
 								<div class="col-md-4 column"
 									style="padding-right: 24px; margin-top: 16px">
-									<p:commandButton id="checkout" value="Ordina" styleClass="btn btn-primary btn-lg btn-block" action="#{EditPackage.showCheckout()}" />
+									
+
+									<p:commandButton id="checkout" value="Ordina" styleClass="btn btn-primary btn-lg btn-block"  action="#{EditPackage.showCheckout()}" />
 								</div>
 							</div>
 
@@ -141,11 +156,12 @@ function handleDrop(event, ui) {
 												class="img-rounded"
 												style="width:130%;height:130%;margin-top:-50px;margin-left:-70px;" />
 										</div>
-
+										<p:outputPanel id="price">
 										<div class="col-md-8 column"
 											style="margin-top: -20px; margin-left: -40px">
 											<h4>Prezzo totale: #{EditPackage.calculatePrice()} €</h4>
 										</div>
+										</p:outputPanel>
 									</div>
 
 								</div>
@@ -162,7 +178,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}</center>
 											</div>
 											<p:droppable scope="departureFlight" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update=":departureFlight" ajax="true"/>
+												<p:ajax listener="#{EditPackage.onDrop}" update=":departureFlight,:price" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
 									
@@ -176,7 +192,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.company}</center>
 											</div>
 											<p:droppable scope="returnFlight" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update=":returnFlight" ajax="true"/>
+												<p:ajax listener="#{EditPackage.onDrop}" update=":returnFlight,:price" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
 
@@ -189,7 +205,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.company}</center>
 											</div>
 											<p:droppable scope="hotel" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update=":hotel" ajax="true" />
+												<p:ajax listener="#{EditPackage.onDrop}" update=":hotel,:price" ajax="true" />
 											</p:droppable>
 										</p:panel> 
 										
@@ -201,7 +217,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.company}</center>
 											</div>
 											<p:droppable scope="excursion" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update="excursion" ajax="false"/>
+												<p:ajax listener="#{EditPackage.onDrop}" update="excursion" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
 

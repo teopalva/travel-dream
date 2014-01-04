@@ -35,7 +35,7 @@ function showDetail(id,text,btn) {
 						<div class="list-group">
 							<a href="#" class="list-group-item active">Pacchetti</a>
 							<ui:repeat value="#{BuyingList.retrieveList()}" var="item">
-							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;"><span class="badge">Confermato</span>#{item._package.name}</a>
+							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;"><h:panelGroup rendered="#{item.isPaid()}"><span class="badge">Pagamento ricevuto</span></h:panelGroup>#{item._package.name}</a>
 							 </ui:repeat>
 						</div>
 
@@ -73,14 +73,14 @@ function showDetail(id,text,btn) {
 
 											<tr>
 												<th>Hotel</th>
-												<!--  hotel e escursione hanno indici scambiati 2/3, cosi per ora x vedere quel li ho scambiati pure io -->
-												<td>#{item._package.personalizedProducts[2].excursion.name}</td>
-												<td>#{item._package.personalizedProducts[2].excursion.company}</td>
+												
+												<td>#{item._package.personalizedProducts[2].hotel.name}</td>
+												<td>#{item._package.personalizedProducts[2].hotel.company}</td>
 											</tr>
 											<tr>
 												<th>Escursione</th>
-												<td>#{item._package.personalizedProducts[3].hotel.name}</td>
-												<td>#{item._package.personalizedProducts[3].hotel.company}</td>
+												<td>#{item._package.personalizedProducts[3].excursion.name}</td>
+												<td>#{item._package.personalizedProducts[3].excursion.company}</td>
 											</tr>
 										</table>
 									</div>
