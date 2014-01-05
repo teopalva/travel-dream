@@ -1,6 +1,5 @@
 package bean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -23,7 +22,6 @@ import exceptions.NotValidUserException;
 public class InvitationListBean {
     private UserDTO user;
     private PackageDTO selectedPackage = null;
-    private List<InvitationDTO> invitationList = new ArrayList<InvitationDTO>();;
 
     @EJB
     private InvitationEJBLocal invitationEJB;
@@ -34,10 +32,6 @@ public class InvitationListBean {
     @ManagedProperty("#{SessionStorage}")
     private SessionStorageBean sessionStorage;
 
-    public InvitationListBean() {
-	invitationList = new ArrayList<InvitationDTO>();
-    }
-
     @PostConstruct
     public void init() {
 	try {
@@ -45,7 +39,6 @@ public class InvitationListBean {
 	} catch (NotAuthenticatedException e) {
 	    // No problem: user area
 	}
-	invitationList = new ArrayList<InvitationDTO>();
     }
 
     public SessionStorageBean getSessionStorage() {
@@ -66,11 +59,22 @@ public class InvitationListBean {
 
     /**
      * 
-     * @return the list of PackageDTOs for which the user has sent invitations
+     * @return the list of PackageDTOs for which the user has sent invitations. Inside each package there's a field "invitations" which contains the
+     *         invitations linked to that package
      */
     public List<PackageDTO> retrieveList() {
 	try {
-	    return PackageDTO.getAllPackagesFromInvitation(invitationEJB.getInvitations(user));
+	    List<PackageDTO> l;
+	    l = PackageDTO.getAllPackagesFromInvitation(invitationEJB.getInvitations(user));
+	    for (PackageDTO p : l) {
+		try {
+		    p.setInvitations(invitationEJB.getInvitations(p));
+		} catch (NotValidPackageException e) {
+		    System.err.print("Pacchetto non valido.");
+		    e.printStackTrace();
+		}
+	    }
+	    return l;
 	} catch (NotValidUserException e) {
 	    e.printStackTrace();
 	}
@@ -84,12 +88,12 @@ public class InvitationListBean {
      */
     public List<InvitationDTO> retrieveInvitationList(PackageDTO p) {
 	try {
-	    invitationList = invitationEJB.getInvitations(p);
+	    return invitationEJB.getInvitations(p);
 	} catch (NotValidPackageException e) {
 	    System.err.print("Pacchetto non valido.");
 	    e.printStackTrace();
 	}
-	return invitationList;
+	return null;
     }
 
     /**

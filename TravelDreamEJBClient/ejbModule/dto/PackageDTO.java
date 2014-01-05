@@ -15,6 +15,8 @@ public class PackageDTO {
     private String name;
     private double reduction;
     private int id;
+    
+    private List<InvitationDTO> invitations; //only for invitationListBean purposes
 
     List<PersonalizedProductDTO> personalizedProducts;
     
@@ -157,6 +159,14 @@ public class PackageDTO {
 
     public void setPersonalizedProducts(List<PersonalizedProductDTO> personalizedProducts) {
     	this.personalizedProducts = personalizedProducts;
+    }
+
+    public List<InvitationDTO> getInvitations() {
+	return invitations;
+    }
+
+    public void setInvitations(List<InvitationDTO> invitations) {
+	this.invitations = invitations;
     }
 
     public void addPersonalizedProduct(PersonalizedProductDTO product) {
