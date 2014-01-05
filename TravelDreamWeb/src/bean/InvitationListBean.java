@@ -23,7 +23,7 @@ import exceptions.NotValidUserException;
 public class InvitationListBean {
     private UserDTO user;
     private PackageDTO selectedPackage = null;
-    private List<InvitationDTO> invitationList;
+    private List<InvitationDTO> invitationList = new ArrayList<InvitationDTO>();;
 
     @EJB
     private InvitationEJBLocal invitationEJB;
@@ -45,6 +45,7 @@ public class InvitationListBean {
 	} catch (NotAuthenticatedException e) {
 	    // No problem: user area
 	}
+	invitationList = new ArrayList<InvitationDTO>();
     }
 
     public SessionStorageBean getSessionStorage() {
