@@ -36,7 +36,7 @@ function showDetail(id,text,btn) {
 							<a href="#" class="list-group-item active">Pacchetti</a>
 							
 							<ui:repeat value="#{InvitationList.retrieveList()}" var="item">
-							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item.id}','',this); return false;"><span class="badge">Confermato</span>#{item.name}</a>
+							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item.id}','',this); return false;">#{item.name}</a>
 							 </ui:repeat>
 						</div>
 
@@ -51,7 +51,42 @@ function showDetail(id,text,btn) {
 							
 							 
 								<div class="caption">
-									<h4>#{item.name}</h4>
+									<h4 style="margin-bottom:40px">#{item.name}</h4>
+								
+		
+								<div class="panel panel-default" style="margin-bottom:40px" >
+  									<div class="panel-heading">
+    									<h6 class="panel-title">Invitati</h6>
+  									</div>
+  									<div class="panel-body">
+    										
+    									<ui:repeat value="#{item.invitations}" var="inv"> 
+    								
+											<div class="col-md-8">
+												#{inv.invited.mail} 
+											</div>
+											<div class="col-md-2">
+										
+											</div>
+											<div class="col-md-4">
+												 <h:panelGroup rendered="#{inv.accepted}"> <span class="badge" >Confermato</span></h:panelGroup>
+												 <h:panelGroup rendered="#{!inv.accepted}"> <span class="badge" >In attesa di conferma</span></h:panelGroup>
+											</div>
+											
+										</ui:repeat>
+ 									</div>
+								</div>
+
+									
+									
+							
+								<div class="panel panel-default" style="margin-bottom:40px" >	
+								<div class="panel-heading">
+    									<h6 class="panel-title">Dettagli pacchetto</h6>
+  								</div>
+  									<div class="panel-body">
+									
+									
 									<p>Partenza:
 										#{item.personalizedProducts[0].flight.getCityDeparture().getName()}
 										#{item.personalizedProducts[0].flight.getAirportDeparture()}</p>
@@ -93,6 +128,7 @@ function showDetail(id,text,btn) {
 								</div>
 								
 							</div>
+							</div>	</div>
 							</ui:repeat>
 						</div>
 
