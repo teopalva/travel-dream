@@ -13,6 +13,145 @@
 	<ui:define name="content">
 		<h:body>
 
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column" style="margin-left:25%;padding-top:60px">
+			<h:form>
+				<div class="form-group">
+					<div class="row clearfix">
+						<div class="col-md-2 column">
+							 Nome prodotto: 
+						</div>
+						<div class="col-md-2 column">
+					 	<p:inputText value="#{ViewBaseProduct.name}" id="arrivalPlace" />
+					 	</div>
+					 </div>
+					
+				</div>
+				<div class="form-group">
+					<div class="row clearfix">
+						<div class="col-md-2 column">
+							 Azienda:
+						</div>
+						<div class="col-md-2 column">
+							<p:selectOneMenu value="#{ViewBaseProduct.company}">
+					 			<f:selectItems value="#{ViewBaseProduct.dropDownFilterCompany()}" var="company" itemLabel="#{company}" itemValue="#{company}" />
+							</p:selectOneMenu>	
+						</div>
+					</div>
+					
+					 
+				</div>
+				
+				 <p:commandButton type="submit" value="Cerca" action="#{ViewBaseProduct.submitSearch()}" styleClass="btn btn-default"/>
+			</h:form>
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		#{ViewBaseProduct.submitSearch()}
+		
+		<h:form id="listForm">
+		<p:dataTable id="baseProductList" var="bp"
+								value="#{ViewBaseProduct.submitSearch()}" rowKey="#{bp.id}"
+								selection="#{ViewBaseProduct.selectedProduct}" selectionMode="single">
+
+						
+
+								<f:facet name="header">Prodotti base disponibili</f:facet>
+
+								<p:column headerText="ID" sortBy="id">  #{bp.id}  </p:column>
+
+								<p:column headerText="Nome">  #{bp.name}   </p:column>
+
+								<p:column headerText="Compagnia" sortBy="company" >  #{bp.company}    </p:column>
+
+																
+								<f:facet name="footer">
+									<p:commandButton id="viewButton" value="Dettaglio"
+										icon="ui-icon-search" update=":listForm:display" oncomplete="PF('boughtDialog').show()" />
+								</f:facet>
+
+							</p:dataTable>
+							
+					
+					
+							<p:dialog id="boughtDialog" widgetVar="boughtDialog" resizable="false" style="margin-top:300px"
+								header="Dettaglio ordine"
+								width="640" height="480" hideEffect="puff">
+
+								<h:panelGroup id="display">
+
+									
+
+											<div class="well" style="margin-top: 10px">
+
+												<div>
+													<div class="col-md-4 column"></div>
+
+													<div class="col-md-8 column"
+														style="margin-top: -20px; margin-left: -40px">
+														<h4>Prezzo totale: €</h4>
+													</div>
+												</div>
+
+											</div>
+
+												<p:panel id="departureFlight" header="Volo di andata" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[0].flight.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[0].flight.company}</center>
+													</div>
+												</p:panel>
+
+
+
+												<p:panel id="returnFlight" header="Volo di ritorno" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[1].flight.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[1].flight.company}</center>
+													</div>
+												</p:panel>
+
+
+												<p:panel id="hotel" header="Hotel" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[2].hotel.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[2].hotel.company}</center>
+													</div>
+												</p:panel>
+
+												<p:panel id="excursion" header="Escursione" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[3].excursion.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.personalizedProducts[3].excursion.company}</center>
+													</div>
+
+												</p:panel>
+
+											<div class="col-md-12 column"
+												style="margin-top: 16px">
+												
+											</div>
+											
+								</h:panelGroup>
+							</p:dialog>
+						
+							
+					</h:form>
+		
+		
+		</div>
+	</div>
+</div>
 
 
 		</h:body>

@@ -17,6 +17,8 @@ import exceptions.NotValidBaseProductException;
 public class ViewBaseProductBean {
     private String name = ""; // text-field
     private String company = "null"; // dropdown
+    
+    private BaseProductDTO selectedProduct;
 
     @EJB
     private BaseProductEJBLocal bpEJB;
@@ -129,5 +131,13 @@ public class ViewBaseProductBean {
 	sessionStorage.setSelectedProduct(bp);
 	return ("/admin/edit_base_product?faces-redirect=true");
     }
+
+	public BaseProductDTO getSelectedProduct() {
+		return selectedProduct;
+	}
+
+	public void setSelectedProduct(BaseProductDTO selectedProduct) {
+		this.selectedProduct = selectedProduct;
+	}
 
 }
