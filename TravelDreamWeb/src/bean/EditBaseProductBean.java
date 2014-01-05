@@ -169,13 +169,15 @@ public class EditBaseProductBean {
 	}
     }
 
+    // Methods to modify/update the class attributes as the user interacts with the personalizations:
+
     /**
      * Button "+ partenza". Call this method on form confirm.
      */
     public void addDatePersonalization(double price, Date date, int duration) {
-//	flightDates.add(new PossibleDatePersonalizationDTO());	TODO
+	// flightDates.add(new PossibleDatePersonalizationDTO()); TODO
     }
-    
+
     /**
      * Button "+ classe". Call this method on form confirm.
      */
@@ -189,6 +191,8 @@ public class EditBaseProductBean {
     public void removePersonalization() {
 	// TODO
     }
+
+    // Method to apply to the EJBs the class attributes values when the user clicks on confirm button:
 
     /**
      * Button "Conferma". Confirms and executes the operations on the edited product.
