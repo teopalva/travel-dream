@@ -3,10 +3,12 @@ package bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
 
 import coreEJB.BaseProductEJBLocal;
 import dto.BaseProductDTO;
@@ -19,9 +21,28 @@ public class ViewBaseProductBean {
     private String company = "null"; // dropdown
     
     private BaseProductDTO selectedProduct;
+    
+    private List<BaseProductDTO> productList;
+    
+    private List<SelectItem> companies;
 
     @EJB
     private BaseProductEJBLocal bpEJB;
+    
+    @PostConstruct
+    private void init() {
+    	productList = this.submitSearch();
+    	
+    	
+    	companies = new ArrayList<SelectItem>(bpEJB.getAllCompanies().size());
+    	for(String value : bpEJB.getAllCompanies()){
+    	    companies.add(new SelectItem(value));
+    	}
+    	
+ 
+    }
+    
+
 
     @ManagedProperty("#{SessionStorage}")
     private SessionStorageBean sessionStorage;
@@ -139,5 +160,24 @@ public class ViewBaseProductBean {
 	public void setSelectedProduct(BaseProductDTO selectedProduct) {
 		this.selectedProduct = selectedProduct;
 	}
+
+	public List<BaseProductDTO> getProductList() {
+		return productList;
+	}
+
+	public void setProductList(List<BaseProductDTO> productList) {
+		this.productList = productList;
+	}
+
+	public List<SelectItem> getCompanies() {
+		return companies;
+	}
+
+	public void setCompanies(List<SelectItem> companies) {
+		this.companies = companies;
+	}
+
+
+
 
 }
