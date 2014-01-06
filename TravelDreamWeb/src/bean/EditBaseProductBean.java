@@ -137,7 +137,7 @@ public class EditBaseProductBean {
 		selectedProduct.setCompany(company);
 	}
 	
-	private List<PossibleDatePersonalizationDTO> getDatePersonalizations() {
+	public List<PossibleDatePersonalizationDTO> getDatePersonalizations() {
 		List<PossibleDatePersonalizationDTO> datePersonalizations = new ArrayList<PossibleDatePersonalizationDTO>();
 		if(getFlight() != null) {
 			FlightDTO flight = getFlight();
@@ -164,7 +164,7 @@ public class EditBaseProductBean {
 		throw new PersonalizationNotSupportedException();
 	}
 	
-	private List<PossibleClassPersonalizationDTO> getClassPersonalizations() {
+	public List<PossibleClassPersonalizationDTO> getClassPersonalizations() {
 		List<PossibleClassPersonalizationDTO> classPersonalizations = new ArrayList<PossibleClassPersonalizationDTO>();
 		if(getFlight() != null) {
 			FlightDTO flight = getFlight();
