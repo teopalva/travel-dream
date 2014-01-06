@@ -19,6 +19,7 @@ public class HotelDTO extends BaseProductDTO {
 		possibleClassPersonalizations = new ArrayList<ClassPersonalizationDTO>();
 		prices = new HashMap<PersonalizationDTO,Double>();
 		this.id = -1;
+		city = new CityDTO("","");
 	}
 	
 	public HotelDTO(Hotel hotel) throws FieldNotPresentException{

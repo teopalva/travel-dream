@@ -20,6 +20,7 @@ public class ExcursionDTO extends BaseProductDTO {
 		prices = new HashMap<PersonalizationDTO,Double>();
 		possibleDatePersonalizations = new ArrayList<DatePersonalizationDTO>();
 		this.id = -1;
+		city = new CityDTO("","");
 	}
 	
 	public ExcursionDTO(Excursion excursion) {
