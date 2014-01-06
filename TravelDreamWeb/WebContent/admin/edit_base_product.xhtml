@@ -105,18 +105,16 @@
 									<div class="row clearfix" style="margin-top:80px"></div>
 									<div class="col-md-4 column">
 										<p:commandButton
-												value="Aggiungi partenza" ajax="true"
-												action="#{OfferingsList.submitSearch()}"
+												value="Aggiungi partenza"
 												styleClass="btn btn-default btn-lg btn-block"
-												id="buttonAddDeparture" />
+												id="buttonAddDeparture" oncomplete="PF('departureDialog').show()"/>
 									</div>
 									<div class="col-md-4 column"></div>
 									<div class="col-md-4 column">
 										<p:commandButton
 												value="Aggiungi Classe" ajax="true"
-												action="#{OfferingsList.submitSearch()}"
 												styleClass="btn btn-default btn-lg btn-block"
-												id="buttonAddClass" />
+												id="buttonAddClass" oncomplete="PF('classDialog').show()"/>
 									</div>
 									<div class="row clearfix" style="margin-top:80px"></div>
 									<div class="col-md-4 column"></div>
@@ -132,6 +130,8 @@
 									
 								</div>
 							</div>
+							
+							
 						</h:panelGroup>
 						<!-- HOTEL -->
 						<h:panelGroup rendered="#{EditBaseProduct.isHotel()}">
@@ -197,9 +197,8 @@
 									<div class="col-md-4 column">
 										<p:commandButton
 												value="Aggiungi Classe" ajax="true"
-												action="#{OfferingsList.submitSearch()}"
 												styleClass="btn btn-default btn-lg btn-block"
-												 />
+												oncomplete="PF('classDialog').show()"/>
 									</div>
 									<div class="row clearfix" style="margin-top:80px"></div>
 									<div class="col-md-4 column"></div>
@@ -264,10 +263,9 @@
 									<div class="row clearfix" style="margin-top:80px"></div>
 									<div class="col-md-4 column">
 										<p:commandButton
-												value="Aggiungi data" ajax="true"
-												action="#{OfferingsList.submitSearch()}"
+												value="Aggiungi Partenza" ajax="true"
 												styleClass="btn btn-default btn-lg btn-block"
-												 />
+												oncomplete="PF('departureDialog').show()"/>
 									</div>
 									<div class="col-md-4 column"></div>
 									<div class="col-md-4 column">
@@ -294,7 +292,15 @@
 				</h:panelGroup>
 			</div>
 
-
+								<p:dialog id="departureDialog" widgetVar="departureDialog" resizable="false" style="margin-top:300px"
+								header="Aggiungi partenza"
+								width="800" height="300" hideEffect="puff">
+								</p:dialog>
+								
+								<p:dialog id="classDialog" widgetVar="classDialog" resizable="false" style="margin-top:300px"
+								header="Aggiungi Classe"
+								width="800" height="300" hideEffect="puff">
+								</p:dialog>
 
 		</h:body>
 
