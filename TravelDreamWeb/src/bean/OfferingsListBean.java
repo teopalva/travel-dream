@@ -28,7 +28,7 @@ public class OfferingsListBean {
     private String arrivalPlace = "";
     private Date departureDate = null;
     private Date returnDate = null;
-    private int numPeople = 0;
+    private Integer numPeople = null;
 
     private String flightClass = "null";
     private int hotelStars = 0;
@@ -101,11 +101,11 @@ public class OfferingsListBean {
 	return returnDate;
     }
 
-    public void setNumPeople(int n) {
+    public void setNumPeople(Integer n) {
 	numPeople = n;
     }
 
-    public int getNumPeople() {
+    public Integer getNumPeople() {
 	return numPeople;
     }
 
@@ -137,6 +137,7 @@ public class OfferingsListBean {
 
     /**
      * Performs the search by calling the search engine which filters the packages.
+     * 
      * @return the list of filtered offerings
      */
     public List<PackageDTO> submitSearch() {
@@ -147,6 +148,7 @@ public class OfferingsListBean {
 
     /**
      * Filters the list of packages based on the selected criteria.
+     * 
      * @param offerings the list of all of the packages into the db
      * @return the list of filtered offerings
      */
@@ -173,15 +175,17 @@ public class OfferingsListBean {
 
     /**
      * Compares the searched number of people with that of a specific base product.
+     * 
      * @param reorderedPackage
      * @return boolean answer
      */
     private boolean numPeopleCheck(PackageDTO reorderedPackage) {
-	return (numPeople == 0 || reorderedPackage.getNumPeople() == numPeople) ? true : false;
+	return (numPeople == null || reorderedPackage.getNumPeople() == numPeople) ? true : false;
     }
 
     /**
      * Compares the searched departurePlace with that of a specific base product.
+     * 
      * @param reorderedPackage
      * @return boolean answer
      */
@@ -192,6 +196,7 @@ public class OfferingsListBean {
 
     /**
      * Compares the searched arrivalPlace with that of a specific base product.
+     * 
      * @param reorderedPackage
      * @return boolean answer
      */
@@ -202,6 +207,7 @@ public class OfferingsListBean {
 
     /**
      * Compares the searched departureDate with that of a specific base product.
+     * 
      * @param reorderedPackage
      * @return boolean answer
      */
@@ -211,6 +217,7 @@ public class OfferingsListBean {
 
     /**
      * Compares the searched returnDate with that of a specific base product.
+     * 
      * @param reorderedPackage
      * @return boolean answer
      */
@@ -221,6 +228,7 @@ public class OfferingsListBean {
     /**
      * Compares the searched flightClass with that of a specific base product.
      * Both the outbound and return flights must have the desired class!
+     * 
      * @param reorderedPackage
      * @return boolean answer
      */
@@ -232,6 +240,7 @@ public class OfferingsListBean {
     /**
      * Compares the searched hotelStars with that of a specific base product.
      * 0<=hotelStars<=5
+     * 
      * @param reorderedPackage
      * @return boolean answer
      */
@@ -241,6 +250,7 @@ public class OfferingsListBean {
 
     /**
      * Compares the searched hotelClass with that of a specific base product.
+     * 
      * @param reorderedPackage
      * @return boolean answer
      */
@@ -255,6 +265,7 @@ public class OfferingsListBean {
      * [1]->return flight
      * [2]->hotel
      * [3]->excursion
+     * 
      * @param pack
      * @return the reordered PackageDTO
      * @throws PackageNotValidException
@@ -296,25 +307,6 @@ public class OfferingsListBean {
 	    }
 	}
 	return reorderedPackage;
-    }
-
-    public List<String> dropDownFilterFlight() {
-	List<String> flightClasses = new ArrayList<String>();
-	// bpEJB.getAllPersonalizations(); //TODO
-	return flightClasses;
-    }
-
-    public List<String> dropDownFilterHstars() {
-	List<String> hStars = new ArrayList<String>();
-	// TODO
-	return hStars;
-
-    }
-
-    public List<String> dropDownFilterHClasses() {
-	List<String> hClasses = new ArrayList<String>();
-	// TODO
-	return hClasses;
     }
 
     /**

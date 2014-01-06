@@ -70,6 +70,10 @@ public class EditPackageBean {
 	} else {
 	    selectedPackage = sessionStorage.getSelectedPackage();
 	}
+	// restore home selections
+	sessionStorage.setFlightSelected(true);
+	sessionStorage.setHotelSelected(true);
+	sessionStorage.setExcursionSelected(true);
     }
 
     // Bean properties:
@@ -282,13 +286,13 @@ public class EditPackageBean {
      * @return the checkout page URL
      */
     public String showCheckout() {
-//	if (packageEJB.isValidForTDC(selectedPackage)) {
-	    sessionStorage.setSelectedPackage(selectedPackage);
-	    sessionStorage.setPreviousPage("edit");
-	    return "/user/checkout?faces-redirect=true";
-//	} else {
-//	    return null;
-//	}
+	// if (packageEJB.isValidForTDC(selectedPackage)) { //TODO activate!
+	sessionStorage.setSelectedPackage(selectedPackage);
+	sessionStorage.setPreviousPage("edit");
+	return "/user/checkout?faces-redirect=true";
+	// } else {
+	// return null;
+	// }
     }
 
     /**

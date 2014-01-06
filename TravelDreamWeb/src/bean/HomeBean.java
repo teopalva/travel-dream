@@ -12,12 +12,11 @@ import exceptions.EmptySelectionException;
 @ViewScoped
 public class HomeBean {
 
-    /**
-     * To be checked directly from edit_package.jsf before rendering the page	//TODO
+    /*
+     * private Boolean hotelSelected;
+     * private Boolean flightSelected;
+     * private Boolean excursionSelected;
      */
-    private Boolean hotelSelected;
-    private Boolean flightSelected;
-    private Boolean excursionSelected;
 
     @EJB
     AuthenticationEJBLocal authenticationEJB;
@@ -35,28 +34,28 @@ public class HomeBean {
 	this.sessionStorage = sessionStorage;
     }
 
-    public void setHotelSelected(Boolean b) {
-	hotelSelected = b;
+    public void setHotelSelected(boolean b) {
+	sessionStorage.setHotelSelected(b);
     }
 
-    public Boolean getHotelSelected() {
-	return hotelSelected;
+    public boolean isHotelSelected() {
+	return sessionStorage.isHotelSelected();
     }
 
     public void setFlightSelected(Boolean b) {
-	flightSelected = b;
+	sessionStorage.setFlightSelected(b);
     }
 
-    public Boolean getFlightSelected() {
-	return flightSelected;
+    public Boolean isFlightSelected() {
+	return sessionStorage.isFlightSelected();
     }
 
     public void setExcursionSelected(Boolean b) {
-	excursionSelected = b;
+	sessionStorage.setExcursionSelected(b);
     }
 
-    public Boolean getExcursionSelected() {
-	return excursionSelected;
+    public Boolean isExcursionSelected() {
+	return sessionStorage.isExcursionSelected();
     }
 
     // Action controller methods:
@@ -78,7 +77,7 @@ public class HomeBean {
      */
     public String showEditPackage() {
 	try {
-	    if (!flightSelected && !hotelSelected && !excursionSelected) {
+	    if (!isFlightSelected() && !isHotelSelected() && !isExcursionSelected()) {
 		throw new EmptySelectionException();
 	    }
 	} catch (EmptySelectionException e) {
@@ -86,7 +85,11 @@ public class HomeBean {
 	    return null;
 	}
 	sessionStorage.setSelectedPackage(null);
-	return "user/edit_package?faces-redirect=true";
+	if (authenticationEJB.isTDE()) {
+	    return "/admin/edit_package?faces-redirect=true";
+	} else {
+	    return "/user/edit_package?faces-redirect=true";
+	}
     }
 
     /**
