@@ -191,11 +191,7 @@
 									</div>
 									<div class="row clearfix" style="margin-top:80px"></div>
 									<div class="col-md-4 column">
-										<p:commandButton
-												value="Aggiungi partenza" ajax="true"
-												action="#{OfferingsList.submitSearch()}"
-												styleClass="btn btn-default btn-lg btn-block"
-												 />
+
 									</div>
 									<div class="col-md-4 column"></div>
 									<div class="col-md-4 column">
@@ -226,6 +222,70 @@
 							<div class="panel panel-default">
 								<div class="panel-heading"><h6 class="panel-title">Prodotto base escursione</h6></div>
 								<div class="panel-body">
+								
+								
+								
+								
+
+								<div class="col-md-2 column">
+									Nome: 
+									</div>
+									<div class="col-md-4 column">
+									<p:inputText value="#{EditBaseProduct.name}"  />
+									</div>
+									
+									<div class="col-md-2 column">
+									Azienda: 
+									</div>
+									<div class="col-md-4 column">
+									     <p:selectOneMenu value="#{EditBaseProduct.company}">  
+            								<f:selectItem itemLabel="Seleziona..." itemValue="" />  
+            								<f:selectItems value="#{EditBaseProduct.companies}" />
+        								</p:selectOneMenu> 
+									</div>
+									
+									<div class="row clearfix" style="margin-top:60px"></div>
+									<div class="col-md-2 column">
+									Città: 
+									</div>
+									<div class="col-md-4 column">
+									
+									</div>
+									
+									<div class="col-md-2 column">
+									Stato: 
+									</div>
+									<div class="col-md-4 column">
+										
+									</div>
+									
+								
+									
+									<div class="row clearfix" style="margin-top:80px"></div>
+									<div class="col-md-4 column">
+										<p:commandButton
+												value="Aggiungi data" ajax="true"
+												action="#{OfferingsList.submitSearch()}"
+												styleClass="btn btn-default btn-lg btn-block"
+												 />
+									</div>
+									<div class="col-md-4 column"></div>
+									<div class="col-md-4 column">
+	
+									</div>
+									<div class="row clearfix" style="margin-top:80px"></div>
+									<div class="col-md-4 column"></div>
+									<div class="col-md-4 column">
+									<p:commandButton
+												value="Conferma" ajax="true"
+												action="#{EditBaseProduct.confirm()}"
+												styleClass="btn btn-primary btn-lg btn-block"
+												/>
+									</div>
+
+								
+								
+								
 
 								</div>
 							</div>
