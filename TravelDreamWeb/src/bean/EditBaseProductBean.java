@@ -19,6 +19,12 @@ import dto.DatePersonalizationDTO;
 import dto.ExcursionDTO;
 import dto.FlightDTO;
 import dto.HotelDTO;
+import dto.PossibleClassPersonalizationDTO;
+import dto.PossibleClassPersonalizationFlightDTO;
+import dto.PossibleClassPersonalizationHotelDTO;
+import dto.PossibleDatePersonalizationDTO;
+import dto.PossibleDatePersonalizationExcursionDTO;
+import dto.PossibleDatePersonalizationFlightDTO;
 import exceptions.NotValidBaseProductException;
 import exceptions.PersonalizationNotSupportedException;
 
@@ -30,8 +36,6 @@ public class EditBaseProductBean {
     private List<SelectItem> companies;
     private List<SelectItem> airports;
     
-    
-
 	@EJB
 	private BaseProductEJBLocal bpEJB;
 	
@@ -133,28 +137,54 @@ public class EditBaseProductBean {
 		selectedProduct.setCompany(company);
 	}
 	
-	public List<DatePersonalizationDTO> getDatePersonalizations() {
+	private List<PossibleDatePersonalizationDTO> getDatePersonalizations() {
+		List<PossibleDatePersonalizationDTO> datePersonalizations = new ArrayList<PossibleDatePersonalizationDTO>();
 		if(getFlight() != null) {
 			FlightDTO flight = getFlight();
-			return flight.getPossibleDatePersonalizations();
+			for(DatePersonalizationDTO d : flight.getPossibleDatePersonalizations()) {
+				PossibleDatePersonalizationFlightDTO dpf = new PossibleDatePersonalizationFlightDTO();
+				dpf.setDatePersonalization(d);
+				dpf.setPrice(flight.getPrices().get(d));
+				datePersonalizations.add(dpf);
+			}
+			return datePersonalizations;
 		}
 		if(getExcursion() != null) {
 			ExcursionDTO excursion = getExcursion();
-			return excursion.getPossibleDatePersonalizations();
+			for(DatePersonalizationDTO d : excursion.getPossibleDatePersonalizations()) {
+				PossibleDatePersonalizationExcursionDTO dpf = new PossibleDatePersonalizationExcursionDTO();
+				dpf.setDatePersonalization(d);
+				dpf.setPrice(excursion.getPrices().get(d));
+				datePersonalizations.add(dpf);
+			}
+			return datePersonalizations;
 		}
 		
 		System.err.println("datePersonalizations not supported");
 		throw new PersonalizationNotSupportedException();
 	}
 	
-	public List<ClassPersonalizationDTO> getClassPersonalizations() {
+	private List<PossibleClassPersonalizationDTO> getClassPersonalizations() {
+		List<PossibleClassPersonalizationDTO> classPersonalizations = new ArrayList<PossibleClassPersonalizationDTO>();
 		if(getFlight() != null) {
 			FlightDTO flight = getFlight();
-			return flight.getPossibleClassPersonalizations();
+			for(ClassPersonalizationDTO c : flight.getPossibleClassPersonalizations()) {
+				PossibleClassPersonalizationFlightDTO cpf = new PossibleClassPersonalizationFlightDTO();
+				cpf.setClassPersonalization(c);
+				cpf.setPrice(flight.getPrices().get(c));
+				classPersonalizations.add(cpf);
+			}
+			return classPersonalizations;
 		}
 		if(getHotel() != null) {
 			HotelDTO hotel = getHotel();
-			return hotel.getPossibleClassPersonalizations();
+			for(ClassPersonalizationDTO c : hotel.getPossibleClassPersonalizations()) {
+				PossibleClassPersonalizationHotelDTO cpf = new PossibleClassPersonalizationHotelDTO();
+				cpf.setClassPersonalization(c);
+				cpf.setPrice(hotel.getPrices().get(c));
+				classPersonalizations.add(cpf);
+			}
+			return classPersonalizations;
 		}
 		
 		System.err.println("classPersonalizations not supported");

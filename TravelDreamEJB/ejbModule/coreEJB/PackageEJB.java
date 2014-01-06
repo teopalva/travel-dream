@@ -409,7 +409,7 @@ public class PackageEJB implements PackageEJBLocal {
 	    			return false;
 	    		}
 	    		if(excursionDate != null) {
-	    			if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn)) {
+	    			if(!excursionDate.after(dateFlightDeparture) || !excursionDate.before(dateFlightReturn)) {
 	    				System.err.println("invalid PackageDTO: the excursion date is not between departures and return dates");
 	    				return false;
 	    			}
@@ -519,7 +519,7 @@ public class PackageEJB implements PackageEJBLocal {
     				return false;
     			}
     			if(excursionDate != null) {
-    				if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn)) {
+    				if(!excursionDate.after(dateFlightDeparture) || !excursionDate.before(dateFlightReturn)) {
     					System.err.println("invalid PackageDTO: the excursion date is not between departures and return dates");
     					return false;
     				}
@@ -535,7 +535,7 @@ public class PackageEJB implements PackageEJBLocal {
     				return false;
     			}
     			if(excursionDate != null) {
-    				if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn)) {
+    				if(!excursionDate.after(dateFlightDeparture) || !excursionDate.before(dateFlightReturn)) {
     					System.err.println("invalid PackageDTO: the excursion date is not between departures and return dates");
     					return false;
     				}

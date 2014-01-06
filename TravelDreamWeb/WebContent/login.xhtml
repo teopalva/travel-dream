@@ -36,20 +36,12 @@
 
 		<div class="container">
 				
-				<h:form id="login"
-					onsubmit="document.getElementById('login').action='j_security_check';"
-					prependId="false"  styleClass="form-signin" >
-					
-					<h2 class="form-signin-heading">Effettua il login</h2>
-					
-					
-					
-						<p:inputText id="j_username" name="j_username" styleClass="form-control" placeholder="Indirizzo email"/>
-			
-						<p:password id="j_password" name="j_password" styleClass="form-control" placeholder="Password"/>
-						<p:commandButton id="submit" value="Vai!" ajax="false" styleClass="btn btn-lg btn-primary btn-block"/>
-		
-				</h:form>
+				<form name="loginForm" method="post" action="j_security_check" class="form-signin">		
+					<h2 class="form-signin-heading">Effettua il login</h2>					
+						<input type="text" name="j_username" class="form-control" placeholder="Indirizzo email"/>
+						<input type="password" name="j_password" class="form-control" placeholder="Password"/>
+						<input type="submit" value="Vai!" class="btn btn-lg btn-primary btn-block"/>		
+				</form>
 				
 							<center>Non sei registrato? <h:link outcome="#{Header.showRegistration()}" value="Registrati" /></center>
 		

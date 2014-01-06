@@ -10,6 +10,10 @@ public class PossibleDatePersonalizationFlightDTO extends
 		this.flightId = flightId;
 	}
 
+	public PossibleDatePersonalizationFlightDTO() {
+		super(0, 0);
+	}
+
 	public int getFlightId() {
 		return flightId;
 	}

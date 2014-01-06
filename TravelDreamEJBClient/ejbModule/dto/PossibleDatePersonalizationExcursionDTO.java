@@ -10,6 +10,10 @@ public class PossibleDatePersonalizationExcursionDTO extends
 		this.excursionId = excursionId;
 	}
 
+	public PossibleDatePersonalizationExcursionDTO() {
+		super(0, 0);
+	}
+
 	public int getExcursionId() {
 		return excursionId;
 	}

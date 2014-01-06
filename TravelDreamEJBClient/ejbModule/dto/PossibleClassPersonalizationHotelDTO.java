@@ -10,6 +10,10 @@ public class PossibleClassPersonalizationHotelDTO extends
 		this.hotelId = hotelId;
 	}
 
+	public PossibleClassPersonalizationHotelDTO() {
+		super(0, 0);
+	}
+
 	public int getHotelId() {
 		return hotelId;
 	}
