@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+		<h:body>
+
+			<div class="container">
+				<div class="row clearfix">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h6 class="panel-title">Tipologia prodotto base</h6>
+						</div>
+						<div class="panel-body">
+						<div class="col-md-4 column"></div>
+						<div class="col-md-4 column">
+							<p:selectOneButton value="#{EditBaseProduct.productType}">
+								<p:ajax partialSubmit="true" event="change" update=":bottomPanel"/>
+								<f:selectItem itemLabel="Volo" itemValue="1" />
+								<f:selectItem itemLabel="Hotel" itemValue="2" />
+								<f:selectItem itemLabel="Escursione" itemValue="3" />
+							</p:selectOneButton>
+						</div>
+						</div>
+
+					</div>
+				</div>
+				<h:panelGroup id="bottomPanel">
+					<div class="row clearfix">
+						<!-- VOLO -->
+						<h:panelGroup rendered="#{EditBaseProduct.isFlight()}">
+							<div class="panel panel-default">
+								<div class="panel-heading"><h6 class="panel-title">Prodotto base volo</h6></div>
+								<div class="panel-body">
+									<div class="col-md-2 column">
+									Nome: 
+									</div>
+									<div class="col-md-4 column">
+									<p:inputText value="#{EditPackage.arrivalPlace}"  />
+									</div>
+									
+									<div class="col-md-2 column">
+									Azienda: 
+									</div>
+									<div class="col-md-4 column">
+									     <p:selectOneMenu value="#{EditBaseProduct.departureAirport}">  
+            								<f:selectItem itemLabel="Seleziona..." itemValue="" />  
+            								<!-- <f:selectItems value="#{EditPackage.arrivalPlace}" />   -->
+        								</p:selectOneMenu> 
+									</div>
+									
+									<div class="row clearfix" style="margin-top:60px"></div>
+									<div class="col-md-2 column">
+									Areoporto di partenza: 
+									</div>
+									<div class="col-md-4 column">
+									     <p:selectOneMenu value="#{EditBaseProduct.departureAirport}">  
+            								<f:selectItem itemLabel="Seleziona..." itemValue="" />  
+            								<!-- <f:selectItems value="#{EditPackage.arrivalPlace}" />   -->
+        								</p:selectOneMenu> 
+									</div>
+									
+									<div class="col-md-2 column">
+									Areoporto di arrivo: 
+									</div>
+									<div class="col-md-4 column">
+									     <p:selectOneMenu value="#{EditBaseProduct.departureAirport}">  
+            								<f:selectItem itemLabel="Seleziona..." itemValue="" />  
+            								<!-- <f:selectItems value="#{EditPackage.arrivalPlace}" />   -->
+        								</p:selectOneMenu> 
+									</div>
+									
+									
+									
+									<div class="row clearfix" style="margin-top:60px"></div>
+									<div class="col-md-2 column">
+									Dati di viaggio:
+									</div>
+									<div class="col-md-10 column">
+										<p:calendar value="#{EditPackage.departureDate}" id="departureCal" locale="it" pattern="dd/MM/yyyy" placeholder="data partenza"/>
+										<p:inputText value="#{EditPackage.arrivalPlace}"  placeholder="ora" style="margin-left:20px"/>
+										<p:inputText value="#{EditPackage.arrivalPlace}"  placeholder="durata" style="margin-left:20px"/>
+									</div>
+									
+									<div class="row clearfix" style="margin-top:60px"></div>
+									<div class="col-md-2 column">
+									Classe del volo:
+									</div>
+									<div class="col-md-4 column">
+									<p:selectOneMenu
+												value="#{OfferingsList.flightClass}">
+												<f:selectItem itemLabel="Economy" itemValue="economy" />
+												<f:selectItem itemLabel="Business" itemValue="business" />
+									</p:selectOneMenu>
+									</div>
+									<div class="row clearfix" style="margin-top:80px"></div>
+									<div class="col-md-4 column">
+										<p:commandButton
+												value="Aggiungi partenza" ajax="true"
+												action="#{OfferingsList.submitSearch()}"
+												styleClass="btn btn-default btn-lg btn-block"
+												id="buttonAddDeparture" />
+									</div>
+									<div class="col-md-4 column"></div>
+									<div class="col-md-4 column">
+										<p:commandButton
+												value="Aggiungi Classe" ajax="true"
+												action="#{OfferingsList.submitSearch()}"
+												styleClass="btn btn-default btn-lg btn-block"
+												id="buttonAddClass" />
+									</div>
+									
+									
+									
+									
+								</div>
+							</div>
+						</h:panelGroup>
+						<!-- HOTEL -->
+						<h:panelGroup rendered="#{EditBaseProduct.isHotel()}">
+							<div class="panel panel-default">
+								<div class="panel-heading"><h6 class="panel-title">Prodotto base hotel</h6></div>
+								<div class="panel-body">
+
+								</div>
+							</div>
+						</h:panelGroup>
+						<!-- ESCURSIONE -->
+						<h:panelGroup rendered="#{EditBaseProduct.isExcursion()}">
+							<div class="panel panel-default">
+								<div class="panel-heading"><h6 class="panel-title">Prodotto base escursione</h6></div>
+								<div class="panel-body">
+
+								</div>
+							</div>
+						</h:panelGroup>
+					</div>
+				</h:panelGroup>
+			</div>
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>
+
+
+
+</html>

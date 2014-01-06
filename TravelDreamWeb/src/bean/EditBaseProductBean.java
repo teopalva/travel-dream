@@ -24,6 +24,7 @@ import exceptions.PersonalizationNotSupportedException;
 @ViewScoped
 public class EditBaseProductBean {
 	private BaseProductDTO selectedProduct = null;
+	private int productType = 0;
 
 	@EJB
 	private BaseProductEJBLocal bpEJB;
@@ -352,6 +353,17 @@ public class EditBaseProductBean {
 				// TODO rise error to be displayed in JSF 
 				e.printStackTrace();
 			}
+	}
+
+	public int getProductType() {
+		return productType;
+	}
+
+	public void setProductType(int productType) {
+		this.productType = productType;
+		if(this.productType == 1) setFlight();
+		if(this.productType == 2) setHotel();
+		if(this.productType == 3) setExcursion();
 	}
 
 }
