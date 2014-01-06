@@ -44,14 +44,14 @@
 									Nome: 
 									</div>
 									<div class="col-md-4 column">
-									<p:inputText value="#{EditPackage.arrivalPlace}"  />
+									<p:inputText value="#{EditBaseProduct.name}"  />
 									</div>
 									
 									<div class="col-md-2 column">
 									Azienda: 
 									</div>
 									<div class="col-md-4 column">
-									     <p:selectOneMenu value="#{EditBaseProduct.departureAirport}">  
+									     <p:selectOneMenu value="#{EditBaseProduct.company}">  
             								<f:selectItem itemLabel="Seleziona..." itemValue="" />  
             								<f:selectItems value="#{EditBaseProduct.companies}" />
         								</p:selectOneMenu> 
@@ -72,7 +72,7 @@
 									Areoporto di arrivo: 
 									</div>
 									<div class="col-md-4 column">
-									     <p:selectOneMenu value="#{EditBaseProduct.departureAirport}">  
+									     <p:selectOneMenu value="#{EditBaseProduct.arrivalAirport}">  
             								<f:selectItem itemLabel="Seleziona..." itemValue="" />  
             								<f:selectItems value="#{EditBaseProduct.airports}" />
         								</p:selectOneMenu> 
@@ -85,9 +85,9 @@
 									Dati di viaggio:
 									</div>
 									<div class="col-md-10 column">
+									<!--  cambiare in editbaseproduct -->
 										<p:calendar value="#{EditPackage.departureDate}" id="departureCal" locale="it" pattern="dd/MM/yyyy" placeholder="data partenza"/>
-										<p:inputText value="#{EditPackage.arrivalPlace}"  placeholder="ora" style="margin-left:20px"/>
-										<p:inputText value="#{EditPackage.arrivalPlace}"  placeholder="durata" style="margin-left:20px"/>
+
 									</div>
 									
 									<div class="row clearfix" style="margin-top:60px"></div>

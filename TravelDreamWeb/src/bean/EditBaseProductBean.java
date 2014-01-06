@@ -29,6 +29,8 @@ public class EditBaseProductBean {
 	private int productType = 0;
     private List<SelectItem> companies;
     private List<SelectItem> airports;
+    
+    
 
 	@EJB
 	private BaseProductEJBLocal bpEJB;
@@ -111,9 +113,9 @@ public class EditBaseProductBean {
 
 	// ----COMMON PROPERTIES
 	
-	public List<String> dropDownFilterCompany() {
-		return bpEJB.getAllCompanies();
-	}
+	//public List<String> dropDownFilterCompany() {
+	//	return bpEJB.getAllCompanies();
+	//}
 	
 	public String getName() {
 		return selectedProduct.getName();
