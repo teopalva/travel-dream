@@ -29,7 +29,7 @@
 	
 
 				<p:inputText id="email" value="#{Registration.user.mail}" styleClass="form-control" placeholder="Indirizzo email" />
-
+					<h:message for="email" />
 				<p:inputText id="firstName" value="#{Registration.user.firstName}" styleClass="form-control" placeholder="Nome" />
 	
 				<p:inputText id="lastName" value="#{Registration.user.lastName}" styleClass="form-control" placeholder="Cognome" />
@@ -41,8 +41,9 @@
 					value="#{Registration.user.password}" styleClass="form-control" placeholder="Ripeti password"/>
 
 				<p:commandButton value="Registrati" 
-				action="#{Registration.register()}" styleClass="btn btn-lg btn-primary btn-block"/>
-
+				action="#{Registration.register()}" styleClass="btn btn-lg btn-primary btn-block">
+				 <f:ajax execute="@form" render="@form"/>
+				</p:commandButton>
 	</h:form>
 	<center><h:link value="Indietro" outcome="#{Registration.backurl}"/></center>
 	
