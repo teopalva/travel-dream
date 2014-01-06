@@ -310,19 +310,30 @@ public class PackageEJB implements PackageEJBLocal {
 			if(p instanceof PersonalizedHotelDTO) {
 				if(hotel == null)
 					hotel = (PersonalizedHotelDTO)p;
-				else
+				else {
+					System.err.println("invalid PackageDTO: more than one Hotel present");
 					return false;
+				}
 			}
 			if(p instanceof PersonalizedExcursionDTO) {
 				if(excursion == null)
 					excursion = (PersonalizedExcursionDTO)p;
-				else
+				else {
+					System.err.println("invalid PackageDTO: more than one Excursion present");
 					return false;
+				}
 			}
     	}
     	
-    	if(flights.size() != 2 || hotel == null)
+    	if(flights.size() != 2) {
+    		System.err.println("invalid PackageDTO: there must be exatly 2 flights. You have "+flights.size()+"flights");
     		return false;
+    	}
+    
+    	if(hotel == null) {
+    		System.err.println("invalid PackageDTO: hotel not present");
+    		return false;
+    	}
     	
     	//Check validity of airports
     	CityDTO city1 = baseProductEJB.getCity(flights.get(0).getFlight().getAirportDeparture());
@@ -330,32 +341,44 @@ public class PackageEJB implements PackageEJBLocal {
     	CityDTO city3 = baseProductEJB.getCity(flights.get(1).getFlight().getAirportDeparture());
     	CityDTO city4 = baseProductEJB.getCity(flights.get(1).getFlight().getAirportArrival());
     	
-    	if(city1 == null || city2 == null || city3 == null || city4 == null)
+    	if(city1 == null || city2 == null || city3 == null || city4 == null) {
+    		System.err.println("invalid PackageDTO: wrong flight cities destination - problems with null values");
     		return false;
+    	}
     	
-    	if(!city1.equals(city4) || !city2.equals(city3))
+    	if(!city1.equals(city4) || !city2.equals(city3)) {
+    		System.err.println("invalid PackageDTO: wrong flight cities destination");
     		return false;
+    	}
     		
     	//Check validity of city of airports + hotel + excursion
     	CityDTO hotelCity = hotel.getHotel().getCity();
     	CityDTO excursionCity = null;
     	Date excursionDate = null;
     	
-    	if(hotelCity == null)
+    	if(hotelCity == null) {
+    		System.err.println("invalid PackageDTO: hotel city not set");
     		return false;
+    	}
     	
     	if(excursion != null) {	//Excursion is optional
     		excursionCity = excursion.getExcursion().getCity();
     		excursionDate = excursion.getDatePersonalization().getInitialDate();
     		
-    		if(excursionCity == null)
+    		if(excursionCity == null) {
+    			System.err.println("invalid PackageDTO: excursion city not set");
     			return false;
-    		if(!excursionCity.equals(hotelCity))
+    		}
+    		if(!excursionCity.equals(hotelCity)) {
+    			System.err.println("invalid PackageDTO: excursion city ("+excursionCity.getName()+") different from hotel one("+hotelCity.getName()+")");
     			return false;
+    		}
     	}
     	
-    	if(!hotelCity.equals(city1) && !hotelCity.equals(city2))
+    	if(!hotelCity.equals(city1) && !hotelCity.equals(city2)) {
+    		System.err.println("invalid PackageDTO: the hotel city is not present in flights destinations");
     		return false;
+    	}
     	
     	if(hotelCity.equals(city1)) {
     		//flights[0] return flight
@@ -363,11 +386,15 @@ public class PackageEJB implements PackageEJBLocal {
     		Date dateFlightDeparture = flights.get(1).getDatePersonalization().getFinalDate();
     		Date dateFlightReturn = flights.get(0).getDatePersonalization().getInitialDate();
     		if(dateFlightDeparture != null && dateFlightReturn != null) {
-	    		if(dateFlightDeparture.after(dateFlightReturn))
+	    		if(dateFlightDeparture.after(dateFlightReturn)) {
+	    			System.err.println("invalid PackageDTO: the flight return date is before flight departure date");
 	    			return false;
+	    		}
 	    		if(excursionDate != null) {
-	    			if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn))
+	    			if(!excursionDate.after(dateFlightDeparture) || !excursionDate.before(dateFlightReturn)) {
+	    				System.err.println("invalid PackageDTO: the excursion date is not between departures and return dates");
 	    				return false;
+	    			}
 	    		}
     		}
     	}
@@ -377,11 +404,15 @@ public class PackageEJB implements PackageEJBLocal {
     		Date dateFlightDeparture = flights.get(0).getDatePersonalization().getFinalDate();
     		Date dateFlightReturn = flights.get(1).getDatePersonalization().getInitialDate();
     		if(dateFlightDeparture != null && dateFlightReturn != null) {
-	    		if(dateFlightDeparture.after(dateFlightReturn))
+	    		if(dateFlightDeparture.after(dateFlightReturn)) {
+	    			System.err.println("invalid PackageDTO: the flight return date is before flight departure date");
 	    			return false;
+	    		}
 	    		if(excursionDate != null) {
-	    			if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn))
+	    			if(!excursionDate.after(dateFlightDeparture) || excursionDate.before(dateFlightReturn)) {
+	    				System.err.println("invalid PackageDTO: the excursion date is not between departures and return dates");
 	    				return false;
+	    			}
 	    		}
     		}
     	}

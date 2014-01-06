@@ -11,194 +11,347 @@ import javax.faces.bean.ViewScoped;
 
 import coreEJB.BaseProductEJBLocal;
 import dto.BaseProductDTO;
+import dto.CityDTO;
+import dto.ClassPersonalizationDTO;
 import dto.DatePersonalizationDTO;
-import dto.PossibleDatePersonalizationDTO;
+import dto.ExcursionDTO;
+import dto.FlightDTO;
+import dto.HotelDTO;
+import exceptions.NotValidBaseProductException;
+import exceptions.PersonalizationNotSupportedException;
 
 @ManagedBean(name = "EditBaseProduct")
 @ViewScoped
 public class EditBaseProductBean {
-    private boolean flight;
-    private boolean hotel;
-    private boolean excursion;
-    private BaseProductDTO selectedProduct;
+	private BaseProductDTO selectedProduct = null;
 
-    @EJB
-    private BaseProductEJBLocal bpEJB;
-
-    // -----FLIGHT-----
-    private String name;
-    private String company;
-    private String departureAirport;
-    private String cityDeparture; // TODO serve?
-    private String arrivalAirport;
-    private String cityArrival;
-    private List<DatePersonalizationDTO> flightDates;
-    private String flightClass;
-
-    public List<String> dropDownFilterCompany() {
-	return bpEJB.getAllCompanies();
-    }
-
-    public List<String> dropDownFilterAirport() {
-	return bpEJB.getAllAirports();
-    }
-
-    public String getName() {
-	return name;
-    }
-
-    public void setName(String name) {
-	this.name = name;
-    }
-
-    public String getCompany() {
-	return company;
-    }
-
-    public void setCompany(String company) {
-	this.company = company;
-    }
-
-    public String getDepartureAirport() {
-	return departureAirport;
-    }
-
-    public void setDepartureAirport(String departureAirport) {
-	this.departureAirport = departureAirport;
-    }
-
-    public String getArrivalAirport() {
-	return arrivalAirport;
-    }
-
-    public void setArrivalAirport(String arrivalAirport) {
-	this.arrivalAirport = arrivalAirport;
-    }
-
-    public List<DatePersonalizationDTO> getFlightDate() {
-	return flightDates;
-    }
-
-    public void setFlightDate(List<DatePersonalizationDTO> flightDate) {
-	this.flightDates = flightDate;
-    }
-
-    public String getFlightClass() {
-	return flightClass;
-    }
-
-    public void setFlightClass(String flightClass) {
-	this.flightClass = flightClass;
-    }
-
-    // -----HOTEL-----
-    // name
-    // company
-    private int hotelStars;
-    private String hotelCity;
-    private String hotelClass;
-
-    public int getHotelStars() {
-	return hotelStars;
-    }
-
-    public void setHotelStars(int hotelStars) {
-	this.hotelStars = hotelStars;
-    }
-
-    public String getHotelCity() {
-	return hotelCity;
-    }
-
-    public void setHotelCity(String hotelCity) {
-	this.hotelCity = hotelCity;
-    }
-
-    public String getHotelClass() {
-	return hotelClass;
-    }
-
-    public void setHotelClass(String hotelClass) {
-	this.hotelClass = hotelClass;
-    }
-
-    // -----EXCURSION-----
-    // name
-    // company
-    private String excursionCity;
-    private DatePersonalizationDTO escursionDate;
-
-    public String getExcursionCity() {
-	return excursionCity;
-    }
-
-    public void setExcursionCity(String excursionCity) {
-	this.excursionCity = excursionCity;
-    }
-
-    public DatePersonalizationDTO getEscursionDate() {
-	return escursionDate;
-    }
-
-    public void setEscursionDate(DatePersonalizationDTO escursionDate) {
-	this.escursionDate = escursionDate;
-    }
-
-    // ----------
-
-    @EJB
-    private BaseProductEJBLocal baseProductEJB;
-
-    @ManagedProperty("#{SessionStorage}")
-    private SessionStorageBean sessionStorage;
-
-    public SessionStorageBean getSessionStorage() {
-	return sessionStorage;
-    }
-
-    public void setSessionStorage(SessionStorageBean sessionStorage) {
-	this.sessionStorage = sessionStorage;
-    }
-
-    @PostConstruct
-    public void init() {
-	if (sessionStorage.getSelectedProduct() == null) {
-	    selectedProduct = new BaseProductDTO();
-	} else {
-	    selectedProduct = sessionStorage.getSelectedProduct();
+	@EJB
+	private BaseProductEJBLocal bpEJB;
+	
+	public boolean isFlight() {
+		if(selectedProduct == null)
+			return false;
+		if(selectedProduct instanceof FlightDTO) {
+			return true;
+		}
+		return false;
 	}
-    }
+	
+	public boolean isHotel() {
+		if(selectedProduct == null)
+			return false;
+		if(selectedProduct instanceof HotelDTO) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isExcursion() {
+		if(selectedProduct == null)
+			return false;
+		if(selectedProduct instanceof ExcursionDTO) {
+			return true;
+		}
+		return false;
+	}
+	
+	private FlightDTO getFlight() {
+		if(!isFlight())
+			return null;
+		return (FlightDTO) selectedProduct;
+	}
+	
+	private HotelDTO getHotel() {
+		if(!isHotel())
+			return null;
+		return (HotelDTO) selectedProduct;
+	}
+	
+	private ExcursionDTO getExcursion() {
+		if(!isExcursion())
+			return null;
+		return (ExcursionDTO) selectedProduct;
+	}
+	
+	/**
+	 * @return true if no base product type is selected
+	 */
+	public boolean isNotSelected() {
+		if(isFlight() == false && isHotel() == false && isExcursion() == false)
+			return true;
+		return false;
+	}
+	
+	/**
+	 * Set the base product type to FlightDTO
+	 */
+	public void setFlight() {
+		selectedProduct = new FlightDTO();
+	}
+	
+	/**
+	 * Set the base product type to HotelDTO
+	 */
+	public void setHotel() {
+		selectedProduct = new HotelDTO();
+	}
+	
+	/**
+	 * Set the base product type to FlightDTO
+	 */
+	public void setExcursion() {
+		selectedProduct = new ExcursionDTO();
+	}
 
-    // Methods to modify/update the class attributes as the user interacts with the personalizations:
+	// ----COMMON PROPERTIES
+	
+	public List<String> dropDownFilterCompany() {
+		return bpEJB.getAllCompanies();
+	}
+	
+	public String getName() {
+		return selectedProduct.getName();
+	}
 
-    /**
-     * Button "+ partenza". Call this method on form confirm.
-     */
-    public void addDatePersonalization(double price, Date date, int duration) {
-	// flightDates.add(new PossibleDatePersonalizationDTO()); TODO
-    }
+	public void setName(String name) {
+		selectedProduct.setName(name);
+	}
 
-    /**
-     * Button "+ classe". Call this method on form confirm.
-     */
-    public void addClassPersonalization() {
-	// TODO
-    }
+	public String getCompany() {
+		return selectedProduct.getCompany();
+	}
 
-    /**
-     * Button "x" delete on personalization. Call this method on form confirm.
-     */
-    public void removePersonalization() {
-	// TODO
-    }
+	public void setCompany(String company) {
+		selectedProduct.setCompany(company);
+	}
+	
+	public List<DatePersonalizationDTO> getDatePersonalizations() {
+		if(getFlight() != null) {
+			FlightDTO flight = getFlight();
+			return flight.getPossibleDatePersonalizations();
+		}
+		if(getExcursion() != null) {
+			ExcursionDTO excursion = getExcursion();
+			return excursion.getPossibleDatePersonalizations();
+		}
+		
+		System.err.println("datePersonalizations not supported");
+		throw new PersonalizationNotSupportedException();
+	}
+	
+	public List<ClassPersonalizationDTO> getClassPersonalizations() {
+		if(getFlight() != null) {
+			FlightDTO flight = getFlight();
+			return flight.getPossibleClassPersonalizations();
+		}
+		if(getHotel() != null) {
+			HotelDTO hotel = getHotel();
+			return hotel.getPossibleClassPersonalizations();
+		}
+		
+		System.err.println("classPersonalizations not supported");
+		throw new PersonalizationNotSupportedException();
+	}
+	
+	private void addDatePersonalization(DatePersonalizationDTO datePersonalization, double price) {
+		if(getFlight() != null) {
+			FlightDTO flight = getFlight();
+			flight.addPersonalization(datePersonalization, price);
+		}
+		if(getExcursion() != null) {
+			ExcursionDTO excursion = getExcursion();
+			excursion.addPersonalization(datePersonalization, price);
+		}
+		
+		System.err.println("datePersonalizations not supported");
+		throw new PersonalizationNotSupportedException();
+	}
+	
+	private void addClassPersonalization(ClassPersonalizationDTO classPersonalization, double price) {
+		if(getFlight() != null) {
+			FlightDTO flight = getFlight();
+			flight.addPersonalization(classPersonalization, price);
+		}
+		if(getHotel() != null) {
+			HotelDTO hotel = getHotel();
+			hotel.addPersonalization(classPersonalization, price);
+		}
+		
+		System.err.println("classPersonalizations not supported");
+		throw new PersonalizationNotSupportedException();
+	}
+	
+	private void removeDatePersonalization(DatePersonalizationDTO datePersonalization) {
+		if(getFlight() != null) {
+			FlightDTO flight = getFlight();
+			flight.removePersonalization(datePersonalization);
+		}
+		if(getExcursion() != null) {
+			ExcursionDTO excursion = getExcursion();
+			excursion.removePersonalization(datePersonalization);
+		}
+		
+		System.err.println("datePersonalizations not supported");
+		throw new PersonalizationNotSupportedException();
+	}
 
-    // Method to apply to the EJBs the class attributes values when the user clicks on confirm button:
+	// -----FLIGHT-----
 
-    /**
-     * Button "Conferma". Confirms and executes the operations on the edited product.
-     */
-    public void confirm() {
-	// TODO
-    }
+	public List<String> dropDownFilterAirport() {
+		return bpEJB.getAllAirports();
+	}
+
+	public String getDepartureAirport() {
+		FlightDTO flight = getFlight();
+		return flight.getAirportDeparture();
+	}
+
+	public void setDepartureAirport(String departureAirport) {
+		FlightDTO flight = getFlight();
+		flight.setAirportDeparture(departureAirport);
+	}
+
+	public String getArrivalAirport() {
+		FlightDTO flight = getFlight();
+		return flight.getAirportArrival();
+	}
+
+	public void setArrivalAirport(String arrivalAirport) {
+		FlightDTO flight = getFlight();
+		flight.setAirportDeparture(arrivalAirport);
+	}
+
+	// -----HOTEL-----
+
+	public int getHotelStars() {
+		HotelDTO hotel = getHotel();
+		return hotel.getStars();
+	}
+
+	public void setHotelStars(int hotelStars) {
+		HotelDTO hotel = getHotel();
+		hotel.setStars(hotelStars);
+	}
+
+	public String getHotelCityName() {
+		HotelDTO hotel = getHotel();
+		return hotel.getCity().getName();
+	}
+	
+	public String getHotelCityCountry() {
+		HotelDTO hotel = getHotel();
+		return hotel.getCity().getCountry();
+	}
+
+	public void setHotelCityName(String name) {
+		HotelDTO hotel = getHotel();
+		CityDTO city = hotel.getCity();
+		if(city == null) {
+			hotel.setCity(new CityDTO(name, ""));
+		}
+		else {
+			hotel.getCity().setName(name);
+		}
+	}
+	
+	public void setHotelCityCountry(String country) {
+		HotelDTO hotel = getHotel();
+		CityDTO city = hotel.getCity();
+		if(city == null) {
+			hotel.setCity(new CityDTO("", country));
+		}
+		else {
+			hotel.getCity().setCountry(country);
+		}
+	}
+
+	// -----EXCURSION-----
+
+	public String getExcursionCityName() {
+		ExcursionDTO excursion = getExcursion();
+		return excursion.getCity().getName();
+	}
+	
+	public String getExcursionCityCountry() {
+		ExcursionDTO excursion = getExcursion();
+		return excursion.getCity().getCountry();
+	}
+
+	public void setExcursionCityName(String name) {
+		ExcursionDTO excursion = getExcursion();
+		CityDTO city = excursion.getCity();
+		if(city == null) {
+			excursion.setCity(new CityDTO(name, ""));
+		}
+		else {
+			excursion.getCity().setName(name);
+		}
+	}
+	
+	public void setExcursionCityCountry(String country) {
+		ExcursionDTO excursion = getExcursion();
+		CityDTO city = excursion.getCity();
+		if(city == null) {
+			excursion.setCity(new CityDTO("", country));
+		}
+		else {
+			excursion.getCity().setCountry(country);
+		}
+	}
+
+	// ----------
+
+	// TODO non capisco il bisogno di averlo doppio...
+	@EJB
+	private BaseProductEJBLocal baseProductEJB;
+
+	@ManagedProperty("#{SessionStorage}")
+	private SessionStorageBean sessionStorage;
+
+	public SessionStorageBean getSessionStorage() {
+		return sessionStorage;
+	}
+
+	public void setSessionStorage(SessionStorageBean sessionStorage) {
+		this.sessionStorage = sessionStorage;
+	}
+
+	@PostConstruct
+	public void init() {
+		if (sessionStorage.getSelectedProduct() == null) {
+			selectedProduct = null;	//Not selected
+		} else {
+			selectedProduct = sessionStorage.getSelectedProduct();
+		}
+	}
+
+	// Methods to modify/update the class attributes as the user interacts with the personalizations:
+
+	public void addDatePersonalization(double price, Date date, int duration) {
+		DatePersonalizationDTO datePersonalization = new DatePersonalizationDTO(duration, date);
+		this.addDatePersonalization(datePersonalization, price);
+	}
+
+	public void addClassPersonalization(double price, String personalization) {
+		ClassPersonalizationDTO classPersonalization = new ClassPersonalizationDTO(personalization);
+		this.addClassPersonalization(classPersonalization, price);
+	}
+
+	public void removeDatePersonalization(Date date, int duration) {
+		DatePersonalizationDTO datePersonalization = new DatePersonalizationDTO(duration, date);
+		this.removeDatePersonalization(datePersonalization);
+	}
+
+	// Method to apply to the EJBs the class attributes values when the user clicks on confirm button:
+
+	public void confirm() {
+		if(selectedProduct != null)
+			try {
+				bpEJB.saveBaseProduct(selectedProduct);
+			} catch (NotValidBaseProductException e) {
+				// TODO rise error to be displayed in JSF 
+				e.printStackTrace();
+			}
+	}
 
 }
