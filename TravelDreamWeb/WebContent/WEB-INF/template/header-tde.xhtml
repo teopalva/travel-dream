@@ -25,12 +25,12 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pannello amministratore<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li class="dropdown-header">Prodotti base</li>
-                <li><a href="#">Creazione prodotto base</a></li>
-                <li><a href="#">Ricerca prodotti base</a></li>
+                <li><h:link outcome="#{Header.showEditBaseProduct()}" value="Creazione prodotto base"/></li>
+                <li><h:link outcome="#{Header.showViewBaseProducts()}" value="Ricerca prodotti base"/></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Pacchetti</li>
                 <li><a href="#">Creazione pacchetto</a></li>
-                <li><a href="#">Ricerca pacchetti</a></li>
+                <li><h:link outcome="#{Header.showEditPackage()}" value="Ricerca pacchetti"/></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Ordini</li>
                 <li><h:link outcome="#{Header.showOrderList()}" value="Gestione ordini"/></li>
