@@ -1,5 +1,6 @@
 package bean;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.model.SelectItem;
 
 import coreEJB.BaseProductEJBLocal;
 import dto.BaseProductDTO;
@@ -25,9 +27,12 @@ import exceptions.PersonalizationNotSupportedException;
 public class EditBaseProductBean {
 	private BaseProductDTO selectedProduct = null;
 	private int productType = 0;
+    private List<SelectItem> companies;
+    private List<SelectItem> airports;
 
 	@EJB
 	private BaseProductEJBLocal bpEJB;
+	
 	
 	public boolean isFlight() {
 		if(selectedProduct == null)
@@ -319,6 +324,20 @@ public class EditBaseProductBean {
 
 	@PostConstruct
 	public void init() {
+
+    	companies = new ArrayList<SelectItem>(bpEJB.getAllCompanies().size());
+    	for(String value : bpEJB.getAllCompanies()){
+    	    companies.add(new SelectItem(value));
+    	}
+    	
+    	airports = new ArrayList<SelectItem>(bpEJB.getAllAirports().size());
+    	for(String value : bpEJB.getAllAirports()){
+    	    airports.add(new SelectItem(value));
+    	}
+		
+    	
+    	
+    	
 		if (sessionStorage.getSelectedProduct() == null) {
 			selectedProduct = null;	//Not selected
 		} else {
@@ -364,6 +383,22 @@ public class EditBaseProductBean {
 		if(this.productType == 1) setFlight();
 		if(this.productType == 2) setHotel();
 		if(this.productType == 3) setExcursion();
+	}
+
+	public List<SelectItem> getCompanies() {
+		return companies;
+	}
+
+	public void setCompanies(List<SelectItem> companies) {
+		this.companies = companies;
+	}
+
+	public List<SelectItem> getAirports() {
+		return airports;
+	}
+
+	public void setAirports(List<SelectItem> airports) {
+		this.airports = airports;
 	}
 
 }
