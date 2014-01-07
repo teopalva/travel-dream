@@ -36,6 +36,13 @@ public class EditBaseProductBean {
     private List<SelectItem> companies;
     private List<SelectItem> airports;
     
+    /* Properties for setting new class/date */
+    private Date date = null;
+    private double price = 0;
+    private int duration = 0;
+    private String personalization = "";
+    
+    
 	@EJB
 	private BaseProductEJBLocal bpEJB;
 	
@@ -379,14 +386,16 @@ public class EditBaseProductBean {
 
 	// Methods to modify/update the class attributes as the user interacts with the personalizations:
 
-	public void addDatePersonalization(double price, Date date, int duration) {
-		DatePersonalizationDTO datePersonalization = new DatePersonalizationDTO(duration, date);
-		this.addDatePersonalization(datePersonalization, price);
+	public void addDatePersonalization() {
+		//System.out.println(this.duration+"  "+this.date+" "+this.price);
+		DatePersonalizationDTO datePersonalization = new DatePersonalizationDTO(this.duration, this.date);
+		this.addDatePersonalization(datePersonalization, this.price);
 	}
 
-	public void addClassPersonalization(double price, String personalization) {
-		ClassPersonalizationDTO classPersonalization = new ClassPersonalizationDTO(personalization);
-		this.addClassPersonalization(classPersonalization, price);
+	public void addClassPersonalization() {
+		//System.out.println(this.personalization+"  "+this.price);
+		ClassPersonalizationDTO classPersonalization = new ClassPersonalizationDTO(this.personalization);
+		this.addClassPersonalization(classPersonalization, this.price);
 	}
 
 	public void removeDatePersonalization(Date date, int duration) {
@@ -431,6 +440,41 @@ public class EditBaseProductBean {
 
 	public void setAirports(List<SelectItem> airports) {
 		this.airports = airports;
+	}
+
+	
+	/* getter and setter for attributes of new class/date */
+	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public String getPersonalization() {
+		return personalization;
+	}
+
+	public void setPersonalization(String personalization) {
+		this.personalization = personalization;
 	}
 
 }

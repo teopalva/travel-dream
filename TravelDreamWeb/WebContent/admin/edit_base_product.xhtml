@@ -375,43 +375,44 @@
 			<p:dialog id="dateDialog" widgetVar="dateDialog"
 				resizable="false" style="margin-top:300px" header="Aggiungi data"
 				width="800" height="300">
+				<h:form>
 				<div class="col-md-6">Data da aggiungere:</div>
 				<div class="col-md-6">
-					<p:calendar value="#{EditPackage.departureDate}" id="newDate" binding="#{newDate}"
+					<p:calendar value="#{EditBaseProduct.date}" id="newDate"
 						locale="it" pattern="dd/MM/yyyy" placeholder="data partenza" />
 				</div>
 				<div class="row clearfix" style="margin-top: 80px"></div>
 				<div class="col-md-6">Durata:</div>
 				<div class="col-md-4">
 					<p:inputText styleClass="form-control" id="duration" binding="#{duration}"
-						value="#{OfferingsList.departurePlace}" />
+						value="#{EditBaseProduct.duration}" />
 				</div>
 				<div class="row clearfix" style="margin-top: 80px"></div>
 				<div class="col-md-6">Prezzo:</div>
 				<div class="col-md-4">
 					<p:inputText styleClass="form-control" id="price" binding="#{price}"
-						value="#{OfferingsList.departurePlace}" />
+						value="#{EditBaseProduct.price}" />
 				</div>
 
 				<div class="row clearfix" style="margin-top: 80px"></div>
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<p:commandButton value="Aggiungi" ajax="true" onclick="dateDialog.hide()" 
-						action="#{EditBaseProduct.addDatePersonalization(price,newDate,duration)}"
+						action="#{EditBaseProduct.addDatePersonalization()}"
 						styleClass="btn btn-default btn-lg btn-block" />
 				</div>
-
+				</h:form>
 
 			</p:dialog>
 
 			<p:dialog id="classDialog" widgetVar="classDialog" resizable="false"
 				style="margin-top:300px" header="Aggiungi Classe" width="800"
 				height="300">
-				
+				<h:form>
 				<div class="col-md-6">Tipo:</div>
 				<div class="col-md-4">
-				<!--  aggiungere poi il value #diocane -->
-					<p:selectOneMenu binding="#{type}">
+				
+					<p:selectOneMenu value="#{EditBaseProduct.personalization}">
 											<f:selectItem itemLabel="Economy" itemValue="Economy" />
 											<f:selectItem itemLabel="Classic" itemValue="Classic" />
 											<f:selectItem itemLabel="Comfort" itemValue="Comfort" />
@@ -423,8 +424,8 @@
 				<div class="row clearfix" style="margin-top: 80px"></div>
 				<div class="col-md-6">Prezzo:</div>
 				<div class="col-md-4">
-					<p:inputText styleClass="form-control" id="priceClass" binding="#{price}"
-						value="#{OfferingsList.departurePlace}" />
+					<p:inputText styleClass="form-control" id="priceClass"
+						value="#{EditBaseProduct.price}" />
 				</div>
 
 				<div class="row clearfix" style="margin-top: 80px"></div>
@@ -432,11 +433,11 @@
 				<div class="col-md-4">
 			
 					<p:commandButton value="Aggiungi" ajax="true" onclick="classDialog.hide()"
-						action="#{EditBaseProduct.addClassPersonalization(price,type)}"
+						action="#{EditBaseProduct.addClassPersonalization()}"
 						styleClass="btn btn-default btn-lg btn-block" />
 				</div>
 				
-				
+				</h:form>
 			</p:dialog>
 			
 
