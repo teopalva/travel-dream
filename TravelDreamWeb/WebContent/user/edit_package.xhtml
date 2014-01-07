@@ -173,21 +173,21 @@ function handleDrop(event, ui) {
 									
 										<p:panel id="departureFlight" header="Volo di andata" style="display:block;overflow:auto;margin-bottom:20px">
 											<div class="col-md-6">
-												<center><b>#{EditPackage.selectedPackage.personalizedProducts[0].flight.name} </b></center>
+												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.name}</center>
 											</div>
 										<div class="col-md-6" style="margin-bottom:20px">
 											<center>
-												<b>#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}</b>
+												#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}
 											</center>
 										</div>
 
 										<dl class="dl-horizontal">
 											<dt>Prezzo</dt>
 											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].getPrice()} €</dd>
-											<dt>Data partenza</dt>
+											<dt>Data</dt>
 											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getInitialDate()}</dd>
-											<dt>Data ritorno</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getFinalDate()}</dd>
+											<dt>Durata</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getDuration()}</dd>
 										</dl>
 
 										<p:droppable scope="departureFlight" onDrop="handleDrop">
@@ -208,10 +208,10 @@ function handleDrop(event, ui) {
 											<dl class="dl-horizontal">
 											<dt>Prezzo</dt>
 											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].getPrice()} €</dd>
-											<dt>Data partenza</dt>
+											<dt>Data</dt>
 											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getInitialDate()}</dd>
-											<dt>Data ritorno</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getFinalDate()}</dd>
+											<dt>Durata</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getDuration()}</dd>
 											</dl>
 											
 											<p:droppable scope="returnFlight" onDrop="handleDrop">
@@ -251,10 +251,10 @@ function handleDrop(event, ui) {
 											<dl class="dl-horizontal">
 											<dt>Prezzo</dt>
 											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].getPrice()} €</dd>
-											<dt>Data partenza</dt>
+											<dt>Data</dt>
 											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].datePersonalization.getInitialDate()}</dd>
-											<dt>Data ritorno</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].datePersonalization.getFinalDate()}</dd>
+											<dt>Durata</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].datePersonalization.getDuration()}</dd>
 											</dl>
 											
 											<p:droppable scope="excursion" onDrop="handleDrop">

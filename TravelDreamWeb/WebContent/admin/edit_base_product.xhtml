@@ -94,16 +94,17 @@
 											<div class="col-md-12" style="margin-top: 10px">
 												<h:form>
 													<p:dataTable var="pDate" value="#{EditBaseProduct.getDatePersonalizations()}" id="dateFlight">
-														<p:column headerText="Data">
-															<!--  <h:outputText value="#{pDate.date}" />  -->
+														<p:column headerText="Data arrivo">
+															 <h:outputText value="#{pDate.getDatePersonalization().getInitialDate()}" /> 
+															 
 														</p:column>
 
 														<p:column headerText="Durata">
-															<!--  <h:outputText value="#{pDate.duration}" />  -->
+															 <h:outputText value="#{pDate.getDatePersonalization().getDuration()}" />
 														</p:column>
 
 														<p:column headerText="Prezzo">
-															<!--   <h:outputText value="#{pDate.price}" />  -->
+															  <h:outputText value="#{pDate.getPrice()}" /> 
 														</p:column>
 														
 														<p:column headerText="Azioni">
@@ -139,11 +140,11 @@
 													<p:dataTable var="pClass"
 														value="#{EditBaseProduct.getClassPersonalizations()}" id="classFlight">
 														<p:column headerText="Nome">
-															<!--  <h:outputText value="#{pClass.name}" />  -->
+															  <h:outputText value="#{pClass.getClassPersonalization()._class}" />  
 														</p:column>
 
 														<p:column headerText="Prezzo">
-															<!--  <h:outputText value="#{pClass.price}" />  -->
+															  <h:outputText value="#{pClass.getPrice()}" />  
 														</p:column>
 														
 														<p:column headerText="Azioni">
@@ -241,11 +242,11 @@
 													<p:dataTable var="pClass"
 														value="#{EditBaseProduct.getClassPersonalizations()}" id="classHotel">
 														<p:column headerText="Nome">
-															<!--  <h:outputText value="#{pClass.name}" />  -->
+															  <h:outputText value="#{pClass.getClassPersonalization()._class}" />  
 														</p:column>
 
 														<p:column headerText="Prezzo">
-															<!--  <h:outputText value="#{pClass.price}" />  -->
+															  <h:outputText value="#{pClass.getPrice()}" />  
 														</p:column>
 														
 														<p:column headerText="Azioni">
@@ -327,15 +328,15 @@
 												<h:form>
 													<p:dataTable var="pDate" value="#{EditBaseProduct.getDatePersonalizations()}" id="dateExc">
 														<p:column headerText="Data">
-															<!--  <h:outputText value="#{pDate.date}" />  -->
+															   <h:outputText value="#{pDate.getDatePersonalization().getInitialDate()}" /> 
 														</p:column>
 
 														<p:column headerText="Durata">
-															<!--  <h:outputText value="#{pDate.duration}" />  -->
+																<h:outputText value="#{pDate.getDatePersonalization().getDuration()}" /> 
 														</p:column>
 
 														<p:column headerText="Prezzo">
-															<!--   <h:outputText value="#{pDate.price}" />  -->
+															   <h:outputText value="#{pDate.getPrice()}" />  
 														</p:column>
 														
 														<p:column headerText="Azioni">
@@ -384,13 +385,13 @@
 				<div class="row clearfix" style="margin-top: 80px"></div>
 				<div class="col-md-6">Durata:</div>
 				<div class="col-md-4">
-					<p:inputText styleClass="form-control" id="duration" binding="#{duration}"
+					<p:inputText styleClass="form-control" id="duration" 
 						value="#{EditBaseProduct.duration}" />
 				</div>
 				<div class="row clearfix" style="margin-top: 80px"></div>
 				<div class="col-md-6">Prezzo:</div>
 				<div class="col-md-4">
-					<p:inputText styleClass="form-control" id="price" binding="#{price}"
+					<p:inputText styleClass="form-control" id="price" 
 						value="#{EditBaseProduct.price}" />
 				</div>
 
