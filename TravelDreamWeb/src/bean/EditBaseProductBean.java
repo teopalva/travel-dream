@@ -491,5 +491,9 @@ public class EditBaseProductBean {
 	public void setPersonalization(String personalization) {
 		this.personalization = personalization;
 	}
+	
+	public List<CityDTO> getAllCities() {
+		return bpEJB.getAllCities();
+	}
 
 }
