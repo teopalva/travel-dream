@@ -17,11 +17,12 @@
     
       </div>
 						
-			<div class="panel panel-success" >
+			
 				
-        			<div class="panel-heading"><h4><center>Dove vuoi andare?</center></h4></div>
+        			<div class="alert alert-success">
+        			<h2 style="margin-top:5px"><center>Dove vuoi andare?</center></h2>
         			<center>
-        			<div class="panel-body">
+        			
         			<h:form id="wheretogo" styleClass="form-inline">
         			
   						<div class="form-group">
@@ -34,12 +35,11 @@
    							
   						</div>
   						<div class="form-group">
-  						<!--  fixare! creare un metodo in home che passi i parametri a offeringslist! -->
   						<h:commandButton id="go"  value="Cerca" styleClass="btn btn-default" action="#{Home.showOfferingsList()}" />
   						</div>
 
 					</h:form>
-					</div>	
+					
         		</center>	
         			
      	 	</div>
@@ -58,16 +58,16 @@
   							<div class="col-md-4 col-md-offset-1">
   								<center>
   								
-  									<h:graphicImage library="images" name="flight.png" height="90" styleClass="img-rounded"/><br></br><br></br>
-  									<p:selectBooleanCheckbox value="#{Home.flightSelected}" />
+  									<h:graphicImage library="images" name="flight.png" height="90" styleClass="img-rounded"/><br></br>
+  									Volo <br></br><p:selectBooleanCheckbox value="#{Home.flightSelected}" />
   									
   								</center>
   							</div>
   							
   							<div class="col-md-4 col-md-offset-2">
   								<center>
-  									<h:graphicImage library="images" name="hotel.png" height="90" styleClass="img-rounded"/><br></br><br></br>
-  									<p:selectBooleanCheckbox value="#{Home.hotelSelected}" />
+  									<h:graphicImage library="images" name="hotel.png" height="90" styleClass="img-rounded"/><br></br>
+  									Hotel <br></br><p:selectBooleanCheckbox value="#{Home.hotelSelected}" />
   								</center>
   								
   							</div>
@@ -75,8 +75,8 @@
  				 		<div class="row">
  				 			<div class="col-md-4 col-md-offset-4">
  				 				<center>
- 				 					<h:graphicImage library="images" name="excursion.png" height="90" styleClass="img-rounded"/><br></br><br></br>
- 				 					<p:selectBooleanCheckbox value="#{Home.excursionSelected}" />
+ 				 					<h:graphicImage library="images" name="excursion.png" height="90" styleClass="img-rounded"/><br></br>
+ 				 					Escursione <br></br> <p:selectBooleanCheckbox value="#{Home.excursionSelected}" />
  				 				</center>
  				 			</div>
  				 		</div>

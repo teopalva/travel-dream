@@ -79,7 +79,7 @@ function handleDrop(event, ui) {
 				</div>
 				
 				
-				<h:panelGroup rendered="#{EditPackage.isNotValidForTDC()}">
+				<h:panelGroup rendered="#{EditPackage.isNotValidForTDC()}" id="alert">
 						<div class="alert alert-danger">
 									<b>Attenzione</b> Il pacchetto non è completato correttamente!
 						</div>
@@ -179,7 +179,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}</center>
 											</div>
 											<p:droppable scope="departureFlight" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update=":departureFlight,:price" ajax="true"/>
+												<p:ajax listener="#{EditPackage.onDrop}" update=":departureFlight,:price,:alert" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
 									
@@ -193,7 +193,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.company}</center>
 											</div>
 											<p:droppable scope="returnFlight" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update=":returnFlight,:price" ajax="true"/>
+												<p:ajax listener="#{EditPackage.onDrop}" update=":returnFlight,:price,:alert" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
 
@@ -206,7 +206,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.company}</center>
 											</div>
 											<p:droppable scope="hotel" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update=":hotel,:price" ajax="true" />
+												<p:ajax listener="#{EditPackage.onDrop}" update=":hotel,:price,:alert" ajax="true" />
 											</p:droppable>
 										</p:panel> 
 										
@@ -218,7 +218,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.company}</center>
 											</div>
 											<p:droppable scope="excursion" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update="excursion,:price" ajax="true"/>
+												<p:ajax listener="#{EditPackage.onDrop}" update="excursion,:price,:alert" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
 
