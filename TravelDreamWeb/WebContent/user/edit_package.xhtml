@@ -173,12 +173,24 @@ function handleDrop(event, ui) {
 									
 										<p:panel id="departureFlight" header="Volo di andata" style="display:block;overflow:auto;margin-bottom:20px">
 											<div class="col-md-6">
-												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.name}</center>
+												<center><b>#{EditPackage.selectedPackage.personalizedProducts[0].flight.name} </b></center>
 											</div>
-											<div class="col-md-6">
-												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}</center>
-											</div>
-											<p:droppable scope="departureFlight" onDrop="handleDrop">
+										<div class="col-md-6" style="margin-bottom:20px">
+											<center>
+												<b>#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}</b>
+											</center>
+										</div>
+
+										<dl class="dl-horizontal">
+											<dt>Prezzo</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].getPrice()} €</dd>
+											<dt>Data partenza</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getInitialDate()}</dd>
+											<dt>Data ritorno</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getFinalDate()}</dd>
+										</dl>
+
+										<p:droppable scope="departureFlight" onDrop="handleDrop">
 												<p:ajax listener="#{EditPackage.onDrop}" update=":departureFlight,:price,:alert" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
@@ -189,9 +201,19 @@ function handleDrop(event, ui) {
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.name}</center>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-6" style="margin-bottom:20px">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.company}</center>
 											</div>
+											
+											<dl class="dl-horizontal">
+											<dt>Prezzo</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].getPrice()} €</dd>
+											<dt>Data partenza</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getInitialDate()}</dd>
+											<dt>Data ritorno</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getFinalDate()}</dd>
+											</dl>
+											
 											<p:droppable scope="returnFlight" onDrop="handleDrop">
 												<p:ajax listener="#{EditPackage.onDrop}" update=":returnFlight,:price,:alert" ajax="true"/>
 											</p:droppable>
@@ -202,9 +224,17 @@ function handleDrop(event, ui) {
 											<div class="col-md-6">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.name}</center>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-6" style="margin-bottom:20px">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.company}</center>
 											</div>
+											
+											<dl class="dl-horizontal">
+											<dt>Prezzo</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[2].getPrice()} €</dd>
+											<dt>Classe</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].classPersonalization._class}</dd>
+											</dl>
+											
 											<p:droppable scope="hotel" onDrop="handleDrop">
 												<p:ajax listener="#{EditPackage.onDrop}" update=":hotel,:price,:alert" ajax="true" />
 											</p:droppable>
@@ -214,9 +244,19 @@ function handleDrop(event, ui) {
 											<div class="col-md-6" >
 												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.name}</center>
 											</div>
-											<div class="col-md-6">
+											<div class="col-md-6" style="margin-bottom:20px">
 												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.company}</center>
 											</div>
+											
+											<dl class="dl-horizontal">
+											<dt>Prezzo</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].getPrice()} €</dd>
+											<dt>Data partenza</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].datePersonalization.getInitialDate()}</dd>
+											<dt>Data ritorno</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].datePersonalization.getFinalDate()}</dd>
+											</dl>
+											
 											<p:droppable scope="excursion" onDrop="handleDrop">
 												<p:ajax listener="#{EditPackage.onDrop}" update="excursion,:price,:alert" ajax="true"/>
 											</p:droppable>
