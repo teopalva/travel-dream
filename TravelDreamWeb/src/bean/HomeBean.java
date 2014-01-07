@@ -1,5 +1,6 @@
 package bean;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -12,17 +13,18 @@ import exceptions.EmptySelectionException;
 @ViewScoped
 public class HomeBean {
 
-    /*
-     * private Boolean hotelSelected;
-     * private Boolean flightSelected;
-     * private Boolean excursionSelected;
-     */
-
     @EJB
     AuthenticationEJBLocal authenticationEJB;
 
     @ManagedProperty("#{SessionStorage}")
     private SessionStorageBean sessionStorage;
+
+    @PostConstruct
+    public void init() {
+	setHotelSelected(false);
+	setFlightSelected(false);
+	setExcursionSelected(false);
+    }
 
     // Bean properties:
 
@@ -38,23 +40,23 @@ public class HomeBean {
 	sessionStorage.setHotelSelected(b);
     }
 
-    public boolean isHotelSelected() {
+    public boolean getHotelSelected() {
 	return sessionStorage.isHotelSelected();
     }
 
-    public void setFlightSelected(Boolean b) {
+    public void setFlightSelected(boolean b) {
 	sessionStorage.setFlightSelected(b);
     }
 
-    public Boolean isFlightSelected() {
+    public boolean getFlightSelected() {
 	return sessionStorage.isFlightSelected();
     }
 
-    public void setExcursionSelected(Boolean b) {
+    public void setExcursionSelected(boolean b) {
 	sessionStorage.setExcursionSelected(b);
     }
 
-    public Boolean isExcursionSelected() {
+    public boolean getExcursionSelected() {
 	return sessionStorage.isExcursionSelected();
     }
 
@@ -77,7 +79,7 @@ public class HomeBean {
      */
     public String showEditPackage() {
 	try {
-	    if (!isFlightSelected() && !isHotelSelected() && !isExcursionSelected()) {
+	    if (!getFlightSelected() && !getHotelSelected() && !getExcursionSelected()) {
 		throw new EmptySelectionException();
 	    }
 	} catch (EmptySelectionException e) {
