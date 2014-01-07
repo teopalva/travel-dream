@@ -86,8 +86,9 @@ function handleDrop(event, ui) {
 				</h:panelGroup>
 				
 				<div class="row clearfix">
+				#{SessionStorage.isFlightSelected()}
 					<div class="col-md-3 column">
-						<h:panelGroup styleClass="listScroll" id="p_flights_d">
+						<h:panelGroup styleClass="listScroll" id="p_flights_d" rendered="#{SessionStorage.isFlightSelected()}">
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">Volo di andata</h3>
@@ -104,7 +105,7 @@ function handleDrop(event, ui) {
 							</div>
 						</h:panelGroup>
 
-						<h:panelGroup styleClass="listScroll" id="p_flights_r">
+						<h:panelGroup styleClass="listScroll" id="p_flights_r" rendered="#{SessionStorage.isFlightSelected()}">
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">Volo di ritorno</h3>
@@ -217,7 +218,7 @@ function handleDrop(event, ui) {
 												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.company}</center>
 											</div>
 											<p:droppable scope="excursion" onDrop="handleDrop">
-												<p:ajax listener="#{EditPackage.onDrop}" update="excursion" ajax="true"/>
+												<p:ajax listener="#{EditPackage.onDrop}" update="excursion,:price" ajax="true"/>
 											</p:droppable>
 										</p:panel> 
 
@@ -238,7 +239,7 @@ function handleDrop(event, ui) {
 
 					</div>
 					<div class="col-md-3 column">
-						<h:panelGroup styleClass="listScroll" id="p_hotels">
+						<h:panelGroup styleClass="listScroll" id="p_hotels" rendered="#{SessionStorage.isHotelSelected()}">
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">Seleziona un hotel</h3>
@@ -256,7 +257,7 @@ function handleDrop(event, ui) {
 						</h:panelGroup>
 
 						
-						<h:panelGroup id="p_exc">
+						<h:panelGroup id="p_exc" rendered="#{SessionStorage.isExcursionSelected()}">
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">Seleziona un escursione</h3>

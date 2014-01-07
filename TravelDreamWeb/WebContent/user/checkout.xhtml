@@ -30,6 +30,7 @@
 						<p:commandButton id="buy" value="Acquista" styleClass="btn btn-success btn-default btn-block" style="margin-top: 140px" action="#{Checkout.showPayment()}" />
 
 					</div>
+					<h:panelGroup rendered="Checkout.isGiftActive()">
 					<div class="col-md-4 column">
 						<h2>Lista regali</h2>
 						<p>Tramite questa opzione aggiungi il pacchetto che hai creato
@@ -39,6 +40,9 @@
 						<p:commandButton id="giftlist" value="Inserisci in lista regali" styleClass="btn btn-block btn-info" style="margin-top: 100px" action="#{Checkout.showGiftList()}" />
 
 					</div>
+					</h:panelGroup>
+					
+					<h:panelGroup rendered="Checkout.isInviteActive()">
 					<div class="col-md-4 column">
 						<h2>Invita degli amici</h2>
 						<p>Qui puoi invitare degli amici ad unirsi al tuo viaggio!</p>
@@ -60,6 +64,7 @@
 						</p:ajaxStatus> 
 						</h:form>
 					</div>
+					</h:panelGroup>
 				</div>
 				<div class="row clearfix" style="margin-bottom: 10px">
 					<div class="col-md-12 column">

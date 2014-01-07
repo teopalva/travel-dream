@@ -71,9 +71,9 @@ public class EditPackageBean {
 	    selectedPackage = sessionStorage.getSelectedPackage();
 	}
 	// restore home selections
-	sessionStorage.setFlightSelected(true);
-	sessionStorage.setHotelSelected(true);
-	sessionStorage.setExcursionSelected(true);
+	//sessionStorage.setFlightSelected(true);
+	//sessionStorage.setHotelSelected(true);
+	//sessionStorage.setExcursionSelected(true);
     }
 
     // Bean properties:
