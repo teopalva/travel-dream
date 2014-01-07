@@ -13,6 +13,11 @@ import exceptions.EmptySelectionException;
 @ViewScoped
 public class HomeBean {
 
+    // strings for GET retrieval
+    private boolean f = false;
+    private boolean h = false;
+    private boolean e = false;
+
     @EJB
     AuthenticationEJBLocal authenticationEJB;
 
@@ -21,9 +26,9 @@ public class HomeBean {
 
     @PostConstruct
     public void init() {
-	setHotelSelected(false);
-	setFlightSelected(false);
-	setExcursionSelected(false);
+	// setHotelSelected(false);
+	// setFlightSelected(false);
+	// setExcursionSelected(false);
     }
 
     // Bean properties:
@@ -36,28 +41,54 @@ public class HomeBean {
 	this.sessionStorage = sessionStorage;
     }
 
-    public void setHotelSelected(boolean b) {
-	sessionStorage.setHotelSelected(b);
+    /*
+     * public void setHotelSelected(boolean b) {
+     * sessionStorage.setHotelSelected(b);
+     * }
+     * 
+     * public boolean getHotelSelected() {
+     * return sessionStorage.isHotelSelected();
+     * }
+     * 
+     * public void setFlightSelected(boolean b) {
+     * sessionStorage.setFlightSelected(b);
+     * }
+     * 
+     * public boolean getFlightSelected() {
+     * return sessionStorage.isFlightSelected();
+     * }
+     * 
+     * public void setExcursionSelected(boolean b) {
+     * sessionStorage.setExcursionSelected(b);
+     * }
+     * 
+     * public boolean getExcursionSelected() {
+     * return sessionStorage.isExcursionSelected();
+     * }
+     */
+
+    public boolean getF() {
+	return f;
     }
 
-    public boolean getHotelSelected() {
-	return sessionStorage.isHotelSelected();
+    public void setF(boolean f) {
+	this.f = f;
     }
 
-    public void setFlightSelected(boolean b) {
-	sessionStorage.setFlightSelected(b);
+    public boolean getH() {
+	return h;
     }
 
-    public boolean getFlightSelected() {
-	return sessionStorage.isFlightSelected();
+    public void setH(boolean h) {
+	this.h = h;
     }
 
-    public void setExcursionSelected(boolean b) {
-	sessionStorage.setExcursionSelected(b);
+    public boolean getE() {
+	return e;
     }
 
-    public boolean getExcursionSelected() {
-	return sessionStorage.isExcursionSelected();
+    public void setE(boolean e) {
+	this.e = e;
     }
 
     // Action controller methods:
@@ -79,7 +110,7 @@ public class HomeBean {
      */
     public String showEditPackage() {
 	try {
-	    if (!getFlightSelected() && !getHotelSelected() && !getExcursionSelected()) {
+	    if (!getF() && !getH() && !getE()) {
 		throw new EmptySelectionException();
 	    }
 	} catch (EmptySelectionException e) {
@@ -88,9 +119,9 @@ public class HomeBean {
 	}
 	sessionStorage.setSelectedPackage(null);
 	if (authenticationEJB.isTDE()) {
-	    return "/admin/edit_package?faces-redirect=true";
+	    return "/admin/edit_package?faces-redirect=true&f=" + f + "&h=" + h + "&e=" + e;
 	} else {
-	    return "/user/edit_package?faces-redirect=true";
+	    return "/user/edit_package?faces-redirect=true&f=" + f + "&h=" + h + "&e=" + e;
 	}
     }
 

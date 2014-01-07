@@ -14,11 +14,6 @@ import dto.PackageDTO;
 public class SessionStorageBean implements Serializable {
     private static final long serialVersionUID = -339896506641421282L;
 
-    // homepage flags
-    private boolean hotelSelected = true;
-    private boolean flightSelected = true;
-    private boolean excursionSelected = true;
-
     /**
      * The package selected by the user for editing
      */
@@ -78,30 +73,6 @@ public class SessionStorageBean implements Serializable {
 
     public void setArrivalPlace(String arrivalPlace) {
 	this.arrivalPlace = arrivalPlace;
-    }
-
-    public boolean isHotelSelected() {
-	return hotelSelected;
-    }
-
-    public void setHotelSelected(boolean hotelSelected) {
-	this.hotelSelected = hotelSelected;
-    }
-
-    public boolean isFlightSelected() {
-	return flightSelected;
-    }
-
-    public void setFlightSelected(boolean flightSelected) {
-	this.flightSelected = flightSelected;
-    }
-
-    public boolean isExcursionSelected() {
-	return excursionSelected;
-    }
-
-    public void setExcursionSelected(boolean excursionSelected) {
-	this.excursionSelected = excursionSelected;
     }
 
 }

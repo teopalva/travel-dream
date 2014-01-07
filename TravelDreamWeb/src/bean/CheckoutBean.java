@@ -52,10 +52,6 @@ public class CheckoutBean {
     @ManagedProperty("#{SessionStorage}")
     private SessionStorageBean sessionStorage;
 
-    public CheckoutBean() {
-
-    }
-
     @PostConstruct
     public void init() {
 	try {
@@ -205,7 +201,7 @@ public class CheckoutBean {
 
     /**
      * 
-     * @return true if the "Add to giftList" section of the checkout is accesible to the user
+     * @return true if the "Add to giftList" section of the checkout is accessible to the user
      */
     public boolean isGiftActive() {
 	return sessionStorage.getPreviousPage().equals("edit") ? true : false;
@@ -213,7 +209,7 @@ public class CheckoutBean {
 
     /**
      * 
-     * @return true if the "Invite your friends" section of the checkout is accesible to the user
+     * @return true if the "Invite your friends" section of the checkout is accessible to the user
      */
     public boolean isInviteActive() {
 	return sessionStorage.getPreviousPage().equals("edit") ? true : false;

@@ -42,6 +42,11 @@ public class EditPackageBean {
     private List<PersonalizedFlightDTO> outboundFlights;
     private List<PersonalizedFlightDTO> returnFlights;
     private List<PersonalizedExcursionDTO> excursions;
+    
+ // homepage flags
+    private boolean hotelSelected = true;
+    private boolean flightSelected = true;
+    private boolean excursionSelected = true;
 
     @EJB
     private BaseProductEJBLocal baseProductEJB;
@@ -156,6 +161,30 @@ public class EditPackageBean {
 
     public List<PersonalizedExcursionDTO> getExcursions() {
 	return excursions;
+    }
+    
+    public boolean isHotelSelected() {
+	return hotelSelected;
+    }
+
+    public void setHotelSelected(boolean hotelSelected) {
+	this.hotelSelected = hotelSelected;
+    }
+
+    public boolean isFlightSelected() {
+	return flightSelected;
+    }
+
+    public void setFlightSelected(boolean flightSelected) {
+	this.flightSelected = flightSelected;
+    }
+
+    public boolean isExcursionSelected() {
+	return excursionSelected;
+    }
+
+    public void setExcursionSelected(boolean excursionSelected) {
+	this.excursionSelected = excursionSelected;
     }
 
     // Bean methods:
