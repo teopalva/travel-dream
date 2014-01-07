@@ -156,7 +156,7 @@ public class EditBaseProductBean {
 			}
 			return datePersonalizations;
 		}
-		if(getExcursion() != null) {
+		else if(getExcursion() != null) {
 			ExcursionDTO excursion = getExcursion();
 			for(DatePersonalizationDTO d : excursion.getPossibleDatePersonalizations()) {
 				PossibleDatePersonalizationExcursionDTO dpf = new PossibleDatePersonalizationExcursionDTO();
@@ -166,9 +166,10 @@ public class EditBaseProductBean {
 			}
 			return datePersonalizations;
 		}
-		
-		System.err.println("datePersonalizations not supported");
-		throw new PersonalizationNotSupportedException();
+		else {
+			System.err.println("datePersonalizations not supported");
+			throw new PersonalizationNotSupportedException();
+		}
 	}
 	
 	public List<PossibleClassPersonalizationDTO> getClassPersonalizations() {
@@ -183,7 +184,7 @@ public class EditBaseProductBean {
 			}
 			return classPersonalizations;
 		}
-		if(getHotel() != null) {
+		else if(getHotel() != null) {
 			HotelDTO hotel = getHotel();
 			for(ClassPersonalizationDTO c : hotel.getPossibleClassPersonalizations()) {
 				PossibleClassPersonalizationHotelDTO cpf = new PossibleClassPersonalizationHotelDTO();
@@ -203,13 +204,14 @@ public class EditBaseProductBean {
 			FlightDTO flight = getFlight();
 			flight.addPersonalization(datePersonalization, price);
 		}
-		if(getExcursion() != null) {
+		else if(getExcursion() != null) {
 			ExcursionDTO excursion = getExcursion();
 			excursion.addPersonalization(datePersonalization, price);
 		}
-		
-		System.err.println("datePersonalizations not supported");
-		throw new PersonalizationNotSupportedException();
+		else {
+			System.err.println("datePersonalizations not supported");
+			throw new PersonalizationNotSupportedException();
+		}
 	}
 	
 	private void addClassPersonalization(ClassPersonalizationDTO classPersonalization, double price) {
@@ -217,13 +219,14 @@ public class EditBaseProductBean {
 			FlightDTO flight = getFlight();
 			flight.addPersonalization(classPersonalization, price);
 		}
-		if(getHotel() != null) {
+		else if(getHotel() != null) {
 			HotelDTO hotel = getHotel();
 			hotel.addPersonalization(classPersonalization, price);
 		}
-		
-		System.err.println("classPersonalizations not supported");
-		throw new PersonalizationNotSupportedException();
+		else {
+			System.err.println("classPersonalizations not supported");
+			throw new PersonalizationNotSupportedException();
+		}
 	}
 	
 	private void removeDatePersonalization(DatePersonalizationDTO datePersonalization) {
@@ -231,13 +234,29 @@ public class EditBaseProductBean {
 			FlightDTO flight = getFlight();
 			flight.removePersonalization(datePersonalization);
 		}
-		if(getExcursion() != null) {
+		else if(getExcursion() != null) {
 			ExcursionDTO excursion = getExcursion();
 			excursion.removePersonalization(datePersonalization);
 		}
-		
-		System.err.println("datePersonalizations not supported");
-		throw new PersonalizationNotSupportedException();
+		else {
+			System.err.println("datePersonalizations not supported");
+			throw new PersonalizationNotSupportedException();
+		}
+	}
+	
+	private void removeClassPersonalization(ClassPersonalizationDTO classPersonalization) {
+		if(getFlight() != null) {
+			FlightDTO flight = getFlight();
+			flight.removePersonalization(classPersonalization);
+		}
+		else if(getHotel() != null) {
+			HotelDTO hotel = getHotel();
+			hotel.removePersonalization(classPersonalization);
+		}
+		else {
+			System.err.println("classPersonalizations not supported");
+			throw new PersonalizationNotSupportedException();
+		}
 	}
 
 	// -----FLIGHT-----
@@ -345,10 +364,6 @@ public class EditBaseProductBean {
 	}
 
 	// ----------
-
-	// TODO non capisco il bisogno di averlo doppio...
-	@EJB
-	private BaseProductEJBLocal baseProductEJB;
 
 	@ManagedProperty("#{SessionStorage}")
 	private SessionStorageBean sessionStorage;
