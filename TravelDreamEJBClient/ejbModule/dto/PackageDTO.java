@@ -1,6 +1,7 @@
 package dto;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import entity.Package;
@@ -184,9 +185,73 @@ public class PackageDTO {
     public double getPrice() {
     	double price = 0;
     	for(PersonalizedProductDTO p : personalizedProducts) {
-    		price += p.getPrice();
+    		
+    		if(p instanceof PersonalizedHotelDTO) {
+    			//Calculate number of days
+    			Date dateCheckIn = dateDeparture();
+    			Date dateCheckOut = dateReturn();
+    			if(dateCheckIn != null && dateCheckOut != null)
+    				price += p.getPrice() * daysBetween(dateCheckOut, dateCheckIn);
+    		} else {
+    			price += p.getPrice();
+    		}
     	}
+    	price *= this.numPeople;
     	return price;
+    }
+    
+    private long daysBetween(Date date1, Date date2) {
+    	return Math.abs( (date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24) );
+    }
+    
+    /**
+     * @return the date of the departure (departure flight)
+     * 		The package must be isValidForTDC()
+     * 		This function is not very precise. Please use the one in PackageEJB
+     */
+    private Date dateDeparture() {    	
+    	List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
+
+    	for(PersonalizedProductDTO p : getPersonalizedProducts()) {
+    		if(p instanceof PersonalizedFlightDTO) {
+    			flights.add((PersonalizedFlightDTO)p);
+    		}
+    	}
+    	
+    	if(flights.size() != 2)
+    		return null;
+    	
+    	Date date1 = flights.get(0).getDatePersonalization().getInitialDate();
+    	Date date2 = flights.get(1).getDatePersonalization().getInitialDate();
+    	if(date1.before(date2))
+    		return flights.get(0).getDatePersonalization().getFinalDate();
+    	else
+    		return flights.get(1).getDatePersonalization().getFinalDate();
+    }
+    
+    /**
+     * @return the date of the return (return flight)
+     * 		The package must be isValidForTDC()
+     * 		This function is not very precise. Please use the one in PackageEJB
+     */
+    private Date dateReturn() {
+    	List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
+
+    	for(PersonalizedProductDTO p : getPersonalizedProducts()) {
+    		if(p instanceof PersonalizedFlightDTO) {
+    			flights.add((PersonalizedFlightDTO)p);
+    		}
+    	}
+    	
+    	if(flights.size() != 2)
+    		return null;
+    	
+    	Date date1 = flights.get(0).getDatePersonalization().getInitialDate();
+    	Date date2 = flights.get(1).getDatePersonalization().getInitialDate();
+    	if(date1.before(date2))
+    		return flights.get(1).getDatePersonalization().getInitialDate();
+    	else
+    		return flights.get(2).getDatePersonalization().getInitialDate();
     }
 
     @Override

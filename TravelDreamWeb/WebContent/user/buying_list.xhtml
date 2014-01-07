@@ -35,7 +35,9 @@ function showDetail(id,text,btn) {
 						<div class="list-group">
 							<a href="#" class="list-group-item active">Pacchetti</a>
 							<ui:repeat value="#{BuyingList.retrieveList()}" var="item">
-							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;"><h:panelGroup rendered="#{item.isPaid()}"><span class="badge">Pagamento ricevuto</span></h:panelGroup>#{item._package.name}</a>
+							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;"><h:panelGroup rendered="#{item.isPaid()}"><span class="badge">Pagamento ricevuto</span></h:panelGroup>
+							 <b>#{item._package.name}</b><br></br>Prezzo: #{item._package.getPrice()} €
+							 </a>
 							 </ui:repeat>
 						</div>
 
@@ -51,12 +53,14 @@ function showDetail(id,text,btn) {
 							 
 								<div class="caption">
 									<h4>#{item._package.name}</h4>
-									<p>Partenza:
+									Data di partenza: #{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getInitialDate()}<br></br>
+									Data di ritorno: #{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getInitialDate()}<p></p>
+									Partenza:
 										#{item._package.personalizedProducts[0].flight.getCityDeparture().getName()}
-										#{item._package.personalizedProducts[0].flight.getAirportDeparture()}</p>
-									<p>Destinazione:
+										#{item._package.personalizedProducts[0].flight.getAirportDeparture()}
+									<br></br>Destinazione:
 										#{item._package.personalizedProducts[0].flight.getCityArrival().getName()}
-										#{item._package.personalizedProducts[0].flight.getAirportArrival()}</p>
+										#{item._package.personalizedProducts[0].flight.getAirportArrival()}<p></p>
 									<div>
 										<table class="table" style="margin-bottom: 45px">
 
