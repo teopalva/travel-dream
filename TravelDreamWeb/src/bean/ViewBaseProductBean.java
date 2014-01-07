@@ -32,13 +32,6 @@ public class ViewBaseProductBean {
     @PostConstruct
     private void init() {
     	productList = this.submitSearch();
-    	
-    	
-    	companies = new ArrayList<SelectItem>(bpEJB.getAllCompanies().size());
-    	for(String value : bpEJB.getAllCompanies()){
-    	    companies.add(new SelectItem(value));
-    	}
-    	
  
     }
     
@@ -123,9 +116,9 @@ public class ViewBaseProductBean {
      * 
      * @return list of companies' names
      */
-    public List<String> dropDownFilterCompany() {
-	return bpEJB.getAllCompanies();
-    }
+    //public List<String> dropDownFilterCompany() {
+	//return bpEJB.getAllCompanies();
+    //}
 
     /**
      * To be called when the user clicks on the delete icon.
@@ -170,11 +163,15 @@ public class ViewBaseProductBean {
 	}
 
 	public List<SelectItem> getCompanies() {
+		
+    	
+    	companies = new ArrayList<SelectItem>(bpEJB.getAllCompanies().size()+1);
+    	companies.add(new SelectItem(""));
+    	for(String value : bpEJB.getAllCompanies()){
+    	    companies.add(new SelectItem(value));
+    	}
+		
 		return companies;
-	}
-
-	public void setCompanies(List<SelectItem> companies) {
-		this.companies = companies;
 	}
 
 
