@@ -27,7 +27,7 @@
 						<p>Selezionando questa opzione, decidi di acquistare il
 							pacchetto.</p>
 						
-						<p:commandButton id="buy" value="Acquista" styleClass="btn btn-success btn-default btn-block" style="margin-top: 140px" action="#{Checkout.showPayment()}" />
+						<p:commandButton id="buy" value="Acquista" global="false" styleClass="btn btn-success btn-default btn-block" style="margin-top: 140px" action="#{Checkout.showPayment()}" />
 
 					</div>
 					<h:panelGroup rendered="#{Checkout.isGiftActive()}">
@@ -37,7 +37,7 @@
 							alla lista regali, in modo da conservarlo e renderlo disponibile
 							ai tuoi amici in modo che possano regalartelo</p>
 						
-						<p:commandButton id="giftlist" value="Inserisci in lista regali" styleClass="btn btn-block btn-info" style="margin-top: 100px" action="#{Checkout.showGiftList()}" />
+						<p:commandButton id="giftlist" value="Inserisci in lista regali" global="false" styleClass="btn btn-block btn-info" style="margin-top: 100px" action="#{Checkout.showGiftList()}" />
 
 					</div>
 					</h:panelGroup>
