@@ -34,7 +34,8 @@
 								<p:column headerText="Email" sortBy="user.mail" >  #{bought.user.mail}    </p:column>
 
 								<p:column headerText="Pacchetto" sortBy="_package.name">  #{bought._package.name}  </p:column>
-								<p:column headerText="Pagamento"> <p:commandButton action="#{OrderList.confirmPayment(bought)}" value="Ricevuto"  styleClass="btn-block" /> </p:column>
+								<!-- CHECK THE UPDATE -->
+								<p:column headerText="Pagamento"> <p:commandButton action="#{OrderList.confirmPayment(bought)}" value="Ricevuto"  update=":boughtForm:boughtList,:paidForm,:paidList" styleClass="btn-block" /> </p:column>
 
 																
 								<f:facet name="footer">
