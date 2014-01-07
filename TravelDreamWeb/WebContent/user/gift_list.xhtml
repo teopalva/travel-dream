@@ -41,7 +41,7 @@ function showDetail(id,text,btn) {
 							<h:panelGroup id="giftList">
 								<ui:repeat value="#{GiftList.retrieveGiftList()}" var="item">
 									<a class="list-group-item" href="#"
-										onclick="showDetail('item_#{item._package.id}','',this); return false;">#{item._package.name}</a>
+										onclick="showDetail('item_#{item._package.id}','',this); return false;"><b>#{item._package.name}</b><br></br>Prezzo: #{item._package.getPrice()} €</a>
 								</ui:repeat>
 							</h:panelGroup>
 						</div>
@@ -60,13 +60,15 @@ function showDetail(id,text,btn) {
 
 										<div class="caption">
 											<h4>#{item._package.name}</h4>
-											<p>Partenza:
-												#{item._package.personalizedProducts[0].flight.getCityDeparture().getName()}
-												#{item._package.personalizedProducts[0].flight.getAirportDeparture()}</p>
-											<p>Destinazione:
-												#{item._package.personalizedProducts[0].flight.getCityArrival().getName()}
-												#{item._package.personalizedProducts[0].flight.getAirportArrival()}</p>
-											<div>
+											Data di partenza: #{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getInitialDate()}<br></br>
+											Data di ritorno: #{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getInitialDate()}<p></p>
+											Partenza:
+											#{item._package.personalizedProducts[0].flight.getCityDeparture().getName()}
+											#{item._package.personalizedProducts[0].flight.getAirportDeparture()}
+											<br></br>Destinazione:
+											#{item._package.personalizedProducts[0].flight.getCityArrival().getName()}
+											#{item._package.personalizedProducts[0].flight.getAirportArrival()}<p></p>
+										<div>
 												<table class="table" style="margin-bottom: 45px">
 
 													<tr>
@@ -120,15 +122,23 @@ function showDetail(id,text,btn) {
 							<div class="panel-heading">Cerca lista amico</div>
 
 							<div class="panel-body">
+							<!--  fixare per il messaggio di errore -->
+								<div class="alert alert-danger">
+									<b>Attenzione</b> Utente non trovato!
+								</div>
+							
 								<h:form>
 									<p:inputText value="#{GiftList.friendMail}" id="friendMail"
 										style="margin-left:20px;" />
+										<h:message for="friendMail" />
 
 
 									<p:commandButton value="Cerca" ajax="true"
 										update=":giftList,:giftDetail,:heading"
 										styleClass="btn btn-default" style="margin-left:20px;"
-										id="buttonSearch" />
+										id="buttonSearch" >
+									 <f:ajax execute="@form" render="@form"/>
+									 </p:commandButton>
 
 								</h:form>
 							</div>
