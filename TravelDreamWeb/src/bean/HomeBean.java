@@ -4,13 +4,13 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 import coreEJB.AuthenticationEJBLocal;
 import exceptions.EmptySelectionException;
 
 @ManagedBean(name = "Home")
-@ViewScoped
+@RequestScoped
 public class HomeBean {
 
     // strings for GET retrieval
@@ -118,10 +118,15 @@ public class HomeBean {
 	    return null;
 	}
 	sessionStorage.setSelectedPackage(null);
+	String userURL = "/admin/edit_package?faces-redirect=true&f=" + f + "&h=" + h + "&e=" + e;
+	String adminURL = "/user/edit_package?faces-redirect=true&f=" + f + "&h=" + h + "&e=" + e;
+	f = false;
+	h = false;
+	e = false;
 	if (authenticationEJB.isTDE()) {
-	    return "/admin/edit_package?faces-redirect=true&f=" + f + "&h=" + h + "&e=" + e;
+	    return userURL;
 	} else {
-	    return "/user/edit_package?faces-redirect=true&f=" + f + "&h=" + h + "&e=" + e;
+	    return adminURL;
 	}
     }
 
