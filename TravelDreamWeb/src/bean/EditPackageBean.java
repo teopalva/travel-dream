@@ -25,6 +25,7 @@ import dto.PersonalizedExcursionDTO;
 import dto.PersonalizedFlightDTO;
 import dto.PersonalizedHotelDTO;
 import dto.PersonalizedProductDTO;
+import exceptions.NotValidPackageException;
 
 @ManagedBean(name = "EditPackage")
 @ViewScoped
@@ -32,6 +33,8 @@ public class EditPackageBean {
     // private String warningDiscount; TODO
     private PackageDTO selectedPackage = null;
     private double totalPrice;
+    private String packageName = "";
+    private Integer reduction = 0;
 
     private String departurePlace = null;
     private String arrivalPlace = null;
@@ -94,6 +97,22 @@ public class EditPackageBean {
 
     public void setSessionStorage(SessionStorageBean sessionStorage) {
 	this.sessionStorage = sessionStorage;
+    }
+
+    public String getPackageName() {
+	return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+	this.packageName = packageName;
+    }
+
+    public Integer getReduction() {
+	return reduction;
+    }
+
+    public void setReduction(Integer reduction) {
+	this.reduction = reduction;
     }
 
     public void setDeparturePlace(String p) {
@@ -327,9 +346,33 @@ public class EditPackageBean {
      */
     public String showCheckout() {
 	// if (packageEJB.isValidForTDC(selectedPackage)) { //TODO activate!
+	selectedPackage.setName(packageName);
+	selectedPackage.setNumPeople(numPeople);
 	sessionStorage.setSelectedPackage(selectedPackage);
 	sessionStorage.setPreviousPage("edit");
 	return "/user/checkout?faces-redirect=true";
+	// } else {
+	// return null;
+	// }
+    }
+
+    /**
+     * Saves the package edited by TDE, then redirects.
+     * 
+     * @return admin panel URL
+     */
+    public String savePackageTDE() {
+	// if (packageEJB.isValidForOfferings(selectedPackage)) { //TODO activate!
+	selectedPackage.setName(packageName);
+	selectedPackage.setNumPeople(numPeople);
+	selectedPackage.setReduction(reduction);
+	try {
+	    packageEJB.savePackage(selectedPackage);
+	} catch (NotValidPackageException e) {
+	    System.err.printf("NotValidPackageException");
+	    e.printStackTrace();
+	}
+	return "/admin/index?faces-redirect=true";
 	// } else {
 	// return null;
 	// }
