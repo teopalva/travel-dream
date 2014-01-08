@@ -229,7 +229,7 @@ public class EditBaseProductBean {
 		}
 	}
 	
-	private void removeDatePersonalization(DatePersonalizationDTO datePersonalization) {
+	public void removeDatePersonalization(DatePersonalizationDTO datePersonalization) {
 		if(getFlight() != null) {
 			FlightDTO flight = getFlight();
 			flight.removePersonalization(datePersonalization);
@@ -244,7 +244,7 @@ public class EditBaseProductBean {
 		}
 	}
 	
-	private void removeClassPersonalization(ClassPersonalizationDTO classPersonalization) {
+	public void removeClassPersonalization(ClassPersonalizationDTO classPersonalization) {
 		if(getFlight() != null) {
 			FlightDTO flight = getFlight();
 			flight.removePersonalization(classPersonalization);
@@ -413,10 +413,10 @@ public class EditBaseProductBean {
 		this.addClassPersonalization(classPersonalization, this.price);
 	}
 
-	public void removeDatePersonalization(Date date, int duration) {
-		DatePersonalizationDTO datePersonalization = new DatePersonalizationDTO(duration, date);
-		this.removeDatePersonalization(datePersonalization);
-	}
+	//public void removeDatePersonalization(Date date, int duration) {
+	//	DatePersonalizationDTO datePersonalization = new DatePersonalizationDTO(duration, date);
+	//	this.removeDatePersonalization(datePersonalization);
+	//}
 
 	// Method to apply to the EJBs the class attributes values when the user clicks on confirm button:
 

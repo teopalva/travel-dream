@@ -25,7 +25,7 @@ import dto.PersonalizedExcursionDTO;
 import dto.PersonalizedFlightDTO;
 import dto.PersonalizedHotelDTO;
 import dto.PersonalizedProductDTO;
-import exceptions.PackageNotValidException;
+import exceptions.NotValidPackageException;
 
 @ManagedBean(name = "EditPackage")
 @ViewScoped

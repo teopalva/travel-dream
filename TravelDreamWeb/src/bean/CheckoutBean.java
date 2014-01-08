@@ -106,7 +106,6 @@ public class CheckoutBean {
      */
     public String showPayment() {
 	if (sessionStorage.getPreviousPage().equals("edit")) {
-	    // packageEJB.savePackage(selectedPackage);
 	    PackageDTO p = new PackageDTO(selectedPackage);
 	    boolean gifted = false;
 	    BuyingListItemDTO buyingItem = new BuyingListItemDTO(p, new Date(), gifted, false, user);

@@ -92,8 +92,9 @@
 													oncomplete="PF('dateDialog').show()" />
 											</div>
 											<div class="col-md-12" style="margin-top: 10px">
-												<h:form>
-													<p:dataTable var="pDate" value="#{EditBaseProduct.getDatePersonalizations()}" id="dateFlight">
+												
+												<h:form id="tableDateFlight">
+													<p:dataTable var="pDate" value="#{EditBaseProduct.getDatePersonalizations()}" id="dateFlight" editable="true">
 														<p:column headerText="Data arrivo">
 															 <h:outputText value="#{pDate.getDatePersonalization().getInitialDate()}" /> 
 															 
@@ -109,8 +110,8 @@
 														
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
-														  <p:commandButton value="Rimuovi" ajax="true" 
-														  				   styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
+														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeDatePersonalization(pDate.getDatePersonalization())}"
+														  				   update="dateFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
 														</p:column>
 														
 													</p:dataTable>
@@ -136,7 +137,7 @@
 													oncomplete="PF('classDialog').show()" />
 											</div>
 											<div class="col-md-12" style="margin-top: 10px">
-												<h:form>
+												<h:form id="tableClassFlight">
 													<p:dataTable var="pClass"
 														value="#{EditBaseProduct.getClassPersonalizations()}" id="classFlight">
 														<p:column headerText="Nome">
@@ -149,8 +150,8 @@
 														
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
-														  <p:commandButton value="Rimuovi" ajax="true" 
-														  				   styleClass="btn btn-warning btn-block" id="buttonDeleteClass"/>
+														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeClassPersonalization(pClass.getClassPersonalization())}"
+														  				   update="classFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteClass"/>
 														</p:column>
 
 													</p:dataTable>
@@ -238,7 +239,7 @@
 													oncomplete="PF('classDialog').show()" />
 											</div>
 											<div class="col-md-12" style="margin-top: 10px">
-												<h:form>
+												<h:form id="tableClassHotel">
 													<p:dataTable var="pClass"
 														value="#{EditBaseProduct.getClassPersonalizations()}" id="classHotel">
 														<p:column headerText="Nome">
@@ -251,8 +252,8 @@
 														
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
-														  <p:commandButton value="Rimuovi" ajax="true" 
-														  				   styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
+														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeClassPersonalization(pClass.getClassPersonalization())}"
+														  				  update="classHotel" styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
 														</p:column>
 
 													</p:dataTable>
@@ -325,7 +326,7 @@
 													oncomplete="PF('dateDialog').show()" />
 											</div>
 											<div class="col-md-12" style="margin-top: 10px">
-												<h:form>
+												<h:form id="tableDateExc">
 													<p:dataTable var="pDate" value="#{EditBaseProduct.getDatePersonalizations()}" id="dateExc">
 														<p:column headerText="Data">
 															   <h:outputText value="#{pDate.getDatePersonalization().getInitialDate()}" /> 
@@ -341,8 +342,8 @@
 														
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
-														  <p:commandButton value="Rimuovi" ajax="true" 
-														  				   styleClass="btn btn-warning btn-block" id="buttonDeleteClassExc"/>
+														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeDatePersonalization(pDate.getDatePersonalization())}"
+														  				  update="dateExc"  styleClass="btn btn-warning btn-block" id="buttonDeleteClassExc"/>
 														</p:column>
 														
 													</p:dataTable>
@@ -398,12 +399,13 @@
 				<div class="row clearfix" style="margin-top: 80px"></div>
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<p:commandButton value="Aggiungi" ajax="true" onclick="dateDialog.hide()" 
+					<p:commandButton value="Aggiungi" ajax="true" onclick="dateDialog.hide()" update=":tableDateFlight:dateFlight,:tableDateExc:dateExc"
 						action="#{EditBaseProduct.addDatePersonalization()}"
 						styleClass="btn btn-default btn-lg btn-block" />
 				</div>
 				</h:form>
-
+				
+				
 			</p:dialog>
 
 			<p:dialog id="classDialog" widgetVar="classDialog" resizable="false"
@@ -433,7 +435,7 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 			
-					<p:commandButton value="Aggiungi" ajax="true" onclick="classDialog.hide()"
+					<p:commandButton value="Aggiungi" ajax="true" onclick="classDialog.hide()" update=":tableClassFlight:classFlight,:tableClassHotel:classHotel"
 						action="#{EditBaseProduct.addClassPersonalization()}"
 						styleClass="btn btn-default btn-lg btn-block" />
 				</div>
