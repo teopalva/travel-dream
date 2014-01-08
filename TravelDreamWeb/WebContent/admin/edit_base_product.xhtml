@@ -42,6 +42,7 @@
 								<div class="panel-heading">
 									<h6 class="panel-title">Prodotto base volo</h6>
 								</div>
+								<h:form id="flightForm">
 								<div class="panel-body">
 									<div class="col-md-2 column">Nome:</div>
 									<div class="col-md-4 column">
@@ -52,7 +53,7 @@
 									<div class="col-md-4 column">
 										<p:selectOneMenu value="#{EditBaseProduct.company}">
 											<f:selectItem itemLabel="Seleziona..." itemValue="" />
-											<f:selectItems value="#{EditBaseProduct.companies}" />
+											<f:selectItems value="#{EditBaseProduct.companies}"/>
 										</p:selectOneMenu>
 									</div>
 
@@ -174,6 +175,7 @@
 
 
 								</div>
+								</h:form>
 							</div>
 
 
@@ -184,6 +186,8 @@
 								<div class="panel-heading">
 									<h6 class="panel-title">Prodotto base hotel</h6>
 								</div>
+								
+								<h:form id="hotelForm">
 								<div class="panel-body">
 
 
@@ -204,10 +208,10 @@
 
 									<div class="row clearfix" style="margin-top: 60px"></div>
 									<div class="col-md-2 column">Città:</div>
-									<div class="col-md-4 column"></div>
+									<div class="col-md-4 column"><p:inputText  value="#{EditBaseProduct.hotelCityName}" /></div>
 
 									<div class="col-md-2 column">Stato:</div>
-									<div class="col-md-4 column"></div>
+									<div class="col-md-4 column"><p:inputText  value="#{EditBaseProduct.hotelCityCountry}" /></div>
 
 									<div class="row clearfix" style="margin-top: 60px"></div>
 									<div class="col-md-2 column">Stelle hotel:</div>
@@ -274,6 +278,7 @@
 
 
 								</div>
+								</h:form>
 							</div>
 						</h:panelGroup>
 						<!-- ESCURSIONE -->
@@ -282,6 +287,8 @@
 								<div class="panel-heading">
 									<h6 class="panel-title">Prodotto base escursione</h6>
 								</div>
+								
+								<h:form id="excForm">
 								<div class="panel-body">
 
 
@@ -303,10 +310,11 @@
 
 									<div class="row clearfix" style="margin-top: 60px"></div>
 									<div class="col-md-2 column">Città:</div>
-									<div class="col-md-4 column"></div>
+									<div class="col-md-4 column"><p:inputText  value="#{EditBaseProduct.excursionCityName}" /></div>
 
 									<div class="col-md-2 column">Stato:</div>
-									<div class="col-md-4 column"></div>
+									
+									<div class="col-md-4 column"><p:inputText  value="#{EditBaseProduct.excursionCityCountry}" /></div>
 
 
 									<div class="row clearfix" style="margin-top: 60px"></div>
@@ -368,6 +376,7 @@
 
 
 								</div>
+								</h:form>
 							</div>
 						</h:panelGroup>
 					</div>
@@ -399,7 +408,7 @@
 				<div class="row clearfix" style="margin-top: 80px"></div>
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<p:commandButton value="Aggiungi" ajax="true" onclick="dateDialog.hide()" update=":tableDateFlight:dateFlight,:tableDateExc:dateExc"
+					<p:commandButton value="Aggiungi" ajax="true" onclick="dateDialog.hide()" update=":flightForm:tableDateFlight:dateFlight,:excForm:tableDateExc:dateExc"
 						action="#{EditBaseProduct.addDatePersonalization()}"
 						styleClass="btn btn-default btn-lg btn-block" />
 				</div>
@@ -435,7 +444,7 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 			
-					<p:commandButton value="Aggiungi" ajax="true" onclick="classDialog.hide()" update=":tableClassFlight:classFlight,:tableClassHotel:classHotel"
+					<p:commandButton value="Aggiungi" ajax="true" onclick="classDialog.hide()" update=":flightForm:tableClassFlight:classFlight,:hotelForm:tableClassHotel:classHotel"
 						action="#{EditBaseProduct.addClassPersonalization()}"
 						styleClass="btn btn-default btn-lg btn-block" />
 				</div>

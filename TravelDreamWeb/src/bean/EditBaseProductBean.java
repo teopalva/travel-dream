@@ -142,6 +142,7 @@ public class EditBaseProductBean {
 
 	public void setCompany(String company) {
 		selectedProduct.setCompany(company);
+		
 	}
 	
 	public List<PossibleDatePersonalizationDTO> getDatePersonalizations() {
@@ -273,6 +274,7 @@ public class EditBaseProductBean {
 	public void setDepartureAirport(String departureAirport) {
 		FlightDTO flight = getFlight();
 		flight.setAirportDeparture(departureAirport);
+	
 	}
 
 	public String getArrivalAirport() {
@@ -421,6 +423,7 @@ public class EditBaseProductBean {
 	// Method to apply to the EJBs the class attributes values when the user clicks on confirm button:
 
 	public void confirm() {
+		System.out.println(selectedProduct.toString());
 		if(selectedProduct != null)
 			try {
 				bpEJB.saveBaseProduct(selectedProduct);
