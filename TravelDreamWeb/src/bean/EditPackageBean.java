@@ -25,6 +25,7 @@ import dto.PersonalizedExcursionDTO;
 import dto.PersonalizedFlightDTO;
 import dto.PersonalizedHotelDTO;
 import dto.PersonalizedProductDTO;
+import exceptions.PackageNotValidException;
 
 @ManagedBean(name = "EditPackage")
 @ViewScoped
@@ -48,6 +49,18 @@ public class EditPackageBean {
     private boolean hotelSelected = true;
     private boolean flightSelected = true;
     private boolean excursionSelected = true;
+    
+    //Single objects setted on drag&drop
+    private PersonalizedFlightDTO outboundFlight = new PersonalizedFlightDTO();
+    private PersonalizedFlightDTO returnFlight = new PersonalizedFlightDTO();
+    private PersonalizedHotelDTO hotel = new PersonalizedHotelDTO();
+    private PersonalizedExcursionDTO excursion = new PersonalizedExcursionDTO();
+    
+    //Possible baseProduct that can be added - if null every baseProduct can be added
+    private FlightDTO baseFlight0 = null;
+    private FlightDTO baseFlight1 = null;
+    private HotelDTO baseHotel = null;
+    private ExcursionDTO baseExcursion = null;
 
 	@EJB
 	private BaseProductEJBLocal baseProductEJB;
@@ -69,13 +82,57 @@ public class EditPackageBean {
 	public void init() {
 		if (sessionStorage.getSelectedPackage() == null) {
 			selectedPackage = new PackageDTO();
+			selectedPackage.setName("");
+			// TODO remove
+			/*
 			selectedPackage.getPersonalizedProducts().add(new PersonalizedFlightDTO());
 			selectedPackage.getPersonalizedProducts().add(new PersonalizedFlightDTO());
 			selectedPackage.getPersonalizedProducts().add(new PersonalizedHotelDTO());
 			selectedPackage.getPersonalizedProducts().add(new PersonalizedExcursionDTO());
+			*/
 		} else {
+			//Reconstruct the packageDTO structure in temporary variables
 			selectedPackage = sessionStorage.getSelectedPackage();
+			List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
+			outboundFlight = new PersonalizedFlightDTO();
+		    returnFlight = new PersonalizedFlightDTO();
+		    hotel = new PersonalizedHotelDTO();
+		    excursion = new PersonalizedExcursionDTO();
+			for(PersonalizedProductDTO p : selectedPackage.getPersonalizedProducts()) {
+				if(p instanceof PersonalizedFlightDTO) {
+					flights.add((PersonalizedFlightDTO)p);
+				}
+				if(p instanceof PersonalizedHotelDTO) {
+					hotel = (PersonalizedHotelDTO)p;
+					baseHotel = hotel.getHotel();
+				}
+				if(p instanceof PersonalizedExcursionDTO) {
+					excursion = (PersonalizedExcursionDTO)p;
+					baseExcursion = excursion.getExcursion();
+				}
+			}
+			if(flights.size() == 2) {
+				try {
+					if(flights.get(0).getDatePersonalization().getInitialDate().before(flights.get(1).getDatePersonalization().getInitialDate())) {
+						outboundFlight = flights.get(0);
+						returnFlight = flights.get(1);
+						baseFlight0 = flights.get(0).getFlight();
+						baseFlight1 = flights.get(1).getFlight();
+					} else {
+						outboundFlight = flights.get(1);
+						returnFlight = flights.get(0);
+						baseFlight0 = flights.get(1).getFlight();
+						baseFlight1 = flights.get(0).getFlight();
+					}
+				} catch(NullPointerException | IndexOutOfBoundsException e) {
+					//No problem
+				}
+				
+			}
+			
+			
 		}
+		// TODO remove
 		// restore home selections
 		//sessionStorage.setFlightSelected(true);
 		//sessionStorage.setHotelSelected(true);
@@ -287,10 +344,29 @@ public class EditPackageBean {
 	}
 
 	/**
-	 * Substitutes current product at index based on its type with the selected one.
+	 * Synchronize the products with PackageDTO
 	 */
 	private void updatePackage(int category, PersonalizedProductDTO p) {
-		selectedPackage.getPersonalizedProducts().set(category, p);
+		switch(category) {
+			case 0:		//Outbound flight
+				selectedPackage.getPersonalizedProducts().remove(outboundFlight);	//Remove old
+				outboundFlight = (PersonalizedFlightDTO)p;							//Update 
+				break;
+			case 1:		//Inbound flight
+				selectedPackage.getPersonalizedProducts().remove(returnFlight);
+				returnFlight = (PersonalizedFlightDTO)p;
+				break;
+			case 2:		//Hotel
+				selectedPackage.getPersonalizedProducts().remove(hotel);
+				hotel = (PersonalizedHotelDTO)p;
+				break;
+			case 3:		//Excursion
+				selectedPackage.getPersonalizedProducts().remove(excursion);
+				excursion = (PersonalizedExcursionDTO)p;
+				break;
+		}
+		selectedPackage.addPersonalizedProduct(p);	//Add new
+		//selectedPackage.getPersonalizedProducts().set(category, p);
 	}
 
 	/**
@@ -330,13 +406,13 @@ public class EditPackageBean {
 	 * @return the checkout page URL
 	 */
 	public String showCheckout() {
-		// if (packageEJB.isValidForTDC(selectedPackage)) { //TODO activate!
-		sessionStorage.setSelectedPackage(selectedPackage);
-		sessionStorage.setPreviousPage("edit");
-		return "/user/checkout?faces-redirect=true";
-		// } else {
-		// return null;
-		// }
+		if (packageEJB.isValidForTDC(selectedPackage)) { //TODO activate!
+			sessionStorage.setSelectedPackage(selectedPackage);
+			sessionStorage.setPreviousPage("edit");
+			return "/user/checkout?faces-redirect=true";
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -347,4 +423,46 @@ public class EditPackageBean {
 	public boolean isNotValidForTDC() {
 		return !packageEJB.isValidForTDC(selectedPackage);
 	}
+
+	
+	//Getters and setters for drag&drop
+	public PersonalizedFlightDTO getOutboundFlight() {
+		return outboundFlight;
+	}
+
+	public void setOutboundFlight(PersonalizedFlightDTO outboundFlight) {
+		this.outboundFlight = outboundFlight;
+	}
+
+	public PersonalizedHotelDTO getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(PersonalizedHotelDTO hotel) {
+		this.hotel = hotel;
+	}
+
+	public PersonalizedExcursionDTO getExcursion() {
+		return excursion;
+	}
+
+	public void setExcursion(PersonalizedExcursionDTO excursion) {
+		this.excursion = excursion;
+	}
+
+	public void setOutboundFlights(List<PersonalizedFlightDTO> outboundFlights) {
+		this.outboundFlights = outboundFlights;
+	}
+
+	public PersonalizedFlightDTO getReturnFlight() {
+		return returnFlight;
+	}
+
+	public void setReturnFlight(PersonalizedFlightDTO returnFlight) {
+		this.returnFlight = returnFlight;
+	}
+	
+	
+	
+	
 }

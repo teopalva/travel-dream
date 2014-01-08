@@ -93,8 +93,10 @@ public class PackageEJB implements PackageEJBLocal {
 		if(image != null)
 			_package.setImage(image);
 
-		if (_package.getName() == null)
+		if (_package.getName() == null) {
+			System.err.println("The name of the package is null");
 			throw new NotValidPackageException();
+		}
 
 		try {
 			// Create personalized product list

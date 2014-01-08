@@ -184,21 +184,21 @@ function handleDrop(event, ui) {
 									
 										<p:panel id="departureFlight" header="Volo di andata" style="display:block;overflow:auto;margin-bottom:20px">
 											<div class="col-md-6">
-												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.name}</center>
+												<center>#{EditPackage.outboundFlight.flight.name}</center>
 											</div>
 										<div class="col-md-6" style="margin-bottom:20px">
 											<center>
-												#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}
+												#{EditPackage.outboundFlight.flight.company}
 											</center>
 										</div>
 
 										<dl class="dl-horizontal">
 											<dt>Prezzo</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].getPrice()} €</dd>
+											<dd>#{EditPackage.outboundFlight.getPrice()} €</dd>
 											<dt>Data</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getInitialDate()}</dd>
+											<dd>#{EditPackage.outboundFlight.datePersonalization.getInitialDate()}</dd>
 											<dt>Durata</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getDuration()}</dd>
+											<dd>#{EditPackage.outboundFlight.datePersonalization.getDuration()}</dd>
 										</dl>
 
 										<p:droppable scope="departureFlight" onDrop="handleDrop">
@@ -210,19 +210,19 @@ function handleDrop(event, ui) {
 
 										<p:panel id="returnFlight" header="Volo di ritorno" style="display:block;overflow:auto;margin-bottom:20px">
 											<div class="col-md-6">
-												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.name}</center>
+												<center>#{EditPackage.returnFlight.flight.name}</center>
 											</div>
 											<div class="col-md-6" style="margin-bottom:20px">
-												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.company}</center>
+												<center>#{EditPackage.returnFlight.flight.company}</center>
 											</div>
 											
 											<dl class="dl-horizontal">
 											<dt>Prezzo</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].getPrice()} €</dd>
+											<dd>#{EditPackage.returnFlight.getPrice()} €</dd>
 											<dt>Data</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getInitialDate()}</dd>
+											<dd>#{EditPackage.returnFlight.datePersonalization.getInitialDate()}</dd>
 											<dt>Durata</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getDuration()}</dd>
+											<dd>#{EditPackage.returnFlight.datePersonalization.getDuration()}</dd>
 											</dl>
 											
 											<p:droppable scope="returnFlight" onDrop="handleDrop">
@@ -233,17 +233,17 @@ function handleDrop(event, ui) {
 									
 										<p:panel id="hotel" header="Hotel" style="display:block;overflow:auto;margin-bottom:20px">
 											<div class="col-md-6">
-												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.name}</center>
+												<center>#{EditPackage.hotel.hotel.name}</center>
 											</div>
 											<div class="col-md-6" style="margin-bottom:20px">
-												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.company}</center>
+												<center>#{EditPackage.hotel.hotel.company}</center>
 											</div>
 											
 											<dl class="dl-horizontal">
 											<dt>Prezzo</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[2].getPrice()} €</dd>
+											<dd>#{EditPackage.hotel.getPrice()} €</dd>
 											<dt>Classe</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].classPersonalization._class}</dd>
+											<dd>#{EditPackage.hotel.classPersonalization._class}</dd>
 											</dl>
 											
 											<p:droppable scope="hotel" onDrop="handleDrop">
@@ -253,19 +253,19 @@ function handleDrop(event, ui) {
 										
 										<p:panel id="excursion" header="Escursione" style="display:block;overflow:auto">
 											<div class="col-md-6" >
-												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.name}</center>
+												<center>#{EditPackage.excursion.excursion.name}</center>
 											</div>
 											<div class="col-md-6" style="margin-bottom:20px">
-												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.company}</center>
+												<center>#{EditPackage.excursion.excursion.company}</center>
 											</div>
 											
 											<dl class="dl-horizontal">
 											<dt>Prezzo</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].getPrice()} €</dd>
+											<dd>#{EditPackage.excursion.getPrice()} €</dd>
 											<dt>Data</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].datePersonalization.getInitialDate()}</dd>
+											<dd>#{EditPackage.excursion.datePersonalization.getInitialDate()}</dd>
 											<dt>Durata</dt>
-											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].datePersonalization.getDuration()}</dd>
+											<dd>#{EditPackage.excursion.datePersonalization.getDuration()}</dd>
 											</dl>
 											
 											<p:droppable scope="excursion" onDrop="handleDrop">
