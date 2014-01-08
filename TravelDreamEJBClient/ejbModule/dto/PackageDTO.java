@@ -197,6 +197,13 @@ public class PackageDTO {
     		}
     	}
     	price *= this.numPeople;
+    	price -= price*this.reduction;
+    	
+    	//Price can't be negative
+    	if(price<0) {
+    		System.err.println("Negative price for PackageDTO: "+this.toString());
+    		price = 0;
+    	}
     	return price;
     }
     
@@ -221,12 +228,16 @@ public class PackageDTO {
     	if(flights.size() != 2)
     		return null;
     	
-    	Date date1 = flights.get(0).getDatePersonalization().getInitialDate();
-    	Date date2 = flights.get(1).getDatePersonalization().getInitialDate();
-    	if(date1.before(date2))
-    		return flights.get(0).getDatePersonalization().getFinalDate();
-    	else
-    		return flights.get(1).getDatePersonalization().getFinalDate();
+    	try {
+	    	Date date1 = flights.get(0).getDatePersonalization().getInitialDate();
+	    	Date date2 = flights.get(1).getDatePersonalization().getInitialDate();
+	    	if(date1.before(date2))
+	    		return flights.get(0).getDatePersonalization().getFinalDate();
+	    	else
+	    		return flights.get(1).getDatePersonalization().getFinalDate();
+    	} catch (NullPointerException e) {
+    		return null;
+    	}
     }
     
     /**
@@ -246,12 +257,16 @@ public class PackageDTO {
     	if(flights.size() != 2)
     		return null;
     	
-    	Date date1 = flights.get(0).getDatePersonalization().getInitialDate();
-    	Date date2 = flights.get(1).getDatePersonalization().getInitialDate();
-    	if(date1.before(date2))
-    		return flights.get(1).getDatePersonalization().getInitialDate();
-    	else
-    		return flights.get(2).getDatePersonalization().getInitialDate();
+    	try {	
+	    	Date date1 = flights.get(0).getDatePersonalization().getInitialDate();
+	    	Date date2 = flights.get(1).getDatePersonalization().getInitialDate();
+	    	if(date1.before(date2))
+	    		return flights.get(1).getDatePersonalization().getInitialDate();
+	    	else
+	    		return flights.get(0).getDatePersonalization().getInitialDate();
+    	} catch(NullPointerException e) {
+    		return null;
+    	}
     }
 
     @Override
