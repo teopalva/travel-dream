@@ -33,7 +33,8 @@ public class UserDTO {
 	    this.group = groups.get(0).getId();
 	} else {
 	    System.err.println("groups not found");
-	    throw new FieldNotPresentException();
+	    //throw new FieldNotPresentException();
+	    this.group = "TDF";
 	}
     }
 
