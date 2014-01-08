@@ -46,9 +46,11 @@
 					<div class="col-md-4 column">
 						<h2>Invita degli amici</h2>
 						<p>Qui puoi invitare degli amici ad unirsi al tuo viaggio!</p>
-						<h:form>
+						<h:form id="mailForm">
 						<ui:repeat value="#{Checkout.emails}" var="item" varStatus="id"> 
-							<p:inputText styleClass="form-control" placeholder="e-mail" value="#{Checkout.emails[id.index]}"/>
+							<p:inputText id="email" styleClass="form-control" placeholder="e-mail" value="#{Checkout.emails[id.index]}" required="true" validatorMessage="Email non valida."> 
+							 <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)"/>
+							</p:inputText>
 						<br></br>
 						</ui:repeat>
 								
@@ -62,6 +64,9 @@
         						<h:outputText value="" />  
 							</f:facet>  
 						</p:ajaxStatus> 
+						
+						<h:message for="invitelist" />
+						
 						</h:form>
 					</div>
 					</h:panelGroup>

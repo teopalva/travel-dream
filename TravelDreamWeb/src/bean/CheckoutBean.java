@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import coreEJB.AuthenticationEJBLocal;
 import coreEJB.BuyingListItemEJBLocal;
@@ -186,8 +188,13 @@ public class CheckoutBean {
     public String showInvitationList() {
 	// send emails & add tmpPackage to invitationList
 	for (String email : emails) {
-	    UserDTO invited = new UserDTO(email, null, null, null, null);
-	    try {
+		if (email.equals("")) {
+		    FacesMessage message = new FacesMessage("Il campo Email non può essere vuoto.");
+		    FacesContext.getCurrentInstance().addMessage("mailForm:invitelist", message);
+		   return null; 
+		}
+		UserDTO invited = new UserDTO(email, null, null, null, null);
+  try {
 		invitationEJB.sendInvitation(new InvitationDTO(user, invited, selectedPackage, null, false));
 	    } catch (NotValidInvitationException e) {
 		System.err.printf("Errore durante l'operazione, riprova.");
