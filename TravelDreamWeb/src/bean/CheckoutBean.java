@@ -61,12 +61,12 @@ public class CheckoutBean {
 	} catch (NotAuthenticatedException e) {
 	    // No problem: user area
 	}
-	int numPeople = getNumPeople();
+	selectedPackage = sessionStorage.getSelectedPackage();
+	int numPeople = selectedPackage.getNumPeople();
 	emails = new ArrayList<String>(numPeople);
 	for (int i = 0; i < numPeople; i++) {
 	    emails.add("");
 	}
-	selectedPackage = sessionStorage.getSelectedPackage();
     }
 
     public SessionStorageBean getSessionStorage() {
@@ -79,10 +79,6 @@ public class CheckoutBean {
 
     public void setEmails(List<String> emails) {
 	this.emails = emails;
-    }
-
-    public int getNumPeople() {
-	return sessionStorage.getSelectedPackage().getNumPeople();
     }
 
     public void addMail(String mail) {
@@ -188,14 +184,15 @@ public class CheckoutBean {
     public String showInvitationList() {
 	// send emails & add tmpPackage to invitationList
 	for (String email : emails) {
-		if (email.equals("")) {
-		    FacesMessage message = new FacesMessage("Il campo Email non può essere vuoto.");
-		    FacesContext.getCurrentInstance().addMessage("mailForm:invitelist", message);
-		   return null; 
-		}
-		UserDTO invited = new UserDTO(email, null, null, null, null);
-  try {
-		invitationEJB.sendInvitation(new InvitationDTO(user, invited, selectedPackage, null, false));
+	    if (email.equals("")) {
+		FacesMessage message = new FacesMessage("Il campo Email non può essere vuoto.");
+		FacesContext.getCurrentInstance().addMessage("mailForm:invitelist", message);
+		return null;
+	    }
+	    UserDTO invited = new UserDTO(email, null, null, null, null);
+	    PackageDTO p = new PackageDTO(selectedPackage);
+	    try {
+		invitationEJB.sendInvitation(new InvitationDTO(user, invited, p, null, false));
 	    } catch (NotValidInvitationException e) {
 		System.err.printf("Errore durante l'operazione, riprova.");
 		e.printStackTrace();

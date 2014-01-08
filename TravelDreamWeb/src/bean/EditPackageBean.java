@@ -412,8 +412,10 @@ public class EditPackageBean {
      */
     public String showCheckout() {
 	// if (packageEJB.isValidForTDC(selectedPackage)) {
-	selectedPackage.setName(packageName);
-	try {	//TODO
+	if (!packageName.equals("")) {
+	    selectedPackage.setName(packageName);
+	}
+	try { // TODO
 	    selectedPackage.setNumPeople(numPeople);
 	} catch (NullPointerException e) {
 	    numPeople = 1;
@@ -435,7 +437,7 @@ public class EditPackageBean {
     public String savePackageTDE() {
 	// if (packageEJB.isValidForOfferings(selectedPackage)) { //TODO activate!
 	selectedPackage.setName(packageName);
-	try {	//TODO
+	try { // TODO
 	    selectedPackage.setNumPeople(numPeople);
 	} catch (NullPointerException e) {
 	    numPeople = 1;

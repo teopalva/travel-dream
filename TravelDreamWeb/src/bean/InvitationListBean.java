@@ -21,7 +21,6 @@ import exceptions.NotValidUserException;
 @ViewScoped
 public class InvitationListBean {
     private UserDTO user;
-    private PackageDTO selectedPackage = null;
 
     @EJB
     private InvitationEJBLocal invitationEJB;
@@ -47,14 +46,6 @@ public class InvitationListBean {
 
     public void setSessionStorage(SessionStorageBean sessionStorage) {
 	this.sessionStorage = sessionStorage;
-    }
-
-    public PackageDTO getSelectedPackage() {
-	return selectedPackage;
-    }
-
-    public void setSelectedPackage(PackageDTO selectedPackage) {
-	this.selectedPackage = selectedPackage;
     }
 
     /**
@@ -100,8 +91,8 @@ public class InvitationListBean {
      * 
      * @return the checkout page URL
      */
-    public String showCheckout() {
-	sessionStorage.setSelectedPackage(selectedPackage);
+    public String showCheckout(PackageDTO p) {
+	sessionStorage.setSelectedPackage(p);
 	sessionStorage.setPreviousPage("invitation");
 	return "/user/checkout?faces-redirect=true";
     }
