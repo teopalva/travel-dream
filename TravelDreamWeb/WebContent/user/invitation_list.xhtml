@@ -53,9 +53,12 @@ function showDetail(id,text,btn) {
 							
 							 
 								<div class="caption">
-									<h4 style="margin-bottom:40px">#{item.name}</h4>
-										<p:commandButton id="checkout" value="Ordina" styleClass="btn btn-primary btn-lg btn-block"  action="#{InvitationList.showCheckout()}" />
-		
+											<div class="col-md-8">
+											<h4>#{item.name}</h4>
+											</div>
+											<div class="col-md-4" style="margin-bottom:20px">
+											<p:commandButton id="checkout" value="Ordina" styleClass="btn btn-primary btn-lg btn-block"  action="#{GiftList.showCheckout(item._package)}" />
+											</div>
 								<div class="panel panel-default" style="margin-bottom:40px" >
   									<div class="panel-heading">
     									<h6 class="panel-title">Invitati</h6>
