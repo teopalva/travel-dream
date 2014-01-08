@@ -2,15 +2,342 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<h:head>
-	<title>	EDIT PACKAGE</title>
-</h:head>
-<h:body>
-	EDIT PACKAGE
-                      
-</h:body>
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+	
+	<f:metadata>
+	<f:viewParam name="f" value="#{EditPackage.flightSelected}" />
+	</f:metadata>
+	<f:metadata>
+	<f:viewParam name="h" value="#{EditPackage.hotelSelected}" />
+	</f:metadata>
+	<f:metadata>
+	<f:viewParam name="e" value="#{EditPackage.excursionSelected}" />
+	</f:metadata>
+	
+		<h:body>
+
+<script>
+function handleDrop(event, ui) {
+
+	var draggable = ui.draggable, //draggable element, a jQuery object
+	helper = ui.helper, //helper element of draggable, a jQuery object
+	position = ui.position, //position of draggable helper
+	offset = ui.offset; //absolute position of draggable helper
+	
+	//draggable.hide();
+	//alert(draggable.attr("id"));
+	
+} 
+
+</script>
+			<div class="container" style="margin-top:20px">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+
+						<nav class="navbar navbar-default" role="navigation">
+
+
+						<div class="collapse navbar-collapse"
+							id="bs-example-navbar-collapse-1">
+
+
+							<h:form class="navbar-form navbar-left" role="search">
+								<div class="col-md-2 column">
+									Partenza da:
+									<p:inputText value="#{EditPackage.departurePlace}"
+										id="departurePlace" />
+								</div>
+								<div class="col-md-2 column" style="margin-left: 10px">
+									Destinazione:
+									<p:inputText value="#{EditPackage.arrivalPlace}"
+										id="arrivalPlace" />
+								</div>
+								<div class="col-md-2 column" style="margin-left: 20px">
+									Data partenza:
+									<p:calendar value="#{EditPackage.departureDate}"
+										id="departureCal" locale="it" pattern="dd/MM/yyyy" />
+								</div>
+								<div class="col-md-2 column" style="margin-left: 10px">
+									Data ritorno:
+									<p:calendar value="#{EditPackage.returnDate}" id="returnCal"
+										locale="it" pattern="dd/MM/yyyy" />
+								</div>
+								<div class="col-md-2 column" style="margin-left: 20px">
+									Numero persone:
+									<p:spinner id="people" value="#{EditPackage.numPeople}" min="0" max="10" size="2"  style="border: 0px; height:30px;"/>
+								</div>
+								<div class="col-md-1 column"
+									style="margin-left: 20px; padding-top: 20px">
+									<p:commandButton value="Cerca" ajax="true"
+										action="#{EditPackage.submitSearch()}"
+										update=":p_flights_d,:p_flights_r,:p_hotels,:p_exc"
+										styleClass="btn btn-primary" id="buttonSearch" />
+								</div>
+							</h:form>
+
+						</div>
+
+						</nav>
+					</div>
+					
+				</div>
+				
+				
+				<h:panelGroup rendered="#{EditPackage.isNotValidForTDC()}" id="alert">
+						<div class="alert alert-danger">
+									<b>Attenzione</b> Il pacchetto non è completato correttamente!
+						</div>
+				</h:panelGroup>
+				
+				<div class="row clearfix">
+				
+					<div class="col-md-3 column">
+						<h:panelGroup styleClass="listScroll" id="p_flights_d" rendered="#{EditPackage.isFlightSelected()}">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Volo di andata</h3>
+								</div>
+								<div id="draggable">
+								<ul class="list-group">
+								<c:forEach items="#{EditPackage.getOutboundFlights()}" var="item">
+										 <li style="margin-bottom:-30px"><p:outputPanel id="_0_#{item.dropIndex}"  styleClass="well well-sm" style="z-index:10;">#{item.flight.name} #{item.getPrice()} €<p:draggable scope="departureFlight" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+								</c:forEach>
+								</ul>
+								</div>
+								<ul class="list-group"><li class="panel-footer list-group-item"></li></ul>
+
+							</div>
+						</h:panelGroup>
+
+						<h:panelGroup styleClass="listScroll" id="p_flights_r" rendered="#{EditPackage.isFlightSelected()}">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Volo di ritorno</h3>
+								</div>
+								<div id="draggable">
+								<ul class="list-group">
+								<c:forEach items="#{EditPackage.getReturnFlights()}" var="item">
+										 <li style="margin-bottom:-30px"><p:outputPanel id="_1_#{item.dropIndex}"  styleClass="well well-sm"  style="z-index:10;">#{item.flight.name} #{item.getPrice()} €<p:draggable scope="returnFlight" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+								</c:forEach>
+								</ul>
+								</div>
+								<ul class="list-group"><li class="panel-footer list-group-item"></li></ul>
+							</div>
+						</h:panelGroup>
+
+					</div>
+					
+		
+					
+					<div class="col-md-6 column">
+
+
+
+
+						<div class="thumbnail" style="z-index:0;">
+
+
+							<div class="row clearfix" style="margin-top: 10px">
+								<div class="col-md-8 column" style="padding-left: 24px">
+									<h3>#{EditPackage.selectedPackage.name}</h3>
+								</div>
+
+								<div class="col-md-4 column"
+									style="padding-right: 24px; margin-top: 16px">
+									
+
+									<p:commandButton id="checkout" value="Conferma" styleClass="btn btn-primary btn-lg btn-block"  action="#{EditPackage.showCheckout()}" />
+								</div>
+							</div>
+
+
+							<div class="caption">
+
+								<div class="jumbotron" style="margin-top: 10px">
+
+									<div>
+										<div class="col-md-4 column">
+											<h:graphicImage library="images" name="image_ny.png"
+												class="img-rounded"
+												style="width:130%;height:130%;margin-top:-50px;margin-left:-70px;" />
+										</div>
+										<p:outputPanel id="price">
+										<div class="col-md-8 column"
+											style="margin-top: -20px; margin-left: -40px">
+											<h4>Prezzo totale: #{EditPackage.calculatePrice()} €</h4>
+										</div>
+										</p:outputPanel>
+									</div>
+
+								</div>
+
+<p:outputPanel id="slot">
+						
+									
+									
+										<p:panel id="departureFlight" header="Volo di andata" style="display:block;overflow:auto;margin-bottom:20px">
+											<div class="col-md-6">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[0].flight.name}</center>
+											</div>
+										<div class="col-md-6" style="margin-bottom:20px">
+											<center>
+												#{EditPackage.selectedPackage.personalizedProducts[0].flight.company}
+											</center>
+										</div>
+
+										<dl class="dl-horizontal">
+											<dt>Prezzo</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].getPrice()} €</dd>
+											<dt>Data</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getInitialDate()}</dd>
+											<dt>Durata</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getDuration()}</dd>
+										</dl>
+
+										<p:droppable scope="departureFlight" onDrop="handleDrop">
+												<p:ajax listener="#{EditPackage.onDrop}" update=":departureFlight,:price,:alert" ajax="true"/>
+											</p:droppable>
+										</p:panel> 
+									
+							
+
+										<p:panel id="returnFlight" header="Volo di ritorno" style="display:block;overflow:auto;margin-bottom:20px">
+											<div class="col-md-6">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.name}</center>
+											</div>
+											<div class="col-md-6" style="margin-bottom:20px">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[1].flight.company}</center>
+											</div>
+											
+											<dl class="dl-horizontal">
+											<dt>Prezzo</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].getPrice()} €</dd>
+											<dt>Data</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getInitialDate()}</dd>
+											<dt>Durata</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getDuration()}</dd>
+											</dl>
+											
+											<p:droppable scope="returnFlight" onDrop="handleDrop">
+												<p:ajax listener="#{EditPackage.onDrop}" update=":returnFlight,:price,:alert" ajax="true"/>
+											</p:droppable>
+										</p:panel> 
+
+									
+										<p:panel id="hotel" header="Hotel" style="display:block;overflow:auto;margin-bottom:20px">
+											<div class="col-md-6">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.name}</center>
+											</div>
+											<div class="col-md-6" style="margin-bottom:20px">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[2].hotel.company}</center>
+											</div>
+											
+											<dl class="dl-horizontal">
+											<dt>Prezzo</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[2].getPrice()} €</dd>
+											<dt>Classe</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[1].classPersonalization._class}</dd>
+											</dl>
+											
+											<p:droppable scope="hotel" onDrop="handleDrop">
+												<p:ajax listener="#{EditPackage.onDrop}" update=":hotel,:price,:alert" ajax="true" />
+											</p:droppable>
+										</p:panel> 
+										
+										<p:panel id="excursion" header="Escursione" style="display:block;overflow:auto">
+											<div class="col-md-6" >
+												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.name}</center>
+											</div>
+											<div class="col-md-6" style="margin-bottom:20px">
+												<center>#{EditPackage.selectedPackage.personalizedProducts[3].excursion.company}</center>
+											</div>
+											
+											<dl class="dl-horizontal">
+											<dt>Prezzo</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].getPrice()} €</dd>
+											<dt>Data</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].datePersonalization.getInitialDate()}</dd>
+											<dt>Durata</dt>
+											<dd>#{EditPackage.selectedPackage.personalizedProducts[3].datePersonalization.getDuration()}</dd>
+											</dl>
+											
+											<p:droppable scope="excursion" onDrop="handleDrop">
+												<p:ajax listener="#{EditPackage.onDrop}" update="excursion,:price,:alert" ajax="true"/>
+											</p:droppable>
+										</p:panel> 
+
+
+									
+
+									
+						
+
+</p:outputPanel>
+
+								<p></p>
+							</div>
+						</div>
+
+
+
+
+					</div>
+					<div class="col-md-3 column">
+						<h:panelGroup styleClass="listScroll" id="p_hotels" rendered="#{EditPackage.isHotelSelected()}">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Seleziona un hotel</h3>
+								</div>
+								<div id="draggable">
+								<ul class="list-group">
+								<c:forEach items="#{EditPackage.getHotels()}" var="item">
+										 <li style="margin-bottom:-30px"><p:outputPanel id="_2_#{item.dropIndex}"  styleClass="well well-sm" >#{item.hotel.name} #{item.getPrice()} €<p:draggable scope="hotel" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+								</c:forEach>
+								</ul>
+								</div>
+								<ul class="list-group"><li class="panel-footer list-group-item"></li></ul>
+
+							</div>
+						</h:panelGroup>
+
+						
+						<h:panelGroup id="p_exc" rendered="#{EditPackage.isExcursionSelected()}">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Seleziona un escursione</h3>
+								</div>
+								
+								<div id="draggable">
+								<ul class="list-group">
+								<c:forEach items="#{EditPackage.getExcursions()}" var="item">
+										 <li style="margin-bottom:-30px"><p:outputPanel id="_3_#{item.dropIndex}"  styleClass="well well-sm" >#{item.excursion.name} #{item.getPrice()} €<p:draggable scope="excursion" revert="true" opacity="0.5" helper="clone" /> </p:outputPanel></li>			 
+								</c:forEach>
+								</ul>
+								</div>
+								<ul class="list-group"><li class="panel-footer list-group-item"></li></ul>
+							</div>
+						</h:panelGroup>
+
+
+
+
+					</div>
+
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-12 column"></div>
+				</div>
+			</div>
+
+
+		</h:body>
+	</ui:define>
+</ui:composition>
 </html>

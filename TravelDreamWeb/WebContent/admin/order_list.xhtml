@@ -35,7 +35,7 @@
 
 								<p:column headerText="Pacchetto" sortBy="_package.name">  #{bought._package.name}  </p:column>
 								<!-- CHECK THE UPDATE -->
-								<p:column headerText="Pagamento"> <p:commandButton action="#{OrderList.confirmPayment(bought)}" value="Ricevuto"  update=":boughtForm:boughtList,:paidForm,:paidList" styleClass="btn-block" /> </p:column>
+								<p:column headerText="Pagamento"> <p:commandButton action="#{OrderList.confirmPayment(bought)}" value="Ricevuto"  update="boughtList" styleClass="btn-block" /> </p:column>
 
 																
 								<f:facet name="footer">
@@ -61,7 +61,7 @@
 
 													<div class="col-md-8 column"
 														style="margin-top: -20px; margin-left: -40px">
-														<h4>Prezzo totale: €</h4>
+														<h4>Prezzo totale: #{OrderList.selectedItem._package.getPrice()}€</h4>
 													</div>
 												</div>
 

@@ -60,6 +60,8 @@ function showDetail(id,text,btn) {
 
 										<div class="caption">
 											<h4>#{item._package.name}</h4>
+											<p:commandButton id="checkout" value="Ordina" styleClass="btn btn-primary btn-lg btn-block"  action="#{GiftList.showCheckout(item._package)}" />
+		
 											Data di partenza: #{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getInitialDate()}<br></br>
 											Data di ritorno: #{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getInitialDate()}<p></p>
 											Partenza:
