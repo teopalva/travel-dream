@@ -298,6 +298,7 @@ public class BaseProductEJB implements BaseProductEJBLocal {
 			}
 		}
 		em.flush();
+		em.detach(flight);
     }
    
     public void saveHotel(HotelDTO hotelDTO)  throws NotValidBaseProductException {
@@ -456,6 +457,7 @@ public class BaseProductEJB implements BaseProductEJBLocal {
 			}
 		}
 		em.flush();
+		em.detach(hotel);
     }
     
     public void saveExcursion(ExcursionDTO excursionDTO)  throws NotValidBaseProductException {
@@ -601,6 +603,7 @@ public class BaseProductEJB implements BaseProductEJBLocal {
 			
 		}
 		em.flush();
+		em.detach(excursion);
     }
     
     /**
