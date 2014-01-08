@@ -110,8 +110,8 @@
 														
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
-														  <p:commandButton value="Rimuovi" ajax="true" 
-														  				   styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
+														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeDatePersonalization(pDate.getDatePersonalization())}"
+														  				   update="dateFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
 														</p:column>
 														
 													</p:dataTable>
@@ -150,8 +150,8 @@
 														
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
-														  <p:commandButton value="Rimuovi" ajax="true" 
-														  				   styleClass="btn btn-warning btn-block" id="buttonDeleteClass"/>
+														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeClassPersonalization(pClass.getClassPersonalization())}"
+														  				   update="classFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteClass"/>
 														</p:column>
 
 													</p:dataTable>
@@ -252,8 +252,8 @@
 														
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
-														  <p:commandButton value="Rimuovi" ajax="true" 
-														  				   styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
+														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeClassPersonalization(pClass.getClassPersonalization())}"
+														  				  update="classHotel" styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
 														</p:column>
 
 													</p:dataTable>
@@ -342,8 +342,8 @@
 														
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
-														  <p:commandButton value="Rimuovi" ajax="true" 
-														  				   styleClass="btn btn-warning btn-block" id="buttonDeleteClassExc"/>
+														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeDatePersonalization(pDate.getDatePersonalization())}"
+														  				  update="dateExc"  styleClass="btn btn-warning btn-block" id="buttonDeleteClassExc"/>
 														</p:column>
 														
 													</p:dataTable>
