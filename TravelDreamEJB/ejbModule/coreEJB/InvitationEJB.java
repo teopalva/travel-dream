@@ -153,6 +153,15 @@ public class InvitationEJB implements InvitationEJBLocal {
 		}
 	 }
 	 
+	 public void acceptInvitation(String hash) throws NotValidInvitationException {
+		 Invitation invitation = em.find(Invitation.class, hash);
+		 if(invitation == null)
+			 throw new NotValidInvitationException();
+		 invitation.setAccepted(true);
+		 em.merge(invitation);
+		 em.flush();
+	 }
+	 
 	 private String generateUniqueHash(String mail) {
 		 int count = 0;
 		 Invitation invitation = null;
@@ -197,5 +206,4 @@ public class InvitationEJB implements InvitationEJBLocal {
         formatter.close();
         return result;
      }
-
 }

@@ -17,4 +17,5 @@ public interface InvitationEJBLocal {
 	 public List<InvitationDTO> getInvitations(UserDTO userDTO) throws NotValidUserException;
 	 public List<InvitationDTO> getInvitations(PackageDTO packageDTO) throws NotValidPackageException;
 	 public InvitationDTO getInvitation(String hash);
+	 public void acceptInvitation(String hash) throws NotValidInvitationException;
 }
