@@ -15,6 +15,7 @@ import dto.GiftListItemDTO;
 import dto.PackageDTO;
 import dto.UserDTO;
 import exceptions.NotAuthenticatedException;
+import exceptions.NotPresentUserException;
 import exceptions.NotValidUserException;
 import exceptions.PackageNotValidException;
 
@@ -88,10 +89,15 @@ public class GiftListBean {
     public String retrieveName() throws NotAuthenticatedException {
 	if (friendMail.equals("")) {
 	    return "La mia lista regali";
-	     } else {
-	     return "Lista regali di " + userEJB.getUser(friendMail).getFirstName();
+	} else {
+	    try {
+		return "Lista regali di " + userEJB.getUser(friendMail).getFirstName();
+	    } catch (NotPresentUserException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
 	}
-	//return null;
+	return null;
     }
 
     /**
@@ -110,7 +116,7 @@ public class GiftListBean {
 	}
 	for (GiftListItemDTO i : l) {
 	    try {
-		PackageDTO rp = OfferingsListBean.reorderPackage(i.get_package());
+		PackageDTO rp = OfferingsListBean.reorderPackage(i.get_package());	//TODO reorder
 		i.set_package(rp);
 	    } catch (PackageNotValidException e) {
 		e.printStackTrace();
