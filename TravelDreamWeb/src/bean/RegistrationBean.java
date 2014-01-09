@@ -56,9 +56,15 @@ public class RegistrationBean {
 	    userEJB.saveUser(user);
 	    return back();
 	}
-	FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Utente gia' registrato", "TITOLO");
-	FacesContext.getCurrentInstance().addMessage("signin:email", message);
+	dioCagnella();
+	//FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Utente gia' registrato", "TITOLO");
+	//FacesContext.getCurrentInstance().addMessage("signin:email", message);
 	return null;
+    }
+    
+    private void dioCagnella() {
+    	FacesContext.getCurrentInstance().addMessage("alertRegistration", new FacesMessage(FacesMessage.SEVERITY_ERROR ,"Utente gia' registrato", "La mail che hai inserito e' gia' utilizzata per un altro utente"));
+	
     }
 
     /**
