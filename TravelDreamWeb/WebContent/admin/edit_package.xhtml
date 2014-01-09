@@ -149,10 +149,14 @@ function handleDrop(event, ui) {
 
 								<div class="col-md-4 column"
 									style="padding-right: 24px; margin-top: 16px">
-									
-
+									   
 									<p:commandButton id="checkout" value="Conferma" styleClass="btn btn-primary btn-lg btn-block"  action="#{EditPackage.savePackageTDE()}" />
 								</div>
+								</h:form>
+								<h:form>
+									<p:fileUpload fileUploadListener="#{EditPackage.handleImageUpload}" mode="advanced" dragDropSupport="false" update="messages" sizeLimit="100000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />  
+  
+    								<p:growl id="messages" showDetail="true"/>
 								</h:form>
 							</div>
 

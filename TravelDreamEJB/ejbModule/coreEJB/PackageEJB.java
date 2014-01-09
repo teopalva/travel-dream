@@ -90,8 +90,16 @@ public class PackageEJB implements PackageEJBLocal {
 		
 		//try to get the image
 		Image image = em.find(Image.class, packageDTO.getImageId());
-		if(image != null)
+		if(image != null) {
 			_package.setImage(image);
+		}
+		else if(packageDTO.getImageData() != null) {
+			//If contains image
+			image = new Image();
+			image.setData(packageDTO.getImageData());
+			em.persist(image);
+			_package.setImage(image);
+		}
 
 		if (_package.getName() == null) {
 			System.err.println("The name of the package is null");

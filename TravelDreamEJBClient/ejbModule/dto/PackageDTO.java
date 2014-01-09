@@ -16,6 +16,7 @@ public class PackageDTO {
     private String name;
     private double reduction;
     private int id;
+    private byte[] imageData;
     
     private List<InvitationDTO> invitations; //only for invitationListBean purposes
 
@@ -24,6 +25,7 @@ public class PackageDTO {
     public PackageDTO() {
     	this.id = -1;
     	this.personalizedProducts = new ArrayList<PersonalizedProductDTO>();
+    	imageData = null;
     }
 
     public PackageDTO(Package _package) throws FieldNotPresentException {
@@ -281,4 +283,14 @@ public class PackageDTO {
 				+ ", name=" + name + ", reduction=" + reduction + ", id=" + id
 				+ ", personalizedProducts=" + personalizedProducts + "]";
 	}
+
+	public byte[] getImageData() {
+		return imageData;
+	}
+
+	public void setImageData(byte[] imageData) {
+		this.imageData = imageData;
+	}
+	
+	
 }

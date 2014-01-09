@@ -1,16 +1,23 @@
 package bean;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.event.DragDropEvent;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 import coreEJB.BaseProductEJBLocal;
 import coreEJB.PackageEJBLocal;
@@ -435,7 +442,7 @@ public class EditPackageBean {
      * @return admin panel URL
      */
     public String savePackageTDE() {
-	// if (packageEJB.isValidForOfferings(selectedPackage)) { //TODO activate!
+	if (packageEJB.isValidForOffering(selectedPackage)) {
 	selectedPackage.setName(packageName);
 	try { // TODO
 	    selectedPackage.setNumPeople(numPeople);
@@ -451,9 +458,9 @@ public class EditPackageBean {
 	    e.printStackTrace();
 	}
 	return "/admin/index?faces-redirect=true";
-	// } else {
-	// return null;
-	// }
+	} else {
+	return null;
+	}
     }
 
     /**
@@ -500,6 +507,47 @@ public class EditPackageBean {
 
     public void setReturnFlight(PersonalizedFlightDTO returnFlight) {
 	this.returnFlight = returnFlight;
+    }
+    
+    public UploadedFile getImage() {  
+        return null;  
+    }  
+  
+    public void setImage(UploadedFile file) {  
+        selectedPackage.setImageData(file.getContents());
+    } 
+    
+    public void handleImageUpload(FileUploadEvent event) {  
+        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");  
+        FacesContext.getCurrentInstance().addMessage(null, msg);  
+        try {
+			selectedPackage.setImageData( this.getFileContents(event.getFile().getInputstream()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }  
+    
+    private byte[] getFileContents(InputStream in) {
+        byte[] bytes = null;
+        try {            
+            // write the inputStream to a FileOutputStream            
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            int read = 0;
+             bytes = new byte[1024];
+
+            while ((read = in.read(bytes)) != -1) {
+                bos.write(bytes, 0, read);
+            }
+            bytes = bos.toByteArray();
+            in.close();
+            in = null;
+            bos.flush();
+            bos.close();
+            bos = null;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return bytes;
     }
 
 }
