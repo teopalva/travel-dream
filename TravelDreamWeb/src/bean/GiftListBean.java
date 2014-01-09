@@ -67,13 +67,30 @@ public class GiftListBean {
     /**
      * 
      * @return the user's gift list
+     * @throws NotValidUserException 
      */
-    public List<GiftListItemDTO> retrieveGiftList() {
+    public List<GiftListItemDTO> retrieveGiftList() throws NotValidUserException {
     	 
-	if (friendMail.equals(""))
-	    return getList(user);
-	else
-	    return getList(new UserDTO(friendMail, null, null, null, null));
+    	if (friendMail.equals(""))
+				return getList(giftListEJB.getGiftListItem(user));
+
+		else {
+    	
+    		try {
+    			UserDTO friendUser = new UserDTO(friendMail, null, null, null, null);
+    			return getList(giftListEJB.getGiftListItem(friendUser));
+    		} catch (NotValidUserException e) {
+    			friendMail = "";
+    			FacesContext.getCurrentInstance().addMessage("alertMail", new FacesMessage(FacesMessage.SEVERITY_INFO,"Utente non trovato", "La mail che hai inserito non corrisponde a nessun utente"));
+    			
+    			System.err.print("NotValidUserException");
+    			e.printStackTrace();
+    			return getList(giftListEJB.getGiftListItem(user));
+    			
+    		}
+    	}
+
+    		
     }
 
     /**
@@ -88,10 +105,11 @@ public class GiftListBean {
      * 
      * @return the name of the friend searched by mail
      * @throws NotAuthenticatedException
+     * @throws NotPresentUserException 
      */
     public String retrieveName() throws NotAuthenticatedException {
 	if (friendMail.equals("")) {
-	    return "La mia lista regali";
+			return "La mia lista regali";
 	} else {
 	    try {
 		return "Lista regali di " + userEJB.getUser(friendMail).getFirstName();
@@ -109,40 +127,27 @@ public class GiftListBean {
      * @param user a UserDTO
      * @return
      */
-    private List<GiftListItemDTO> getList(UserDTO user) {
+    private List<GiftListItemDTO> getList(List<GiftListItemDTO> list) {
 
-	List<GiftListItemDTO> l = null;
-	try {
-	    l = giftListEJB.getGiftListItem(user);
-	} catch (NotValidUserException e) {
-	    System.err.print("NotValidUserException");
-	    e.printStackTrace();
-	}
-	for (GiftListItemDTO i : l) {
-	    try {
-		PackageDTO rp = OfferingsListBean.reorderPackage(i.get_package());	//TODO reorder
-		i.set_package(rp);
-	    } catch (PackageNotValidException e) {
-		e.printStackTrace();
-	    }
-	}
-	return l;
-    }
-
-    public void alert() {
-    	try {
-    		userEJB.getUser(friendMail);
-    	} catch (Exception e) {
-    		FacesContext.getCurrentInstance().addMessage("alertMail", new FacesMessage(FacesMessage.SEVERITY_INFO,"Prova messaggio", "Funziona2!"));
+    	for (GiftListItemDTO i : list) {
+    		try {
+    			PackageDTO rp = OfferingsListBean.reorderPackage(i.get_package());	//TODO reorder
+    			i.set_package(rp);
+    		} catch (PackageNotValidException e) {
+    			e.printStackTrace();
+    		}
     	}
+    	return list;
     }
+
     
     /**
      * 
      * @param p the selected PackageDTO
      * @return the checkout page URL
+     * @throws NotValidUserException 
      */
-    public String showCheckout(PackageDTO p) {
+    public String showCheckout(PackageDTO p) throws NotValidUserException {
 	sessionStorage.setSelectedPackage(p);
 	if (retrieveGiftList().contains(p)) {
 	    sessionStorage.setPreviousPage("gift_user");

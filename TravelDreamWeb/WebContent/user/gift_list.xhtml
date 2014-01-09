@@ -130,7 +130,7 @@ function showDetail(id,text,btn) {
 							<!--  fixare per il messaggio di errore -->
 							
 							<p:messages showDetail="true" for="alertMail" autoUpdate="true" closable="true" />  
-							<p:commandButton value="popup!" action="#{GiftList.alert()}"/>
+
 								<h:form id="giftEmail">
 									
 									
@@ -140,7 +140,7 @@ function showDetail(id,text,btn) {
 										
 
 
-									<p:commandButton value="Cerca" ajax="true" action="#{GiftList.alert()}"
+									<p:commandButton value="Cerca" ajax="true" 
 										update=":giftList,:giftDetail,:heading"
 										styleClass="btn btn-default" style="margin-left:20px;">
 									
