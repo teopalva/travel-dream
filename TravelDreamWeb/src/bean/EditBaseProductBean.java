@@ -411,6 +411,7 @@ public class EditBaseProductBean {
 			selectedProduct = null;	//Not selected
 		} else {
 			selectedProduct = sessionStorage.getSelectedProduct();
+			sessionStorage.setSelectedProduct(null);
 		}
 	}
 
