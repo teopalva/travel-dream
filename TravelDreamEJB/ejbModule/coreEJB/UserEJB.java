@@ -19,6 +19,7 @@ import entity.BuyingListItem;
 import entity.Group;
 import entity.User;
 import exceptions.FieldNotPresentException;
+import exceptions.NotPresentUserException;
 import exceptions.NotValidUserException;
 
 /**
@@ -39,10 +40,12 @@ public class UserEJB implements UserEJBLocal {
     public UserEJB() {
     }
     
-    public UserDTO getUser(String mail) {
+    public UserDTO getUser(String mail) throws NotPresentUserException {
     	if(mail == null)
     		throw new IllegalArgumentException();
     	User user = em.find(User.class, mail);
+    	if(user == null)
+    	    throw new NotPresentUserException();
     	try {
 			return new UserDTO(user);
 		} catch (FieldNotPresentException e) {

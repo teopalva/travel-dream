@@ -1,11 +1,14 @@
 package bean;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import coreEJB.UserEJBLocal;
 import dto.UserDTO;
+import exceptions.NotPresentUserException;
 
 @ManagedBean(name = "Registration")
 @RequestScoped
@@ -23,7 +26,7 @@ public class RegistrationBean {
     }
 
     // Bean properties:
-    
+
     public UserDTO getUser() {
 	return user;
     }
@@ -47,8 +50,15 @@ public class RegistrationBean {
      * @return the register page URL
      */
     public String register() {
-	userEJB.saveUser(user);
-	return back();
+	try {
+	    userEJB.getUser(user.getMail());
+	} catch (NotPresentUserException e) {
+	    userEJB.saveUser(user);
+	    return back();
+	}
+	FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Utente gia' registrato", "TITOLO");
+	FacesContext.getCurrentInstance().addMessage("signin:email", message);
+	return null;
     }
 
     /**
