@@ -35,7 +35,7 @@
 
 								<p:column headerText="Pacchetto" sortBy="_package.name">  #{bought._package.name}  </p:column>
 								<!-- CHECK THE UPDATE -->
-								<p:column headerText="Pagamento"> <p:commandButton action="#{OrderList.confirmPayment(bought)}" value="Ricevuto"  update="boughtList" styleClass="btn-block" /> </p:column>
+								<p:column headerText="Pagamento"><p:commandButton actionListener="#{OrderList.confirmPayment(bought)}"  value="Ricevuto"  ajax="true" update=":boughtForm:boughtList,:paidForm:paidList" styleClass="btn-block" /> </p:column>
 
 																
 								<f:facet name="footer">
@@ -48,7 +48,7 @@
 
 							<p:dialog id="boughtDialog" widgetVar="boughtDialog" resizable="false" style="margin-top:300px"
 								header="Dettaglio ordine"
-								width="640" height="480" hideEffect="puff">
+								width="640" height="480"  position="200,50">
 
 								<h:panelGroup id="display">
 
@@ -109,7 +109,7 @@
 
 											<div class="col-md-12 column"
 												style="margin-top: 16px">
-												
+												 
 											</div>
 											
 								</h:panelGroup>
@@ -148,8 +148,8 @@
 							</h:panelGroup>
 
 							<p:dialog id="paidDialog" widgetVar="paidDialog" resizable="false" style="margin-top:300px"
-								header="Dettaglio ordine"
-								width="640" height="480" hideEffect="puff">
+								header="Dettaglio ordine" position="200,50"
+								width="640" height="480">
 
 								<h:panelGroup id="display">
 
@@ -162,7 +162,7 @@
 
 													<div class="col-md-8 column"
 														style="margin-top: -20px; margin-left: -40px">
-														<h4>Prezzo totale: €</h4>
+														<h4>Prezzo totale: #{OrderList.selectedItem._package.getPrice()}€</h4>
 													</div>
 												</div>
 

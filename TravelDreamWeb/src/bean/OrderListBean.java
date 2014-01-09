@@ -75,6 +75,9 @@ public class OrderListBean {
     public void confirmPayment(BuyingListItemDTO item) {
 	try {
 	    buyingListEJB.setPaid(item);
+	    boughtList.clear();
+	    paidList.clear();
+	    retrieveLists();
 	} catch (NotValidBuyingListException e) {
 	    e.printStackTrace();
 	}

@@ -383,22 +383,22 @@
 				</h:panelGroup>
 			</div>
 
-			<p:dialog id="dateDialog" widgetVar="dateDialog"
+			<p:dialog id="dateDialog" widgetVar="dateDialog" focus="formdate:addB"
 				resizable="false" style="margin-top:300px" header="Aggiungi data"
-				width="800" height="300">
-				<h:form>
-				<div class="col-md-6">Data da aggiungere:</div>
+				width="800" height="240">
+				<h:form id="formdate">
+				<div class="col-md-6" style="margin-bottom: 30px">Data da aggiungere:</div>
 				<div class="col-md-6">
 					<p:calendar value="#{EditBaseProduct.date}" id="newDate"
 						locale="it" pattern="dd/MM/yyyy" placeholder="data partenza" />
 				</div>
-				<div class="row clearfix" style="margin-top: 80px"></div>
-				<div class="col-md-6">Durata:</div>
+				<div class="row clearfix" ></div>
+				<div class="col-md-6" style="margin-bottom: 30px" >Durata:</div>
 				<div class="col-md-4">
 					<p:inputText styleClass="form-control" id="duration" 
 						value="#{EditBaseProduct.duration}" />
 				</div>
-				<div class="row clearfix" style="margin-top: 80px"></div>
+				<div class="row clearfix" ></div>
 				<div class="col-md-6">Prezzo:</div>
 				<div class="col-md-4">
 					<p:inputText styleClass="form-control" id="price" 
@@ -408,7 +408,7 @@
 				<div class="row clearfix" style="margin-top: 80px"></div>
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<p:commandButton value="Aggiungi" ajax="true" onclick="dateDialog.hide()" update=":flightForm:tableDateFlight:dateFlight,:excForm:tableDateExc:dateExc"
+					<p:commandButton value="Aggiungi" id="addB" ajax="true" onclick="dateDialog.hide()" update=":flightForm:tableDateFlight:dateFlight,:excForm:tableDateExc:dateExc"
 						action="#{EditBaseProduct.addDatePersonalization()}"
 						styleClass="btn btn-default btn-lg btn-block" />
 				</div>
@@ -419,7 +419,7 @@
 
 			<p:dialog id="classDialog" widgetVar="classDialog" resizable="false"
 				style="margin-top:300px" header="Aggiungi Classe" width="800"
-				height="300">
+				height="170">
 				<h:form>
 				<div class="col-md-6">Tipo:</div>
 				<div class="col-md-4">
@@ -433,7 +433,7 @@
 					</p:selectOneMenu>
 				</div>
 
-				<div class="row clearfix" style="margin-top: 80px"></div>
+				<div class="row clearfix" style="margin-top: 1px"></div>
 				<div class="col-md-6">Prezzo:</div>
 				<div class="col-md-4">
 					<p:inputText styleClass="form-control" id="priceClass"
