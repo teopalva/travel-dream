@@ -4,13 +4,13 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import coreEJB.AuthenticationEJBLocal;
 import exceptions.EmptySelectionException;
 
 @ManagedBean(name = "Home")
-@RequestScoped
+@ViewScoped
 public class HomeBean {
 
     // strings for GET retrieval
