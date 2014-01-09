@@ -1,12 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head>
-<h:body>
-            Sorry, you made an Error. Please try again: <h:link	value="Login" outcome="login"/>
-</h:body>
+	<h:outputStylesheet name="css/bootstrap.min.css" />
+	<h:outputStylesheet name="css/DT_bootstrap.css" />
+	<h:outputStylesheet name="css/signin.css" />
+
+
+
+		<h:head>
+			<title>Login errato</title>
+						 
+		</h:head>
+
+
+
+		<h:body>
+		
+
+
+		<div class="container">
+				
+
+				
+							<center>Login errato, <h:link outcome="login" value="indietro" /></center>
+		
+		</div>
+		</h:body>
+
 </html>
