@@ -81,7 +81,7 @@ public class GiftListBean {
     			return getList(giftListEJB.getGiftListItem(friendUser));
     		} catch (NotValidUserException e) {
     			friendMail = "";
-    			FacesContext.getCurrentInstance().addMessage("alertMail", new FacesMessage(FacesMessage.SEVERITY_INFO,"Utente non trovato", "La mail che hai inserito non corrisponde a nessun utente"));
+    			FacesContext.getCurrentInstance().addMessage("alertMail", new FacesMessage(FacesMessage.SEVERITY_ERROR ,"Utente non trovato", "La mail che hai inserito non corrisponde a nessun utente"));
     			
     			System.err.print("NotValidUserException");
     			e.printStackTrace();
@@ -107,18 +107,13 @@ public class GiftListBean {
      * @throws NotAuthenticatedException
      * @throws NotPresentUserException 
      */
-    public String retrieveName (){
+    public String retrieveTitle (){
 	if (friendMail.equals("")) {
 			return "La mia lista regali";
 	} else {
-	    try {
-		return "Lista regali di " + userEJB.getUser(friendMail).getFirstName();
-	    } catch (NotPresentUserException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
+	    return "Lista regali di " + friendMail;
 	}
-	return null;
+
     }
 
     /**

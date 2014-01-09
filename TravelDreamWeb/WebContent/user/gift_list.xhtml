@@ -29,7 +29,7 @@ function showDetail(id,text,btn) {
 			<div class="container">
 				<h:panelGroup id="heading">
 					<center>
-						<h1 style="padding-bottom: 30px">#{GiftList.retrieveName()}
+						<h1 style="padding-bottom: 30px">#{GiftList.retrieveTitle()}
 						</h1>
 					</center>
 				</h:panelGroup>
@@ -44,6 +44,8 @@ function showDetail(id,text,btn) {
 									<a class="list-group-item" href="#"
 										onclick="showDetail('item_#{item._package.id}','',this); return false;"><b>#{item._package.name}</b><br></br>Prezzo: #{item._package.getPrice()} €</a>
 								</ui:repeat>
+							
+								
 							</h:panelGroup>
 						</div>
 
@@ -128,7 +130,7 @@ function showDetail(id,text,btn) {
 							<div class="panel-heading">Cerca lista amico</div>
 
 							<div class="panel-body">
-							<!--  fixare per il messaggio di errore -->
+			
 							
 							<p:messages showDetail="true" for="alertMail" autoUpdate="true" closable="true" />  
 
