@@ -26,6 +26,7 @@ import dto.PossibleDatePersonalizationDTO;
 import dto.PossibleDatePersonalizationExcursionDTO;
 import dto.PossibleDatePersonalizationFlightDTO;
 import exceptions.NotValidBaseProductException;
+import exceptions.NotValidPersonalizationException;
 import exceptions.PersonalizationNotSupportedException;
 
 @ManagedBean(name = "EditBaseProduct")
@@ -200,14 +201,20 @@ public class EditBaseProductBean {
 		throw new PersonalizationNotSupportedException();
 	}
 	
-	private void addDatePersonalization(DatePersonalizationDTO datePersonalization, double price) {
+	private void addDatePersonalization(DatePersonalizationDTO datePersonalization, double price) throws NotValidPersonalizationException {
 		if(getFlight() != null) {
 			FlightDTO flight = getFlight();
-			flight.addPersonalization(datePersonalization, price);
+			if(!checkDuplicateDate(flight.getPossibleDatePersonalizations(), datePersonalization))
+				flight.addPersonalization(datePersonalization, price);
+			else
+				throw new NotValidPersonalizationException();			
 		}
 		else if(getExcursion() != null) {
 			ExcursionDTO excursion = getExcursion();
-			excursion.addPersonalization(datePersonalization, price);
+			if(!checkDuplicateDate(excursion.getPossibleDatePersonalizations(), datePersonalization))
+				excursion.addPersonalization(datePersonalization, price);
+			else
+				throw new NotValidPersonalizationException();
 		}
 		else {
 			System.err.println("datePersonalizations not supported");
@@ -215,14 +222,20 @@ public class EditBaseProductBean {
 		}
 	}
 	
-	private void addClassPersonalization(ClassPersonalizationDTO classPersonalization, double price) {
+	private void addClassPersonalization(ClassPersonalizationDTO classPersonalization, double price) throws NotValidPersonalizationException  {
 		if(getFlight() != null) {
 			FlightDTO flight = getFlight();
-			flight.addPersonalization(classPersonalization, price);
+			if(!checkDuplicateClass(flight.getPossibleClassPersonalizations(), classPersonalization))
+				flight.addPersonalization(classPersonalization, price);
+			else
+				throw new NotValidPersonalizationException();
 		}
 		else if(getHotel() != null) {
 			HotelDTO hotel = getHotel();
-			hotel.addPersonalization(classPersonalization, price);
+			if(!checkDuplicateClass(hotel.getPossibleClassPersonalizations(), classPersonalization))
+				hotel.addPersonalization(classPersonalization, price);
+			else
+				throw new NotValidPersonalizationException();
 		}
 		else {
 			System.err.println("classPersonalizations not supported");
@@ -284,7 +297,7 @@ public class EditBaseProductBean {
 
 	public void setArrivalAirport(String arrivalAirport) {
 		FlightDTO flight = getFlight();
-		flight.setAirportDeparture(arrivalAirport);
+		flight.setAirportArrival(arrivalAirport);
 	}
 
 	// -----HOTEL-----
@@ -406,13 +419,25 @@ public class EditBaseProductBean {
 	public void addDatePersonalization() {
 		//System.out.println(this.duration+"  "+this.date+" "+this.price);
 		DatePersonalizationDTO datePersonalization = new DatePersonalizationDTO(this.duration, this.date);
-		this.addDatePersonalization(datePersonalization, this.price);
+		try {
+			this.addDatePersonalization(datePersonalization, this.price);
+		} catch (NotValidPersonalizationException e) {
+			// TODO display error GUI
+			System.err.println("Doppia personalizzazione");
+			e.printStackTrace();
+		}
 	}
 
 	public void addClassPersonalization() {
 		//System.out.println(this.personalization+"  "+this.price);
 		ClassPersonalizationDTO classPersonalization = new ClassPersonalizationDTO(this.personalization);
-		this.addClassPersonalization(classPersonalization, this.price);
+		try {
+			this.addClassPersonalization(classPersonalization, this.price);
+		} catch (NotValidPersonalizationException e) {
+			// TODO display error GUI
+			System.err.println("Doppia personalizzazione");
+			e.printStackTrace();
+		}
 	}
 
 	//public void removeDatePersonalization(Date date, int duration) {
@@ -422,15 +447,18 @@ public class EditBaseProductBean {
 
 	// Method to apply to the EJBs the class attributes values when the user clicks on confirm button:
 
-	public void confirm() {
+	public String confirm() {
 		System.out.println(selectedProduct.toString());
-		if(selectedProduct != null)
+		if(selectedProduct != null) {
 			try {
 				bpEJB.saveBaseProduct(selectedProduct);
 			} catch (NotValidBaseProductException e) {
-				// TODO rise error to be displayed in JSF 
+				// TODO rise error to be displayed in JSF -  display error GUI
 				e.printStackTrace();
+				return null;
 			}
+		}
+		return "/admin/view_base_product?faces-redirect=true";
 	}
 
 	public int getProductType() {
@@ -497,6 +525,22 @@ public class EditBaseProductBean {
 	
 	public List<CityDTO> getAllCities() {
 		return bpEJB.getAllCities();
+	}
+	
+	public boolean checkDuplicateClass(List<ClassPersonalizationDTO> classPersonalizations, ClassPersonalizationDTO classPersonalization) {
+		for(ClassPersonalizationDTO c : classPersonalizations) {
+			if(c.equals(classPersonalization))
+				return true;
+		}
+		return false;
+	}
+	
+	public boolean checkDuplicateDate(List<DatePersonalizationDTO> datePersonalizations, DatePersonalizationDTO datePersonalization) {
+		for(DatePersonalizationDTO c : datePersonalizations) {
+			if(c.equals(datePersonalization))
+				return true;
+		}
+		return false;
 	}
 
 }

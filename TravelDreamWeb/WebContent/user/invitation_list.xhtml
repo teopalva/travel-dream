@@ -37,7 +37,7 @@ function showDetail(id,text,btn) {
 							
 							<ui:repeat value="#{InvitationList.retrieveList()}" var="item">
 							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item.id}','',this); return false;">
-							  <b>#{item.name}</b><br></br>>Prezzo: #{item.getPrice()} €
+							  <b>#{item.name}</b><br></br>Prezzo: #{item.getPrice()} €
 							 </a>
 							 </ui:repeat>
 						</div>
@@ -56,9 +56,10 @@ function showDetail(id,text,btn) {
 											<div class="col-md-8">
 											<h4>#{item.name}</h4>
 											</div>
-											<div class="col-md-4" style="margin-bottom:20px">
+											<div class="col-md-4" style="margin-bottom:10px">
 											<p:commandButton id="checkout" value="Ordina" styleClass="btn btn-primary btn-lg btn-block"  action="#{InvitationList.showCheckout(item)}" />
 											</div>
+											<div class="row row-clearfix"></div>
 								<div class="panel panel-default" style="margin-bottom:40px" >
   									<div class="panel-heading">
     									<h6 class="panel-title">Invitati</h6>

@@ -54,8 +54,6 @@ public class DatePersonalizationDTO extends PersonalizationDTO {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
-			return false;
 		if (getClass() != obj.getClass())
 			return false;
 		DatePersonalizationDTO other = (DatePersonalizationDTO) obj;
