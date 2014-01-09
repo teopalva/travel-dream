@@ -23,13 +23,11 @@
 <h:body>
 
 
-
 	<h:form  styleClass="form-signin">
-			<h2 class="form-signin-heading">Registrati</h2>
-	
+			<h2 class="form-signin-heading">Registrati</h2> 
 
 				<p:inputText id="email" value="#{Registration.user.mail}" styleClass="form-control" placeholder="Indirizzo email" />
-					<h:message for="email"/>
+					<h:message for="email"  autoUpdate="true"/>
 				<p:inputText id="firstName" value="#{Registration.user.firstName}" styleClass="form-control" placeholder="Nome" />
 	
 				<p:inputText id="lastName" value="#{Registration.user.lastName}" styleClass="form-control" placeholder="Cognome" />
@@ -44,6 +42,7 @@
 				action="#{Registration.register()}" styleClass="btn btn-lg btn-primary btn-block">
 				 <f:ajax execute="@form" render="@form"/>
 				</p:commandButton>
+				<p:messages showDetail="true" for="alertRegistration" autoUpdate="true" closable="true" />  
 	</h:form>
 	<center><h:link value="Indietro" outcome="#{Registration.backurl}"/></center>
 	

@@ -518,7 +518,7 @@ public class EditPackageBean {
     } 
     
     public void handleImageUpload(FileUploadEvent event) {  
-        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");  
+        FacesMessage msg = new FacesMessage("Immagine caricata", event.getFile().getFileName() + " e' stata aggiunta");  
         FacesContext.getCurrentInstance().addMessage(null, msg);  
         try {
 			selectedPackage.setImageData( this.getFileContents(event.getFile().getInputstream()));
