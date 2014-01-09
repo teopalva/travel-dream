@@ -183,11 +183,12 @@ public class CheckoutBean {
      */
     public String showInvitationList() {
 	// send emails & add tmpPackage to invitationList
-	for (String email : emails) {
+    	// non va, non so più cosa dire....
+    FacesContext.getCurrentInstance().addMessage("alertMail", new FacesMessage(FacesMessage.SEVERITY_ERROR ,"Devi compilare i campi", "Devi inserire le e-mails dei tuoi amici"));
+	
+    for (String email : emails) {
 	    if (email.equals("")) {
-		FacesMessage message = new FacesMessage("Il campo Email non può essere vuoto.");
-		FacesContext.getCurrentInstance().addMessage("mailForm:invitelist", message);
-		return null;
+	      	return null;
 	    }
 	    UserDTO invited = new UserDTO(email, null, null, null, null);
 	    PackageDTO p = new PackageDTO(selectedPackage);
