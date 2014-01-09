@@ -112,7 +112,7 @@
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
 														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeDatePersonalization(pDate.getDatePersonalization())}"
-														  				   update="dateFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
+														  				   update=":flightForm:tableDateFlight:dateFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
 														</p:column>
 														
 													</p:dataTable>
@@ -139,6 +139,7 @@
 											</div>
 											<div class="col-md-12" style="margin-top: 10px">
 												<h:form id="tableClassFlight">
+												
 													<p:dataTable var="pClass"
 														value="#{EditBaseProduct.getClassPersonalizations()}" id="classFlight">
 														<p:column headerText="Nome">
@@ -152,7 +153,7 @@
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
 														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeClassPersonalization(pClass.getClassPersonalization())}"
-														  				   update="classFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteClass"/>
+														  				   update=":flightForm:tableClassFlight:classFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteClass"/>
 														</p:column>
 
 													</p:dataTable>
@@ -257,7 +258,7 @@
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
 														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeClassPersonalization(pClass.getClassPersonalization())}"
-														  				  update="classHotel" styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
+														  				  update=":hotelForm:tableClassHotel:classHotel" styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
 														</p:column>
 
 													</p:dataTable>
@@ -351,7 +352,7 @@
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
 														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeDatePersonalization(pDate.getDatePersonalization())}"
-														  				  update="dateExc"  styleClass="btn btn-warning btn-block" id="buttonDeleteClassExc"/>
+														  				  update=":excForm:tableDateExc:dateExc"  styleClass="btn btn-warning btn-block" id="buttonDeleteClassExc"/>
 														</p:column>
 														
 													</p:dataTable>
