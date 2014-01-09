@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import coreEJB.AuthenticationEJBLocal;
 import coreEJB.GiftListItemEJBLocal;
@@ -66,6 +68,7 @@ public class GiftListBean {
      * @return the user's gift list
      */
     public List<GiftListItemDTO> retrieveGiftList() {
+    	 
 	if (friendMail.equals(""))
 	    return getList(user);
 	else
@@ -101,6 +104,7 @@ public class GiftListBean {
      * @return
      */
     private List<GiftListItemDTO> getList(UserDTO user) {
+
 	List<GiftListItemDTO> l = null;
 	try {
 	    l = giftListEJB.getGiftListItem(user);
@@ -119,6 +123,14 @@ public class GiftListBean {
 	return l;
     }
 
+    public void alert() {
+    	try {
+    		userEJB.getUser(friendMail);
+    	} catch (Exception e) {
+    		FacesContext.getCurrentInstance().addMessage("alertMail", new FacesMessage(FacesMessage.SEVERITY_INFO,"Prova messaggio", "Funziona2!"));
+    	}
+    }
+    
     /**
      * 
      * @param p the selected PackageDTO

@@ -128,22 +128,24 @@ function showDetail(id,text,btn) {
 
 							<div class="panel-body">
 							<!--  fixare per il messaggio di errore -->
-								<div class="alert alert-danger">
-									<b>Attenzione</b> Utente non trovato!
-								</div>
 							
-								<h:form>
+							<p:messages showDetail="true" for="alertMail" autoUpdate="true" closable="true" />  
+							<p:commandButton value="popup!" action="#{GiftList.alert()}"/>
+								<h:form id="giftEmail">
+									
+									
+									
 									<p:inputText value="#{GiftList.friendMail}" id="friendMail"
 										style="margin-left:20px;" />
-										<h:message for="friendMail" />
+										
 
 
-									<p:commandButton value="Cerca" ajax="true"
+									<p:commandButton value="Cerca" ajax="true" action="#{GiftList.alert()}"
 										update=":giftList,:giftDetail,:heading"
-										styleClass="btn btn-default" style="margin-left:20px;"
-										id="buttonSearch" >
-									 <f:ajax execute="@form" render="@form"/>
+										styleClass="btn btn-default" style="margin-left:20px;">
+									
 									 </p:commandButton>
+									 
 
 								</h:form>
 							</div>
