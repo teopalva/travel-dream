@@ -36,6 +36,8 @@ public class EditBaseProductBean {
 	private int productType = 0;
     private List<SelectItem> companies;
     private List<SelectItem> airports;
+    private List<SelectItem> cities;
+    private List<SelectItem> countries;
     
     /* Properties for setting new class/date */
     private Date date = null;
@@ -404,7 +406,14 @@ public class EditBaseProductBean {
     	    airports.add(new SelectItem(value));
     	}
 		
-    	
+    	countries = new ArrayList<SelectItem>(bpEJB.getAllCities().size());
+    	cities = new ArrayList<SelectItem>(bpEJB.getAllCities().size());
+    	for(CityDTO value : bpEJB.getAllCities()){
+    	    cities.add(new SelectItem(value.getName()));
+    	    countries.add(new SelectItem(value.getCountry()));
+    	}
+ 
+
     	
     	
 		if (sessionStorage.getSelectedProduct() == null) {
@@ -477,6 +486,14 @@ public class EditBaseProductBean {
 		return companies;
 	}
 
+	public List<SelectItem> getCities() {
+		return cities;
+	}
+	
+	public List<SelectItem> getCountries() {
+		return countries;
+	}
+	
 	public void setCompanies(List<SelectItem> companies) {
 		this.companies = companies;
 	}

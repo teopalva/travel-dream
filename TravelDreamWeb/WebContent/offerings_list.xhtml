@@ -149,10 +149,11 @@
 
 										<div class="col-md-4 hero-feature">
 											<div class="thumbnail">
-												<h:graphicImage library="images" name="image_ny.png" />
+												<h:graphicImage value="#{package.getImageData()}" />
 												<div class="caption">
 													<h4>#{package.getName()}</h4>
 													<p>Prezzo: #{package.getPrice()} €</p>
+													<p>Sconto:  #{package.getReduction()}</p>
 													<p>Partenza:
 														#{package.personalizedProducts[0].flight.getCityDeparture().getName()}
 														#{package.personalizedProducts[0].flight.getAirportDeparture()}</p>
