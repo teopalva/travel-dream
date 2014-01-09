@@ -107,7 +107,7 @@ public class GiftListBean {
      * @throws NotAuthenticatedException
      * @throws NotPresentUserException 
      */
-    public String retrieveName() throws NotAuthenticatedException {
+    public String retrieveName (){
 	if (friendMail.equals("")) {
 			return "La mia lista regali";
 	} else {
