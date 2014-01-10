@@ -9,6 +9,7 @@ import java.util.Formatter;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -43,6 +44,9 @@ public class InvitationEJB implements InvitationEJBLocal {
 	@PersistenceContext
 	EntityManager em;
 	
+	@EJB
+	PackageEJB packageEJB;
+	
 	private static int MAX_TRY = 1000;
 
     public InvitationEJB() {
@@ -60,6 +64,21 @@ public class InvitationEJB implements InvitationEJBLocal {
         	User invited = em.find(User.class, invitation.getInvited().getMail());
         	
         	Package _package = em.find(Package.class, invitation.get_package().getId());
+        	
+        	if(_package == null) {
+        		//Try to create packet and save in the DB
+        		try {
+					int id = packageEJB.savePackage( invitation.get_package() );
+					if(id < 0) {
+						throw new NotValidInvitationException();
+					}
+					invitation.get_package().setId(id);
+					_package = em.find(Package.class, invitation.get_package().getId());
+				} catch (NotValidPackageException e) {
+					e.printStackTrace();
+					throw new NotValidInvitationException();
+				}
+        	}
         	
         	if(inviter == null || invitation.getInvited().getMail() == null || _package == null)
         		throw new NotValidInvitationException();

@@ -60,7 +60,11 @@ public class PackageEJB implements PackageEJBLocal {
 		List<PackageDTO> list = new ArrayList<PackageDTO>();
 		List<Package> packageList = em
 				.createNativeQuery(
-						"SELECT * FROM PACKAGE WHERE Id NOT IN(SELECT PackageId" + "	                FROM BUYING_LIST_ITEM)" + "   AND Id NOT IN(SELECT PackageId" + "					FROM GIFT_LIST_ITEM)",
+						"SELECT * "
+					  + "FROM PACKAGE "
+					  + "WHERE Id NOT IN(SELECT PackageId FROM BUYING_LIST_ITEM) "
+					  + "	AND Id NOT IN(SELECT PackageId FROM GIFT_LIST_ITEM) "
+					  + "   AND Id NOT IN (SELECT PackageId FROM INVITATION)",
 						Package.class).getResultList();
 		for (Package p : packageList) {
 			try {
@@ -77,7 +81,7 @@ public class PackageEJB implements PackageEJBLocal {
 	 * one personalized product every one of them must be coherent with the ER representation (eg: PersonalizedFlightDTO must contain FlightDTO and
 	 * may contain Class/DataPersonalization)
 	 */
-	public void savePackage(PackageDTO packageDTO) throws NotValidPackageException {
+	public int savePackage(PackageDTO packageDTO) throws NotValidPackageException {
 		//Protection against not valid packages
 		if(isValidForOffering(packageDTO) == false) {
 			throw new NotValidPackageException();
@@ -242,6 +246,7 @@ public class PackageEJB implements PackageEJBLocal {
 		
 		//Set the id inside the packageDTO
 		packageDTO.setId(_package.getId());
+		return _package.getId();
 	}
 
 	/**

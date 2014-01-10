@@ -39,11 +39,11 @@ public class User implements Serializable {
 	private List<BuyingListItem> buyingLists;
 
 	//bi-directional many-to-one association to Invitation
-	@OneToMany(mappedBy="userInviter", cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="userInviter", cascade=CascadeType.ALL)
 	private List<Invitation> invites;
 
 	//bi-directional many-to-one association to Invitation
-	@OneToMany(mappedBy="userInvited", cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="userInvited", cascade=CascadeType.ALL)
 	private List<Invitation> inviteds;
 
 	//bi-directional many-to-many association to Package

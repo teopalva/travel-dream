@@ -11,7 +11,7 @@ import exceptions.NotValidBaseProductException;
 @Local
 public interface BaseProductEJBLocal {
 	
-    public void saveBaseProduct(BaseProductDTO baseProduct)  throws NotValidBaseProductException;
+    public int saveBaseProduct(BaseProductDTO baseProduct)  throws NotValidBaseProductException;
     public void removeBaseProduct(BaseProductDTO baseProduct)  throws NotValidBaseProductException;
     public List<CityDTO> getAllCities();
     public List<String> getAllCompanies();

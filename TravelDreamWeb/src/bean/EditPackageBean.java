@@ -187,6 +187,8 @@ public class EditPackageBean {
 
     public void setNumPeople(Integer n) {
 	numPeople = n;
+	if(selectedPackage != null)
+		selectedPackage.setNumPeople(n);
     }
 
     public Integer getNumPeople() {
@@ -508,13 +510,16 @@ public class EditPackageBean {
     public void setReturnFlight(PersonalizedFlightDTO returnFlight) {
 	this.returnFlight = returnFlight;
     }
-    
-    public UploadedFile getImage() {  
-        return null;  
-    }  
   
+    /*	//Deprecated
+     * TODO remove it
     public void setImage(UploadedFile file) {  
         selectedPackage.setImageData(file.getContents());
+    } 
+    */
+    
+    public byte[] getImage() {  
+        return selectedPackage.getImageData();
     } 
     
     public void handleImageUpload(FileUploadEvent event) {  

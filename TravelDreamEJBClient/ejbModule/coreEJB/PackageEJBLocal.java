@@ -13,7 +13,7 @@ import exceptions.NotValidPackageException;
 public interface PackageEJBLocal {
     public List<PackageDTO> getOfferingPackages();
 
-    public void savePackage(PackageDTO _package) throws NotValidPackageException;
+    public int savePackage(PackageDTO _package) throws NotValidPackageException;
 
     public void removePackage(PackageDTO _package) throws NotValidPackageException;
 
