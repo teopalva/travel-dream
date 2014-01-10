@@ -94,7 +94,7 @@
 											</div>
 											<div class="col-md-12" style="margin-top: 10px">
 												
-												<h:form id="tableDateFlight">
+												
 													<p:dataTable var="pDate" value="#{EditBaseProduct.getDatePersonalizations()}" id="dateFlight" editable="true">
 														<p:column headerText="Data arrivo">
 															 <h:outputText value="#{pDate.getDatePersonalization().getInitialDate()}" /> 
@@ -112,11 +112,11 @@
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
 														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeDatePersonalization(pDate.getDatePersonalization())}"
-														  				   update=":flightForm:tableDateFlight:dateFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
+														  				   update=":flightForm:dateFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
 														</p:column>
 														
 													</p:dataTable>
-												</h:form>
+											
 											</div>
 										</div>
 									</div>
@@ -138,7 +138,7 @@
 													oncomplete="PF('classDialog').show()" />
 											</div>
 											<div class="col-md-12" style="margin-top: 10px">
-												<h:form id="tableClassFlight">
+												
 												
 													<p:dataTable var="pClass"
 														value="#{EditBaseProduct.getClassPersonalizations()}" id="classFlight">
@@ -153,11 +153,11 @@
 														<p:column headerText="Azioni">
 														<!--  aggiungere campo action che passa il dto -->
 														  <p:commandButton value="Rimuovi" ajax="true" action="#{EditBaseProduct.removeClassPersonalization(pClass.getClassPersonalization())}"
-														  				   update=":flightForm:tableClassFlight:classFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteClass"/>
+														  				   update=":flightForm:classFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteClass"/>
 														</p:column>
 
 													</p:dataTable>
-												</h:form>
+												
 											</div>
 										</div>
 									</div>
@@ -428,7 +428,7 @@
 				<div class="row clearfix" style="margin-top: 80px"></div>
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
-					<p:commandButton value="Aggiungi" id="addB" ajax="true" onclick="dateDialog.hide()" update=":flightForm:tableDateFlight:dateFlight,:excForm:tableDateExc:dateExc"
+					<p:commandButton value="Aggiungi" id="addB" ajax="true" onclick="dateDialog.hide()" update=":flightForm:dateFlight,:excForm:tableDateExc:dateExc"
 						action="#{EditBaseProduct.addDatePersonalization()}"
 						styleClass="btn btn-default btn-lg btn-block" />
 				</div>
@@ -464,7 +464,7 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 			
-					<p:commandButton value="Aggiungi" ajax="true" onclick="classDialog.hide()" update=":flightForm:tableClassFlight:classFlight,:hotelForm:tableClassHotel:classHotel"
+					<p:commandButton value="Aggiungi" ajax="true" onclick="classDialog.hide()" update=":flightForm:classFlight,:hotelForm:tableClassHotel:classHotel"
 						action="#{EditBaseProduct.addClassPersonalization()}"
 						styleClass="btn btn-default btn-lg btn-block" />
 				</div>
