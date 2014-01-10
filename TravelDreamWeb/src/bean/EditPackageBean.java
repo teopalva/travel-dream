@@ -34,6 +34,7 @@ import dto.PersonalizedHotelDTO;
 import dto.PersonalizedProductDTO;
 import exceptions.NotValidPackageException;
 
+@SuppressWarnings("unused")
 @ManagedBean(name = "EditPackage")
 @ViewScoped
 public class EditPackageBean {
@@ -47,7 +48,7 @@ public class EditPackageBean {
     private String arrivalPlace = null;
     private Date departureDate = null;
     private Date returnDate = null;
-    private Integer numPeople = null;
+    private Integer numPeople = 0;
 
     private List<PersonalizedHotelDTO> hotels;
     private List<PersonalizedFlightDTO> outboundFlights;
@@ -424,12 +425,9 @@ public class EditPackageBean {
 	if (!packageName.equals("")) {
 	    selectedPackage.setName(packageName);
 	}
-	try { // TODO
+	if (numPeople != 0) {
 	    selectedPackage.setNumPeople(numPeople);
-	} catch (NullPointerException e) {
-	    numPeople = 1;
 	}
-	selectedPackage.setNumPeople(numPeople);
 	sessionStorage.setSelectedPackage(selectedPackage);
 	sessionStorage.setPreviousPage("edit");
 	return "/user/checkout?faces-redirect=true";
@@ -445,23 +443,22 @@ public class EditPackageBean {
      */
     public String savePackageTDE() {
 	if (packageEJB.isValidForOffering(selectedPackage)) {
-	selectedPackage.setName(packageName);
-	try { // TODO
-	    selectedPackage.setNumPeople(numPeople);
-	} catch (NullPointerException e) {
-	    numPeople = 1;
-	}
-	selectedPackage.setNumPeople(numPeople);
-	selectedPackage.setReduction(reduction);
-	try {
-	    packageEJB.savePackage(selectedPackage);
-	} catch (NotValidPackageException e) {
-	    System.err.printf("NotValidPackageException");
-	    e.printStackTrace();
-	}
-	return "/admin/index?faces-redirect=true";
+	    if (!packageName.equals("")) {
+		selectedPackage.setName(packageName);
+	    }
+	    if (numPeople != 0) {
+		selectedPackage.setNumPeople(numPeople);
+	    }
+	    selectedPackage.setReduction(reduction);
+	    try {
+		packageEJB.savePackage(selectedPackage);
+	    } catch (NotValidPackageException e) {
+		System.err.printf("NotValidPackageException");
+		e.printStackTrace();
+	    }
+	    return "/admin/index?faces-redirect=true";
 	} else {
-	return null;
+	    return null;
 	}
     }
 
@@ -533,26 +530,26 @@ public class EditPackageBean {
     }  
     
     private byte[] getFileContents(InputStream in) {
-        byte[] bytes = null;
-        try {            
-            // write the inputStream to a FileOutputStream            
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            int read = 0;
-             bytes = new byte[1024];
+	byte[] bytes = null;
+	try {
+	    // write the inputStream to a FileOutputStream
+	    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+	    int read = 0;
+	    bytes = new byte[1024];
 
-            while ((read = in.read(bytes)) != -1) {
-                bos.write(bytes, 0, read);
-            }
-            bytes = bos.toByteArray();
-            in.close();
-            in = null;
-            bos.flush();
-            bos.close();
-            bos = null;
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return bytes;
+	    while ((read = in.read(bytes)) != -1) {
+		bos.write(bytes, 0, read);
+	    }
+	    bytes = bos.toByteArray();
+	    in.close();
+	    in = null;
+	    bos.flush();
+	    bos.close();
+	    bos = null;
+	} catch (IOException e) {
+	    System.out.println(e.getMessage());
+	}
+	return bytes;
     }
 
 }

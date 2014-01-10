@@ -1,8 +1,10 @@
 package bean;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import coreEJB.InvitationEJBLocal;
 import exceptions.NotValidInvitationException;
@@ -13,11 +15,11 @@ public class AcceptInvitationBean {
     private String hash;
 
     public String getHash() {
-        return hash;
+	return hash;
     }
 
     public void setHash(String hash) {
-        this.hash = hash;
+	this.hash = hash;
     }
 
     @EJB
@@ -27,8 +29,7 @@ public class AcceptInvitationBean {
 	try {
 	    invitationEJB.acceptInvitation(hash);
 	} catch (NotValidInvitationException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    FacesContext.getCurrentInstance().addMessage("alertInvitation", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Errore", "Al momento e' impossibile confermare l'invito. Riprova."));
 	}
     }
 
