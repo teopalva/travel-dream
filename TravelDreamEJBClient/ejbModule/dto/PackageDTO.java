@@ -293,4 +293,72 @@ public class PackageDTO {
 	}
 	
 	
+	//Heuristic functions
+	public PersonalizedFlightDTO getOutboundFlight() {
+		List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
+		PersonalizedFlightDTO outboundFlight = null;
+		for (PersonalizedProductDTO p : getPersonalizedProducts()) {
+			if (p instanceof PersonalizedFlightDTO) {
+				flights.add((PersonalizedFlightDTO) p);
+			}
+		}
+		if (flights.size() == 2) {
+			try {
+				if (flights.get(0).getDatePersonalization().getInitialDate().before(flights.get(1).getDatePersonalization().getInitialDate())) {
+					outboundFlight = flights.get(0);
+
+				} else {
+					outboundFlight = flights.get(1);
+				}
+			} catch (NullPointerException | IndexOutOfBoundsException e) {
+				// No problem
+			}
+		}
+		return outboundFlight;
+	}
+	
+	public PersonalizedFlightDTO getReturnFlight() {
+		List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
+		PersonalizedFlightDTO returnFlight = null;
+		for (PersonalizedProductDTO p : getPersonalizedProducts()) {
+			if (p instanceof PersonalizedFlightDTO) {
+				flights.add((PersonalizedFlightDTO) p);
+			}
+		}
+		if (flights.size() == 2) {
+			try {
+				if (flights.get(0).getDatePersonalization().getInitialDate().before(flights.get(1).getDatePersonalization().getInitialDate())) {
+					returnFlight = flights.get(1);
+				} else {
+					returnFlight = flights.get(0);
+				}
+			} catch (NullPointerException | IndexOutOfBoundsException e) {
+				// No problem
+			}
+
+		}
+		return returnFlight;
+	}
+
+	
+	public PersonalizedHotelDTO getHotel() {
+		PersonalizedHotelDTO hotel = null;
+		for (PersonalizedProductDTO p : getPersonalizedProducts()) {
+			if (p instanceof PersonalizedHotelDTO) {
+				hotel = (PersonalizedHotelDTO) p;
+			}
+		}
+		return hotel;
+	}
+	
+	public PersonalizedExcursionDTO getExcursion() {
+		PersonalizedExcursionDTO excursion = null;
+		for (PersonalizedProductDTO p : getPersonalizedProducts()) {
+			if (p instanceof PersonalizedExcursionDTO) {
+				excursion = (PersonalizedExcursionDTO) p;
+			}
+		}
+		return excursion;
+	}
+	
 }
