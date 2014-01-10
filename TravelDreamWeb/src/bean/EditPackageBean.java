@@ -93,9 +93,11 @@ public class EditPackageBean {
 	if (sessionStorage.getSelectedPackage() == null) {
 	    selectedPackage = new PackageDTO();
 	    selectedPackage.setName("");
+	    numPeople = 2;
 	} else {
 	    // Reconstruct the packageDTO structure in temporary variables
 	    selectedPackage = sessionStorage.getSelectedPackage();
+	    numPeople = selectedPackage.getNumPeople();
 	    List<PersonalizedFlightDTO> flights = new ArrayList<PersonalizedFlightDTO>();
 	    outboundFlight = new PersonalizedFlightDTO();
 	    returnFlight = new PersonalizedFlightDTO();

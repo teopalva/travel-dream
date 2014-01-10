@@ -97,6 +97,11 @@ public class InvitationEJB implements InvitationEJBLocal {
         	inv.setPackage(_package);
         	inv.setAccepted(false);
         	
+        	invited.addInvited(inv);
+        	inviter.addInvite(inv);
+        	
+        	em.merge(invited);
+        	em.merge(inviter);
         	em.persist(inv);
         	
         	//Send email
@@ -133,6 +138,7 @@ public class InvitationEJB implements InvitationEJBLocal {
 	 public List<InvitationDTO> getInvitations(UserDTO userDTO) throws NotValidUserException {
 		 List<InvitationDTO> list = null;
 		 User user = em.find(User.class, userDTO.getMail());
+		 em.refresh(user);
 		 list = InvitationDTO.getInvitations(user);
 		 if(list == null)
 			 throw new NotValidUserException();
