@@ -183,18 +183,19 @@ public class CheckoutBean {
      */
     public String showInvitationList() {
 	// send emails & add tmpPackage to invitationList
-	
-    for (String email : emails) {
+	for (String email : emails) {
 	    if (email.equals("")) {
-	    	FacesContext.getCurrentInstance().addMessage("alertMail", new FacesMessage(FacesMessage.SEVERITY_ERROR ,"Devi compilare i campi", "Devi inserire le e-mails dei tuoi amici"));
-	      	return null;
+		FacesContext.getCurrentInstance().addMessage("alertMail",
+			new FacesMessage(FacesMessage.SEVERITY_ERROR, "Compilare tutti i campi", "Devi invitare un numero di amici pari a quello previsto dal pacchetto."));
+		return null;
 	    }
 	    UserDTO invited = new UserDTO(email, null, null, null, null);
 	    PackageDTO p = new PackageDTO(selectedPackage);
 	    try {
 		invitationEJB.sendInvitation(new InvitationDTO(user, invited, p, null, false));
 	    } catch (NotValidInvitationException e) {
-	    FacesContext.getCurrentInstance().addMessage("alertMail", new FacesMessage(FacesMessage.SEVERITY_ERROR ,"Errore generico", "Impossibile inviare la mail di invito alle mail inserite"));
+		FacesContext.getCurrentInstance().addMessage("alertMail",
+			new FacesMessage(FacesMessage.SEVERITY_ERROR, "Errore generico", "Al momento e' impossibile inviare tutte le mail di invito. Riprova."));
 		System.err.printf("Errore durante l'operazione, riprova.");
 		e.printStackTrace();
 		return null;
