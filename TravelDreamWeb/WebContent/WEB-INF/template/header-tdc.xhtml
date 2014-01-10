@@ -23,16 +23,12 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><h:link outcome="#{Header.showHome()}" value="Home"/></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown">Visualizza liste <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                
-                <li><h:link outcome="#{Header.showGiftList()}" value="Lista regali"/></li>
-                <li><h:link outcome="#{Header.showInvitationList()}" value="Lista inviti"/></li>
-                <li><h:link outcome="#{Header.showBuyingList()}" value="Lista ordini"/></li>
 
-              </ul>
-            </li>
+           	<li><h:link outcome="#{Header.showGiftList()}" value="Lista regali"/></li>
+           	<li><h:link outcome="#{Header.showInvitationList()}" value="Lista inviti"/></li>
+            <li><h:link outcome="#{Header.showBuyingList()}" value="Lista ordini"/></li>
+
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li style="padding-top:16px; padding-right:40px;">Benvenuto, #{Header.getUserName()}</li>
