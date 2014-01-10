@@ -1,5 +1,6 @@
 package bean;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -212,7 +213,8 @@ public class OfferingsListBean {
      * @return boolean answer
      */
     private boolean departureDateCheck(PackageDTO reorderedPackage) {
-	return (departureDate == null || departureDate.equals(((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getDatePersonalization().getInitialDate())) ? true : false;
+	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+	return (departureDate == null || fmt.format(departureDate).equals(fmt.format(((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getDatePersonalization().getInitialDate()))) ? true : false;
     }
 
     /**
@@ -222,7 +224,8 @@ public class OfferingsListBean {
      * @return boolean answer
      */
     private boolean returnDateCheck(PackageDTO reorderedPackage) {
-	return (returnDate == null || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(1)).getDatePersonalization().getInitialDate().equals(returnDate)) ? true : false;
+	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
+	return (returnDate == null || fmt.format(returnDate).equals(fmt.format(((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(1)).getDatePersonalization().getInitialDate()))) ? true : false;
     }
 
     /**

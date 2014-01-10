@@ -110,8 +110,7 @@ public class CheckoutBean {
 	    try {
 		buyingListEJB.saveBuyingListItem(buyingItem);
 	    } catch (NotValidBuyingListException e) {
-		System.err.printf("Qualcosa è andato storto, riprova.");
-		e.printStackTrace();
+		showAlert();
 		// packageEJB.removePackage(selectedPackage);
 		return null;
 	    }
@@ -129,8 +128,7 @@ public class CheckoutBean {
 		try {
 		    buyingListEJB.saveBuyingListItem(buyingItem);
 		} catch (NotValidBuyingListException e) {
-		    System.err.printf("Qualcosa è andato storto, riprova.");
-		    e.printStackTrace();
+		    showAlert();
 		    return null;
 		}
 		return ("/user/payment?faces-redirect=true");
@@ -141,8 +139,7 @@ public class CheckoutBean {
 		try {
 		    buyingListEJB.saveBuyingListItem(buyingItem);
 		} catch (NotValidBuyingListException e) {
-		    System.err.printf("Qualcosa è andato storto, riprova.");
-		    e.printStackTrace();
+		    showAlert();
 		    return null;
 		}
 		return ("/user/payment?faces-redirect=true");
@@ -163,13 +160,11 @@ public class CheckoutBean {
 	try {
 	    giftListEJB.saveGiftListItem(giftItem);
 	} catch (NotValidUserException e) {
-	    System.err.printf("Qualcosa è andato storto, riprova.");
-	    e.printStackTrace();
+	    showAlert();
 	    // packageEJB.removePackage(selectedPackage);
 	    return null;
 	} catch (NotValidGiftListItemException e) {
-	    System.err.printf("Qualcosa è andato storto, riprova.");
-	    e.printStackTrace();
+	    showAlert();
 	    // packageEJB.removePackage(selectedPackage);
 	    return null;
 	}
@@ -218,6 +213,10 @@ public class CheckoutBean {
      */
     public boolean isInviteActive() {
 	return sessionStorage.getPreviousPage().equals("edit") ? true : false;
+    }
+
+    private void showAlert() {
+	FacesContext.getCurrentInstance().addMessage("alert", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Errore", "Qualcosa e' andato storto, riprova."));
     }
 
 }
