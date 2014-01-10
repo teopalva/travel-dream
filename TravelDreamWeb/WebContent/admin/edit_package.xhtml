@@ -85,11 +85,12 @@ function handleDrop(event, ui) {
 					
 				</div>
 				
-				
-				<h:panelGroup rendered="#{EditPackage.isNotValidForTDC()}" id="alert">
+				<h:panelGroup id="alert">
+				<h:panelGroup rendered="#{EditPackage.isNotValidForTDC()}">
 						<div class="alert alert-danger">
 									<b>Attenzione</b> Il pacchetto non è completato correttamente!
 						</div>
+				</h:panelGroup>
 				</h:panelGroup>
 				
 				<div class="row clearfix">
@@ -168,11 +169,10 @@ function handleDrop(event, ui) {
 									<div>
 									<p:outputPanel id="image">
 										<div class="col-md-4 column">
-										<!--  
-											<h:graphicImage value=""
+												
+											<img src="http://localhost:8080/TravelDreamWeb/ImageServlet?id=#{EditPackage.selectedPackage.getId()}"
 												class="img-rounded"
 												style="width:130%;height:130%;margin-top:-50px;margin-left:-70px;" />
-										-->
 										</div>
 										</p:outputPanel>
 										<p:outputPanel id="price">

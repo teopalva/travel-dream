@@ -149,7 +149,9 @@
 
 										<div class="col-md-4 hero-feature">
 											<div class="thumbnail">
-												<h:graphicImage value="#{package.getImageData()}" />
+											
+											<img src="http://localhost:8080/TravelDreamWeb/ImageServlet?id=#{package.getId()}"></img>
+												<h:graphicImage value="" />
 												<div class="caption">
 													<h4>#{package.getName()}</h4>
 													<p>Prezzo: #{package.getPrice()} €</p>

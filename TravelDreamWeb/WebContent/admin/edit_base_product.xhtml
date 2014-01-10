@@ -403,14 +403,14 @@
 				</h:panelGroup>
 			</div>
 
-			<p:dialog id="dateDialog" widgetVar="dateDialog" focus="formdate:addB"
+			<p:dialog id="dateDialog" widgetVar="dateDialog" focus="formdate:addB" position="100,100"
 				resizable="false" style="margin-top:300px" header="Aggiungi data"
 				width="800" height="240">
 				<h:form id="formdate">
 				<div class="col-md-6" style="margin-bottom: 30px">Data da aggiungere:</div>
 				<div class="col-md-6">
 					<p:calendar value="#{EditBaseProduct.date}" id="newDate"
-						locale="it" pattern="dd/MM/yyyy" placeholder="data partenza" />
+						locale="it" pattern="dd/MM/yyyy HH:mm" placeholder="data partenza" />
 				</div>
 				<div class="row clearfix" ></div>
 				<div class="col-md-6" style="margin-bottom: 30px" >Durata:</div>
@@ -437,7 +437,7 @@
 				
 			</p:dialog>
 
-			<p:dialog id="classDialog" widgetVar="classDialog" resizable="false"
+			<p:dialog id="classDialog" widgetVar="classDialog" resizable="false" 
 				style="margin-top:300px" header="Aggiungi Classe" width="800"
 				height="170">
 				<h:form>
