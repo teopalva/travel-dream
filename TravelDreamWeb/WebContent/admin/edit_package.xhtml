@@ -146,6 +146,7 @@ function handleDrop(event, ui) {
 								<div class="col-md-8 column" style="padding-left: 24px">
 									<h3>#{EditPackage.selectedPackage.name}</h3>
 									<c:if test="#{EditPackage.selectedPackage.name == ''}"><p:inputText value="#{EditPackage.packageName}" id="packageName" placeholder="Nome pacchetto" /></c:if>
+									<br></br>Sconto: <p:inputText value="#{EditPackage.reduction}" id="reduction" style="margin-top:10px;width:127px"/>
 								</div>
 
 								<div class="col-md-4 column"
@@ -179,7 +180,7 @@ function handleDrop(event, ui) {
 										<div class="col-md-8 column"
 											style="margin-top: -20px; margin-left: -40px;">
 											<h4 style="margin-top:-3px">Prezzo totale: #{EditPackage.calculatePrice()} €</h4>
-											<h5>Sconto: <p:inputText value="#{EditPackage.reduction}" id="reduction" placeholder="sconto" style="width:60px"/></h5> 
+							 
 										</div>
 										
 										
