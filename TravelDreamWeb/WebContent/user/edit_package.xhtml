@@ -67,7 +67,9 @@ function handleDrop(event, ui) {
 								</div>
 								<div class="col-md-2 column" style="margin-left: 20px">
 									Numero persone:
-									<p:spinner id="people" value="#{EditPackage.numPeople}" min="0" max="10" size="2"  style="border: 0px; height:30px;"/>
+									<p:spinner id="people" value="#{EditPackage.numPeople}" min="0" max="10" size="2"  style="border: 0px; height:30px;">
+										<p:ajax update=":#{p:component('price')}" process="@this" />  
+                    				</p:spinner>
 								</div>
 								<div class="col-md-1 column"
 									style="margin-left: 20px; padding-top: 20px">
