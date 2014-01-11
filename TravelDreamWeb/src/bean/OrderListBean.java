@@ -55,12 +55,14 @@ public class OrderListBean {
      */
     private void retrieveLists() {
 	for (BuyingListItemDTO item : buyingListEJB.getAllBuyingListItem()) {
+	    /*
 	    try {
 		PackageDTO rp = OfferingsListBean.reorderPackage(item.get_package());
 		item.set_package(rp);
 	    } catch (PackageNotValidException e) {
 		e.printStackTrace();
 	    }
+	    */
 	    if (!item.isPaid()) {
 		boughtList.add(item);
 	    } else {

@@ -49,6 +49,7 @@ public class BuyingListBean {
 	    System.err.print("NotValidUserException");
 	    e.printStackTrace();
 	}
+	/*
 	for (BuyingListItemDTO i : l) {
 	    try {
 		PackageDTO rp = OfferingsListBean.reorderPackage(i.get_package());
@@ -57,6 +58,7 @@ public class BuyingListBean {
 		e.printStackTrace();
 	    }
 	}
+	*/
 	return l;
     }
 }

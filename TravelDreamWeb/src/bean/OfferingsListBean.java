@@ -156,20 +156,22 @@ public class OfferingsListBean {
     public List<PackageDTO> searchFilter(List<PackageDTO> offerings) {
 	List<PackageDTO> filteredOfferings = new ArrayList<PackageDTO>();
 	for (PackageDTO pack : offerings) {
-	    PackageDTO rp;
-	    try {
-		rp = reorderPackage(pack);
+//	    try { TODO activate 
+//		if (!packageEJB.isValidForOffering(pack)) {
+//		    throw new PackageNotValidException();
+//		}
+
 		// basic search filters
-		if (numPeopleCheck(rp) && departurePlaceCheck(rp) && arrivalPlaceCheck(rp) && departureDateCheck(rp) && returnDateCheck(rp)) {
+		if (numPeopleCheck(pack) && departurePlaceCheck(pack) && arrivalPlaceCheck(pack) && departureDateCheck(pack) && returnDateCheck(pack)) {
 		    // advanced filters
-		    if (hotelStarsCheck(rp) && flightClassCheck(rp) && hotelClassCheck(rp)) {
-			filteredOfferings.add(rp);
+		    if (hotelStarsCheck(pack) && flightClassCheck(pack) && hotelClassCheck(pack)) {
+			filteredOfferings.add(pack);
 		    }
 		}
-	    } catch (PackageNotValidException e) {
-		System.err.print("Pacchetto non valido.");
-		e.printStackTrace();
-	    }
+//	    } catch (PackageNotValidException e) {
+//		System.err.print("Pacchetto non valido.");
+//		e.printStackTrace();
+//	    }
 	}
 	return filteredOfferings;
     }
@@ -177,11 +179,11 @@ public class OfferingsListBean {
     /**
      * Compares the searched number of people with that of a specific base product.
      * 
-     * @param reorderedPackage
+     * @param pack
      * @return boolean answer
      */
-    private boolean numPeopleCheck(PackageDTO reorderedPackage) {
-	return (numPeople == null || reorderedPackage.getNumPeople() == numPeople) ? true : false;
+    private boolean numPeopleCheck(PackageDTO pack) {
+	return (numPeople == null || pack.getNumPeople() == numPeople) ? true : false;
     }
 
     /**
@@ -190,9 +192,8 @@ public class OfferingsListBean {
      * @param reorderedPackage
      * @return boolean answer
      */
-    private boolean departurePlaceCheck(PackageDTO reorderedPackage) {
-	return (departurePlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityDeparture().getName().equalsIgnoreCase(departurePlace)) ? true
-		: false;
+    private boolean departurePlaceCheck(PackageDTO pack) {
+	return (departurePlace.equals("") || (pack.getOutboundFlight().getFlight().getCityDeparture().getName().equalsIgnoreCase(departurePlace))) ? true : false;
     }
 
     /**
@@ -201,9 +202,8 @@ public class OfferingsListBean {
      * @param reorderedPackage
      * @return boolean answer
      */
-    private boolean arrivalPlaceCheck(PackageDTO reorderedPackage) {
-	return (arrivalPlace.equals("") || ((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getFlight().getCityArrival().getName().equalsIgnoreCase(arrivalPlace)) ? true
-		: false;
+    private boolean arrivalPlaceCheck(PackageDTO pack) {
+	return (arrivalPlace.equals("") || (pack.getOutboundFlight().getFlight().getCityDeparture().getName().equalsIgnoreCase(arrivalPlace))) ? true : false;
     }
 
     /**
@@ -212,9 +212,9 @@ public class OfferingsListBean {
      * @param reorderedPackage
      * @return boolean answer
      */
-    private boolean departureDateCheck(PackageDTO reorderedPackage) {
+    private boolean departureDateCheck(PackageDTO pack) {
 	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
-	return (departureDate == null || fmt.format(departureDate).equals(fmt.format(((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getDatePersonalization().getInitialDate()))) ? true : false;
+	return (departureDate == null || fmt.format(departureDate).equals(fmt.format(pack.getOutboundFlight().getDatePersonalization().getInitialDate()))) ? true : false;
     }
 
     /**
@@ -223,9 +223,9 @@ public class OfferingsListBean {
      * @param reorderedPackage
      * @return boolean answer
      */
-    private boolean returnDateCheck(PackageDTO reorderedPackage) {
+    private boolean returnDateCheck(PackageDTO pack) {
 	SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
-	return (returnDate == null || fmt.format(returnDate).equals(fmt.format(((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(1)).getDatePersonalization().getInitialDate()))) ? true : false;
+	return (returnDate == null || fmt.format(returnDate).equals(fmt.format(pack.getReturnFlight().getDatePersonalization().getInitialDate()))) ? true : false;
     }
 
     /**
@@ -235,9 +235,9 @@ public class OfferingsListBean {
      * @param reorderedPackage
      * @return boolean answer
      */
-    private boolean flightClassCheck(PackageDTO reorderedPackage) {
-	return (flightClass.equals("null") || (((PersonalizedFlightDTO) reorderedPackage.getPersonalizedProducts().get(0)).getClassPersonalization().get_class().equalsIgnoreCase(flightClass) && ((PersonalizedFlightDTO) reorderedPackage
-		.getPersonalizedProducts().get(1)).getClassPersonalization().get_class().equalsIgnoreCase(flightClass))) ? true : false;
+    private boolean flightClassCheck(PackageDTO pack) {
+	return (flightClass.equals("null") || (pack.getOutboundFlight().getClassPersonalization().get_class().equalsIgnoreCase(flightClass) && (pack.getReturnFlight().getClassPersonalization()
+		.get_class().equalsIgnoreCase(flightClass)))) ? true : false;
     }
 
     /**
@@ -247,8 +247,8 @@ public class OfferingsListBean {
      * @param reorderedPackage
      * @return boolean answer
      */
-    private boolean hotelStarsCheck(PackageDTO reorderedPackage) {
-	return (hotelStars == 0 || ((PersonalizedHotelDTO) reorderedPackage.getPersonalizedProducts().get(2)).getHotel().getStars() == hotelStars) ? true : false;
+    private boolean hotelStarsCheck(PackageDTO pack) {
+	return (hotelStars == 0 || (pack.getHotel().getHotel().getStars() == hotelStars)) ? true : false;
     }
 
     /**
@@ -257,11 +257,11 @@ public class OfferingsListBean {
      * @param reorderedPackage
      * @return boolean answer
      */
-    private boolean hotelClassCheck(PackageDTO reorderedPackage) {
-	return (hotelClass.equals("null") || ((PersonalizedHotelDTO) reorderedPackage.getPersonalizedProducts().get(2)).getClassPersonalization().get_class().equalsIgnoreCase(hotelClass)) ? true
-		: false;
+    private boolean hotelClassCheck(PackageDTO pack) {
+	return (hotelClass.equals("null") || (pack.getHotel().getClassPersonalization().get_class().equalsIgnoreCase(hotelClass))) ? true : false;
     }
 
+    
     /**
      * Reorders a package by putting its PersonalizedProducts into specific positions based on their type:
      * [0]->outbound flight
@@ -273,6 +273,7 @@ public class OfferingsListBean {
      * @return the reordered PackageDTO
      * @throws PackageNotValidException
      */
+    /*
     public static PackageDTO reorderPackage(PackageDTO pack) throws PackageNotValidException {
 	// if (!packageEJB.isValidForOffering(pack)) { TODO: activate!
 	// throw new PackageNotValidException();
@@ -311,7 +312,8 @@ public class OfferingsListBean {
 	}
 	return reorderedPackage;
     }
-
+*/
+    
     /**
      * Shows edit_package page related to the selected package.
      * 

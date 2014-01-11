@@ -94,35 +94,34 @@ function showDetail(id,text,btn) {
 									
 									
 									<p>Partenza:
-										#{item.personalizedProducts[0].flight.getCityDeparture().getName()}
-										#{item.personalizedProducts[0].flight.getAirportDeparture()}</p>
+										#{item.getOutboundFlight().flight.getCityDeparture().getName()}
+										#{item.getOutboundFlight().flight.getAirportDeparture()}</p>
 									<p>Destinazione:
-										#{item.personalizedProducts[0].flight.getCityArrival().getName()}
-										#{item.personalizedProducts[0].flight.getAirportArrival()}</p>
+										#{item.getOutboundFlight().flight.getCityArrival().getName()}
+										#{item.getOutboundFlight().flight.getAirportArrival()}</p>
 									<div>
 										<table class="table" style="margin-bottom: 45px">
 
 											<tr>
 												<th>Volo (andata)</th>
-												<td>#{item.personalizedProducts[0].flight.name}</td>
-												<td>#{item.personalizedProducts[0].flight.company}</td>
+												<td>#{item.getOutboundFlight().flight.name}</td>
+												<td>#{item.getOutboundFlight().flight.company}</td>
 											</tr>
 											<tr>
 												<th>Volo (ritorno)</th>
-												<td>#{item.personalizedProducts[1].flight.name}</td>
-												<td>#{item.personalizedProducts[1].flight.company}</td>
+												<td>#{item.getReturnFlight().flight.name}</td>
+												<td>#{item.getReturnFlight().flight.company}</td>
 											</tr>
 
 											<tr>
 												<th>Hotel</th>
-												
-												<td>#{item.personalizedProducts[2].excursion.name}</td>
-												<td>#{item.personalizedProducts[2].excursion.company}</td>
+												<td>#{item.getHotel().hotel.name}</td>
+												<td>#{item.getHotel().hotel.company}</td>	
 											</tr>
 											<tr>
 												<th>Escursione</th>
-												<td>#{item.personalizedProducts[3].hotel.name}</td>
-												<td>#{item.personalizedProducts[3].hotel.company}</td>
+												<td>#{item.getExcursion().excursion.name}</td>
+												<td>#{item.getExcursion().excursion.company}</td>
 											</tr>
 										</table>
 									</div>
