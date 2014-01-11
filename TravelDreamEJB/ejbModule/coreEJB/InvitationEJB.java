@@ -111,10 +111,20 @@ public class InvitationEJB implements InvitationEJBLocal {
         	msg.setRecipient(RecipientType.TO,
         			new InternetAddress(invitation.getInvited().getMail(),
         					""));
-        	msg.setText("Ciao,\n"
-          			+ "Sei stato invitato da "+name+" "+lastName+" ad unirti ad un viaggio sul sito TravelDream\n"
-          			+ "Conferma subito la tua presenza iscrivendoti al sito oppure loggandoti con username e password\n"
-          			+ "Hask del link: "+inv.getHash());
+        	/*String text = "Ciao,\n"
+          				+ "Sei stato invitato da "+name+" "+lastName+" ad unirti ad un viaggio sul sito TravelDream\n"
+          				+ "Conferma subito la tua presenza iscrivendoti al sito oppure loggandoti con username e password\n"
+          				+ "Hask del link: <br><br>lol<br><br>lol<img src='http://www.google.com/images/srpr/logo11w.png'/>"+inv.getHash(); */
+        	String text = "Ciao,<br>"
+      					+ "Sei stato invitato da "+name+" "+lastName+" ad unirti ad un viaggio sul sito TravelDream!<br>"
+      					+ "Qua sotto trovi i dettagli del pacchetto<br>"
+      					+ "<h2>"+invitation.get_package().getName()+"</h2><br>"
+      					+ "<h3>Numero di persone nel viaggio: "+invitation.get_package().getNumPeople()+"</h3><br>"
+      					+ "<a href='http://localhost:8080/TravelDreamWeb/user/accept_invitation?faces-redirect=true&hash="+inv.getHash()+"'> Conferma subito la tua presenza cliccando qua</a><br><br>"
+      					+ "Sara' necessario iscriversi al sito oppure loggarsi con username e password<br>"
+      					+ "<img src='http://imagizer.imageshack.us/v2/800x600q90/834/w1xo.jpg'/>";
+          	//msg.setText(text);
+          	msg.setContent(text, "text/html; charset=utf-8");
         	Transport.send(msg);
         	System.out.println("Mail sent with success to address "+invited.getMail());
         }
