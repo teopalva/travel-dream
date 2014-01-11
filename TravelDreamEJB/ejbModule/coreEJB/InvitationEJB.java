@@ -28,6 +28,7 @@ import entity.Invitation;
 import entity.Package;
 import entity.User;
 import exceptions.FieldNotPresentException;
+import exceptions.JavaMailErrorException;
 import exceptions.NotValidInvitationException;
 import exceptions.NotValidPackageException;
 import exceptions.NotValidUserException;
@@ -55,8 +56,9 @@ public class InvitationEJB implements InvitationEJBLocal {
     /**
      * Send the invitation and insert the record in database
      * Attention: is a blocking function!!! It takes time in order to send mail (it's a Gmail fault, not mine ;-) )
+     * @throws JavaMailErrorException 
      */
-    public void sendInvitation(InvitationDTO invitation) throws NotValidInvitationException {
+    public void sendInvitation(InvitationDTO invitation) throws NotValidInvitationException, JavaMailErrorException {
         Message msg = new MimeMessage(mailSession);
         try {
         	//Insert in DB
@@ -132,10 +134,12 @@ public class InvitationEJB implements InvitationEJBLocal {
           // manage exception
         	me.printStackTrace();
         	System.err.println("MessagingException");
+        	throw new JavaMailErrorException();
         }
         catch(UnsupportedEncodingException uee) {
         	uee.printStackTrace();
         	System.err.println("UnsupportedEncodingException");
+        	throw new JavaMailErrorException();
         }
         catch(NullPointerException e) {
         	throw new NotValidInvitationException();
