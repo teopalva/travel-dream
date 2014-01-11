@@ -57,8 +57,6 @@ public class RegistrationBean {
 	    return back();
 	}
 	showAlert();
-	// FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Utente gia' registrato", "TITOLO");
-	// FacesContext.getCurrentInstance().addMessage("signin:email", message);
 	return null;
     }
 

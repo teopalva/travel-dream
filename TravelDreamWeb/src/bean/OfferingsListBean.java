@@ -275,7 +275,7 @@ public class OfferingsListBean {
      */
     /*
     public static PackageDTO reorderPackage(PackageDTO pack) throws PackageNotValidException {
-	// if (!packageEJB.isValidForOffering(pack)) { TODO: activate!
+	// if (!packageEJB.isValidForOffering(pack)) { TODO: ELIMINATE
 	// throw new PackageNotValidException();
 	// }
 	PackageDTO reorderedPackage = new PackageDTO(pack);

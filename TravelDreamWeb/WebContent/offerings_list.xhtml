@@ -157,35 +157,35 @@
 													<p>Prezzo: #{package.getPrice()} €</p>
 													<p>Sconto:  #{package.getReduction()}</p>
 													<p>Partenza:
-														#{package.personalizedProducts[0].flight.getCityDeparture().getName()}
-														#{package.personalizedProducts[0].flight.getAirportDeparture()}</p>
+														#{package.getOutboundFlight().flight.getCityDeparture().getName()}
+														#{package.getOutboundFlight().flight.getAirportDeparture()}</p>
 													<p>Destinazione:
-														#{package.personalizedProducts[0].flight.getCityArrival().getName()}
-														#{package.personalizedProducts[0].flight.getAirportArrival()}</p>
+														#{package.getOutboundFlight().flight.getCityArrival().getName()}
+														#{package.getOutboundFlight().flight.getAirportArrival()}</p>
 													<div id="info_#{package.id}" class="collapse out">
 														<table class="table" style="margin-bottom: 45px; margin-right:10px">
 															<caption style="padding-bottom: 5px"><h5>Dettagli
 																pacchetto</h5></caption>
 															<tr>
 																<th>Volo (andata)</th>
-																<td>#{package.personalizedProducts[0].flight.name}</td>
-																<td>#{package.personalizedProducts[0].flight.company}</td>
+																<td>#{package.getOutboundFlight().flight.name}</td>
+																<td>#{package.getOutboundFlight().flight.company}</td>
 															</tr>
 															<tr>
 																<th>Volo (ritorno)</th>
-																<td>#{package.personalizedProducts[1].flight.name}</td>
-																<td>#{package.personalizedProducts[1].flight.company}</td>
+																<td>#{package.getReturnFlight().flight.name}</td>
+																<td>#{package.getReturnFlight().flight.company}</td>
 															</tr>
 
 															<tr>
 																<th>Hotel</th>
-																<td>#{package.personalizedProducts[2].hotel.name}</td>
-																<td>#{package.personalizedProducts[2].hotel.company}</td>
+																<td>#{package.getHotel().hotel.name}</td>
+																<td>#{package.getHotel().hotel.company}</td>
 															</tr>
 															<tr>
 																<th>Escursione</th>
-																<td>#{package.personalizedProducts[3].excursion.name}</td>
-																<td>#{package.personalizedProducts[3].excursion.company}</td>
+																<td>#{package.getExcursion().excursion.name}</td>
+																<td>#{package.getExcursion().excursion.company}</td>
 															</tr>
 														</table>
 													</div>
