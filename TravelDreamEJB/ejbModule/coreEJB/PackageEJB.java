@@ -275,6 +275,11 @@ public class PackageEJB implements PackageEJBLocal {
 			throw new NotValidPackageException();
 		return _package.getImage().getData();
 	}
+	
+	public byte[] getDefaultPackageImage() {
+		Image image = em.find(Image.class, -1);
+		return image.getData();
+	}
 
 	public PackageDTO getTmpPackage() {
 		return tmpPackage;

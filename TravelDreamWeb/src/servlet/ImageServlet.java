@@ -54,7 +54,14 @@ public class ImageServlet extends HttpServlet {
 	        
 	        outputStream.write(image);
 		} catch (NotValidPackageException e) {
-			outputStream.println("Id pacchetto non valido");
+			//outputStream.println("Id pacchetto non valido");
+			image = packageEJB.getDefaultPackageImage();
+			if(image == null)
+				outputStream.println("Immagine di default (con id = -1) non caricata nel DB");
+			else {
+				response.setContentType("image/jpeg"); 
+		        outputStream.write(image);
+			}
 		}
 
         

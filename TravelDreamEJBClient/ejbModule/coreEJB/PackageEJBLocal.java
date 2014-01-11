@@ -48,4 +48,6 @@ public interface PackageEJBLocal {
     public void setSelectedExcursion(boolean selectedExcursion);
 
     public byte[] getPackageImage(PackageDTO packageDTO) throws NotValidPackageException;
+    
+    public byte[] getDefaultPackageImage();
 }
