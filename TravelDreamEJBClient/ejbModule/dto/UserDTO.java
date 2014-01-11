@@ -2,8 +2,9 @@ package dto;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import entity.Group;
 import entity.User;
@@ -11,12 +12,16 @@ import exceptions.FieldNotPresentException;
 
 public class UserDTO {
     
-    @NotNull(message = "Campo obbligatorio")
+    @NotEmpty(message = "Email obbligatoria")
     @Pattern(regexp = "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)", message = "Formato e-mail non valido")
     private String mail;
+    @NotEmpty(message = "Password obbligatoria")
     private String password;
+    @NotEmpty(message = "Nome obbligatorio")
     private String firstName;
+    @NotEmpty(message = "Cognome obbligatorio")
     private String lastName;
+    
     private String group;
 
     public UserDTO() {
