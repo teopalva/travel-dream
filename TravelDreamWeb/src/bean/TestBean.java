@@ -30,6 +30,7 @@ import dto.PersonalizedFlightDTO;
 import dto.PersonalizedHotelDTO;
 import dto.PersonalizedProductDTO;
 import dto.UserDTO;
+import exceptions.JavaMailErrorException;
 import exceptions.NotPresentUserException;
 import exceptions.NotValidBaseProductException;
 import exceptions.NotValidBuyingListException;
@@ -170,7 +171,7 @@ public class TestBean {
 	invitation.set_package(_package);
 	try {
 	    invitationEJB.sendInvitation(invitation);
-	} catch (NotValidInvitationException e) {
+	} catch (NotValidInvitationException | JavaMailErrorException e) {
 	    e.printStackTrace();
 	}
     }

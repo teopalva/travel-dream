@@ -22,6 +22,7 @@ import dto.GiftListItemDTO;
 import dto.InvitationDTO;
 import dto.PackageDTO;
 import dto.UserDTO;
+import exceptions.JavaMailErrorException;
 import exceptions.NotAuthenticatedException;
 import exceptions.NotValidBuyingListException;
 import exceptions.NotValidGiftListItemException;
@@ -63,8 +64,8 @@ public class CheckoutBean {
 	}
 	selectedPackage = sessionStorage.getSelectedPackage();
 	int numPeople = selectedPackage.getNumPeople();
-	emails = new ArrayList<String>(numPeople);
-	for (int i = 0; i < numPeople; i++) {
+	emails = new ArrayList<String>(numPeople - 1);
+	for (int i = 0; i < numPeople - 1; i++) {
 	    emails.add("");
 	}
     }
@@ -188,11 +189,9 @@ public class CheckoutBean {
 	    PackageDTO p = new PackageDTO(selectedPackage);
 	    try {
 		invitationEJB.sendInvitation(new InvitationDTO(user, invited, p, null, false));
-	    } catch (NotValidInvitationException e) {
+	    } catch (NotValidInvitationException | JavaMailErrorException e) {
 		FacesContext.getCurrentInstance().addMessage("alertMail",
-			new FacesMessage(FacesMessage.SEVERITY_ERROR, "Errore generico", "Al momento e' impossibile inviare tutte le mail di invito. Riprova."));
-		System.err.printf("Errore durante l'operazione, riprova.");
-		e.printStackTrace();
+			new FacesMessage(FacesMessage.SEVERITY_ERROR, "Errore", "Al momento e' impossibile inviare tutte le mail di invito. Riprova."));
 		return null;
 	    }
 	}
