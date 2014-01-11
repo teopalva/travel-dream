@@ -122,7 +122,7 @@ public class InvitationEJB implements InvitationEJBLocal {
       					+ "Qua sotto trovi i dettagli del pacchetto<br>"
       					+ "<h2>"+invitation.get_package().getName()+"</h2><br>"
       					+ "<h3>Numero di persone nel viaggio: "+invitation.get_package().getNumPeople()+"</h3><br>"
-      					+ "<a href='http://localhost:8080/TravelDreamWeb/user/accept_invitation?faces-redirect=true&hash="+inv.getHash()+"'> Conferma subito la tua presenza cliccando qua</a><br><br>"
+      					+ "<a href='http://localhost:8080/TravelDreamWeb/accept_invitation.xhtml?faces-redirect=true&hash="+inv.getHash()+"'> Conferma subito la tua presenza cliccando qua</a><br><br>"
       					+ "Sara' necessario iscriversi al sito oppure loggarsi con username e password<br>"
       					+ "<img src='http://imagizer.imageshack.us/v2/800x600q90/834/w1xo.jpg'/>";
           	//msg.setText(text);

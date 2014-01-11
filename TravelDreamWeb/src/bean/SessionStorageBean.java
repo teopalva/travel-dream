@@ -23,6 +23,7 @@ public class SessionStorageBean implements Serializable {
     private String previousPage = null;
     private String departurePlace = "";
     private String arrivalPlace = ""; // To be set directly from home.jsf when filling search form
+    private String hash;
 
     public PackageDTO getSelectedPackage() {
 	return selectedPackage;
@@ -74,5 +75,13 @@ public class SessionStorageBean implements Serializable {
     public void setArrivalPlace(String arrivalPlace) {
 	this.arrivalPlace = arrivalPlace;
     }
+
+	public String getHash() {
+		return hash;
+	}
+
+	public void setHash(String hash) {
+		this.hash = hash;
+	}
 
 }
