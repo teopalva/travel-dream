@@ -3,6 +3,7 @@ package bean;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -71,6 +72,8 @@ public class EditPackageBean {
     private FlightDTO baseFlight1 = null;
     private HotelDTO baseHotel = null;
     private ExcursionDTO baseExcursion = null;
+
+    private SimpleDateFormat fmt = new SimpleDateFormat("yyyyMMdd");
 
     @EJB
     private BaseProductEJBLocal baseProductEJB;
@@ -190,8 +193,8 @@ public class EditPackageBean {
 
     public void setNumPeople(Integer n) {
 	numPeople = n;
-	if(selectedPackage != null)
-		selectedPackage.setNumPeople(n);
+	if (selectedPackage != null)
+	    selectedPackage.setNumPeople(n);
     }
 
     public Integer getNumPeople() {
@@ -300,7 +303,7 @@ public class EditPackageBean {
 		if (bp instanceof FlightDTO) {
 		    if ((departurePlace.equalsIgnoreCase(((FlightDTO) bp).getCityDeparture().getName())) && arrivalPlace.equalsIgnoreCase(((FlightDTO) bp).getCityArrival().getName())) {
 			for (DatePersonalizationDTO d : ((FlightDTO) bp).getPossibleDatePersonalizations()) {
-			    if (departureDate.equals(d.getInitialDate())) {
+			    if (fmt.format(departureDate).equals(fmt.format(d.getInitialDate()))) {
 				for (ClassPersonalizationDTO c : ((FlightDTO) bp).getPossibleClassPersonalizations()) {
 				    PersonalizedFlightDTO f = new PersonalizedFlightDTO((FlightDTO) bp);
 				    f.setDatePersonalization(d);
@@ -314,7 +317,7 @@ public class EditPackageBean {
 		    } else {
 			if ((departurePlace.equalsIgnoreCase(((FlightDTO) bp).getCityArrival().getName())) && arrivalPlace.equalsIgnoreCase(((FlightDTO) bp).getCityDeparture().getName())) {
 			    for (DatePersonalizationDTO d : ((FlightDTO) bp).getPossibleDatePersonalizations()) {
-				if (returnDate.equals(d.getInitialDate())) {
+				if (fmt.format(returnDate).equals(fmt.format(d.getInitialDate()))) {
 				    for (ClassPersonalizationDTO c : ((FlightDTO) bp).getPossibleClassPersonalizations()) {
 					PersonalizedFlightDTO f = new PersonalizedFlightDTO((FlightDTO) bp);
 					f.setDatePersonalization(d);
@@ -509,28 +512,21 @@ public class EditPackageBean {
     public void setReturnFlight(PersonalizedFlightDTO returnFlight) {
 	this.returnFlight = returnFlight;
     }
-  
-    /*	//Deprecated
-     * TODO remove it
-    public void setImage(UploadedFile file) {  
-        selectedPackage.setImageData(file.getContents());
-    } 
-    */
-    
-    public byte[] getImage() {  
-        return selectedPackage.getImageData();
-    } 
-    
-    public void handleImageUpload(FileUploadEvent event) {  
-        FacesMessage msg = new FacesMessage("Immagine caricata", event.getFile().getFileName() + " e' stata aggiunta");  
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
-        try {
-			selectedPackage.setImageData( this.getFileContents(event.getFile().getInputstream()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }  
-    
+
+    public byte[] getImage() {
+	return selectedPackage.getImageData();
+    }
+
+    public void handleImageUpload(FileUploadEvent event) {
+	FacesMessage msg = new FacesMessage("Immagine caricata", event.getFile().getFileName() + " e' stata aggiunta");
+	FacesContext.getCurrentInstance().addMessage(null, msg);
+	try {
+	    selectedPackage.setImageData(this.getFileContents(event.getFile().getInputstream()));
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+    }
+
     private byte[] getFileContents(InputStream in) {
 	byte[] bytes = null;
 	try {

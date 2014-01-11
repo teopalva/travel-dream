@@ -14,11 +14,7 @@ import javax.faces.view.ViewScoped;
 import coreEJB.AuthenticationEJBLocal;
 import coreEJB.BaseProductEJBLocal;
 import coreEJB.PackageEJBLocal;
-import dto.CityDTO;
 import dto.PackageDTO;
-import dto.PersonalizedExcursionDTO;
-import dto.PersonalizedFlightDTO;
-import dto.PersonalizedHotelDTO;
 import exceptions.PackageNotValidException;
 
 @ManagedBean(name = "OfferingsList")
@@ -156,11 +152,10 @@ public class OfferingsListBean {
     public List<PackageDTO> searchFilter(List<PackageDTO> offerings) {
 	List<PackageDTO> filteredOfferings = new ArrayList<PackageDTO>();
 	for (PackageDTO pack : offerings) {
-//	    try { TODO activate 
-//		if (!packageEJB.isValidForOffering(pack)) {
-//		    throw new PackageNotValidException();
-//		}
-
+	    try {
+		if (!packageEJB.isValidForOffering(pack)) {
+		    throw new PackageNotValidException();
+		}
 		// basic search filters
 		if (numPeopleCheck(pack) && departurePlaceCheck(pack) && arrivalPlaceCheck(pack) && departureDateCheck(pack) && returnDateCheck(pack)) {
 		    // advanced filters
@@ -168,10 +163,10 @@ public class OfferingsListBean {
 			filteredOfferings.add(pack);
 		    }
 		}
-//	    } catch (PackageNotValidException e) {
-//		System.err.print("Pacchetto non valido.");
-//		e.printStackTrace();
-//	    }
+	    } catch (PackageNotValidException e) {
+		System.err.print("Pacchetto non valido.");
+		e.printStackTrace();
+	    }
 	}
 	return filteredOfferings;
     }
@@ -261,59 +256,6 @@ public class OfferingsListBean {
 	return (hotelClass.equals("null") || (pack.getHotel().getClassPersonalization().get_class().equalsIgnoreCase(hotelClass))) ? true : false;
     }
 
-    
-    /**
-     * Reorders a package by putting its PersonalizedProducts into specific positions based on their type:
-     * [0]->outbound flight
-     * [1]->return flight
-     * [2]->hotel
-     * [3]->excursion
-     * 
-     * @param pack
-     * @return the reordered PackageDTO
-     * @throws PackageNotValidException
-     */
-    /*
-    public static PackageDTO reorderPackage(PackageDTO pack) throws PackageNotValidException {
-	// if (!packageEJB.isValidForOffering(pack)) { TODO: ELIMINATE
-	// throw new PackageNotValidException();
-	// }
-	PackageDTO reorderedPackage = new PackageDTO(pack);
-	reorderedPackage.setId(pack.getId());
-	CityDTO destinationCity = null;
-	// understand which is the outbound flight & set hotel at index 2
-	boolean flag = false;
-	for (int i = 0; i < pack.getPersonalizedProducts().size() && !flag; i++) {
-	    if (pack.getPersonalizedProducts().get(i) instanceof PersonalizedHotelDTO) {
-		destinationCity = ((PersonalizedHotelDTO) pack.getPersonalizedProducts().get(i)).getHotel().getCity();
-		reorderedPackage.getPersonalizedProducts().set(2, pack.getPersonalizedProducts().get(i));
-		flag = true;
-	    }
-	}
-	// set outbound/return flight at index 0/1
-	for (int i = 0; i < pack.getPersonalizedProducts().size(); i++) {
-	    if (pack.getPersonalizedProducts().get(i) instanceof PersonalizedFlightDTO) {
-		if (((PersonalizedFlightDTO) pack.getPersonalizedProducts().get(i)).getFlight().getCityArrival().equals(destinationCity)) {
-		    // this is the outbound flight:
-		    reorderedPackage.getPersonalizedProducts().set(0, pack.getPersonalizedProducts().get(i));
-		} else {
-		    // this is the return flight:
-		    reorderedPackage.getPersonalizedProducts().set(1, pack.getPersonalizedProducts().get(i));
-		}
-	    }
-	}
-	// set excursion at index 3
-	flag = false;
-	for (int i = 0; i < pack.getPersonalizedProducts().size() && !flag; i++) {
-	    if (pack.getPersonalizedProducts().get(i) instanceof PersonalizedExcursionDTO) {
-		reorderedPackage.getPersonalizedProducts().set(3, pack.getPersonalizedProducts().get(i));
-		flag = true;
-	    }
-	}
-	return reorderedPackage;
-    }
-*/
-    
     /**
      * Shows edit_package page related to the selected package.
      * 

@@ -112,7 +112,6 @@ public class CheckoutBean {
 		buyingListEJB.saveBuyingListItem(buyingItem);
 	    } catch (NotValidBuyingListException e) {
 		showAlert();
-		// packageEJB.removePackage(selectedPackage);
 		return null;
 	    }
 	    return ("/user/payment?faces-redirect=true");
@@ -155,18 +154,15 @@ public class CheckoutBean {
      * @return the gift_list page URL
      */
     public String showGiftList() {
-	// packageEJB.savePackage(selectedPackage);
 	PackageDTO p = new PackageDTO(selectedPackage);
 	GiftListItemDTO giftItem = new GiftListItemDTO(p, user);
 	try {
 	    giftListEJB.saveGiftListItem(giftItem);
 	} catch (NotValidUserException e) {
 	    showAlert();
-	    // packageEJB.removePackage(selectedPackage);
 	    return null;
 	} catch (NotValidGiftListItemException e) {
 	    showAlert();
-	    // packageEJB.removePackage(selectedPackage);
 	    return null;
 	}
 	return ("/user/gift_list?faces-redirect=true");
@@ -178,7 +174,6 @@ public class CheckoutBean {
      * @return the invitation_list page URL
      */
     public String showInvitationList() {
-	// send emails & add tmpPackage to invitationList
 	for (String email : emails) {
 	    if (email.equals("")) {
 		FacesContext.getCurrentInstance().addMessage("alertMail",
@@ -211,7 +206,7 @@ public class CheckoutBean {
      * @return true if the "Invite your friends" section of the checkout is accessible to the user
      */
     public boolean isInviteActive() {
-	return sessionStorage.getPreviousPage().equals("edit") ? true : false;
+	return sessionStorage.getPreviousPage().equals("edit") && selectedPackage.getNumPeople() > 1 ? true : false;
     }
 
     private void showAlert() {
