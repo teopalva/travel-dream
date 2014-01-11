@@ -68,39 +68,39 @@ function showDetail(id,text,btn) {
 											<div class="col-md-4" style="margin-bottom:20px">
 											<p:commandButton id="checkout" value="Ordina" styleClass="btn btn-primary btn-lg btn-block"  action="#{GiftList.showCheckout(item._package)}" />
 											</div>
-											Data di partenza: #{EditPackage.selectedPackage.personalizedProducts[0].datePersonalization.getInitialDate()}<br></br>
-											Data di ritorno: #{EditPackage.selectedPackage.personalizedProducts[1].datePersonalization.getInitialDate()}<p></p>
+											Data di partenza: #{item._package.getOutboundFlight().datePersonalization.getInitialDate()}<br></br>
+											Data di ritorno: #{item._package.getReturnFlight().datePersonalization.getInitialDate()}<p></p>
 											Partenza:
-											#{item._package.personalizedProducts[0].flight.getCityDeparture().getName()}
-											#{item._package.personalizedProducts[0].flight.getAirportDeparture()}
+											#{item._package.getOutboundFlight().flight.getCityDeparture().getName()}
+											#{item._package.getOutboundFlight().flight.getAirportDeparture()}
 											<br></br>Destinazione:
-											#{item._package.personalizedProducts[0].flight.getCityArrival().getName()}
-											#{item._package.personalizedProducts[0].flight.getAirportArrival()}<p></p>
+											#{item._package.getOutboundFlight().flight.getCityArrival().getName()}
+											#{item._package.getOutboundFlight().flight.getAirportArrival()}<p></p>
 										<div>
 												<table class="table" style="margin-bottom: 45px">
 
 													<tr>
 														<th>Volo (andata)</th>
-														<td>#{item._package.personalizedProducts[0].flight.name}</td>
-														<td>#{item._package.personalizedProducts[0].flight.company}</td>
+														<td>#{item._package.getOutboundFlight().flight.name}</td>
+														<td>#{item._package.getOutboundFlight().flight.company}</td>
 													</tr>
 													<tr>
 														<th>Volo (ritorno)</th>
-														<td>#{item._package.personalizedProducts[1].flight.name}</td>
-														<td>#{item._package.personalizedProducts[1].flight.company}</td>
+														<td>#{item._package.getReturnFlight().flight.name}</td>
+														<td>#{item._package.getReturnFlight().flight.company}</td>
 													</tr>
 
 
 													<tr>
 														<th>Hotel</th>
 
-														<td>#{item._package.personalizedProducts[2].hotel.name}</td>
-														<td>#{item._package.personalizedProducts[2].hotel.company}</td>
+														<td>#{item._package.getHotel().hotel.name}</td>
+														<td>#{item._package.getHotel().hotel.company}</td>
 													</tr>
 													<tr>
 														<th>Escursione</th>
-														<td>#{item._package.personalizedProducts[3].excursion.name}</td>
-														<td>#{item._package.personalizedProducts[3].excursion.company}</td>
+														<td>#{item._package.getExcursion().excursion.name}</td>
+														<td>#{item._package.getExcursion().excursion.company}</td>
 													</tr>
 
 
