@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+	
+	<f:metadata>
+	<f:viewParam name="hash" value="#{AcceptInvitation.hash}" />
+	</f:metadata>
+	
+		<h:body>
+
+			<center>
+			<h3 style="margin-top:130px">Sei stato invitato a partecipare ad un viaggio</h3>
+				<br></br>
+				<h:form  styleClass="form-signin">
+					<p:commandButton value="Conferma partecipazione" action="#{AcceptInvitation.acceptInvitation()}" styleClass="btn btn-lg btn-primary btn-block"/>
+				</h:form>
+			</center>				
+	
+
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

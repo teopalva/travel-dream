@@ -12,6 +12,7 @@ import dto.BuyingListItemDTO;
 import dto.PackageDTO;
 import dto.UserDTO;
 import entity.BuyingListItem;
+import entity.Invitation;
 import entity.Package;
 import entity.User;
 import exceptions.FieldNotPresentException;
@@ -87,6 +88,13 @@ public class BuyingListItemEJB implements BuyingListItemEJBLocal {
     		item.setGifted(buyingListItemDTO.isGifted());
     		em.merge(item);
     	}
+    	
+    	//Delete all invitation on this package
+    	List<Invitation> invitations = em.createNativeQuery("SELECT * FROM INVITATION WHERE PackageId='"+_package.getId()+"'", Invitation.class).getResultList();
+    	for(Invitation i : invitations) {
+    		em.remove(i);
+    	}
+    	em.flush();
     }
     
 	public void removeBuyingListItem(BuyingListItemDTO buyingListItemDTO) throws NotValidBuyingListException {
