@@ -16,25 +16,25 @@
 				<div class="row clearfix well" style="margin-top:60px;margin-bottom:40px">
 					<center><h3 style="margin-bottom:30px">Gestione prodotti base</h3></center>
 					<div class="col-md-6 column">
-						<button type="button" class="btn btn-block btn-success">Creazione prodotto base</button>
+						<p:commandButton  styleClass="btn btn-block btn-info" action="#{AdminPanel.showEditBaseProduct()}" value="Creazione prodotto base"/>
 					</div>
 					<div class="col-md-6 column">
-						<button type="button" class="btn btn-info btn-block">Ricerca prodotti base</button>
+						<p:commandButton  styleClass="btn btn-info btn-block" action="#{AdminPanel.showViewBaseProducts()}" value="Ricerca prodotti base"/>
 					</div>
 				</div>
 				<div class="row clearfix well">
 					<center><h3 style="margin-bottom:30px">Gestione pacchetti</h3></center>
 					<div class="col-md-6 column">
-						<button type="button" class="btn btn-success btn-block">Creazione pacchetto</button>
+						<p:commandButton  styleClass="btn btn-success btn-block" action="#{AdminPanel.showEditPackage()}" value="Creazione pacchetto"/>
 					</div>
 					<div class="col-md-6 column">
-						<button type="button" class="btn btn-info btn-block">Ricerca pacchetti</button>
+						<p:commandButton  styleClass="btn btn-success btn-block" action="#{AdminPanel.showOfferingsList()}" value="Ricerca pacchetti"/>
 					</div>
 				</div>
 				<div class="row clearfix well" style="margin-top:40px">
 					<center><h3 style="margin-bottom:30px">Gestione commerciale</h3></center>
 					<div class="col-md-12 column">
-						<button type="button" class="btn btn-danger btn-block">Gestione ordini</button>
+						<p:commandButton  styleClass="btn btn-warning btn-block" action="#{AdminPanel.showOrderList()}" value="Gestione ordini"/>
 					</div>
 				
 				</div>
