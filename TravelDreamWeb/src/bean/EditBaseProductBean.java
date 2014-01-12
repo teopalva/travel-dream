@@ -326,12 +326,9 @@ public class EditBaseProductBean {
 
 	public void setHotelCityName(String name) {
 		HotelDTO hotel = getHotel();
-		CityDTO city = hotel.getCity();
-		if(city == null) {
-			hotel.setCity(new CityDTO(name, ""));
-		}
-		else {
-			hotel.getCity().setName(name);
+		CityDTO city = getCityFromName(name);
+		if(city != null) {
+			hotel.setCity(city);
 		}
 	}
 	
@@ -360,12 +357,9 @@ public class EditBaseProductBean {
 
 	public void setExcursionCityName(String name) {
 		ExcursionDTO excursion = getExcursion();
-		CityDTO city = excursion.getCity();
-		if(city == null) {
-			excursion.setCity(new CityDTO(name, ""));
-		}
-		else {
-			excursion.getCity().setName(name);
+		CityDTO city = getCityFromName(name);
+		if(city != null) {
+			excursion.setCity(city);
 		}
 	}
 	
@@ -559,6 +553,15 @@ public class EditBaseProductBean {
 				return true;
 		}
 		return false;
+	}
+	
+	private CityDTO getCityFromName(String name) {
+		List<CityDTO> cities = this.getAllCities();
+		for(CityDTO city : cities) {
+			if(city.getName().equals(name))
+				return city;
+		}
+		return null;
 	}
 
 }

@@ -30,7 +30,6 @@ public class AuthenticationEJB implements AuthenticationEJBLocal {
      * True if the user is authenticated and is TDE
      */
     public boolean isTDE() {
-    	System.out.println("isTDE");
     	UserDTO user;
 		try {
 			user = this.getAuthenticatedUser();
@@ -48,7 +47,6 @@ public class AuthenticationEJB implements AuthenticationEJBLocal {
      * True if the user is authenticated and is TDC
      */
     public boolean isTDC() {
-    	System.out.println("isTDC");
     	UserDTO user;
 		try {
 			user = this.getAuthenticatedUser();
