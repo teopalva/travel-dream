@@ -400,7 +400,7 @@ public class BaseProductEJB implements BaseProductEJBLocal {
 			hotel.setStars(hotelDTO.getStars());	
 			
 			//PossibleClassPersonalization synchronization
-			List<PossibleClassPersonalizationHotel> oldClassList = em.createNativeQuery("SELECT * FROM POSSIBLE_CLASS_PERSONALIZATION_FLIGHT WHERE HotelId='"+hotel.getId()+"'", PossibleClassPersonalizationHotel.class)
+			List<PossibleClassPersonalizationHotel> oldClassList = em.createNativeQuery("SELECT * FROM POSSIBLE_CLASS_PERSONALIZATION_HOTEL WHERE HotelId='"+hotel.getId()+"'", PossibleClassPersonalizationHotel.class)
 																		.getResultList();
 			List<PossibleClassPersonalizationHotel> newClassList = new ArrayList<PossibleClassPersonalizationHotel>();	//contains all matched personalizations
 		
