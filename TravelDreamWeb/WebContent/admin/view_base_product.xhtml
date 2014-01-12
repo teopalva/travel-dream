@@ -38,7 +38,7 @@
 
 								<p:column headerText="Azioni">
 									<center>
-									 <p:commandButton action="#{ViewBaseProduct.deleteBaseProduct(bp)}" value="Elimina"   />
+									 <p:commandButton action="#{ViewBaseProduct.deleteBaseProduct(bp)}" value="Elimina" update=":listForm:baseProductList" ajax="true"   />
 									 <p:commandButton action="#{ViewBaseProduct.showEditBaseProduct(bp)}" value="Modifica"  /> 
 									 </center>
 								</p:column>

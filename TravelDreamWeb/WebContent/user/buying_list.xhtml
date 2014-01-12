@@ -35,8 +35,10 @@ function showDetail(id,text,btn) {
 						<div class="list-group">
 							<a href="#" class="list-group-item active">Pacchetti</a>
 							<ui:repeat value="#{BuyingList.retrieveList()}" var="item">
-							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;"><h:panelGroup rendered="#{item.isPaid()}"><span class="badge">Pagamento ricevuto</span></h:panelGroup>
-							 <b>#{item._package.name}</b><br></br>Prezzo: #{item._package.getPrice()} €
+							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;">
+							 	<h:panelGroup rendered="#{item.isPaid()}"><span class="badge">Pagamento ricevuto</span></h:panelGroup>
+							 	<h:panelGroup rendered="#{item.isGifted()}"><span class="badge">Regalato</span></h:panelGroup>
+							 	<b>#{item._package.name}</b><br></br>Prezzo: #{item._package.getPrice()} €
 							 </a>
 							 </ui:repeat>
 						</div>

@@ -50,7 +50,7 @@ public class HeaderBean implements Serializable {
      */
     public String showHome() {
 	if (authEJB.isTDE()) {
-	    return "/admin/panel";
+	    return "/admin/index";
 	} else {
 	    return "/home?faces-redirect=true";
 	}
