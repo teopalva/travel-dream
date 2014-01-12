@@ -128,6 +128,7 @@ public class ViewBaseProductBean {
     public void deleteBaseProduct(BaseProductDTO bp) {
 	try {
 	    bpEJB.removeBaseProduct(bp);
+	    productList = this.submitSearch();
 	} catch (NotValidBaseProductException e) {
 	    // no problem: bp previously extracted from db
 	    e.printStackTrace();
