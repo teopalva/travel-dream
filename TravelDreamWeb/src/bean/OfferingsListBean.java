@@ -270,6 +270,11 @@ public class OfferingsListBean {
 	    return "/user/edit_package?faces-redirect=true";
 	}
     }
+    
+    public Boolean showRemovePackage() {
+    	if(authEJB.isTDE()) return true;
+    	else return false;
+    }
 
     /**
      * 
