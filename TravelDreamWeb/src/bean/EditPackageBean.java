@@ -43,7 +43,7 @@ public class EditPackageBean {
     private PackageDTO selectedPackage = null;
     private double totalPrice;
     private String packageName = "";
-    private Integer reduction = 0;
+    private Double reduction = new Double(0);
 
     private String departurePlace = null;
     private String arrivalPlace = null;
@@ -209,11 +209,19 @@ public class EditPackageBean {
 	this.packageName = packageName;
     }
 
-    public Integer getReduction() {
+    public Double getReduction() {
 	return reduction;
     }
+    
+    public Double getEuroReduction() {
+    	try {
+    		return (this.selectedPackage.getPrice()/(1-this.selectedPackage.getReduction()))*this.selectedPackage.getReduction();
+    	} catch (NullPointerException e) {
+    		return new Double(0);
+    	}
+    }
 
-    public void setReduction(Integer reduction) {
+    public void setReduction(Double reduction) {
 	this.reduction = reduction;
     }
 

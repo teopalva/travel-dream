@@ -20,6 +20,10 @@ public class BuyingListPK implements Serializable {
 
 	public BuyingListPK() {
 	}
+	public BuyingListPK(int packageId, String userIdBuyingList) {
+		this.packageId = packageId;
+		this.userIdBuyingList = userIdBuyingList;
+	}
 	public int getPackageId() {
 		return this.packageId;
 	}

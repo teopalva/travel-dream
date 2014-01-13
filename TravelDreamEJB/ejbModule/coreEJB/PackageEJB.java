@@ -278,6 +278,8 @@ public class PackageEJB implements PackageEJBLocal {
 	
 	public byte[] getDefaultPackageImage() {
 		Image image = em.find(Image.class, -1);
+		if(image == null)
+			return null;
 		return image.getData();
 	}
 

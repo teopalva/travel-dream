@@ -12,6 +12,7 @@ import dto.BuyingListItemDTO;
 import dto.PackageDTO;
 import dto.UserDTO;
 import entity.BuyingListItem;
+import entity.BuyingListPK;
 import entity.Invitation;
 import entity.Package;
 import entity.User;
@@ -161,8 +162,14 @@ public class BuyingListItemEJB implements BuyingListItemEJBLocal {
 	}
 	
 	public void setPaid(BuyingListItemDTO itemDTO) throws NotValidBuyingListException{
-		itemDTO.setPaid(true);
-		saveBuyingListItem(itemDTO);
+		//itemDTO.setPaid(true);
+		//saveBuyingListItem(itemDTO);
+		try {
+			em.createNativeQuery("UPDATE BUYING_LIST_ITEM SET Paid='1' WHERE PackageId='"+itemDTO.get_package().getId()+"'").executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new NotValidBuyingListException();
+		}
 	}
 
 	public BuyingListItemDTO getTmpBuyingListItem() {
