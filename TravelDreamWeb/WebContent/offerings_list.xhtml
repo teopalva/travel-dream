@@ -194,8 +194,13 @@
 
 														<p:commandButton value="Vai" styleClass="btn btn-primary"
 															action="#{OfferingsList.showEditPackage(package)}" />
+														<p:commandButton rendered="#{OfferingsList.showRemovePackage()}" value="Rimuovi" styleClass="btn btn-primary" />
+														
+
 														<button type="button" class="btn btn-default"
 															data-toggle="collapse" data-target="#info_#{package.id}">Info</button>
+													
+
 													</p>
 												</div>
 											</div>
