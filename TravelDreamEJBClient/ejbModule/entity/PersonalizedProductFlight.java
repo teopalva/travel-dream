@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -19,17 +20,17 @@ public class PersonalizedProductFlight implements Serializable {
 	private int id;
 
 	//bi-directional many-to-one association to ClassPersonalization
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="ClassPersonalization")
 	private ClassPersonalization classPersonalization;
 
 	//bi-directional many-to-one association to DatePersonalization
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="DatePersonalization")
 	private DatePersonalization datePersonalization;
 
 	//bi-directional many-to-one association to Flight
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="FlightId")
 	private Flight flight;
 

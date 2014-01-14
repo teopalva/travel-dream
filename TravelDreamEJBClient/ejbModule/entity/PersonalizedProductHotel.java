@@ -20,12 +20,12 @@ public class PersonalizedProductHotel implements Serializable {
 	private int id;
 
 	//bi-directional many-to-one association to ClassPersonalization
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="ClassPersonalization")
 	private ClassPersonalization classPersonalization;
 
 	//bi-directional many-to-one association to Hotel
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="HotelId")
 	private Hotel hotel;
 

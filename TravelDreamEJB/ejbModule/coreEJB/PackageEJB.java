@@ -87,6 +87,8 @@ public class PackageEJB implements PackageEJBLocal {
 			throw new NotValidPackageException();
 		}
 		
+		Package oldPackage = em.find(Package.class, packageDTO.getId());
+		
 		Package _package = new Package();
 		_package.setName(packageDTO.getName());
 		_package.setNumPeople(packageDTO.getNumPeople());
@@ -94,6 +96,7 @@ public class PackageEJB implements PackageEJBLocal {
 		
 		//try to get the image
 		Image image = em.find(Image.class, packageDTO.getImageId());
+		
 		if(image != null) {
 			_package.setImage(image);
 		}
@@ -239,9 +242,14 @@ public class PackageEJB implements PackageEJBLocal {
 		} catch (NullPointerException e) {
 			throw new NotValidPackageException();
 		}
-		if (packageDTO.getId() >= 0)
-			removePackage(packageDTO);
+		
+		if(oldPackage != null) {
+			if(image != null)
+				em.detach(image);
+			em.remove(oldPackage);
+		}
 		em.persist(_package);
+		
 		em.flush();
 		
 		//Set the id inside the packageDTO
@@ -253,14 +261,13 @@ public class PackageEJB implements PackageEJBLocal {
 	 * Remove the package, N.B.: it must contains a valid id
 	 */
 	public void removePackage(PackageDTO _package) throws NotValidPackageException {
-		em.getTransaction().begin();
 		Package package_ = em.find(Package.class, _package.getId());
 
 		if (package_ == null)
 			throw new NotValidPackageException();
 
 		em.remove(package_);
-		em.getTransaction().commit();
+		em.flush();
 
 	}
 
@@ -269,10 +276,12 @@ public class PackageEJB implements PackageEJBLocal {
 		try {
 			_package = em.createQuery("SELECT p FROM Package p JOIN FETCH p.image WHERE p.id=:id", Package.class).setParameter("id", packageDTO.getId()).getResultList().get(0);
 		} catch (IndexOutOfBoundsException e) {
-			throw new NotValidPackageException();
+			return getDefaultPackageImage();
+			//throw new NotValidPackageException();
 		}
 		if (_package == null)
-			throw new NotValidPackageException();
+			return getDefaultPackageImage();
+			//throw new NotValidPackageException();
 		return _package.getImage().getData();
 	}
 	
