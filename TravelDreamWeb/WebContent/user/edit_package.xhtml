@@ -20,6 +20,33 @@
 		<h:body>
 
 <script>
+
+$(function(){
+	  $(window).scroll(function(){
+	    var aTop = $('.searchBar').height()+100;
+	    if($(this).scrollTop()>aTop){
+	     
+	        $('#tl').switchClass("notScrolledBoxTop","scrolledBoxTop",400);
+	        $('#tr').switchClass("notScrolledBoxTop","scrolledBoxTop",400);
+	        
+	        $('#bl').switchClass("notScrolledBoxBottom","scrolledBoxBottom",400);
+	        $('#br').switchClass("notScrolledBoxBottom","scrolledBoxBottom",400);
+	   
+
+	    }
+	    else{
+	       
+	        $('#tl').switchClass("scrolledBoxTop","notScrolledBoxTop",400);
+	        $('#tr').switchClass("scrolledBoxTop","notScrolledBoxTop",400);
+	        
+	        $('#bl').switchClass("scrolledBoxBottom","notScrolledBoxBottom",400);
+	        $('#br').switchClass("scrolledBoxBottom","notScrolledBoxBottom",400);
+	  
+
+	    }
+	  });
+	});
+
 function handleDrop(event, ui) {
 
 	var draggable = ui.draggable, //draggable element, a jQuery object
@@ -37,7 +64,7 @@ function handleDrop(event, ui) {
 				<div class="row clearfix">
 					<div class="col-md-12 column">
 
-						<nav class="navbar navbar-default" role="navigation">
+						<nav class="navbar navbar-default" id="searchBar" role="navigation">
 
 
 						<div class="collapse navbar-collapse"
@@ -100,7 +127,7 @@ function handleDrop(event, ui) {
 				
 					<div class="col-md-3 column">
 						<h:panelGroup styleClass="listScroll" id="p_flights_d" rendered="#{EditPackage.isFlightSelected()}">
-							<div class="panel panel-default affix" style="width:18%;z-index:10;">
+							<div class="panel panel-default affix notScrolledBoxTop" id="tl">
 								<div class="panel-heading">
 									<h3 class="panel-title">Volo di andata</h3>
 								</div>
@@ -117,7 +144,7 @@ function handleDrop(event, ui) {
 						</h:panelGroup>
 
 						<h:panelGroup styleClass="listScroll" id="p_flights_r" rendered="#{EditPackage.isFlightSelected()}">
-							<div class="panel panel-default affix" style="width:18%;margin-top:300px;z-index:10;">
+							<div class="panel panel-default affix notScrolledBoxBottom" id="bl" >
 								<div class="panel-heading">
 									<h3 class="panel-title">Volo di ritorno</h3>
 								</div>
@@ -292,7 +319,7 @@ function handleDrop(event, ui) {
 					</div>
 					<div class="col-md-3 column">
 						<h:panelGroup styleClass="listScroll" id="p_hotels" rendered="#{EditPackage.isHotelSelected()}">
-							<div class="panel panel-default affix" style="width:18%">
+							<div class="panel panel-default affix notScrolledBoxTop" id="tr">
 								<div class="panel-heading">
 									<h3 class="panel-title">Seleziona un hotel</h3>
 								</div>
@@ -310,7 +337,7 @@ function handleDrop(event, ui) {
 
 						
 						<h:panelGroup id="p_exc" rendered="#{EditPackage.isExcursionSelected()}">
-							<div class="panel panel-default affix" style="width:18%; margin-top:300px">
+							<div class="panel panel-default affix notScrolledBoxBottom" id="br">
 								<div class="panel-heading">
 									<h3 class="panel-title">Seleziona un escursione</h3>
 								</div>

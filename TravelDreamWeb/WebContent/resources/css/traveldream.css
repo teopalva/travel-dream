@@ -38,3 +38,35 @@ footer {
   padding: 10px 15px;
 }
 
+.notScrolledBoxTop {
+	margin-top: 0px;
+	width:18%;
+	
+	z-index:10;
+	
+}
+
+.scrolledBoxTop {
+	margin-top: -200px;
+	width:18%;
+	z-index:10;
+	
+}
+
+.notScrolledBoxBottom {
+	
+	width:18%; 
+	margin-top:300px;
+	
+	z-index:10;
+	
+}
+
+.scrolledBoxBottom {
+	
+	width:18%; 
+	margin-top:100px;
+	
+	z-index:10;
+	
+}
