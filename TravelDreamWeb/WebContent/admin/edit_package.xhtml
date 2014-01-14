@@ -106,7 +106,7 @@ function handleDrop(event, ui) {
 								<div id="draggable">
 								<ul class="list-group">
 								<c:forEach items="#{EditPackage.getOutboundFlights()}" var="item">
-										 <li style="margin-bottom:-30px"><p:outputPanel id="_0_#{item.dropIndex}"  styleClass="well well-sm" style="z-index:10;">#{item.flight.name} #{item.getPrice()} €<p:draggable scope="departureFlight" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+										 <li style="margin-bottom:-30px"><p:outputPanel id="_0_#{item.dropIndex}"  styleClass="well well-sm" style="z-index:10;"><h5>#{item.flight.name} #{item.getPrice()} €</h5> <h6>#{item.getDatePersonalization().getInitialDate()} #{item.getClassPersonalization()._class}</h6> <p:draggable scope="departureFlight" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
 								</c:forEach>
 								</ul>
 								</div>
@@ -123,7 +123,7 @@ function handleDrop(event, ui) {
 								<div id="draggable">
 								<ul class="list-group">
 								<c:forEach items="#{EditPackage.getReturnFlights()}" var="item">
-										 <li style="margin-bottom:-30px"><p:outputPanel id="_1_#{item.dropIndex}"  styleClass="well well-sm"  style="z-index:10;">#{item.flight.name} #{item.getPrice()} €<p:draggable scope="returnFlight" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+										 <li style="margin-bottom:-30px"><p:outputPanel id="_1_#{item.dropIndex}"  styleClass="well well-sm"  style="z-index:10;"><h5>#{item.flight.name} #{item.getPrice()} €</h5> <h6>#{item.getDatePersonalization().getInitialDate()} #{item.getClassPersonalization()._class}</h6> <p:draggable scope="returnFlight" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
 								</c:forEach>
 								</ul>
 								</div>
@@ -313,7 +313,7 @@ function handleDrop(event, ui) {
 								<div id="draggable">
 								<ul class="list-group">
 								<c:forEach items="#{EditPackage.getHotels()}" var="item">
-										 <li style="margin-bottom:-30px"><p:outputPanel id="_2_#{item.dropIndex}"  styleClass="well well-sm" >#{item.hotel.name} #{item.getPrice()} €<p:draggable scope="hotel" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
+										 <li style="margin-bottom:-30px"><p:outputPanel id="_2_#{item.dropIndex}"  styleClass="well well-sm" ><h5>#{item.hotel.name} #{item.getPrice()} €</h5> <h6>#{item.getClassPersonalization()._class}</h6><p:draggable scope="hotel" revert="true" opacity="0.5" helper="clone"/> </p:outputPanel></li>
 								</c:forEach>
 								</ul>
 								</div>
@@ -332,7 +332,7 @@ function handleDrop(event, ui) {
 								<div id="draggable">
 								<ul class="list-group">
 								<c:forEach items="#{EditPackage.getExcursions()}" var="item">
-										 <li style="margin-bottom:-30px"><p:outputPanel id="_3_#{item.dropIndex}"  styleClass="well well-sm" >#{item.excursion.name} #{item.getPrice()} €<p:draggable scope="excursion" revert="true" opacity="0.5" helper="clone" /> </p:outputPanel></li>			 
+										 <li style="margin-bottom:-30px"><p:outputPanel id="_3_#{item.dropIndex}"  styleClass="well well-sm" ><h5>#{item.excursion.name} #{item.getPrice()} €</h5> <h6>#{item.getDatePersonalization().getInitialDate()}</h6><p:draggable scope="excursion" revert="true" opacity="0.5" helper="clone" /> </p:outputPanel></li>			 
 								</c:forEach>
 								</ul>
 								</div>
