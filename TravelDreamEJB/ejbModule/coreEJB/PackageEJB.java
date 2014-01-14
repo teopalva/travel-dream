@@ -94,18 +94,24 @@ public class PackageEJB implements PackageEJBLocal {
 		_package.setNumPeople(packageDTO.getNumPeople());
 		_package.setReduction(packageDTO.getReduction());
 		
-		//try to get the image
-		Image image = em.find(Image.class, packageDTO.getImageId());
+		Image image = null;
+		Image oldImage = null;
 		
-		if(image != null) {
-			_package.setImage(image);
-		}
-		else if(packageDTO.getImageData() != null) {
+
+		//try to get the image
+		oldImage = em.find(Image.class, packageDTO.getImageId());
+
+		
+		
+		if(packageDTO.getImageData() != null) {
 			//If contains image
 			image = new Image();
 			image.setData(packageDTO.getImageData());
 			em.persist(image);
 			_package.setImage(image);
+		}
+		else if(oldImage != null) {
+			_package.setImage(oldImage);
 		}
 
 		if (_package.getName() == null) {
@@ -244,8 +250,8 @@ public class PackageEJB implements PackageEJBLocal {
 		}
 		
 		if(oldPackage != null) {
-			if(image != null)
-				em.detach(image);
+			if(oldImage != null)
+				em.detach(oldImage);
 			em.remove(oldPackage);
 		}
 		em.persist(_package);

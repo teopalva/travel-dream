@@ -223,6 +223,8 @@ public class EditPackageBean {
 
 	public void setReduction(Double reduction) {
 		this.reduction = reduction;
+		if(selectedPackage != null)
+			selectedPackage.setReduction(reduction);
 	}
 
 	public void setTotalPrice(double n) {

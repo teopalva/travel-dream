@@ -149,7 +149,7 @@ function handleDrop(event, ui) {
 									<h3>#{EditPackage.selectedPackage.name}</h3>
 									<c:if test="#{EditPackage.selectedPackage.name == ''}"><p:inputText value="#{EditPackage.packageName}" id="packageName" placeholder="Nome pacchetto" /></c:if>
 									<br></br>Sconto: <p:inputText value="#{EditPackage.reduction}" id="reduction" style="margin-top:10px;width:127px">
-														<p:ajax update=":#{p:component('price')}" process="@this" />
+														<p:ajax update=":#{p:component('price')}" process="@this" event="keyup"/>
 													 </p:inputText>
 								</div>
 
