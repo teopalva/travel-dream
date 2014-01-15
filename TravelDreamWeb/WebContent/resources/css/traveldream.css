@@ -40,22 +40,22 @@ footer {
 
 .notScrolledBoxTop {
 	margin-top: 0px;
-	width:18%;
+	width:260px;
 	
 	z-index:10;
 	
 }
 
 .scrolledBoxTop {
-	margin-top: -100px;
-	width:18%;
+	margin-top: -125px;
+	width:260px;
 	z-index:10;
 	
 }
 
 .notScrolledBoxBottom {
 	
-	width:18%; 
+	width:260px; 
 	margin-top:300px;
 	
 	z-index:10;
@@ -64,9 +64,11 @@ footer {
 
 .scrolledBoxBottom {
 	
-	width:18%; 
-	margin-top:200px;
+	width:260px; 
+	margin-top:180px;
 	
 	z-index:10;
 	
 }
+
+

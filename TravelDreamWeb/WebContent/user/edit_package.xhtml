@@ -24,15 +24,23 @@
 $(function(){
 	  $(window).scroll(function(){
 	    var aTop = $('.searchBar').height()+100;
+	   
 	    if($(this).scrollTop()>aTop){
 	     
 	        $('#tl').switchClass("notScrolledBoxTop","scrolledBoxTop",400);
 	        $('#tr').switchClass("notScrolledBoxTop","scrolledBoxTop",400);
+	       
+	        
 	        
 	        $('#bl').switchClass("notScrolledBoxBottom","scrolledBoxBottom",400);
 	        $('#br').switchClass("notScrolledBoxBottom","scrolledBoxBottom",400);
 	   
+	        // hide footer
 
+	        if($( "#footnav" ).is(":visible")) {
+	        	 $( "#footnav" ).fadeOut("400");
+	        }	
+	        
 	    }
 	    else{
 	       
@@ -41,7 +49,12 @@ $(function(){
 	        
 	        $('#bl').switchClass("scrolledBoxBottom","notScrolledBoxBottom",400);
 	        $('#br').switchClass("scrolledBoxBottom","notScrolledBoxBottom",400);
-	  
+	  		
+	        
+	        if(! $( "#footnav" ).is(":visible")) {
+	        	$( "#footnav" ).fadeIn("400");
+
+	        }	
 
 	    }
 	  });
@@ -115,13 +128,6 @@ function handleDrop(event, ui) {
 				</div>
 				
 				
-				<h:panelGroup id="alert">
-				<h:panelGroup rendered="#{EditPackage.isNotValidForTDC()}">
-						<div class="alert alert-danger">
-									<b>Attenzione</b> Il pacchetto non è completato correttamente!
-						</div>
-				</h:panelGroup>
-				</h:panelGroup>
 				
 				<div class="row clearfix">
 				
@@ -174,6 +180,7 @@ function handleDrop(event, ui) {
 							<div class="row clearfix" style="margin-top: 10px">
 								<div class="col-md-8 column" style="padding-left: 24px">
 									<h3>#{EditPackage.selectedPackage.name}</h3>
+									<c:if test="#{EditPackage.selectedPackage.name == ''}"><p:inputText value="#{EditPackage.packageName}" id="packageName" placeholder="Nome pacchetto" /></c:if>
 								</div>
 
 								<div class="col-md-4 column"
@@ -186,6 +193,14 @@ function handleDrop(event, ui) {
 
 
 							<div class="caption">
+
+				<h:panelGroup id="alert">
+				<h:panelGroup rendered="#{EditPackage.isNotValidForTDC()}">
+						<div class="alert alert-danger">
+									<b>Attenzione</b> Il pacchetto non è completato correttamente!
+						</div>
+				</h:panelGroup>
+				</h:panelGroup>
 
 								<div class="jumbotron" style="margin-top: 10px">
 
