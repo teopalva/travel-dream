@@ -12,7 +12,7 @@
 	<ui:define name="content">
 		<h:body>
 
-			<div class="container" style="margin-top:20px">
+			<div class="container" style="margin-top:20px" id="container">
 				
 				<div class="row row-offcanvas row-offcanvas-right">
 					<div class="col-xs-12 col-sm-3 sidebar-offcanvas" id="sidebar">
@@ -194,7 +194,7 @@
 
 														<p:commandButton value="Vai" styleClass="btn btn-primary"
 															action="#{OfferingsList.showEditPackage(package)}" />
-														<p:commandButton rendered="#{OfferingsList.showRemovePackage()}" value="Rimuovi" styleClass="btn btn-primary" />
+														<p:commandButton rendered="#{OfferingsList.isTDE()}" action="#{OfferingsList.removePackage(package)}" value="Rimuovi" styleClass="btn btn-primary" update=":packages"/>
 														
 
 														<button type="button" class="btn btn-default"
