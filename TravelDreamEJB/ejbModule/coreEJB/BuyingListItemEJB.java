@@ -166,6 +166,9 @@ public class BuyingListItemEJB implements BuyingListItemEJBLocal {
 		//saveBuyingListItem(itemDTO);
 		try {
 			em.createNativeQuery("UPDATE BUYING_LIST_ITEM SET Paid='1' WHERE PackageId='"+itemDTO.get_package().getId()+"'").executeUpdate();
+			em.flush();
+			em.getEntityManagerFactory().getCache().evictAll();
+			em.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NotValidBuyingListException();

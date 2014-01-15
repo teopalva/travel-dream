@@ -125,11 +125,11 @@ public class CheckoutBean {
 					gifted = false;
 				}
 				try {
-					BuyingListItemDTO buyingItemGifted = new BuyingListItemDTO(p, new Date(), gifted, false, user);	
-					buyingListEJB.saveBuyingListItem(buyingItemGifted);
+					BuyingListItemDTO buyingItemBought = new BuyingListItemDTO(p, new Date(), false, false, user);
+					buyingListEJB.saveBuyingListItem(buyingItemBought);
 					if(gifted) {
-						BuyingListItemDTO buyingItemBought = new BuyingListItemDTO(p, new Date(), false, false, user);
-						buyingListEJB.saveBuyingListItem(buyingItemBought);
+						BuyingListItemDTO buyingItemGifted = new BuyingListItemDTO(p, new Date(), gifted, false, sessionStorage.getTmpUser());	
+						buyingListEJB.saveBuyingListItem(buyingItemGifted);
 					}
 				} catch (NotValidBuyingListException e) {
 					showAlert();
@@ -138,7 +138,8 @@ public class CheckoutBean {
 				try {
 					PackageDTO _package = new PackageDTO(selectedPackage);
 					_package.setId(selectedPackage.getId());
-					giftListEJB.removeGiftListItem(new GiftListItemDTO(_package, user));
+					//giftListEJB.removeGiftListItem(new GiftListItemDTO(_package, user));
+					giftListEJB.removeGiftListItem(_package);
 				} catch (Exception e) {
 					e.printStackTrace();
 					//No problem

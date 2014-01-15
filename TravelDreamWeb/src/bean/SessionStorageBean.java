@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 import dto.BaseProductDTO;
 import dto.BuyingListItemDTO;
 import dto.PackageDTO;
+import dto.UserDTO;
 
 @ManagedBean(name = "SessionStorage")
 @SessionScoped
@@ -24,6 +25,7 @@ public class SessionStorageBean implements Serializable {
     private String departurePlace = "";
     private String arrivalPlace = ""; // To be set directly from home.jsf when filling search form
     private String hash;
+    private UserDTO tmpUser;
 
     public PackageDTO getSelectedPackage() {
 	return selectedPackage;
@@ -84,4 +86,11 @@ public class SessionStorageBean implements Serializable {
 		this.hash = hash;
 	}
 
+	public UserDTO getTmpUser() {
+		return tmpUser;
+	}
+
+	public void setTmpUser(UserDTO tmpUser) {
+		this.tmpUser = tmpUser;
+	}
 }

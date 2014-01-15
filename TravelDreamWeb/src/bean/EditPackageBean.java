@@ -445,9 +445,6 @@ public class EditPackageBean {
 			}
 			sessionStorage.setSelectedPackage(selectedPackage);
 			sessionStorage.setPreviousPage("edit");
-			
-			sessionStorage.setSelectedPackage(null);
-			
 			return "/user/checkout?faces-redirect=true";
 		} else {
 			return null;
