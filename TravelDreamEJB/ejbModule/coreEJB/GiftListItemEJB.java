@@ -84,8 +84,13 @@ public class GiftListItemEJB implements GiftListItemEJBLocal {
     			
     		}
     		user.getGiftPackages().removeAll(removePackages);
+    		for(Package p: removePackages) {
+    			em.remove(p);
+    		}
+    		
     		em.merge(user);
     	}
+    	em.flush();
     }
     
     public List<GiftListItemDTO> getGiftListItem(UserDTO userDTO) throws NotValidUserException {

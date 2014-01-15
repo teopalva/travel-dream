@@ -15,6 +15,7 @@ import coreEJB.AuthenticationEJBLocal;
 import coreEJB.BaseProductEJBLocal;
 import coreEJB.PackageEJBLocal;
 import dto.PackageDTO;
+import exceptions.NotValidPackageException;
 import exceptions.PackageNotValidException;
 
 @ManagedBean(name = "OfferingsList")
@@ -271,9 +272,19 @@ public class OfferingsListBean {
 		}
 	}
 
-	public Boolean showRemovePackage() {
-		if(authEJB.isTDE()) return true;
-		else return false;
+	public String removePackage(PackageDTO p) {
+		if(authEJB.isTDE()) {
+			try {
+				packageEJB.removePackage(p);
+			} catch (NotValidPackageException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
+	public boolean isTDE() {
+		return authEJB.isTDE();
 	}
 
 	/**

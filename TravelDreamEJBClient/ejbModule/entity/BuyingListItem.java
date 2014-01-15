@@ -21,7 +21,7 @@ public class BuyingListItem implements Serializable {
 	@EmbeddedId
 	private BuyingListPK id;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
 	private byte gifted;

@@ -281,14 +281,12 @@ public class PackageEJB implements PackageEJBLocal {
 		Package _package = null;
 		try {
 			_package = em.createQuery("SELECT p FROM Package p JOIN FETCH p.image WHERE p.id=:id", Package.class).setParameter("id", packageDTO.getId()).getResultList().get(0);
-		} catch (IndexOutOfBoundsException e) {
-			return getDefaultPackageImage();
-			//throw new NotValidPackageException();
+			if (_package == null)
+				throw new NotValidPackageException();
+			return _package.getImage().getData();
+		} catch (IndexOutOfBoundsException | NullPointerException e) {
+			throw new NotValidPackageException();
 		}
-		if (_package == null)
-			return getDefaultPackageImage();
-			//throw new NotValidPackageException();
-		return _package.getImage().getData();
 	}
 	
 	public byte[] getDefaultPackageImage() {
