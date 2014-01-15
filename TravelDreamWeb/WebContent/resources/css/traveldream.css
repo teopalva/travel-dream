@@ -47,7 +47,7 @@ footer {
 }
 
 .scrolledBoxTop {
-	margin-top: -100px;
+	margin-top: -125px;
 	width:260px;
 	z-index:10;
 	
@@ -65,7 +65,7 @@ footer {
 .scrolledBoxBottom {
 	
 	width:260px; 
-	margin-top:200px;
+	margin-top:180px;
 	
 	z-index:10;
 	

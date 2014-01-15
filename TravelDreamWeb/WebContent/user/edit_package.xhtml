@@ -128,13 +128,6 @@ function handleDrop(event, ui) {
 				</div>
 				
 				
-				<h:panelGroup id="alert">
-				<h:panelGroup rendered="#{EditPackage.isNotValidForTDC()}">
-						<div class="alert alert-danger">
-									<b>Attenzione</b> Il pacchetto non è completato correttamente!
-						</div>
-				</h:panelGroup>
-				</h:panelGroup>
 				
 				<div class="row clearfix">
 				
@@ -187,6 +180,7 @@ function handleDrop(event, ui) {
 							<div class="row clearfix" style="margin-top: 10px">
 								<div class="col-md-8 column" style="padding-left: 24px">
 									<h3>#{EditPackage.selectedPackage.name}</h3>
+									<c:if test="#{EditPackage.selectedPackage.name == ''}"><p:inputText value="#{EditPackage.packageName}" id="packageName" placeholder="Nome pacchetto" /></c:if>
 								</div>
 
 								<div class="col-md-4 column"
@@ -199,6 +193,14 @@ function handleDrop(event, ui) {
 
 
 							<div class="caption">
+
+				<h:panelGroup id="alert">
+				<h:panelGroup rendered="#{EditPackage.isNotValidForTDC()}">
+						<div class="alert alert-danger">
+									<b>Attenzione</b> Il pacchetto non è completato correttamente!
+						</div>
+				</h:panelGroup>
+				</h:panelGroup>
 
 								<div class="jumbotron" style="margin-top: 10px">
 
