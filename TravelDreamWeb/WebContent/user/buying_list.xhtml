@@ -37,6 +37,7 @@ function showDetail(id,text,btn) {
 							<ui:repeat value="#{BuyingList.retrieveList()}" var="item">
 							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;">
 							 	<h:panelGroup rendered="#{item.isPaid()}"><span class="badge">Pagamento ricevuto</span></h:panelGroup>
+							 	<h:panelGroup rendered="#{!item.isPaid()}"><span class="badge">In attesa di pagamento</span></h:panelGroup>
 							 	<h:panelGroup rendered="#{item.isGifted()}"><span class="badge">Regalato</span></h:panelGroup>
 							 	<b>#{item._package.name}</b><br></br>Prezzo: #{item._package.getPrice()} €
 							 </a>
