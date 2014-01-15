@@ -1,5 +1,6 @@
 package coreEJB;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -8,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import dto.GiftListItemDTO;
+import dto.PackageDTO;
 import dto.UserDTO;
 import entity.Package;
 import entity.User;
@@ -69,6 +71,20 @@ public class GiftListItemEJB implements GiftListItemEJBLocal {
     		em.merge(user);
     	}catch(NullPointerException e) {
     		throw new NotValidGiftListItemException();
+    	}
+    }
+    
+    public void removeGiftListItem(PackageDTO packageDTO) throws NotValidPackageException {
+    	List<User> users = em.createNativeQuery("SELECT * FROM USER U, GIFT_LIST_ITEM I WHERE U.Mail = I.UserIdGiftList AND I.PackageId = '"+packageDTO.getId()+"'", User.class).getResultList();
+    	for(User user : users) {
+    		List<Package> removePackages = new ArrayList<Package>();
+    		for(Package p: user.getGiftPackages()) {
+    			if(p.getId() == packageDTO.getId())
+    				removePackages.add(p);
+    			
+    		}
+    		user.getGiftPackages().removeAll(removePackages);
+    		em.merge(user);
     	}
     }
     

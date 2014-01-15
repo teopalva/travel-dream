@@ -24,112 +24,108 @@ import exceptions.PackageNotValidException;
 @ManagedBean(name = "GiftList")
 @ViewScoped
 public class GiftListBean {
-    private UserDTO user;
-    private String friendMail = "";
+	private UserDTO user;
+	private String friendMail = "";
 
-    @EJB
-    private GiftListItemEJBLocal giftListEJB;
+	@EJB
+	private GiftListItemEJBLocal giftListEJB;
 
-    @EJB
-    private AuthenticationEJBLocal authEJB;
+	@EJB
+	private AuthenticationEJBLocal authEJB;
 
-    @EJB
-    private UserEJBLocal userEJB;
+	@EJB
+	private UserEJBLocal userEJB;
 
-    @ManagedProperty("#{SessionStorage}")
-    private SessionStorageBean sessionStorage;
+	@ManagedProperty("#{SessionStorage}")
+	private SessionStorageBean sessionStorage;
 
-    @PostConstruct
-    public void init() {
-	try {
-	    user = authEJB.getAuthenticatedUser();
-	} catch (NotAuthenticatedException e) {
-	    // No problem: user area
-	}
-    }
-
-    public SessionStorageBean getSessionStorage() {
-	return sessionStorage;
-    }
-
-    public void setSessionStorage(SessionStorageBean sessionStorage) {
-	this.sessionStorage = sessionStorage;
-    }
-
-    public String getFriendMail() {
-	return friendMail;
-    }
-
-    public void setFriendMail(String friendMail) {
-	this.friendMail = friendMail;
-    }
-
-    /**
-     * 
-     * @return the user's gift list
-     * @throws NotValidUserException
-     */
-    public List<GiftListItemDTO> retrieveGiftList() throws NotValidUserException {
-
-	if (friendMail.equals(""))
-	    return (giftListEJB.getGiftListItem(user));
-
-	else {
-
-	    try {
-		UserDTO friendUser = new UserDTO(friendMail, null, null, null, null);
-		return (giftListEJB.getGiftListItem(friendUser));
-	    } catch (NotValidUserException e) {
-		friendMail = "";
-		FacesContext.getCurrentInstance().addMessage("alertMail",
-			new FacesMessage(FacesMessage.SEVERITY_ERROR, "Utente non trovato", "La mail che hai inserito non corrisponde a nessun utente"));
-
-		System.err.print("NotValidUserException");
-		e.printStackTrace();
-		return (giftListEJB.getGiftListItem(user));
-
-	    }
+	@PostConstruct
+	public void init() {
+		try {
+			user = authEJB.getAuthenticatedUser();
+		} catch (NotAuthenticatedException e) {
+			// No problem: user area
+		}
 	}
 
-    }
-
-    /**
-     * 
-     * @return the user's friend's gift list
-     */
-    // public List<GiftListItemDTO> retrieveFriendList() {
-    // return getList(new UserDTO(friendMail, null, null, null, null));
-    // }
-
-    /**
-     * 
-     * @return the name of the friend searched by mail
-     * @throws NotAuthenticatedException
-     * @throws NotPresentUserException
-     */
-    public String retrieveTitle() {
-	if (friendMail.equals("")) {
-	    return "La mia lista regali";
-	} else {
-	    return "Lista regali di " + friendMail;
+	public SessionStorageBean getSessionStorage() {
+		return sessionStorage;
 	}
 
-    }
-
-    /**
-     * 
-     * @param p the selected PackageDTO
-     * @return the checkout page URL
-     * @throws NotValidUserException
-     */
-    public String showCheckout(PackageDTO p) throws NotValidUserException {
-	sessionStorage.setSelectedPackage(p);
-	if (retrieveGiftList().contains(p)) {
-	    sessionStorage.setPreviousPage("gift_user");
-	} else {
-	    sessionStorage.setPreviousPage("gift_friend");
+	public void setSessionStorage(SessionStorageBean sessionStorage) {
+		this.sessionStorage = sessionStorage;
 	}
-	return "/user/checkout?faces-redirect=true";
-    }
+
+	public String getFriendMail() {
+		return friendMail;
+	}
+
+	public void setFriendMail(String friendMail) {
+		this.friendMail = friendMail;
+	}
+
+	/**
+	 * @return the user's or friend's gift list
+	 * @throws NotValidUserException
+	 */
+	public List<GiftListItemDTO> retrieveGiftList() throws NotValidUserException {
+
+		if (friendMail.equals(""))
+			return (giftListEJB.getGiftListItem(user));
+
+		else {
+
+			try {
+				UserDTO friendUser = new UserDTO(friendMail, null, null, null, null);
+				return (giftListEJB.getGiftListItem(friendUser));
+			} catch (NotValidUserException e) {
+				friendMail = "";
+				FacesContext.getCurrentInstance().addMessage("alertMail",
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Utente non trovato", "La mail che hai inserito non corrisponde a nessun utente"));
+
+				System.err.print("NotValidUserException");
+				e.printStackTrace();
+				return (giftListEJB.getGiftListItem(user));
+
+			}
+		}
+
+	}
+
+
+	/**
+	 * 
+	 * @return the name of the friend searched by mail
+	 * @throws NotAuthenticatedException
+	 * @throws NotPresentUserException
+	 */
+	public String retrieveTitle() {
+		if (friendMail.equals("")) {
+			return "La mia lista regali";
+		} else {
+			return "Lista regali di " + friendMail;
+		}
+
+	}
+
+	/**
+	 * 
+	 * @param p the selected PackageDTO
+	 * @return the checkout page URL
+	 * @throws NotValidUserException
+	 */
+	public String showCheckout(PackageDTO p) throws NotValidUserException {
+		sessionStorage.setSelectedPackage(p);
+		UserDTO friend = new UserDTO();
+		friend.setMail(this.friendMail);
+		if (friendMail.equals(user.getMail())) {
+			sessionStorage.setPreviousPage("gift_user");
+			sessionStorage.setTmpUser(null);
+		} else {
+			sessionStorage.setPreviousPage("gift_friend");
+			sessionStorage.setTmpUser(friend);
+		}
+		return "/user/checkout?faces-redirect=true";
+	}
 
 }
