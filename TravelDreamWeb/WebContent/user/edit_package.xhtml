@@ -24,15 +24,23 @@
 $(function(){
 	  $(window).scroll(function(){
 	    var aTop = $('.searchBar').height()+100;
+	   
 	    if($(this).scrollTop()>aTop){
 	     
 	        $('#tl').switchClass("notScrolledBoxTop","scrolledBoxTop",400);
 	        $('#tr').switchClass("notScrolledBoxTop","scrolledBoxTop",400);
+	       
+	        
 	        
 	        $('#bl').switchClass("notScrolledBoxBottom","scrolledBoxBottom",400);
 	        $('#br').switchClass("notScrolledBoxBottom","scrolledBoxBottom",400);
 	   
+	        // hide footer
 
+	        if($( "#footnav" ).is(":visible")) {
+	        	 $( "#footnav" ).fadeOut("400");
+	        }	
+	        
 	    }
 	    else{
 	       
@@ -41,7 +49,12 @@ $(function(){
 	        
 	        $('#bl').switchClass("scrolledBoxBottom","notScrolledBoxBottom",400);
 	        $('#br').switchClass("scrolledBoxBottom","notScrolledBoxBottom",400);
-	  
+	  		
+	        
+	        if(! $( "#footnav" ).is(":visible")) {
+	        	$( "#footnav" ).fadeIn("400");
+
+	        }	
 
 	    }
 	  });
