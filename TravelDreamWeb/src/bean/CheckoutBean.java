@@ -117,7 +117,7 @@ public class CheckoutBean {
 			return ("/user/payment?faces-redirect=true");
 		} else {
 			if (sessionStorage.getPreviousPage().equals("gift_user") || sessionStorage.getPreviousPage().equals("gift_friend")) {
-				PackageDTO p = new PackageDTO(selectedPackage);
+				PackageDTO p = selectedPackage;
 				boolean gifted;
 				if (sessionStorage.getPreviousPage().equals("gift_friend")) {
 					gifted = true;
