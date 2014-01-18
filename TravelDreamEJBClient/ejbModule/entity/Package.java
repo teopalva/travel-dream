@@ -62,7 +62,7 @@ public class Package implements Serializable {
 	private List<PersonalizedProductHotel> personalizedProductHotels;
 
 	//bi-directional many-to-many association to User
-	@ManyToMany(mappedBy="giftPackages", cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy="giftPackages", cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 	private List<User> users;
 
 	public Package() {

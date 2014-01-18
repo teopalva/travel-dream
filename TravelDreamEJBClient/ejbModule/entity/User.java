@@ -47,7 +47,7 @@ public class User implements Serializable {
 	private List<Invitation> inviteds;
 
 	//bi-directional many-to-many association to Package
-	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER, cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinTable(
 		name="GIFT_LIST_ITEM"
 		, joinColumns={
