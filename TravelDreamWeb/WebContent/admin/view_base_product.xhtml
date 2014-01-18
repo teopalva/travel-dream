@@ -20,19 +20,18 @@
 		
 		<h:form id="listForm">
 		<p:dataTable id="baseProductList" var="bp"
-								value="#{ViewBaseProduct.productList}" rowKey="#{bp.id}"
-								selection="#{ViewBaseProduct.selectedProduct}" selectionMode="single">
+								value="#{ViewBaseProduct.productList}" rowKey="#{bp.id}" paginator="true" rows="12"  
+								 selectionMode="single">
 
-						
 
 								<f:facet name="header">Prodotti base disponibili</f:facet>
 
 								<p:column headerText="ID">  #{bp.id}  </p:column>
 
-								<p:column headerText="Nome"  filterBy="name" filterMatchMode="contains" >  #{bp.name}   </p:column>
-
-								<p:column headerText="Compagnia"
-								filterBy="company" filterOptions="#{ViewBaseProduct.companies}"  filterMatchMode="exact"> 
+								<p:column headerText="Nome">  #{bp.name}   </p:column>
+								<!--  filterBy="name" filterMatchMode="contains"  -->
+								<p:column headerText="Compagnia" sortBy="company" >
+								<!-- filterBy="company" filterOptions="#{ViewBaseProduct.companies}"  filterMatchMode="exact" -->								 
 								#{bp.company}
 								</p:column>
 
