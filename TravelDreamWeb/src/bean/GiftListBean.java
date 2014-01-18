@@ -116,9 +116,13 @@ public class GiftListBean {
 	 */
 	public String showCheckout(PackageDTO p) throws NotValidUserException {
 		sessionStorage.setSelectedPackage(p);
-		UserDTO friend = new UserDTO();
-		friend.setMail(this.friendMail);
-		if (friendMail.equals(user.getMail())) {
+		UserDTO friend = null;
+		try {
+		    friend = userEJB.getUser(friendMail);
+		} catch (NotPresentUserException e) {
+		    //no problem
+		}
+		if (friendMail.equals(user.getMail()) && friend!=null) {
 			sessionStorage.setPreviousPage("gift_user");
 			sessionStorage.setTmpUser(null);
 		} else {

@@ -112,6 +112,7 @@ public class CheckoutBean {
 				buyingListEJB.saveBuyingListItem(buyingItem);
 			} catch (NotValidBuyingListException e) {
 				showAlert();
+				e.printStackTrace();
 				return null;
 			}
 			return ("/user/payment?faces-redirect=true");
@@ -127,12 +128,13 @@ public class CheckoutBean {
 				try {
 					BuyingListItemDTO buyingItemBought = new BuyingListItemDTO(p, new Date(), false, false, user);
 					buyingListEJB.saveBuyingListItem(buyingItemBought);
-					if(gifted) {
+					if(gifted && sessionStorage.getTmpUser()!=null) {
 						BuyingListItemDTO buyingItemGifted = new BuyingListItemDTO(p, new Date(), gifted, false, sessionStorage.getTmpUser());	
 						buyingListEJB.saveBuyingListItem(buyingItemGifted);
 					}
 				} catch (NotValidBuyingListException e) {
 					showAlert();
+					e.printStackTrace();
 					return null;
 				}
 				try {
@@ -153,6 +155,7 @@ public class CheckoutBean {
 					buyingListEJB.saveBuyingListItem(buyingItem);
 				} catch (NotValidBuyingListException e) {
 					showAlert();
+					e.printStackTrace();
 					return null;
 				}
 				return ("/user/payment?faces-redirect=true");
@@ -173,9 +176,11 @@ public class CheckoutBean {
 			giftListEJB.saveGiftListItem(giftItem);
 		} catch (NotValidUserException e) {
 			showAlert();
+			e.printStackTrace();
 			return null;
 		} catch (NotValidGiftListItemException e) {
 			showAlert();
+			e.printStackTrace();
 			return null;
 		}
 		return ("/user/gift_list?faces-redirect=true");
@@ -200,6 +205,7 @@ public class CheckoutBean {
 			} catch (NotValidInvitationException | JavaMailErrorException e) {
 				FacesContext.getCurrentInstance().addMessage("alertMail",
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Errore", "Al momento e' impossibile inviare tutte le mail di invito. Riprova."));
+				e.printStackTrace();
 				return null;
 			}
 		}
