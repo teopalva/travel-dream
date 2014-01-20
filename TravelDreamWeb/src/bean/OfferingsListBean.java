@@ -54,7 +54,6 @@ public class OfferingsListBean {
 			arrivalPlace = sessionStorage.getArrivalPlace();
 			sessionStorage.setArrivalPlace("");
 		}
-		// submitSearch();
 	}
 
 	// Bean properties:

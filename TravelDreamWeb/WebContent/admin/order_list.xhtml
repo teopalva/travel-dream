@@ -69,10 +69,10 @@
 
 												<p:panel id="departureFlight" header="Volo di andata" style="display:block;overflow:auto;margin-bottom:20px">
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[0].flight.name}</center>
+														<center>#{OrderList.selectedItem._package.getOutboundFlight().flight.name}</center>
 													</div>
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[0].flight.company}</center>
+														<center>#{OrderList.selectedItem._package.getOutboundFlight().flight.company}</center>
 													</div>
 												</p:panel>
 
@@ -80,29 +80,29 @@
 
 												<p:panel id="returnFlight" header="Volo di ritorno" style="display:block;overflow:auto;margin-bottom:20px">
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[1].flight.name}</center>
+														<center>#{OrderList.selectedItem._package.getReturnFlight().flight.name}</center>
 													</div>
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[1].flight.company}</center>
+														<center>#{OrderList.selectedItem._package.getReturnFlight().flight.company}</center>
 													</div>
 												</p:panel>
 
 
 												<p:panel id="hotel" header="Hotel" style="display:block;overflow:auto;margin-bottom:20px">
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[2].hotel.name}</center>
+														<center>#{OrderList.selectedItem._package.getHotel().hotel.name}</center>
 													</div>
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[2].hotel.company}</center>
+														<center>#{OrderList.selectedItem._package.getHotel().hotel.company}</center>
 													</div>
 												</p:panel>
 
 												<p:panel id="excursion" header="Escursione" style="display:block;overflow:auto;margin-bottom:20px">
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[3].excursion.name}</center>
+														<center>#{OrderList.selectedItem._package.getExcursion().excursion.name}</center>
 													</div>
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[3].excursion.company}</center>
+														<center>#{OrderList.selectedItem._package.getExcursion().excursion.company}</center>
 													</div>
 
 												</p:panel>
@@ -170,10 +170,10 @@
 
 												<p:panel id="departureFlight" header="Volo di andata" style="display:block;overflow:auto;margin-bottom:20px">
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[0].flight.name}</center>
+														<center>#{OrderList.selectedItem._package.getOutboundFlight().flight.name}</center>
 													</div>
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[0].flight.company}</center>
+														<center>#{OrderList.selectedItem._package.getOutboundFlight().flight.company}</center>
 													</div>
 												</p:panel>
 
@@ -181,29 +181,29 @@
 
 												<p:panel id="returnFlight" header="Volo di ritorno" style="display:block;overflow:auto;margin-bottom:20px">
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[1].flight.name}</center>
+														<center>#{OrderList.selectedItem._package.getReturnFlight().flight.name}</center>
 													</div>
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[1].flight.company}</center>
+														<center>#{OrderList.selectedItem._package.getReturnFlight().flight.company}</center>
 													</div>
 												</p:panel>
 
 
 												<p:panel id="hotel" header="Hotel" style="display:block;overflow:auto;margin-bottom:20px">
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[2].hotel.name}</center>
+														<center>#{OrderList.selectedItem._package.getHotel().hotel.name}</center>
 													</div>
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[2].hotel.company}</center>
+														<center>#{OrderList.selectedItem._package.getHotel().hotel.company}</center>
 													</div>
 												</p:panel>
 
 												<p:panel id="excursion" header="Escursione" style="display:block;overflow:auto;margin-bottom:20px">
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[3].excursion.name}</center>
+														<center>#{OrderList.selectedItem._package.getExcursion().excursion.name}</center>
 													</div>
 													<div class="col-md-6">
-														<center>#{OrderList.selectedItem._package.personalizedProducts[3].excursion.company}</center>
+														<center>#{OrderList.selectedItem._package.getExcursion().excursion.company}</center>
 													</div>
 
 												</p:panel>
