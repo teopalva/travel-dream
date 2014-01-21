@@ -198,7 +198,7 @@ public class OfferingsListBean {
 	 * @return boolean answer
 	 */
 	private boolean arrivalPlaceCheck(PackageDTO pack) {
-		return (arrivalPlace.equals("") || (pack.getOutboundFlight().getFlight().getCityDeparture().getName().equalsIgnoreCase(arrivalPlace))) ? true : false;
+		return (arrivalPlace.equals("") || (pack.getOutboundFlight().getFlight().getCityArrival().getName().equalsIgnoreCase(arrivalPlace))) ? true : false;
 	}
 
 	/**
