@@ -202,6 +202,11 @@ public class CheckoutBean {
 			PackageDTO p = new PackageDTO(selectedPackage);
 			try {
 				invitationEJB.sendInvitation(new InvitationDTO(user, invited, p, null, false));
+				try {
+					Thread.sleep(10000);
+				} catch(InterruptedException e) {
+					//No problem, mail will going to fail
+				}
 			} catch (NotValidInvitationException | JavaMailErrorException e) {
 				FacesContext.getCurrentInstance().addMessage("alertMail",
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Errore", "Al momento e' impossibile inviare tutte le mail di invito. Riprova."));
