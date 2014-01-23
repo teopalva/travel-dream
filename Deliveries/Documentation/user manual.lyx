@@ -1,0 +1,1433 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "DD"
+\pdf_author "Matteo Palvarini"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine natbib_authoryear
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\align center
+Politecnico di Milano
+\end_layout
+
+\begin_layout Standard
+\align center
+Scuola di Ingegneria dell'Informazione
+\end_layout
+
+\begin_layout Standard
+\align center
+Corso di Laurea Magistrale in Ingegneria Informatica
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename logopm.pdf
+	display false
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+Progetto di Ingegneria del Software 2
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+TravelDream
+\end_layout
+
+\begin_layout Standard
+\align center
+Manuale Utente e Amministratore
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Responsabile:
+\end_layout
+
+\begin_layout Standard
+Prof.
+ Raffaela Mirandola
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\align right
+Progetto di:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Palvarini Matteo
+\series default
+ Matricola n.
+ 816952
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Venturini Gianluca
+\series default
+ Matricola n.
+ 814236
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Zerbinati Francesco
+\series default
+ Matricola n.
+ 817415
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+ANNO ACCADEMICO 2013/2014
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduzione
+\end_layout
+
+\begin_layout Standard
+L’obiettivo di questo documento è fornire un manuale d'uso per l'applicativo
+ TravelDream.
+ Il documento si rivolge sia agli utenti finali del servizio (clienti),
+ sia al personale amministrativo dell'agenzia viaggi.
+ Vi saranno dunque due sezioni, una relativa agli utenti e la seconda rivolta
+ agli amministratori del sistema.
+\end_layout
+
+\begin_layout Subsection
+Panoramica
+\end_layout
+
+\begin_layout Standard
+Il sistema che verrà realizzato è un applicativo software di e-commerce
+ denominato 
+\begin_inset Quotes eld
+\end_inset
+
+TravelDream
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Obiettivo del prodotto è quello di supportare gli utenti che vogliono prenotare
+ un viaggio durante la procedura di scelta e acquisto del pacchetto desiderato.
+ Inoltre il sistema darà un ampio supporto all'azienda omonima durante le
+ procedure di inserimento/modifica/cancellazione dei vari pacchetti e di
+ tutte le componenti che li costituiscono.
+\end_layout
+
+\begin_layout Standard
+Per l'utilizzo della piattaforma si è deciso di progettare un'interfaccia
+ web in primo luogo per rendere il servizio disponibile ad un maggior numero
+ di persone e, in secondo luogo, per permettere un facile aggiornamento
+ del sistema e buona mantenibilità senza dover richiedere particolari installazi
+oni o aggiornamenti da parte dell'utente, in quanto l'applicativo risiederà
+ sul server di TravelDream.
+\end_layout
+
+\begin_layout Standard
+Gli utenti registrati del sistema TravelDream possono visualizzare i pacchetti
+ predefiniti proposti dall'azienda in due modi: utilizzando il catalogo
+ messo a disposizione dal sito oppure utilizzando un piccolo motore di ricerca
+ che permette di selezionare solo i pacchetti viaggio verso le destinazioni
+ di interesse.
+\end_layout
+
+\begin_layout Standard
+In alternativa gli utenti possono creare un loro pacchetto personalizzato,
+ partendo dal selezionare i vari prodotti base che l'azienda offre ed aggregando
+li nel modo che viene ritenuto più opportuno.
+\end_layout
+
+\begin_layout Standard
+Ogni utente registrato nel sistema può possedere una lista di pacchetti
+ regalo, visualizzabile dagli altri utenti tramite ricerca per email.
+\end_layout
+
+\begin_layout Standard
+La procedura di acquisto di un pacchetto inizia subito dopo che un utente
+ lo ha selezionato, a questo punto si può decidere di personalizzarlo.
+ 
+\end_layout
+
+\begin_layout Standard
+Il sistema controlla la coerenza tra le date dei voli, le date di check-in,
+ check-out degli hotel e quelle delle escursioni.
+ Dopo la personalizzazione è possibile acquistare il pacchetto, inserirlo
+ nella propria lista regali oppure invitare degli amici ad unirsi al viaggio,
+ in tal caso l'acquisto del pacchetto resterà in sospeso, dando la possibilità
+ agli utenti invitati di confermare la propria partecipazione e all'utente
+ che ha invitato di portare a termine il pagamento in qualsiasi momento.
+\end_layout
+
+\begin_layout Section
+Manuale Utente
+\end_layout
+
+\begin_layout Standard
+In questa sezione del manuale si descrivono tutte le pagine previste per
+ i clienti TravelDream, si fa grande uso di schermate dell'applicativo per
+ semplificare l'apprendimento all'utente.
+\end_layout
+
+\begin_layout Subsection
+Homepage 
+\end_layout
+
+\begin_layout Standard
+Nella homepage del portale sono visibili due barre orizzontali: la prima
+ costuisce l'header del sito web, mentre la seconda è costituita da un footer
+ riportante le informazioni di copyright.
+\end_layout
+
+\begin_layout Standard
+Nell'header si trovano un logo, il nome dell'agenzia (che riporta sempre
+ alla home page) e un menù: sono presenti infatti i collegamenti per login
+ e registrazione dell'utente se l'utente non è autenticato, mentre, dopo
+ aver effettuato l'accesso verrano visualizzati i collegamenti per le varie
+ liste dell'utente (ordini, inviti, regali) e un collegamento per terminare
+ la sessione.
+\end_layout
+
+\begin_layout Standard
+All'interno della pagina troviamo inoltre un pannello informativo con le
+ informazioni dell'utente, una ricerca che trova pacchetti viaggio sul catalogo,
+ due box per eseguire due funzionalità diverse: il primo per creare un pacchetto
+ viaggio con le componenti desiderate, mentre il secondo per accedere al
+ catalogo delle offerte.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/home.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Homepage del sito web TravelDream
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Pagine di login e registrazione 
+\end_layout
+
+\begin_layout Standard
+Nella pagina di login ci vengono presentati i campi email e password per
+ accedere.
+ In caso ci fossero errori di compilazione si viene riportati ad una pagina
+ di errore.
+ Per quanto riguarda la pagina di registrazione vengono proposti diversi
+ campi da compilare dopodichè, se non ci sono errori si procede alla redirezione
+ alla homepage e l'utente può fare il login, in caso contrario si evidenziaranno
+ invece le caselle che richiedono attenzione da parte dell'utente.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/login.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schermata di login
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/registration.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schermata di registrazione
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Catalogo
+\end_layout
+
+\begin_layout Standard
+Nella schermata, accessibile dalla homepage, sono presenti tutti i pacchetti
+ viaggio acquistabili e una barra laterale per eseguire una ricerca sui
+ pacchetti presenti in catalogo.
+\end_layout
+
+\begin_layout Standard
+In particolare si noti come questa barra laterale disponga di parametri
+ generici (date di partenza e ritorno, città di partenza e destinazione,
+ numero di persone) e di una parte, visualizzabile cliccando sul pulsante
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Avanzate
+\begin_inset Quotes erd
+\end_inset
+
+, che permette di fare ricerche con parametri come la classe del volo, il
+ tipo di camera dell'hotel e il relativo numero di stelle.
+\end_layout
+
+\begin_layout Standard
+Tutti i pacchetti viaggio dispongono del pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Vai
+\begin_inset Quotes erd
+\end_inset
+
+ per procedere alla personalizzazione e al successivo acquisto e del pulsante
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Info
+\begin_inset Quotes erd
+\end_inset
+
+ per visualizzare maggiori dettagli riguardanti il pacchetto.
+\end_layout
+
+\begin_layout Standard
+Si faccia riferimento alla figura sottostante per vedere le varie funzionalità
+ descritte.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/offerings.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Catalogo di TravelDream con a fianco la barra di ricerca
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Personalizzazione del pacchetto
+\end_layout
+
+\begin_layout Standard
+Una volta selezionato un pacchetto dal catalogo è possibile personalizzarlo
+ a proprio piacimento.
+ Per farlo, è sufficiente compilare la barra di ricerca in alto con i vari
+ dati richiesti e il numero di persone.
+ Verranno proposti nei box laterali al riepilogo del pacchetto le varie
+ opzioni possibili per la personalizzazione dello stesso.
+ Se si desidera cambiare qualche componente del viaggio è necessario trascinare
+ da uno dei box (tramite drag & drop) la personalizzazione richiesta sulla
+ relativa sezione del riepilogo centrale.
+ Se si dovessero commettere errori nella compilazione del pacchetto (date
+ non corrette, personalizzazioni non compatibili) verrà mostrato un avviso
+ in alto alla pagina, mentre se non si presentassero problemi sarà possibile
+ accedere alla pagina di acquisto tramite il pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Ordina
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Durante la personalizzazione di un pacchetto si tenga presente che il numero
+ di persone inserito nella barra in alto è vincolante e creerà un pacchetto
+ per il numero di persone selezionato.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/editpackage.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schermata di personalizzazione del pacchetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename traveldream screenshots/selezione_edit.png
+	display false
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Riquadro delle personalizzazini possibili, con gli elementi per cui è possibile
+ il drag & drop
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Finalizzazione dell'ordine
+\end_layout
+
+\begin_layout Standard
+Nella pagina di checkout vengono mostrate al più tre sezioni (a seconda
+ della pagina dalla quale si proviene) che permettono all'utente di completare
+ l'ordine.
+\end_layout
+
+\begin_layout Standard
+La prima sezione è semplicemente l'acquisto del pacchetto selezionato precedente
+mente e porta poi ad una pagina nella quale si forniscono i dati per il
+ pagamento.
+\end_layout
+
+\begin_layout Standard
+Con la sezione centrale è possibile inserire il pacchetto nella lista regali
+ dell'utente, in modo da renderlo disponibile ai propri amici in modo che
+ possano regarlo al proprietario della lista.
+ La lista regali può servire anche all'utente stesso per conservare i pacchetti
+ in vista di un acquisto futuro.
+\end_layout
+
+\begin_layout Standard
+La terza sezione prevede l'inserimento delle e-mail degli amici che si vogliono
+ invitare a partecipare al viaggio.
+ Il numero di caselle e-mail è correlato al numero di persone selezionato
+ durante la personalizzazione del pacchetto.
+ Il sistema provvede ad inviare le e-mail e poi porta l'utente alla pagina
+ della Lista Inviti dove l'utente potrà monitorare le risposte dei vari
+ amici e una volta ricevuta conferma può procedere all'acquisto.
+ Si noti come solo l'utente che organizza il viaggio possa effettuare il
+ pagamento, gli utenti invitati non devono compiere nulla se non confermare
+ la partecipazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/checkout.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schermata di finalizzazione dell'ordine (checkout)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/payment.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Schermata con i dati per il pagamento visualizzata dopo la selezione di
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Acquista
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Liste utenti
+\end_layout
+
+\begin_layout Standard
+Di seguito si presentano le liste che ha a disposizione l'utente per la
+ gestione dei pacchetti acquistati e che gli son stati regalati o ha regalato
+ (Lista ordini), per la visualizzazione dei pacchetti in attesa di conferma
+ dagli amici (Lista inviti) e per la consultazione della propria lista regali
+ e di quelle degli amici (Lista regali).
+\end_layout
+
+\begin_layout Subsubsection
+Lista ordini
+\end_layout
+
+\begin_layout Standard
+In questa lista si presentano semplicemente tutti gli ordini effettuati
+ da un utente per se stesso, quelli effettuati per qualcun'altro (si tratta
+ quindi di regali ad altri utenti) e per quelli che gli sono stati regalati.
+ Selezionando ogni pacchetto dalla lista è possibile visualizzare i dettagli
+ dello stesso e a fianco di ogni voce viene visualizzato un badge che segnala
+ se l'agenzia viaggi ha ricevuto il pagamento od è ancora in attesa di riceverlo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/buyinlist.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Lista ordini con dettaglio a fianco
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Lista inviti
+\end_layout
+
+\begin_layout Standard
+Nella lista inviti vengono visualizzati i pacchetti per i quali si è in
+ attesa della conferma degli amici.
+ In aggiunta a quanto riportato in lista ordini si ha inoltre la lista degli
+ amici invitati, con il relativo badge che indica se hanno già confermato
+ la partecipazione o meno e il pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Ordina
+\begin_inset Quotes erd
+\end_inset
+
+ per finalizzare l'acquisto (cliccabile solo una volta che tutti gli amici
+ hanno confermato).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/invitation list.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Lista inviti con dettaglio del pacchetto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Lista regali
+\end_layout
+
+\begin_layout Standard
+La lista regali è del tutto analoga alla lista degli ordini ma per quei
+ pacchetti che non si sono acquistati ma semplicemente inseririti in questa
+ lista.
+ Vi è un pulsante ordina disponibile sia per l'utente proprietario per la
+ lista, sia per gli utenti che vogliono regalare il viaggio al proprio amico.
+\end_layout
+
+\begin_layout Standard
+In aggiunta alle altre liste vi è un campo di ricerca amici con il quale,
+ inserendo la mail dell'utente, viene restituita la lista regali dell'amico
+ desiderato.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/gift list.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Lista regali dell'utente
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Manuale amministratore
+\end_layout
+
+\begin_layout Standard
+In questa sezione del manuale si descrivono tutte le pagine previste per
+ gli amministratori TravelDream, si fa grande uso di schermate dell'applicativo
+ per semplificare l'apprendimento all'utente.
+ Si fa notare che molte delle schermate della parte amministrativa sono
+ analoghe o a volte analoghe ma estese alle pagine viste per la parte cliente.
+ In particolare sono del tutto identiche le schermate di login e registrazione
+ per ovvi motivi di semplicità e si hanno quindi le stesse modalità di accesso
+ al portale.
+\end_layout
+
+\begin_layout Standard
+Si noti però come, una volta effettuato un login amministratore, il menù
+ in alto cambi e mostri una sezione apposita per la gestione del portale.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/admin_menu.png
+	display false
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Pannello amministratore sulla barra in alto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+L'amministratore dispone inoltre di una pagina completamente dedicata con
+ funzioni analoghe a quelle del menù sopra riportato ed accessibile tramite
+ le varie pagine di amministrazione.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/admin_page.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Pannello amministratore completo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si analizano di seguito le varie pagine riportate nei menu.
+\end_layout
+
+\begin_layout Subsection
+Creazione prodotto base
+\end_layout
+
+\begin_layout Standard
+Un amministratore può creare un nuovo prodotto base (da inserire poi opzionalmen
+te in un pacchetto) tramite questa schermata.
+ Sono presenti tre categorie di prodotti base: Volo, Hotel, Escursione.
+ Per ognuna di queste voci si presenta un interfaccia diversa, disegnata
+ ad-hoc per le caratteristiche del prodotto.
+\end_layout
+
+\begin_layout Standard
+In quanto si suppone che le schermate siano auto esplicative, si lascia
+ al lettore la consultazione delle stesse.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/hotel admin.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Creazione di un prodotto base di tipo Hotel 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/hotel+classe.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Aggiunta di una classe ad un prodotto base hotel
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/escursione+data.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Creazione di un prodotto base di tipo Escursione e relativa personalizzazione
+ di data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Ricerca prodotti base
+\end_layout
+
+\begin_layout Standard
+Tramite questa schermata è possibile visualizzare tutti i prodotti base
+ in una tabella, quest'ultima permette di ordinare i prodotti secondo la
+ compagnia che li eroga.
+\end_layout
+
+\begin_layout Standard
+Ogni riga rappresenta un prodotto base e per ognuno di questi è possibile
+ eliminarlo o modificarlo cliccando sui rispettivi pulsanti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/elenco prodotti base.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Elenco dei prodotti base presenti nel sistema
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Creazione di un pacchetto
+\end_layout
+
+\begin_layout Standard
+La creazione di un pacchetto da parte di un amministratore avviene con una
+ schermata analoga a quella vista per la personalizzazione dei pacchetti
+ nella parte del cliente.
+ In aggiunta si trova però la possibilità per l'amministratore di immettere
+ un nome ed uno sconto sul prezzo totale per il pacchetto e l'inserimento
+ di un'immagine.
+\end_layout
+
+\begin_layout Standard
+Tramite la barra superiore è possibile cercare i vari prodotti base per
+ creare il pacchetto e settarne il numero di persone.
+ E' possibile che venga mostrato un messaggio di errore se il pacchetto
+ non è compilato adeguatamente.
+\end_layout
+
+\begin_layout Standard
+Una volta conclusa l'operazione si può cliccare sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Conferma
+\begin_inset Quotes erd
+\end_inset
+
+ che inserirà il pacchetto in catalogo.
+\end_layout
+
+\begin_layout Standard
+Si noti come questa schermata venga presentata all'amminstratore anche in
+ caso di modifica di un pacchetto.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/edit_package admin.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Dettaglio dei parametri aggiuntivi per la creazione di un pacchetto da parte
+ di un amministratore
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Ricerca di un pacchetto
+\end_layout
+
+\begin_layout Standard
+In questa schermata viene visualizzata un catalogo dei pacchetti presenti
+ nel sistema del tutto identica a quella visualizzabile dall'utente.
+ In aggiunta si ha il pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Rimuovi
+\begin_inset Quotes erd
+\end_inset
+
+ che cancella il pacchetto dal sistema ed il pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Vai
+\begin_inset Quotes erd
+\end_inset
+
+ è assegnato alla funzione di modifica del pacchetto che porta alla schermata
+ descritta al Punto 3.3.
+\end_layout
+
+\begin_layout Subsection
+Gestione ordini
+\end_layout
+
+\begin_layout Standard
+In questa pagina è possibile visualizzare tutti gli ordini effettuati dai
+ clienti.
+ In particolare vi sono due tabelle, ordinabili per email dell'utente, nome
+ del pacchetto o data, una per gli ordini in attesa di pagamento e una per
+ gli ordini completati di cui si è ricevuto il bonifico bancario.
+\end_layout
+
+\begin_layout Standard
+Ogni riga è selezionabile e premendo il pulsante ai piedi della tabella
+ è possibile vederne un dettaglio (in modo che l'amministratore possa constatarn
+e la validità).
+\end_layout
+
+\begin_layout Standard
+La tabella degli ordini in attesa di pagamento presenta, per ogni pacchetto,
+ il pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Ricevuto
+\begin_inset Quotes erd
+\end_inset
+
+ che sposta il pacchetto nella seconda tabella degli ordini completati.
+ Una volta che l'amministratore ha compiuto questa operazione, l'utente
+ che ha ordinato il viaggio noterà nella sua lista acquisti che il pacchetto
+ è segnalato come 
+\begin_inset Quotes eld
+\end_inset
+
+Pagato
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename traveldream screenshots/order list.png
+	display false
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Pannello amministratore completo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
