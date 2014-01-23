@@ -599,6 +599,21 @@ Durante la personalizzazione di un pacchetto si tenga presente che il numero
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+La stessa schermata qui descritta è raggiungibile tramite l'homepage per
+ la creazione di pacchetti da zero senza aver l'obbligo di selezionare tutte
+ e tre le tipologie di prodotto base.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -712,9 +727,10 @@ La terza sezione prevede l'inserimento delle e-mail degli amici che si vogliono
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Graphics
@@ -750,6 +766,7 @@ Schermata di finalizzazione dell'ordine (checkout)
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
