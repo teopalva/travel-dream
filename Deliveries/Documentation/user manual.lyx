@@ -247,8 +247,7 @@ Panoramica
 \end_layout
 
 \begin_layout Standard
-Il sistema che verrà realizzato è un applicativo software di e-commerce
- denominato 
+Il sistema è un applicativo software di e-commerce denominato 
 \begin_inset Quotes eld
 \end_inset
 
@@ -259,18 +258,9 @@ TravelDream
 .
  Obiettivo del prodotto è quello di supportare gli utenti che vogliono prenotare
  un viaggio durante la procedura di scelta e acquisto del pacchetto desiderato.
- Inoltre il sistema darà un ampio supporto all'azienda omonima durante le
+ Inoltre il sistema dà un ampio supporto all'azienda omonima durante le
  procedure di inserimento/modifica/cancellazione dei vari pacchetti e di
  tutte le componenti che li costituiscono.
-\end_layout
-
-\begin_layout Standard
-Per l'utilizzo della piattaforma si è deciso di progettare un'interfaccia
- web in primo luogo per rendere il servizio disponibile ad un maggior numero
- di persone e, in secondo luogo, per permettere un facile aggiornamento
- del sistema e buona mantenibilità senza dover richiedere particolari installazi
-oni o aggiornamenti da parte dell'utente, in quanto l'applicativo risiederà
- sul server di TravelDream.
 \end_layout
 
 \begin_layout Standard
@@ -825,7 +815,7 @@ Di seguito si presentano le liste che ha a disposizione l'utente per la
 \end_layout
 
 \begin_layout Subsubsection
-Lista ordini
+Lista acquisti
 \end_layout
 
 \begin_layout Standard
@@ -859,7 +849,7 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Lista ordini con dettaglio a fianco
+Lista acquisti con dettaglio a fianco
 \end_layout
 
 \end_inset
@@ -893,8 +883,8 @@ Ordina
 \begin_inset Quotes erd
 \end_inset
 
- per finalizzare l'acquisto (cliccabile solo una volta che tutti gli amici
- hanno confermato).
+ per finalizzare l'acquisto (cliccabile in qualunque momento e anche se
+ non tutti gli amici hanno confermato).
 \end_layout
 
 \begin_layout Standard
@@ -942,16 +932,17 @@ Lista regali
 
 \begin_layout Standard
 La lista regali è del tutto analoga alla lista degli ordini ma per quei
- pacchetti che non si sono acquistati ma semplicemente inseririti in questa
- lista.
- Vi è un pulsante ordina disponibile sia per l'utente proprietario per la
- lista, sia per gli utenti che vogliono regalare il viaggio al proprio amico.
+ pacchetti che non si sono acquistati ma sono stati semplicemente inseririti
+ in lista regali al momento del checkout.
+ Vi è un pulsante ordina disponibile sia per l'utente proprietario della
+ lista (che in questo senso può sfruttare la lista regali come una lista
+ desideri dalla quale comprare viaggi in un secondo momento), sia per gli
+ utenti che vogliono regalare un viaggio ad un altro utente.
 \end_layout
 
 \begin_layout Standard
-In aggiunta alle altre liste vi è un campo di ricerca amici con il quale,
- inserendo la mail dell'utente, viene restituita la lista regali dell'amico
- desiderato.
+Per fare questo vi è un campo di ricerca amici dal quale, inserendo la mail
+ dell'utente, si ottiene la lista regali dell'amico desiderato.
 \end_layout
 
 \begin_layout Standard
@@ -1093,7 +1084,7 @@ Pannello amministratore completo
 \end_layout
 
 \begin_layout Standard
-Si analizano di seguito le varie pagine riportate nei menu.
+Si analizzano di seguito le varie pagine riportate nei menu.
 \end_layout
 
 \begin_layout Subsection
