@@ -605,6 +605,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename proprieta pool glassfish.png
+	scale 40
 
 \end_inset
 
@@ -703,6 +704,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename configurazione javamail.png
+	scale 40
 
 \end_inset
 
@@ -727,7 +729,7 @@ Configurazione di esempio JavaMail
 \end_layout
 
 \begin_layout Subsection
-Installazione dell'EAR
+Deploy di TravelDream
 \end_layout
 
 \begin_layout Standard
@@ -754,6 +756,23 @@ distribuisci...
  A questo punto basterà uploddare il file TravelDream.ear e dare conferma
  per avere l'applicazione funzionante.
  
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Nota
+\series default
+ Per poter utilizzare correttamente l’applicazione, è necessario che sia
+ registrato al sistema almeno un amministratore (utente con ruolo TDE).
+ A questo scopo, all’interno dello script di creazione delle tabelle del
+ database vengono inseriti tre utenti di ruolo Amministratore.
+ È fortemente consigliato cambiare, agendo direttamente sul database, gli
+ indirizzi email sostituendoli con indirizzi reali.
+ Per la registrazione degli amministratori (utenti TDE) si consiglia di
+ registrarli come utenti normali (usando la regolare procedura di registrazione)
+, e poi direttamente dal DB cambiare i privilegi di accesso sostituendo
+ TDC con TDE nella tabella USER_GROUP
 \end_layout
 
 \end_body
