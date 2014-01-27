@@ -1100,6 +1100,15 @@ Risultato atteso
 Dopo essere passati dalla pagina edit_package (dalla quale è possibile modificar
 e e personalizzare il pacchetto in questione) si arriva alla pagina checkout,
  ed una volta cliccato il pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+lista regali
+\begin_inset Quotes erd
+\end_inset
+
+ il sistema conferma l'avvenuto inserimento mostrando l'intera lista dei
+ regali (con anche tutti i pacchetti precedentemente inseriti)
 \end_layout
 
 \end_inset
@@ -1120,9 +1129,7 @@ Risultato finale
 
 \begin_layout Plain Layout
 Vengono mostrate tutte le videate nell'ordine e con le modalità descritte
- sopra, inoltre una volta effettuato l'acquisto il pacchetto è visibile
- nella lista acquisti dell'utente (alla quale è possibile accedere tramite
- l'header)
+ sopra
 \end_layout
 
 \end_inset
