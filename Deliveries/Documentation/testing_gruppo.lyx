@@ -1,0 +1,1872 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\align center
+Politecnico di Milano
+\end_layout
+
+\begin_layout Standard
+\align center
+Scuola di Ingegneria dell'Informazione
+\end_layout
+
+\begin_layout Standard
+\align center
+Corso di Laurea Magistrale in Ingegneria Informatica
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename logopm.pdf
+	display false
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+Progetto di Ingegneria del Software 2
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+TravelDream
+\end_layout
+
+\begin_layout Standard
+\align center
+Testing Progetto del gruppo assegnato
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Responsabile:
+\end_layout
+
+\begin_layout Standard
+Prof.
+ Raffaela Mirandola
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\align right
+Progetto di:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Palvarini Matteo
+\series default
+ Matricola n.
+ 816952
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Venturini Gianluca
+\series default
+ Matricola n.
+ 814236
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Zerbinati Francesco
+\series default
+ Matricola n.
+ 817415
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+ANNO ACCADEMICO 2013/2014
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Obiettivo del documento
+\end_layout
+
+\begin_layout Standard
+Questo documento riporta i risultati della fase di test e validazione del
+ progetto TravelDream sviluppato da Daniele Iamartino e Stefano Sanfilippo.
+ 
+\end_layout
+
+\begin_layout Standard
+L’URL del repository Google Code contenente il progetto è https://code.google.com/
+p/travel-o-matic/
+\end_layout
+
+\begin_layout Section
+Casi di test
+\end_layout
+
+\begin_layout Paragraph
+
+\series medium
+Di seguito sono presentati i casi di test che sono stati presentati dal
+ gruppo che ci è stato assegnato.
+ 
+\end_layout
+
+\begin_layout Paragraph
+
+\series medium
+Per ogni caso di test sono indicati l’obiettivo, l’ambiente operativo (ossia
+ le schermate interessate dal caso di test), i dati che devono essere forniti
+ in input, il risultato atteso e i risultati ottenuti eseguendo il caso
+ di test sul nostro sistema.
+ 
+\end_layout
+
+\begin_layout Standard
+Nei casi di test si sono inseriti i vari problemi minori (quindi problemi
+ che non pregiudicano l'utilizzo del sistema) mentre sono stati elencati,
+ se presenti, dei problemi che influenzano sull'utilizzo o non soddisfano
+ a pieno il risultato atteso all'interno della riga di risultato finale.
+\end_layout
+
+\begin_layout Subsection
+Ricerca e condivisione di un pacchetto di viaggio
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obiettivo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ricercare un pacchetto e condividerlo con un amico
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ambiente operativo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+homepage.xhtml
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente si collega al sito di Travel-o-Matic e inserisce nella maschera
+ di ricerca il nome di una località di destinazione (ad esempio Milano),
+ la data di partenza/ritorno (ad esempio 2014-04-01 e 2014-04-04), inserisce
+ il numero di viaggiatori (ad esempio 1), spunta eventualmente la casella
+ 
+\begin_inset Quotes eld
+\end_inset
+
+sono flessibile
+\begin_inset Quotes erd
+\end_inset
+
+ e preme sul pulsante di ricerca.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nella pagina dei risultati viene fatto click su uno dei pacchetti di viaggio
+ proposti e si viene diretti alla pagina di descrizione del pacchetto di
+ viaggio dove è possibile vedere tutti i dettagli del pacchetto di viaggio
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Per la condivisione del pacchetto di viaggio si fa click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+condividi
+\begin_inset Quotes erd
+\end_inset
+
+ e verrà aperta una finestra del proprio client di posta elettronica contenente
+ un link alla pagina di dettaglio del pacchetto.
+ L'utente invia l'email all'amico L'amico riceve l'email e aprendo il link
+ contenuto può visualizzare la pagina di dettaglio del pacchetto.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato finale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Concide con il risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problemi minori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Un utente si registra nel sistema e prenota un viaggio
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obiettivo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Registrazione nel sistema e prenotazione di un viaggio
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ambiente operativo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+homepage.xhtml
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+registrati
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente si collega al sito di Travel-o-Matic, nella homepage fa click sul
+ link 
+\begin_inset Quotes eld
+\end_inset
+
+Registrati
+\begin_inset Quotes erd
+\end_inset
+
+ in alto a destra, sotto il form di login e viene diretto alla pagina di
+ registrazione.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Nella pagina di registrazione l'utente inserisce il proprio nome utente
+ (ad esempio 
+\begin_inset Quotes eld
+\end_inset
+
+mario.rossi
+\begin_inset Quotes erd
+\end_inset
+
+), la propria password (ad esempio 
+\begin_inset Quotes eld
+\end_inset
+
+password
+\begin_inset Quotes erd
+\end_inset
+
+) e il proprio indirizzo email.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Dopo aver compilato i vari campi, l'utente fa click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+registrami
+\begin_inset Quotes erd
+\end_inset
+
+ e viene diretto nuovamente alla homepage.
+ In alto nella homepage compare un messaggio di conferma dell'avvenuta registraz
+ione.
+\end_layout
+
+\begin_layout Plain Layout
+L'utente riceve poi una email dal sito di Travel-o-Matic che gli conferma
+ l'avvenuta registrazione e gli richiede di fare click su un link per verificare
+ il proprio indirizzo email.
+\end_layout
+
+\begin_layout Plain Layout
+L'utente fa click sul link ricevuto via email e viene diretto ad una pagi-
+ na del sito di Travel-o-Matic dove gli viene richiesto di fare click sul
+ un pulsante per confermare la propria email.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+L'utente fa click sul pulsante, viene loggato e diretto alla propria pagina
+ personale.
+ L'utente fa click sul logo di Travel-o-Matic in alto a sinistra e torna
+ (loggato) nella homepage.
+ L'utente effettua una ricerca di un pacchetto di viaggio come descritto
+ nel caso di test precedente 
+\end_layout
+
+\begin_layout Plain Layout
+Nella pagina di descrizione del pacchetto, l'utente fa click sul pulsante
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Compra
+\begin_inset Quotes erd
+\end_inset
+
+ e viene diretto ad una pagina con una maschera di inserimento dei propri
+ dati personali.
+\end_layout
+
+\begin_layout Plain Layout
+L'utente compila i propri dati personali 
+\end_layout
+
+\begin_layout Plain Layout
+L'utente fa click sul pulsante di prenotazione L'utente riceve una email
+ di conferma dell'invio della prenotazione e viene diretto alla propria
+ pagina personale
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato finale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Concide con il risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problemi minori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Non ci sono controlli sul numero di telefono, infatti è possibile inserire
+ delle lettere.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+L'utente richiede di annullare una prenotazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obiettivo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Annullare una prenotazione
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ambiente operativo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+personale.xhtml
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente loggato apre la propria pagina personale e guarda la lista delle
+ proprie prenotazioni
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+All'interno della lista fa click sulla croce a fianco della prenotazione
+ da disdire
+\end_layout
+
+\begin_layout Plain Layout
+La pagina viene aggiornata e nella lista dell prenotazioni compare un flag
+ a fianco alla prenotazione per indicare che è stata annullata
+\end_layout
+
+\begin_layout Plain Layout
+Viene inviata una email al cliente per confermare la richiesta di annullamento
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato finale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Concide con il risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problemi minori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Un cliente visualizza e modifica il suo pacchetto personalizzato
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obiettivo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Un utente visualizza e poi modifica un pacchetto
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ambiente operativo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+homepage.xhtml
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'utente ricerca un pacchetto e apre la pagina di dettaglio di un pacchetto
+ come sopra descritto.
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nella pagina di dettaglio, l'utente fa click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Personalizza
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+L'utente elimina e aggiunge dei prodotti all'interno del pacchetto, facendo
+ click su 
+\begin_inset Quotes eld
+\end_inset
+
+Aggiungi prodotto
+\begin_inset Quotes erd
+\end_inset
+
+, cercando e selezionando un prodotto.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Per ogni prodotto aggiunto l'utente indica la data di interesse, il numero
+ di viaggiatori e fa click su 
+\begin_inset Quotes eld
+\end_inset
+
+Aggiungi al pacchetto
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+L'utente fa click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Salva
+\begin_inset Quotes erd
+\end_inset
+
+ L'utente torna nella propria pagina personale cliccando sul proprio user-
+ name in alto a destra nella pagina.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Nella propria pagina personale, l'utente vede nella lista dei pacchetti
+ personalizzati il pacchetto appena creato.
+ L'utente fa click sul pacchetto e nella pagina di dettaglio fa click sul
+ pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Compra
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato finale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Concide con il risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problemi minori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+E' possibile inserire prodotto anche con personalizzazioni (numero persone
+ e date) completamente svincolate dagli altri prodotti già presenti nel
+ pacchetto.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+L'impiegato aggiorna la lista delle offerte
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obiettivo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Aggiunta di un prodotto e un pacchetto
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ambiente operativo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+impiegati.xhtml
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'impiegato (loggato come tale), all'interno della propria pagina personale,
+ va sulla scheda 
+\begin_inset Quotes eld
+\end_inset
+
+Prodotti
+\begin_inset Quotes erd
+\end_inset
+
+, seleziona il tipo e fa click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+nuovo
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nella maschera di inserimento che compare, l'impiegato inserisce tutti i
+ dati del nuovo prodotto e fa click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Salva
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+L'impiegato torna nella propria pagina personale, va sulla scheda 
+\begin_inset Quotes eld
+\end_inset
+
+pacchetti
+\begin_inset Quotes erd
+\end_inset
+
+ e fa click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Nuovo
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Plain Layout
+L'impiegato crea poi un pacchetto aggiungendo una serie di prodotti.
+ Viene inserito nome del pacchetto L'impiegato torna nella propria pagina
+ personale e trova nella lista dei pacchetti presenti anche il pacchetto
+ appena creato.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato finale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Concide con il risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problemi minori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+E' possibile creare dei pacchetti vuoti.
+\end_layout
+
+\begin_layout Plain Layout
+Ad ogni click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+salva
+\begin_inset Quotes erd
+\end_inset
+
+, viene creato un nuovo record invece di modificare il pacchetto correntemente
+ visualizzato.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Non viene mantenuto il nome del pacchetto durante l'inserimento dei prodotti.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+L'impiegato conferma una prenotazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obiettivo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'impiegato apre la propria pagina personale e guarda la lista delle 
+\begin_inset Quotes eld
+\end_inset
+
+prenotazioni da trasmettere
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ambiente operativo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+impiegati.xhtml
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'impiegato apre la propria pagina personale e guarda la lista delle 
+\begin_inset Quotes eld
+\end_inset
+
+prenotazioni da trasmettere
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+All'interno della lista fa click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+conferma
+\begin_inset Quotes erd
+\end_inset
+
+ a fianco alla prenotazione da confermare.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+La pagina viene aggiornata e la prenotazione confermata appare nella lista
+ delle prenotazioni confermate.
+\end_layout
+
+\begin_layout Plain Layout
+Viene inviata una email al cliente che aveva fatto la prenotazione per avvisarlo
+ della conferma 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato finale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+I risultati coincidono parzialmente.
+ Non risulta presente la scheda 
+\begin_inset Quotes eld
+\end_inset
+
+Lista delle prenotazioni confermate
+\begin_inset Quotes erd
+\end_inset
+
+ in seguito al click sul pulsante conferma, come previsto dal documento
+ di testing degli sviluppatori.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problemi minori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+L'impiegato disdice una prenotazione annullata
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obiettivo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'impiegato non visualizza più la prenotazione né nella lista di prenotazioni
+ annullate, né nella lista di prenotazioni da trasmettere.
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ambiente operativo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+impiegati.xhtml
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'impiegato fa click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Disdetta
+\begin_inset Quotes erd
+\end_inset
+
+ a fianco dalla prenotazione da disdire dopo aver fatto il login e aver
+ aperto la propria pagina personale.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Viene inviata una email al cliente che aveva fatto la prenotazione per avvisarlo
+ che un impiegato ha confermato la disdetta della prenotazione.
+ L'impiegato non visualizza più la prenotazione né nella lista di prenotazioni
+ annullate, né nella lista di prenotazioni da trasmettere.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato finale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Concide con il risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problemi minori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Creazione di un nuovo impiegato
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obiettivo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Creazione di un nuovo utente impiegato nel sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ambiente operativo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+administrator.xhtml
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'amministratore apre la propria pagina personale (dopo aver fatto il login)
+ e fa click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Aggiungi nuovo impiegato
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nella maschera di inserimento che compare, l'amministratore inserisce username
+ e email dell'impiegato.
+ L'impiegato riceve una email con un link per impostare la propria password.
+\end_layout
+
+\begin_layout Plain Layout
+L'impiegato fa click sul link, apre la pagina e inserisce nella maschera
+ di inserimento che gli compare, la propria password 
+\end_layout
+
+\begin_layout Plain Layout
+L'impiegato si trova loggato sul sito di Travel-o-Matic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato finale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nella mail ricevuta dall'impiegato non è presente alcun link che reindirizzi
+ alla pagina per modificare la propria password.
+ Tuttavia è presente una password temporanea generata dal sistema che è
+ valida per effettuare il login.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problemi minori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Inserendo una mail nel formato xxx@xxx senza il punto nel dominio della
+ mail il programma crasha.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Cancellazione di un impiegato
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="8cm">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Obiettivo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eliminazione di un impiegato dal sistema
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ambiente operativo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+administrator.xhtml
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Input
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+L'amministratore apre la propria pagina personale (dopo aver effettuato
+ il login) e fa click sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+Elimina
+\begin_inset Quotes erd
+\end_inset
+
+ a fianco al nome dell'impiegato da eliminare nella lista di impiegati
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+La pagina viene aggiornata e l'impiegato cancellato non è più presente.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Risultato finale
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Concide con il risultato atteso
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Problemi minori
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
