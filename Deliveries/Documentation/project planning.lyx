@@ -238,8 +238,23 @@ Nel documento si riportano quindi una stima delle dimensioni del progetto
  di costo Cocomo.
 \end_layout
 
+\begin_layout Standard
+Per il calcolo dei function points e le stime eseguite con COCOMO si è fatto
+ riferimento al documento raggiungibile all'url:
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+target "http://csse.usc.edu/csse/research/COCOMOII/cocomo2000.0/CII_modelman2000.0.pdf"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
-Functional Points
+Function Points
 \end_layout
 
 \begin_layout Subsection
@@ -567,11 +582,11 @@ Function Types
 \end_layout
 
 \begin_layout Subsection
-Calcolo dei Functional Points
+Calcolo dei Function Points
 \end_layout
 
 \begin_layout Standard
-Abbiamo identificato i seguenti functional points:
+Abbiamo identificato le seguenti funzionalità:
 \end_layout
 
 \begin_layout Enumerate
@@ -634,7 +649,17 @@ Visualizzazione ordini (M)
 \end_layout
 
 \begin_layout Standard
-Si riporta la tabella dei functional points individuati.
+Si riporta la tabella dei functional points individuati, la prima serie
+ di 
+\begin_inset Quotes eld
+\end_inset
+
+S M C
+\begin_inset Quotes erd
+\end_inset
+
+ è riferita ai valori effettivamente conteggiati, i restanti sono quelli
+ presi dalla tabella sopra riportata (Tabella 1).
 \end_layout
 
 \begin_layout Standard
@@ -672,7 +697,7 @@ Function Type
 \begin_inset Text
 
 \begin_layout Plain Layout
-FP
+Funzionalità
 \end_layout
 
 \end_inset
@@ -2623,10 +2648,9 @@ o.
 
 \begin_layout Standard
 Per stimare il KLOC abbiamo utilizzato un fattore di conversione ottenuto
- dalla tabella raggiungibile all'indirizzo http://csse.usc.edu/csse/research/COCO
- MOII/ cocomo2000.0/CII_modelman2000.0.pdf (a pagina 10) ottenendo quindi una
- stima di 193x53 (ovvero il fattore di conversione realativo a Java) = 10229
- righe di codice.
+ dalla tabella a pagina 10 del documento menzionato nell'introduzione, ottenendo
+ quindi una stima di 193x53 (ovvero il fattore di conversione realativo
+ a Java) = 10229 righe di codice.
 \end_layout
 
 \begin_layout Standard
