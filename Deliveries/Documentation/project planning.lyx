@@ -639,6 +639,7 @@ Si riporta la tabella dei functional points individuati.
 
 \begin_layout Standard
 \begin_inset Float table
+placement H
 wide false
 sideways false
 status open
@@ -2620,75 +2621,6 @@ Si noti che i Function point della sezione External Files sono zero perchè
 o.
 \end_layout
 
-\begin_layout Section
-COCOMO
-\end_layout
-
-\begin_layout Standard
-Per quanto riguarda la stima attraverso il modello dei costi di COCOMO utilizzia
-mo le fomule seguenti, con i relativi coefficienti:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename formule cocomo.png
-	display false
-	scale 60
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-Formule COCOMO e relativi coefficienti
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-In particolare si ha:
-\end_layout
-
-\begin_layout Itemize
-M: stima dell'effort
-\end_layout
-
-\begin_layout Itemize
-T: stima del tempo impiegato
-\end_layout
-
-\begin_layout Itemize
-M/T: stima delle risorse uomo impiegate
-\end_layout
-
-\begin_layout Itemize
-S: Dimensioni dell'applicazione in esame (l'unica variabile nelle formule)
-\end_layout
-
 \begin_layout Standard
 Per stimare il KLOC abbiamo utilizzato un fattore di conversione ottenuto
  dalla tabella raggiungibile all'indirizzo http://csse.usc.edu/csse/research/COCO
@@ -2753,6 +2685,51 @@ cloc
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+COCOMO
+\end_layout
+
+\begin_layout Standard
+Per a stima attraverso il modello dei costi di COCOMO utilizziamo le seguenti
+ formule, con i coefficienti:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename formule cocomo.png
+	display false
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Formule COCOMO e relativi coefficienti
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
 
 \end_layout
@@ -2760,6 +2737,158 @@ cloc
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+In particolare si ha:
+\end_layout
+
+\begin_layout Itemize
+M: stima dell'effort
+\end_layout
+
+\begin_layout Itemize
+T: stima del tempo impiegato
+\end_layout
+
+\begin_layout Itemize
+M/T: stima delle risorse uomo impiegate
+\end_layout
+
+\begin_layout Itemize
+S: Dimensioni dell'applicazione in esame (l'unica variabile nelle formule)
+\end_layout
+
+\begin_layout Standard
+Essendo già a conoscenza del numero di persone che ha svolto il progetto,
+ abbiamo già a disposizione il parametro N=3 inoltre, considerando che i
+ mesi-uomo corrispondono a 20 giorni-uomo e 1 giorno-uomo è pari a 8 ore-uomo
+ si procede con i calcoli.
+\end_layout
+
+\begin_layout Standard
+Possiamo svolgere l'analisi tramite Cocomo da due punti di vista diversi:
+ 
+\end_layout
+
+\begin_layout Enumerate
+sfruttando il valore di N noto per ottenere il tempo di lavoro stimato T
+\end_layout
+
+\begin_layout Enumerate
+calcolando T tramite la nota formula di basic Cocomo per ottenere una stima
+ del numero N di persone.
+\end_layout
+
+\begin_layout Standard
+Abbiamo usato le righe ottenute dal calcolo degli FP, si veda la sezione
+ precedente per i dettagli sul calcolo.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $M=aKLOC^{b}=27,57$
+\end_inset
+
+ mesi
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $T=\frac{M}{N}=9,19$
+\end_inset
+
+ mesi/persona
+\end_layout
+
+\begin_layout Standard
+Il numero di ore totali si calcola facendo:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $T_{ore}=T*20*8=1470$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Per quanto riguarda il punto 2, si procede con i calcoli utilizzando anche
+ i parametri c e d, sempre relativi alla tabella sopra:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $M=aKLOC^{b}=27,57$
+\end_inset
+
+ mesi
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $T=c*KLOC^{d}=6,05$
+\end_inset
+
+ mesi/persona
+\end_layout
+
+\begin_layout Standard
+Il numero di ore totali è dunque:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $T_{ore}=T*20*8=968$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si calcola quindi il numero di persone tramite la seguente formula:
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $N=\frac{M}{T}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La formula restituisce 
+\begin_inset Formula $N=4,6$
+\end_inset
+
+ persone stimate, che sono quindi necessarie per riuscire a portare a termine
+ il progetto nel tempo previsto
+\end_layout
+
+\begin_layout Section
+Conclusioni
+\end_layout
+
+\begin_layout Standard
+Dall'analisi effettuata emerge che i risultati ottenuti tramite il metodo
+ function point sono abbastanza accurati in quanto le righe stimate eccedono
+ solo del 22,9% rispetto alle righe effettivamente scritte.
+\end_layout
+
+\begin_layout Standard
+Per quanto riguarda l'analisi effettuata con COCOMO, i risultati ottenuti
+ non sono coerenti con quanto abbiamo realizzato, infatti vengono sovrastimati
+ i mesi uomo e di conseguenza le persone che andrebbero impiegate nel progetto
+ (4.6 al posto di 3 persone).
 \end_layout
 
 \end_body
