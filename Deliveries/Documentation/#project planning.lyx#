@@ -2796,14 +2796,9 @@ Organic
 \begin_inset Quotes erd
 \end_inset
 
- di Cocomo, in quanto gruppo di programmatori semi-esperti in numero ridotto
- e con la possibilità di sfruttare le numerose funzionalità già offerte
- dal framework JEE e da Glassfish.
-\end_layout
-
-\begin_layout Standard
-Essendo già a conoscenza del numero di persone che ha svolto il progetto,
- abbiamo già a disposizione il parametro N=3.
+ di Cocomo, in quanto gruppo di programmatori semi-esperti in numero ridottoEsse
+ndo già a conoscenza del numero di persone che ha svolto il progetto, abbiamo
+ già a disposizione il parametro N=3.
  Inoltre, considerando che i mesi-uomo corrispondono a 20 giorni-uomo e
  1 giorno-uomo è pari a 8 ore-uomo si procede con i calcoli:
 \end_layout
