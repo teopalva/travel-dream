@@ -155,7 +155,7 @@
 												<div class="caption">
 													<h4>#{package.getName()}</h4>
 													<p>Prezzo: #{package.getPrice()} €</p>
-													<p>Sconto:  #{package.getReduction()}</p>
+													<p>Sconto:  #{package.getReduction()*100} %</p>
 													<p>Partenza:
 														#{package.getOutboundFlight().flight.getCityDeparture().getName()}
 														#{package.getOutboundFlight().flight.getAirportDeparture()}</p>
