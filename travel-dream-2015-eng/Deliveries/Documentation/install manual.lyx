@@ -1,0 +1,779 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\align center
+Politecnico di Milano
+\end_layout
+
+\begin_layout Standard
+\align center
+Scuola di Ingegneria dell'Informazione
+\end_layout
+
+\begin_layout Standard
+\align center
+Corso di Laurea Magistrale in Ingegneria Informatica
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename logopm.pdf
+	display false
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+Progetto di Ingegneria del Software 2
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+TravelDream
+\end_layout
+
+\begin_layout Standard
+\align center
+Guida all'installazione
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Responsabile:
+\end_layout
+
+\begin_layout Standard
+Prof.
+ Raffaela Mirandola
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\align right
+Progetto di:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Palvarini Matteo
+\series default
+ Matricola n.
+ 816952
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Venturini Gianluca
+\series default
+ Matricola n.
+ 814236
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Zerbinati Francesco
+\series default
+ Matricola n.
+ 817415
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+ANNO ACCADEMICO 2013/2014
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Guida all’installazione
+\end_layout
+
+\begin_layout Standard
+Questo documento contiene le informazioni necessarie per portare a termine
+ correttamente l’operazione di installazione su un server.
+ Oltre a questo manuale, all’interno del pacchetto di installazione sono
+ presenti: 
+\end_layout
+
+\begin_layout Itemize
+l’archivio TravelDream.ear contenente gli eseguibili dell’applicazione 
+\end_layout
+
+\begin_layout Itemize
+lo script traveldream.sql, da utilizzare per creare lo schema del database
+ all’interno del DBMS e per popolarlo con alcuni dati iniziali necessari
+ per il primo avvio dell’applicazione 
+\end_layout
+
+\begin_layout Itemize
+esempi dei file di configurazione di Glassfish che verranno descritti in
+ seguito, da modificare secondo le esigenze dell’installazione locale 
+\end_layout
+
+\begin_layout Itemize
+il driver JDBC per connettere il database MySQL all’Application Server
+\end_layout
+
+\begin_layout Itemize
+un manuale utente e un documento che descrive i casi di test di sistema
+ individuati
+\end_layout
+
+\begin_layout Subsection
+Requisiti di sistema
+\end_layout
+
+\begin_layout Itemize
+Sistema operativo: L’applicazione funziona su qualsiasi sistema operativo
+ dotato di un Java Runtime Environment, e compatibile con Glassfish 4.
+ È stata testata sui sistemi operativi Debian GNU/Linux, Microsoft Windows
+ 8 e Apple Mac OS X 10.8
+\end_layout
+
+\begin_layout Itemize
+un JRE compatibile con Java 7 o successivi (l'applicazione è stata testata
+ con JRE ufficiale di Oracle)
+\end_layout
+
+\begin_layout Itemize
+Glassfish versione 4 (che corrisponde alle specifiche Java EE 7)
+\end_layout
+
+\begin_layout Itemize
+l’accesso a un server DBMS.
+ Il software è stato testato con MySQL 5.5, tuttavia è compatibile con qualunque
+ altro DBMS supportato da Eclipselink.
+ La procedura di installazione riportata in questo documento fa riferimento
+ a un’installazione locale di MySQL (è analoga nel caso di un’installazione
+ remota).
+\end_layout
+
+\begin_layout Subsection
+Client
+\end_layout
+
+\begin_layout Standard
+L’applicazione fa uso di tecnologie web standard (CSS, HTML5 e Javascript),
+ ed è compatibile con qualsiasi versione sufficientemente recente di un
+ browser web.
+ È necessario che sia abilitato all’interno del browser il supporto per
+ Javascript e per i cookie.
+ Per ottenere la migliore compatibilità, si consiglia di utilizzare Google
+ Chrome (versione 32 o successiva).
+\end_layout
+
+\begin_layout Section
+Preparare il terreno
+\end_layout
+
+\begin_layout Standard
+Questo paragrafo fornisce alcune indicazioni riguardo all’installazione
+ dei requisiti software dell’applicazione.
+ Se il server soddisfa già tutti i requisiti elencati al paragrafo precedente,
+ è possibile saltare questi passaggi.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Nota importante:
+\series default
+ Le istruzioni qui riportate sono relative a un’installazione di base, adatta
+ a scopo di sviluppo, test e valutazione del prodotto.
+ Per l’installazione in un ambiente di produzione, si consiglia di leggere
+ i manuali di configurazione dei vari strumenti software, al fine di evitare
+ problematiche di performance e di sicurezza.
+\end_layout
+
+\begin_layout Subsection
+MySQL
+\end_layout
+
+\begin_layout Standard
+Scaricare e installare MySql Server Community Edition.
+ Sul sito ufficiale (http://dev.
+ mysql.com/downloads/mysql/) è presente un pacchetto di installazione per
+ i maggiori sistemi operativi (Windows, MacOS e Linux).
+ MySQL è inoltre presente all’interno dei repository delle principali distribuzi
+oni GNU/Linux: ad esempio, su Debian o Ubuntu si può installare con il comando
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+# apt-get install mysql-server
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se non si imposta in fase di installazione l’avvio automatico del servizio
+ mysqld al boot del sistema, è necessario avviarlo prima di utilizzare JBoss,
+ secondo una procedura che dipende dal sistema operativo in uso.
+ Si noti inoltre che, in ambiente Microsoft Windows, per un corretto funzionamen
+to è consigliato selezionare anche il componente server data files durante
+ la procedura guidata di installazione di MySQL.
+\end_layout
+
+\begin_layout Subsection
+Glassfish 4.0
+\end_layout
+
+\begin_layout Standard
+Scaricare Glassfish server dal sito 
+\begin_inset CommandInset href
+LatexCommand href
+name "https://glassfish.java.net/download.html"
+target "https://glassfish.java.net/download.html"
+
+\end_inset
+
+.
+ Una volta scaricato decomprimere il file .zip con il comando: 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+unzip glassfish-4.0.zip
+\end_layout
+
+\end_inset
+
+A questo punto si consigia di posizionare la cartella appena estratta in
+ una locazione consona del file system (ad esempio la cartella /opt ).
+ Una volta terminata l'installazione bisogna avviare il server con il comando:
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+glassfish4/bin/asadmin start-domain
+\end_layout
+
+\end_inset
+
+Per impostare l’avvio automatico al boot del sistema operativo, consultare
+ il manuale dell’application server che può essere reperito all'indirizzo:
+ 
+\begin_inset CommandInset href
+LatexCommand href
+name "https://glassfish.java.net/docs/4.0/installation-guide.pdf"
+target "https://glassfish.java.net/docs/4.0/installation-guide.pdf"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Creare il database
+\end_layout
+
+\begin_layout Standard
+Questo paragrafo contiene le istruzioni per creare e configurare correttamente
+ il database.
+ I comandi che saranno descritti dovranno essere eseguiti all’interno della
+ console di MySQL.
+ In un sistema Unix-like, se il comando mysql è presente nel PATH di sistema,
+ la console può essere avviata con il comando
+\end_layout
+
+\begin_layout Standard
+$ mysql -u root -h localhost -p 
+\end_layout
+
+\begin_layout Standard
+Questo comando permette di accedere al database funzionante in locale (-h
+ localhost), autenticandosi come utente root (-u root) e richiedendo l’inserimen
+to della password (-p).
+ Su altri sistemi operativi, riferirsi alla documentazione di MySql per
+ informazioni su come avviare la console.
+ In alternativa, per effettuare le operazioni che verranno descritte si
+ può utilizzare il programma grafico MySQL Workbench.
+ In questo caso, per collegarsi all’istanza di MySQL che è avviata sul sistema,
+ selezionare ‘Open connection to start querying’ e inserire le credenziali.
+\end_layout
+
+\begin_layout Enumerate
+Creare un database vuoto con un nome arbitrario, ad esempio TravelDream
+ ed impostarlo come database in uso: 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+mysql> create database TravelDream;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Creare un utente nel server MySQL e assegnarvi i privilegi necessari ad
+ operare sul database relativo all’applicazione.
+ Questo utente verrà utilizzato da Glassfish - e quindi da TravelDream -
+ per autenticarsi con MySQL.
+ Una volta selezionato il database con il comando use, inserire il comando:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+mysql> create user ’traveldream’@’localhost’ identified by ’traveldream’;
+\end_layout
+
+\end_inset
+
+per creare l’utente traveldream, identificato dalla password traveldream.
+ Assegnare quindi i permessi necessari con il comando:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+mysql> grant all on traveldream.* to ’TravelDream’@’localhost’;
+\end_layout
+
+\end_inset
+
+dove TravelDream è il nome del database creato al punto precedente
+\end_layout
+
+\begin_layout Enumerate
+Eseguire lo script fornito per creare lo schema del database.
+ Digitare il comando source seguito dal percorso completo in cui si trova
+ il file fornito, ad esempio:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+mysql> source /home/gianluca/traveldream/traveldream.sql
+\end_layout
+
+\end_inset
+
+Se si sta utilizzando MYSql Workbench, utilizzare il comando File -> Open
+ SQL Script...
+ invece di utilizzare il comando source.
+ Se va tutto a buon fine, il sistema risponde con una serie di messaggi
+ del tipo “Query OK”.
+\end_layout
+
+\begin_layout Section
+Configurare il server
+\end_layout
+
+\begin_layout Standard
+Prima di installare l'applicazione su Glassfish, è necessario effettuare
+ alcune configurazioni per permettere il corretto funzionamento dell'applicazion
+e.
+\end_layout
+
+\begin_layout Subsection
+JDBC e data source
+\end_layout
+
+\begin_layout Standard
+Come prima cosa bisogna assicurarsi di installare lildriver corretto che
+ ci consentirà di connetterci al DB.
+ Se si desidera procedere con MySQL il driver viene fornito assieme a questa
+ guida, e si tratta del file 
+\begin_inset Quotes eld
+\end_inset
+
+mysql-connector-java-5.1.26-bin.jar
+\begin_inset Quotes erd
+\end_inset
+
+, nel caso si voglia utilizzare un altro DBMS sarà necessario scaricare
+ il driver corrispondente.
+ Per installare un driver è sufficiente copiare il file all'interno della
+ cartella glassfish4/lib/ ed automaticamente Glassfish lo riconoscerà.
+ A questo punto bisogna configurare Glassfish dal suo pannello di amministrazion
+e, che in caso di installazione locale è raggiungibile all'indirizzo: 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://localhost:4848"
+target "http://localhost:4848"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Come prima cosa creiamo una connection pool (per una guida dettagliata si
+ rimanda al manuale online di Oracle: 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://docs.oracle.com/cd/E19316-01/820-4335/gibzk/index.html"
+target "manuale"
+
+\end_inset
+
+) usando come tipologia di risorsa javax.sql.DataSource e assegnandole un
+ nome univoco, ad esempio: 
+\begin_inset Quotes eld
+\end_inset
+
+MysqlPool
+\begin_inset Quotes erd
+\end_inset
+
+, inoltre bisogna impostare la classe che ci fornisce l'interfaccia con
+ il DB (nel caso di MySQL è 
+\begin_inset Quotes eld
+\end_inset
+
+com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource
+\begin_inset Quotes erd
+\end_inset
+
+).
+ Bisogna inoltre impostare delle proprietà aggiuntive che permetteranno
+ la connessione al DB, in questa fase bisogna fare riferimento al DBMS scelto,
+ nel caso di MySQL riportiamo in questa guida la scehrmata completa di tutte
+ le proprietà.
+ Da notare che la password inserita nella scermata è a solo scopo illustrativo,
+ e andrà cambiata al momento dell'installazione e resa coerente con quella
+ impostata per l'utente del DB.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename proprieta pool glassfish.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Proprieta aggiuntive connection pool
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A questo punto bisognerà creare la risorsa JDBC (riportiamo la guida online
+ di Oracle: 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://docs.oracle.com/cd/E19798-01/821-1752/beamk/index.html"
+target "manuale"
+
+\end_inset
+
+).
+ Durante la procedura di creazione al momento di inserimento del nome JNDI
+ name bisognerà inserire 
+\begin_inset Quotes eld
+\end_inset
+
+jdbc/MySQLDataSource
+\begin_inset Quotes erd
+\end_inset
+
+, questo stesso nome è referenziato nel codice e pertanto non può essere
+ cambiato.
+ Inoltre sarà necessario selezionare il connection pool appena creato (nel
+ nostro esempio si chiama 
+\begin_inset Quotes eld
+\end_inset
+
+MysqlPool
+\end_layout
+
+\begin_layout Subsection
+JavaMail
+\end_layout
+
+\begin_layout Standard
+Affinchè il sistema possa inviare le mail sarà necessario impostare una
+ JavaMail affinchè possa connettersi ad un provider e inviare le mail tramite
+ esso.
+ Per le istruzioni complete rimandiamo al 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://docs.oracle.com/cd/E19575-01/821-0185/ablkr/index.html"
+target "manuale"
+
+\end_inset
+
+ di Oracle.
+ L'unico parametro importante di cui tenere conto è il JNDI name che deve
+ essere 
+\begin_inset Quotes eld
+\end_inset
+
+mail/info
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Qua sotto riportiamo una configurazione di esempio che è stata utilizzata
+ nei test.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename configurazione javamail.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Configurazione di esempio JavaMail
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Deploy di TravelDream
+\end_layout
+
+\begin_layout Standard
+In quest'ultima fase andremo ad importare il progetto EAR all'interno del
+ server Glassfish.
+ Per fare questo è sufficiente, dal pannello di amministrazione, andare
+ nell'area 
+\begin_inset Quotes eld
+\end_inset
+
+Applicazioni
+\begin_inset Quotes erd
+\end_inset
+
+ e cliccare sul pulsante 
+\begin_inset Quotes eld
+\end_inset
+
+distribuisci...
+\begin_inset Quotes erd
+\end_inset
+
+.
+ A questo punto basterà uploddare il file TravelDream.ear e dare conferma
+ per avere l'applicazione funzionante.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Nota
+\series default
+ Per poter utilizzare correttamente l’applicazione, è necessario che sia
+ registrato al sistema almeno un amministratore (utente con ruolo TDE).
+ A questo scopo, all’interno dello script di creazione delle tabelle del
+ database vengono inseriti tre utenti di ruolo Amministratore.
+ È fortemente consigliato cambiare, agendo direttamente sul database, gli
+ indirizzi email sostituendoli con indirizzi reali.
+ Per la registrazione degli amministratori (utenti TDE) si consiglia di
+ registrarli come utenti normali (usando la regolare procedura di registrazione)
+, e poi direttamente dal DB cambiare i privilegi di accesso sostituendo
+ TDC con TDE nella tabella USER_GROUP
+\end_layout
+
+\end_body
+\end_document

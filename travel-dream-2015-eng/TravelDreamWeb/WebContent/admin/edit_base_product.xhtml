@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+		<h:body>
+
+			<div class="container">
+				<div class="row clearfix">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h6 class="panel-title">Basic Product Type</h6>
+						</div>
+						<div class="panel-body">
+							<div class="col-md-4 column"></div>
+							<div class="col-md-4 column">
+								<p:selectOneButton value="#{EditBaseProduct.productType}">
+									<p:ajax partialSubmit="true" event="change"
+										update=":bottomPanel" />
+									<f:selectItem itemLabel="Flight" itemValue="1" />
+									<f:selectItem itemLabel="Hotel" itemValue="2" />
+									<f:selectItem itemLabel="Excursion" itemValue="3" />
+								</p:selectOneButton>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<h:panelGroup id="bottomPanel">
+					<div class="row clearfix">
+						<!-- VOLO -->
+						<h:panelGroup rendered="#{EditBaseProduct.isFlight()}">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h6 class="panel-title">Basic Product - Flight</h6>
+								</div>
+								<h:form id="flightForm">
+								<div class="panel-body">
+									<div class="col-md-2 column">Name:</div>
+									<div class="col-md-4 column">
+										<p:inputText value="#{EditBaseProduct.name}" />
+									</div>
+
+									<div class="col-md-2 column">Company:</div>
+									<div class="col-md-4 column">
+										<p:selectOneMenu value="#{EditBaseProduct.company}">
+											<f:selectItem itemLabel="Select..." itemValue="" />
+											<f:selectItems value="#{EditBaseProduct.companies}"/>
+										</p:selectOneMenu>
+									</div>
+
+									<div class="row clearfix" style="margin-top: 60px"></div>
+									<div class="col-md-2 column">Departure Airport:</div>
+									<div class="col-md-4 column">
+										<p:selectOneMenu value="#{EditBaseProduct.departureAirport}">
+											<f:selectItem itemLabel="Select..." itemValue="" />
+											<f:selectItems value="#{EditBaseProduct.airports}" />
+										</p:selectOneMenu>
+									</div>
+
+									<div class="col-md-2 column">Arrival Airport:</div>
+									<div class="col-md-4 column">
+										<p:selectOneMenu value="#{EditBaseProduct.arrivalAirport}">
+											<f:selectItem itemLabel="Select..." itemValue="" />
+											<f:selectItems value="#{EditBaseProduct.airports}" />
+										</p:selectOneMenu>
+									</div>
+
+
+
+									<div class="row clearfix" style="margin-top: 60px"></div>
+
+
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h6 class="panel-title">Data</h6>
+										</div>
+										<div class="panel-body">
+
+
+											<div class="col-md-10"></div>
+											<div class="col-md-2">
+												<p:commandButton value="Add date" ajax="true"
+													styleClass="btn btn-success btn-block" id="buttonAddDate"
+													oncomplete="PF('dateDialog').show()" />
+											</div>
+											<div class="col-md-12" style="margin-top: 10px">
+												
+												
+													<p:dataTable var="pDate" value="#{EditBaseProduct.getDatePersonalizations()}" id="dateFlight" editable="true">
+														<p:column headerText="Arrival date">
+															 <h:outputText value="#{pDate.getDatePersonalization().getInitialDate()}" /> 
+															 
+														</p:column>
+
+														<p:column headerText="Duration">
+															 <h:outputText value="#{pDate.getDatePersonalization().getDuration()}" />
+														</p:column>
+
+														<p:column headerText="Price">
+															  <h:outputText value="#{pDate.getPrice()}" /> 
+														</p:column>
+														
+														<p:column headerText="Actions">
+														<!--  aggiungere campo action che passa il dto -->
+														  <p:commandButton value="Remove" ajax="true" action="#{EditBaseProduct.removeDatePersonalization(pDate.getDatePersonalization())}"
+														  				   update=":flightForm:dateFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
+														</p:column>
+														
+													</p:dataTable>
+											
+											</div>
+										</div>
+									</div>
+
+
+									<div class="row clearfix" style="margin-top: 60px"></div>
+
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h6 class="panel-title">Classe</h6>
+										</div>
+										<div class="panel-body">
+
+
+											<div class="col-md-10"></div>
+											<div class="col-md-2">
+												<p:commandButton value="Add class" ajax="true"
+													styleClass="btn btn-success btn-block" id="buttonAddClass"
+													oncomplete="PF('classDialog').show()" />
+											</div>
+											<div class="col-md-12" style="margin-top: 10px">
+												
+												
+													<p:dataTable var="pClass"
+														value="#{EditBaseProduct.getClassPersonalizations()}" id="classFlight">
+														<p:column headerText="Name">
+															  <h:outputText value="#{pClass.getClassPersonalization()._class}" />  
+														</p:column>
+
+														<p:column headerText="Price">
+															  <h:outputText value="#{pClass.getPrice()}" />  
+														</p:column>
+														
+														<p:column headerText="Actions">
+														<!--  aggiungere campo action che passa il dto -->
+														  <p:commandButton value="Remove" ajax="true" action="#{EditBaseProduct.removeClassPersonalization(pClass.getClassPersonalization())}"
+														  				   update=":flightForm:classFlight" styleClass="btn btn-warning btn-block" id="buttonDeleteClass"/>
+														</p:column>
+
+													</p:dataTable>
+												
+											</div>
+										</div>
+									</div>
+
+
+
+									<div class="row clearfix" style="margin-top: 40px"></div>
+									<div class="col-md-4 column"></div>
+									<div class="col-md-4 column">
+										<p:commandButton value="Confirm" ajax="true"
+											action="#{EditBaseProduct.confirm()}"
+											styleClass="btn btn-primary btn-lg btn-block"
+											id="buttonConfirm" />
+									</div>
+
+
+
+								</div>
+								</h:form>
+							</div>
+
+
+						</h:panelGroup>
+						<!-- HOTEL -->
+						<h:panelGroup rendered="#{EditBaseProduct.isHotel()}">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h6 class="panel-title">Basic Product - Hotel</h6>
+								</div>
+								
+								<h:form id="hotelForm">
+								<div class="panel-body">
+
+
+
+
+									<div class="col-md-2 column">Name:</div>
+									<div class="col-md-4 column">
+										<p:inputText value="#{EditBaseProduct.name}" />
+									</div>
+
+									<div class="col-md-2 column">Company:</div>
+									<div class="col-md-4 column">
+										<p:selectOneMenu value="#{EditBaseProduct.company}">
+											<f:selectItem itemLabel="Select..." itemValue="" />
+											<f:selectItems value="#{EditBaseProduct.companies}" />
+										</p:selectOneMenu>
+									</div>
+
+									<div class="row clearfix" style="margin-top: 60px"></div>
+									<div class="col-md-2 column">Città:</div>
+									<div class="col-md-4 column">
+										<p:selectOneMenu value="#{EditBaseProduct.hotelCityName}">
+											<f:selectItem itemLabel="Select..." itemValue="" />
+											<f:selectItems value="#{EditBaseProduct.cities}" />
+											<p:ajax event="valueChange" update="hotelCityCountry" />
+										</p:selectOneMenu>
+									</div>
+									<div class="col-md-2 column">Country:</div>
+									<div class="col-md-4 column">
+										<h:outputText value="#{EditBaseProduct.hotelCityCountry}" id="hotelCityCountry"/>  
+									</div>
+
+									<div class="row clearfix" style="margin-top: 60px"></div>
+									<div class="col-md-2 column">Hotel stars:</div>
+									<div class="col-md-4 column">
+										<!--  cambiare con editbaseproduct -->
+										<p:selectOneMenu value="#{EditBaseProduct.hotelStars}">
+											<f:selectItem itemLabel="Stelle" itemValue="0" />
+											<f:selectItem itemLabel="1" itemValue="1" />
+											<f:selectItem itemLabel="2" itemValue="2" />
+											<f:selectItem itemLabel="3" itemValue="3" />
+											<f:selectItem itemLabel="4" itemValue="4" />
+											<f:selectItem itemLabel="5" itemValue="5" />
+										</p:selectOneMenu>
+									</div>
+
+									<div class="row clearfix" style="margin-top: 60px"></div>
+
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h6 class="panel-title">Classe</h6>
+										</div>
+										<div class="panel-body">
+
+
+											<div class="col-md-10"></div>
+											<div class="col-md-2">
+												<p:commandButton value="Add class" ajax="true"
+													styleClass="btn btn-success btn-block" id="buttonAddHotelClass"
+													oncomplete="PF('classDialog').show()" />
+											</div>
+											<div class="col-md-12" style="margin-top: 10px">
+												<h:form id="tableClassHotel">
+													<p:dataTable var="pClass"
+														value="#{EditBaseProduct.getClassPersonalizations()}" id="classHotel">
+														<p:column headerText="Name">
+															  <h:outputText value="#{pClass.getClassPersonalization()._class}" />  
+														</p:column>
+
+														<p:column headerText="Price">
+															  <h:outputText value="#{pClass.getPrice()}" />  
+														</p:column>
+														
+														<p:column headerText="Actions">
+														<!--  aggiungere campo action che passa il dto -->
+														  <p:commandButton value="Remove" ajax="true" action="#{EditBaseProduct.removeClassPersonalization(pClass.getClassPersonalization())}"
+														  				  update=":hotelForm:tableClassHotel:classHotel" styleClass="btn btn-warning btn-block" id="buttonDeleteDate"/>
+														</p:column>
+
+													</p:dataTable>
+												</h:form>
+											</div>
+										</div>
+									</div>
+
+									<div class="row clearfix" style="margin-top: 80px"></div>
+									<div class="col-md-4 column"></div>
+									<div class="col-md-4 column">
+										<p:commandButton value="Confirm" ajax="true"
+											action="#{EditBaseProduct.confirm()}"
+											styleClass="btn btn-primary btn-lg btn-block" />
+									</div>
+
+
+
+
+								</div>
+								</h:form>
+							</div>
+						</h:panelGroup>
+						<!-- ESCURSIONE -->
+						<h:panelGroup rendered="#{EditBaseProduct.isExcursion()}">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h6 class="panel-title">Basic Product - Excursion</h6>
+								</div>
+								
+								<h:form id="excForm">
+								<div class="panel-body">
+
+
+
+
+
+									<div class="col-md-2 column">Name:</div>
+									<div class="col-md-4 column">
+										<p:inputText value="#{EditBaseProduct.name}" />
+									</div>
+
+									<div class="col-md-2 column">Company:</div>
+									<div class="col-md-4 column">
+										<p:selectOneMenu value="#{EditBaseProduct.company}">
+											<f:selectItem itemLabel="Select..." itemValue="" />
+											<f:selectItems value="#{EditBaseProduct.companies}" />
+										</p:selectOneMenu>
+									</div>
+
+									<div class="row clearfix" style="margin-top: 60px"></div>
+									<div class="col-md-2 column">City:</div>
+									<div class="col-md-4 column">
+										<p:selectOneMenu value="#{EditBaseProduct.excursionCityName}">
+											<f:selectItem itemLabel="Select..." itemValue="" />
+											<f:selectItems value="#{EditBaseProduct.cities}" />
+											<p:ajax event="valueChange" update="excursionCityCountry" />
+										</p:selectOneMenu>
+									</div>
+
+									<div class="col-md-2 column">Country:</div>
+									
+									<div class="col-md-4 column">
+										<h:outputText value="#{EditBaseProduct.excursionCityCountry}" id="excursionCityCountry"/>
+									</div>
+
+
+									<div class="row clearfix" style="margin-top: 60px"></div>
+
+
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h6 class="panel-title">Date</h6>
+										</div>
+										<div class="panel-body">
+
+
+											<div class="col-md-10"></div>
+											<div class="col-md-2">
+												<p:commandButton value="Add date" ajax="true"
+													styleClass="btn btn-success btn-block" id="buttonAddDateExc"
+													oncomplete="PF('dateDialog').show()" />
+											</div>
+											<div class="col-md-12" style="margin-top: 10px">
+												<h:form id="tableDateExc">
+													<p:dataTable var="pDate" value="#{EditBaseProduct.getDatePersonalizations()}" id="dateExc">
+														<p:column headerText="Date">
+															   <h:outputText value="#{pDate.getDatePersonalization().getInitialDate()}" /> 
+														</p:column>
+
+														<p:column headerText="Duration">
+																<h:outputText value="#{pDate.getDatePersonalization().getDuration()}" /> 
+														</p:column>
+
+														<p:column headerText="Price">
+															   <h:outputText value="#{pDate.getPrice()}" />  
+														</p:column>
+														
+														<p:column headerText="Actions">
+														<!--  aggiungere campo action che passa il dto -->
+														  <p:commandButton value="Remove" ajax="true" action="#{EditBaseProduct.removeDatePersonalization(pDate.getDatePersonalization())}"
+														  				  update=":excForm:tableDateExc:dateExc"  styleClass="btn btn-warning btn-block" id="buttonDeleteClassExc"/>
+														</p:column>
+														
+													</p:dataTable>
+												</h:form>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="col-md-4 column"></div>
+									<div class="col-md-4 column"></div>
+									<div class="row clearfix" style="margin-top: 80px"></div>
+									<div class="col-md-4 column"></div>
+									<div class="col-md-4 column">
+										<p:commandButton value="Confirm" ajax="true"
+											action="#{EditBaseProduct.confirm()}"
+											styleClass="btn btn-primary btn-lg btn-block" />
+									</div>
+
+
+
+
+
+								</div>
+								</h:form>
+							</div>
+						</h:panelGroup>
+					</div>
+				</h:panelGroup>
+			</div>
+
+			<p:dialog id="dateDialog" widgetVar="dateDialog" focus="formdate:addB"
+				resizable="false" style="margin-top:300px" header="Add date"
+				width="800" height="240">
+				<h:form id="formdate">
+				<div class="col-md-6" style="margin-bottom: 30px">New date:</div>
+				<div class="col-md-6">
+					<p:calendar value="#{EditBaseProduct.date}" id="newDate"
+						locale="it" pattern="dd/MM/yyyy HH:mm" placeholder="departure date" />
+				</div>
+				<div class="row clearfix" ></div>
+				<div class="col-md-6" style="margin-bottom: 30px" >Duration:</div>
+				<div class="col-md-4">
+					<p:inputText styleClass="form-control" id="duration" 
+						value="#{EditBaseProduct.duration}" />
+				</div>
+				<div class="row clearfix" ></div>
+				<div class="col-md-6">Price:</div>
+				<div class="col-md-4">
+					<p:inputText styleClass="form-control" id="price" 
+						value="#{EditBaseProduct.price}" />
+				</div>
+
+				<div class="row clearfix" style="margin-top: 80px"></div>
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<p:commandButton value="Add" id="addB" ajax="true" onclick="dateDialog.hide()" update=":flightForm:dateFlight,:excForm:tableDateExc:dateExc"
+						action="#{EditBaseProduct.addDatePersonalization()}"
+						styleClass="btn btn-default btn-lg btn-block" />
+				</div>
+				</h:form>
+				
+				
+			</p:dialog>
+
+			<p:dialog id="classDialog" widgetVar="classDialog" resizable="false" 
+				style="margin-top:300px" header="Add class" width="800"
+				height="170">
+				<h:form>
+				<div class="col-md-6">Type:</div>
+				<div class="col-md-4">
+				
+					<p:selectOneMenu value="#{EditBaseProduct.personalization}">
+											<f:selectItem itemLabel="Economy" itemValue="Economy" />
+											<f:selectItem itemLabel="Classic" itemValue="Classic" />
+											<f:selectItem itemLabel="Comfort" itemValue="Comfort" />
+											<f:selectItem itemLabel="Business" itemValue="Business" />
+											<f:selectItem itemLabel="Deluxe" itemValue="Deluxe" />
+					</p:selectOneMenu>
+				</div>
+
+				<div class="row clearfix" style="margin-top: 1px"></div>
+				<div class="col-md-6">Price:</div>
+				<div class="col-md-4">
+					<p:inputText styleClass="form-control" id="priceClass"
+						value="#{EditBaseProduct.price}" />
+				</div>
+
+				<div class="row clearfix" style="margin-top: 80px"></div>
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+			
+					<p:commandButton value="Add" ajax="true" onclick="classDialog.hide()" update=":flightForm:classFlight,:hotelForm:tableClassHotel:classHotel"
+						action="#{EditBaseProduct.addClassPersonalization()}"
+						styleClass="btn btn-default btn-lg btn-block" />
+				</div>
+				
+				</h:form>
+			</p:dialog>
+			
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>
+
+
+
+</html>

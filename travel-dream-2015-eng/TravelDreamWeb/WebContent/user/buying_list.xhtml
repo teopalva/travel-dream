@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+		<h:body>
+
+<script>
+
+function showDetail(id,text,btn) {
+	
+	var list = document.getElementsByClassName("thumbnail");
+	var len = list.length;
+
+	while(len--) {
+		list[len].style.display = "none";
+	}
+	document.getElementById(id).style.display = "block";
+}
+
+</script>
+			<div class="container">
+				<center>
+					<h1 style="padding-bottom: 30px">My Orders</h1>
+				</center>
+				<div class="row clearfix">
+					<div class="col-md-6 column">
+						<div class="list-group">
+							<a href="#" class="list-group-item active">Packages</a>
+							<ui:repeat value="#{BuyingList.retrieveList()}" var="item">
+							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item._package.id}','',this); return false;">
+							 	<h:panelGroup rendered="#{item.isPaid()}"><span class="badge">Payment received</span></h:panelGroup>
+							 	<h:panelGroup rendered="#{!item.isPaid()}"><span class="badge">Payment pending</span></h:panelGroup>
+							 	<h:panelGroup rendered="#{item.isGifted()}"><span class="badge">Gifted</span></h:panelGroup>
+							 	<b>#{item._package.name}</b><br></br>Price: #{item._package.getPrice()} €
+							 </a>
+							 </ui:repeat>
+						</div>
+
+					</div>
+					<div class="col-md-6 column">
+
+
+
+						<div class="col-md-12 hero-feature">
+						<ui:repeat value="#{BuyingList.retrieveList()}" var="item">
+							<div class="thumbnail" id="item_#{item._package.id}" style="display:none">
+							
+							 
+								<div class="caption">
+									<h4>#{item._package.name}</h4>
+									Departing: #{item._package.getOutboundFlight().datePersonalization.getInitialDate()}<br></br>
+									Returning: #{item._package.getReturnFlight().datePersonalization.getInitialDate()}<p></p>
+									From:
+										#{item._package.getOutboundFlight().flight.getCityDeparture().getName()}
+										#{item._package.getOutboundFlight().flight.getAirportDeparture()}
+									<br></br>To:
+										#{item._package.getOutboundFlight().flight.getCityArrival().getName()}
+										#{item._package.getOutboundFlight().flight.getAirportArrival()}<p></p>
+									<div>
+										<table class="table" style="margin-bottom: 45px">
+
+											<tr>
+												<th>Flight (departing)</th>
+												<td>#{item._package.getOutboundFlight().flight.name}</td>
+												<td>#{item._package.getOutboundFlight().flight.company}</td>
+											</tr>
+											<tr>
+												<th>Flight (returning)</th>
+												<td>#{item._package.getReturnFlight().flight.name}</td>
+												<td>#{item._package.getReturnFlight().flight.company}</td>
+											</tr>
+
+											<tr>
+												<th>Hotel</th>
+												
+												<td>#{item._package.getHotel().hotel.name}</td>
+												<td>#{item._package.getHotel().hotel.company}</td>
+											</tr>
+											<tr>
+												<th>Excursion</th>
+												<td>#{item._package.getExcursion().excursion.name}</td>
+												<td>#{item._package.getExcursion().excursion.company}</td>
+											</tr>
+										</table>
+									</div>
+
+									<p>
+
+
+									</p>
+								</div>
+								
+							</div>
+							</ui:repeat>
+						</div>
+
+
+
+
+					</div>
+				</div>
+
+			</div>
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>
+
+
+
+</html>

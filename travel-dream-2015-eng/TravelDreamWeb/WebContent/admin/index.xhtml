@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+		<h:body>
+
+			<div class="container">
+				<div class="row clearfix well" style="margin-top:60px;margin-bottom:40px">
+					<center><h3 style="margin-bottom:30px">Manage basic products</h3></center>
+					<div class="col-md-6 column">
+						<p:commandButton  styleClass="btn btn-block btn-info" action="#{AdminPanel.showEditBaseProduct()}" value="Create basic product"/>
+					</div>
+					<div class="col-md-6 column">
+						<p:commandButton  styleClass="btn btn-info btn-block" action="#{AdminPanel.showViewBaseProducts()}" value="Search basic products"/>
+					</div>
+				</div>
+				<div class="row clearfix well">
+					<center><h3 style="margin-bottom:30px">Manage packages</h3></center>
+					<div class="col-md-6 column">
+						<p:commandButton  styleClass="btn btn-success btn-block" action="#{AdminPanel.showEditPackage()}" value="Create package"/>
+					</div>
+					<div class="col-md-6 column">
+						<p:commandButton  styleClass="btn btn-success btn-block" action="#{AdminPanel.showOfferingsList()}" value="Search packages"/>
+					</div>
+				</div>
+				<div class="row clearfix well" style="margin-top:40px">
+					<center><h3 style="margin-bottom:30px">Business Administration</h3></center>
+					<div class="col-md-12 column">
+						<p:commandButton  styleClass="btn btn-warning btn-block" action="#{AdminPanel.showOrderList()}" value="Manage orders"/>
+					</div>
+				
+				</div>
+			</div>
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>
+
+
+
+</html>

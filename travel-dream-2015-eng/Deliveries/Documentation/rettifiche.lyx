@@ -1,0 +1,262 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\align center
+Politecnico di Milano
+\end_layout
+
+\begin_layout Standard
+\align center
+Scuola di Ingegneria dell'Informazione
+\end_layout
+
+\begin_layout Standard
+\align center
+Corso di Laurea Magistrale in Ingegneria Informatica
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename logopm.pdf
+	display false
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+Progetto di Ingegneria del Software 2
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+TravelDream
+\end_layout
+
+\begin_layout Standard
+\align center
+Rettifiche ai documenti
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Responsabile:
+\end_layout
+
+\begin_layout Standard
+Prof.
+ Raffaela Mirandola
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\align right
+Progetto di:
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Palvarini Matteo
+\series default
+ Matricola n.
+ 816952
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Venturini Gianluca
+\series default
+ Matricola n.
+ 814236
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\align right
+
+\series bold
+Zerbinati Francesco
+\series default
+ Matricola n.
+ 817415
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+ANNO ACCADEMICO 2013/2014
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Rettifiche al RASD
+\end_layout
+
+\begin_layout Standard
+Rispetto a quanto descritto negli scenari d'uso e nello sketch relativo
+ all'homepage, l'unica funzionalità che non è stata implementata riguarda
+ la possibilità di acquistare un pacchetto contenente solo alcuni prodotti
+ base.
+ Al momento non è cioè possibile portare a termine l'acquisto di un pacchetto
+ non contenente il volo e l'hotel.
+ In questo caso il sistema infatti segnala la non validità del pacchetto.
+ Abbiamo ritenuto non necessario implementare questa funzionalità perchè
+ avrebbe richiesto un ulteriore sforzo implementativo che esula dai fini
+ del progetto per come è stato pensato.
+ La scelta di comporre il pacchetto a piacere è comunque possibile fino
+ alla pagina di creazione del pacchetto.
+\end_layout
+
+\begin_layout Standard
+Per quanto riguarda le altre macro-funzionalità e la coerenza con gli sketch,
+ tutto il sistema è stato implementato come previsto nel RASD.
+\end_layout
+
+\begin_layout Section
+Rettifiche al DD
+\end_layout
+
+\begin_layout Standard
+L'architettura del sistema è stata implementata coerentemente con il Design
+ Document.
+ Si possono notare solo alcune differenze minori dovute ad accorgimenti
+ che sono sorti in fase implementativa, una volta compresa a fondo la tecnologia
+ e gli strumenti a disposizione, oltre che alcuni limiti ad essa connessi.
+ Queste differenze riguardano aggiunte che sono state apportate durante
+ lo sviluppo a livello di EJB e di Managed Beans.
+ Ad esempio si è rivelato fondamentale l'utilizzo di un managed bean di
+ sessione (SessionStorageBean) dedicato a supportare la memorizzazione di
+ dati sensibili da comunicare tra pagine successive durante la navigazione.
+\end_layout
+
+\end_body
+\end_document

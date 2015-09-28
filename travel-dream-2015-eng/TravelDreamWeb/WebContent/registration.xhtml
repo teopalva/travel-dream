@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Registrazione</title>
+</h:head>
+
+	<h:outputStylesheet name="css/bootstrap.min.css" />
+	<h:outputStylesheet name="css/DT_bootstrap.css" />
+	<h:outputStylesheet name="css/signin.css" />
+
+<f:metadata>
+	<f:viewParam name="backurl" value="#{Registration.backurl}" />
+</f:metadata>
+
+
+<h:body>
+
+	<h:form  styleClass="form-signin">
+			<h2 class="form-signin-heading">Registrati</h2> 
+
+				<p:inputText id="email" value="#{Registration.user.mail}" styleClass="form-control" placeholder="Indirizzo email" />
+					<h:message for="email"  autoUpdate="true"/>
+				<p:inputText id="firstName" value="#{Registration.user.firstName}" styleClass="form-control" placeholder="Nome" />
+					<h:message for="firstName"  autoUpdate="true"/>
+				<p:inputText id="lastName" value="#{Registration.user.lastName}" styleClass="form-control" placeholder="Cognome" />
+					<h:message for="lastName"  autoUpdate="true"/>
+				<p:password id="password" value="#{Registration.user.password}"
+					feedback="true" match="pwd2" label="Password" styleClass="form-control" placeholder="Password" />
+					<h:message for="password"  autoUpdate="true"/>
+				<p:password id="pwd2"
+					value="#{Registration.user.password}" styleClass="form-control" placeholder="Ripeti password"/>
+
+				<p:commandButton value="Registrati" 
+				action="#{Registration.register()}" styleClass="btn btn-lg btn-primary btn-block">
+				 <f:ajax execute="@form" render="@form"/>
+				</p:commandButton>
+				<p:messages showDetail="true" for="alertRegistration" autoUpdate="true" closable="true" />  
+	</h:form>
+	<center><h:link value="Indietro" outcome="#{Registration.backurl}"/></center>
+	
+
+</h:body>
+
+</html>

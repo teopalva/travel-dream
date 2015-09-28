@@ -1,0 +1,53 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:outputStylesheet name="css/bootstrap.min.css" />
+	<h:outputStylesheet name="css/DT_bootstrap.css" />
+	<h:outputStylesheet name="css/signin.css" />
+
+
+
+		<h:head>
+			<title>Login</title>
+						 
+		</h:head>
+
+
+
+		<h:body>
+		
+		
+			
+			<p:ajaxStatus
+				style="width:64px;height:64px;position:fixed;right:5px;bottom:5px">
+				<f:facet name="start">
+					<h:outputText value="LOADING" />
+				</f:facet>
+
+				<f:facet name="complete">
+					<h:outputText value="FINISHED" />
+				</f:facet>
+			</p:ajaxStatus>  
+
+		<div class="container">
+				
+				<form name="loginForm" method="post" action="j_security_check" class="form-signin">		
+					<h2 class="form-signin-heading">Log in to TravelDream</h2>					
+						<input type="text" name="j_username" class="form-control" placeholder="Email" required="true"/>
+						<input type="password" name="j_password" class="form-control" placeholder="Password" required="true"/>
+						<input type="submit" value="Log in" class="btn btn-lg btn-primary btn-block"/>		
+				</form>
+				
+							<center>Don't have an account? <h:link outcome="#{Header.showRegistration()}" value="Register" /></center>
+		
+		</div>
+		</h:body>
+
+</html>

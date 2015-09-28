@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+		<h:body>
+
+<script>
+
+function showDetail(id,text,btn) {
+	
+	var list = document.getElementsByClassName("thumbnail");
+	var len = list.length;
+
+	while(len--) {
+		list[len].style.display = "none";
+	}
+	document.getElementById(id).style.display = "block";
+}
+
+</script>
+			<div class="container">
+				<center>
+					<h1 style="padding-bottom: 30px">Lista inviti</h1>
+				</center>
+				<div class="row clearfix">
+					<div class="col-md-6 column">
+						<div class="list-group">
+							<a href="#" class="list-group-item active">Pacchetti</a>
+							
+							<ui:repeat value="#{InvitationList.retrieveList()}" var="item">
+							 <a class="list-group-item" href="#" onclick="showDetail('item_#{item.id}','',this); return false;">
+							  <b>#{item.name}</b><br></br>Prezzo: #{item.getPrice()} €
+							 </a>
+							 </ui:repeat>
+						</div>
+
+					</div>
+					<div class="col-md-6 column">
+
+
+
+						<div class="col-md-12 hero-feature">
+						<ui:repeat value="#{InvitationList.retrieveList()}" var="item">
+							<div class="thumbnail" id="item_#{item.id}" style="display:none">
+							
+							 
+								<div class="caption">
+											<div class="col-md-8">
+											<h4>#{item.name}</h4>
+											</div>
+											<div class="col-md-4" style="margin-bottom:10px">
+											<p:commandButton id="checkout" value="Ordina" styleClass="btn btn-primary btn-lg btn-block"  action="#{InvitationList.showCheckout(item)}" />
+											</div>
+											<div class="row row-clearfix"></div>
+								<div class="panel panel-default" style="margin-bottom:40px" >
+  									<div class="panel-heading">
+    									<h6 class="panel-title">Invitati</h6>
+  									</div>
+  									<div class="panel-body">
+    										
+    									<ui:repeat value="#{item.invitations}" var="inv"> 
+    								
+											<div class="col-md-8">
+												#{inv.invited.mail} 
+											</div>
+											<div class="col-md-2">
+										
+											</div>
+											<div class="col-md-4">
+												 <h:panelGroup rendered="#{inv.accepted}"> <span class="badge" >Confermato</span></h:panelGroup>
+												 <h:panelGroup rendered="#{!inv.accepted}"> <span class="badge" >In attesa di conferma</span></h:panelGroup>
+											</div>
+											
+										</ui:repeat>
+ 									</div>
+								</div>
+
+									
+									
+							
+								<div class="panel panel-default" style="margin-bottom:40px" >	
+								<div class="panel-heading">
+    									<h6 class="panel-title">Dettagli pacchetto</h6>
+  								</div>
+  									<div class="panel-body">
+									
+									
+									<p>Partenza:
+										#{item.getOutboundFlight().flight.getCityDeparture().getName()}
+										#{item.getOutboundFlight().flight.getAirportDeparture()}</p>
+									<p>Destinazione:
+										#{item.getOutboundFlight().flight.getCityArrival().getName()}
+										#{item.getOutboundFlight().flight.getAirportArrival()}</p>
+									<div>
+										<table class="table" style="margin-bottom: 45px">
+
+											<tr>
+												<th>Volo (andata)</th>
+												<td>#{item.getOutboundFlight().flight.name}</td>
+												<td>#{item.getOutboundFlight().flight.company}</td>
+											</tr>
+											<tr>
+												<th>Volo (ritorno)</th>
+												<td>#{item.getReturnFlight().flight.name}</td>
+												<td>#{item.getReturnFlight().flight.company}</td>
+											</tr>
+
+											<tr>
+												<th>Hotel</th>
+												<td>#{item.getHotel().hotel.name}</td>
+												<td>#{item.getHotel().hotel.company}</td>	
+											</tr>
+											<tr>
+												<th>Escursione</th>
+												<td>#{item.getExcursion().excursion.name}</td>
+												<td>#{item.getExcursion().excursion.company}</td>
+											</tr>
+										</table>
+									</div>
+
+									<p>
+
+
+									</p>
+								</div>
+								
+							</div>
+							</div>	</div>
+							</ui:repeat>
+						</div>
+
+
+
+
+					</div>
+				</div>
+
+			</div>
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>
+
+
+
+</html>

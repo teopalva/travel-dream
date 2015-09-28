@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+		<h:body>
+
+			<div class="container">
+				<div class="row clearfix">
+					<div class="col-md-12 column">
+						<div class="jumbotron well" style="margin-top:50px;margin-bottom:100px;">
+							<center><h1>Thank you.</h1>
+							<p>The payment has to be executed within 48h:</p><br></br>
+							</center>
+							<div class="row clearfix">
+								<div class="col-md-6 column" style="border-bottom: 1px solid black;border-top: 1px solid black">
+									<center><p>Receiver<br></br>Account number</p></center>
+								</div>
+								<div class="col-md-6 column" style="border-bottom: 1px solid black;border-top: 1px solid black">
+								<center><p><i>TravelDream s.r.l.<br></br>￼RO11VYHO3215271561449480</i></p></center>
+								</div>
+							</div>
+
+							
+							<p style="padding-top:70px">
+								<center><h:link  class="btn btn-primary btn-large" outcome="#{Payment.showBuyingList()}">Success!</h:link></center>
+							</p>
+							
+						</div>
+					</div>
+				
+				</div>
+			</div>
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>
+
+
+
+</html>

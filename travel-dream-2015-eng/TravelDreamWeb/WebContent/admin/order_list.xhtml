@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+		<h:body>
+
+
+			<div class="container">
+				<div class="row clearfix">
+					<div class="col-md-12 column" style="margin-top: 60px">
+						<h:form id="boughtForm">
+						
+							<p:dataTable id="boughtList" var="bought"
+								value="#{OrderList.getBoughtList()}" rowKey="#{bought.date}"
+								selection="#{OrderList.selectedItem}" selectionMode="single">
+
+						
+
+								<f:facet name="header">Orders waiting for payment</f:facet>
+
+								<p:column headerText="Date" sortBy="date">  #{bought.date}  </p:column>
+
+								<p:column headerText="Customer">  #{bought.user.firstName} #{bought.user.lastName}   </p:column>
+
+								<p:column headerText="Email" sortBy="user.mail" >  #{bought.user.mail}    </p:column>
+
+								<p:column headerText="Package" sortBy="_package.name">  #{bought._package.name}  </p:column>
+								<!-- CHECK THE UPDATE -->
+								<p:column headerText="Payment"><p:commandButton actionListener="#{OrderList.confirmPayment(bought)}"  value="Received"  ajax="true" update=":boughtForm:boughtList,:paidForm:paidList" styleClass="btn-block" /> </p:column>
+
+																
+								<f:facet name="footer">
+									<p:commandButton id="viewButton" value="Details"
+										icon="ui-icon-search" update=":boughtForm:display" oncomplete="PF('boughtDialog').show()" />
+								</f:facet>
+
+							</p:dataTable>
+					
+
+							<p:dialog id="boughtDialog" widgetVar="boughtDialog" resizable="false" style="margin-top:300px"
+								header="Dettaglio ordine"
+								width="640" height="480"  position="200,50">
+
+								<h:panelGroup id="display">
+
+									
+
+											<div class="well" style="margin-top: 10px">
+
+												<div>
+													<div class="col-md-4 column"></div>
+
+													<div class="col-md-8 column"
+														style="margin-top: -20px; margin-left: -40px">
+														<h4>Total price: #{OrderList.selectedItem._package.getPrice()}€</h4>
+													</div>
+												</div>
+
+											</div>
+
+												<p:panel id="departureFlight" header="Volo di andata" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getOutboundFlight().flight.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getOutboundFlight().flight.company}</center>
+													</div>
+												</p:panel>
+
+
+
+												<p:panel id="returnFlight" header="Volo di ritorno" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getReturnFlight().flight.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getReturnFlight().flight.company}</center>
+													</div>
+												</p:panel>
+
+
+												<p:panel id="hotel" header="Hotel" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getHotel().hotel.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getHotel().hotel.company}</center>
+													</div>
+												</p:panel>
+
+												<p:panel id="excursion" header="Escursione" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getExcursion().excursion.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getExcursion().excursion.company}</center>
+													</div>
+
+												</p:panel>
+
+											<div class="col-md-12 column"
+												style="margin-top: 16px">
+												 
+											</div>
+											
+								</h:panelGroup>
+							</p:dialog>
+
+						</h:form>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-12 column" style="margin-top: 60px">
+
+						<h:form id="paidForm">
+							<h:panelGroup id="displayPaid">
+							<p:dataTable id="paidList" var="paid"
+								value="#{OrderList.getPaidList()}" rowKey="#{paid.date}"
+								selection="#{OrderList.selectedItem}" selectionMode="single">
+
+								<f:facet name="header">  Completed orders  </f:facet>
+
+								<p:column headerText="Date" sortBy="date">   #{paid.date}  </p:column>
+
+								<p:column headerText="Customer">   #{paid.user.firstName} #{paid.user.lastName}  </p:column>
+
+								<p:column headerText="Email" sortBy="user.mail">   #{paid.user.mail}  </p:column>
+
+								<p:column headerText="Package" sortBy="_package.name">   #{paid._package.name}  </p:column>
+
+								<f:facet name="footer">
+									<p:commandButton id="viewButton" value="Details"
+										icon="ui-icon-search" update=":paidForm:display"
+										oncomplete="PF('paidDialog').show()" />
+								</f:facet>
+
+
+							</p:dataTable>
+							</h:panelGroup>
+
+							<p:dialog id="paidDialog" widgetVar="paidDialog" resizable="false" style="margin-top:300px"
+								header="Dettaglio ordine" position="200,50"
+								width="640" height="480">
+
+								<h:panelGroup id="display">
+
+									
+
+											<div class="well" style="margin-top: 10px">
+
+												<div>
+													<div class="col-md-4 column"></div>
+
+													<div class="col-md-8 column"
+														style="margin-top: -20px; margin-left: -40px">
+														<h4>Prezzo totale: #{OrderList.selectedItem._package.getPrice()}€</h4>
+													</div>
+												</div>
+
+											</div>
+
+												<p:panel id="departureFlight" header="Volo di andata" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getOutboundFlight().flight.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getOutboundFlight().flight.company}</center>
+													</div>
+												</p:panel>
+
+
+
+												<p:panel id="returnFlight" header="Volo di ritorno" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getReturnFlight().flight.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getReturnFlight().flight.company}</center>
+													</div>
+												</p:panel>
+
+
+												<p:panel id="hotel" header="Hotel" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getHotel().hotel.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getHotel().hotel.company}</center>
+													</div>
+												</p:panel>
+
+												<p:panel id="excursion" header="Escursione" style="display:block;overflow:auto;margin-bottom:20px">
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getExcursion().excursion.name}</center>
+													</div>
+													<div class="col-md-6">
+														<center>#{OrderList.selectedItem._package.getExcursion().excursion.company}</center>
+													</div>
+
+												</p:panel>
+
+											
+								</h:panelGroup>
+							</p:dialog>
+
+						</h:form>
+
+					</div>
+				</div>
+			</div>
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>
+
+
+
+</html>

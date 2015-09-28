@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+	
+		<h:body>
+
+     <!-- <div class="alert alert-info">
+        Sei autenticato come: #{Header.getUserName()}<br></br>In ruolo di: #{Home.helloWorld}  
+    
+      </div> --> 
+						
+			
+				
+        			<div class="well">
+        			<h2 style="margin-top:10px"><center>Where would you like to go?</center></h2>
+        			<center>
+        			
+        			<h:form id="wheretogo" styleClass="form-inline">
+        			
+  						<div class="form-group">
+  							<p:inputText id="from"  name="j_username" styleClass="form-control" placeholder="Departure from" value="#{SessionStorage.departurePlace}"/>
+    						<!--  <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">-->
+  						</div>
+ 						 <div class="form-group">
+ 						 	<p:inputText id="to"  styleClass="form-control" placeholder="Destination" value="#{SessionStorage.arrivalPlace}"/>
+   			
+   							
+  						</div>
+  						<div class="form-group">
+  						<h:commandButton id="go"  value="Search" styleClass="btn btn-default" action="#{Home.showOfferingsList()}" />
+  						</div>
+
+					</h:form>
+					
+        		</center>	
+        			
+     	 	</div>
+			
+		
+			<div class="row">
+ 				<h:form>
+ 				 <div class="col-md-6">
+ 				 	
+ 				 	<div class="well">
+ 				 		<center>
+ 				 		<h2>Create your package</h2>
+ 			
+ 				 		<br></br><br></br>
+ 				 		<div class="row">
+  							<div class="col-md-4 col-md-offset-1">
+  								<center>
+  								
+  									<h:graphicImage library="images" name="flight.png" height="90" styleClass="img-rounded"/><br></br>
+  									Flight <br></br><p:selectBooleanCheckbox value="#{Home.f}" />
+  									
+  								</center>
+  							</div>
+  							
+  							<div class="col-md-4 col-md-offset-2">
+  								<center>
+  									<h:graphicImage library="images" name="hotel.png" height="90" styleClass="img-rounded"/><br></br>
+  									Hotel <br></br><p:selectBooleanCheckbox value="#{Home.h}" />
+  								</center>
+  								
+  							</div>
+						</div>
+ 				 		<div class="row">
+ 				 			<div class="col-md-4 col-md-offset-4">
+ 				 				<center>
+ 				 					<h:graphicImage library="images" name="excursion.png" height="90" styleClass="img-rounded"/><br></br>
+ 				 					Excursion <br></br> <p:selectBooleanCheckbox value="#{Home.e}" />
+ 				 				</center>
+ 				 			</div>
+ 				 		</div>
+ 				 		<br></br><br></br>
+ 				 			
+ 				 		<p:commandButton id="goCreate" action="#{Home.showEditPackage()}" value="Go" styleClass="btn btn-primary" />
+ 				 		</center>
+ 				
+ 				 	</div>
+ 				 </div>
+ 				  </h:form>
+  				<div class="col-md-6">
+  				<div class="well">
+  					<center>
+  					<h2>Discover our offers</h2>
+  					<br></br>
+  						<h:graphicImage library="images" name="travel.png" height="302" styleClass="img-rounded"/>
+  						<br></br><br></br>
+  							<p:commandButton id="showOfferingsList" action="#{Home.showOfferingsList()}" value="Go to catalogue" styleClass="btn btn-primary" />
+  						</center>
+  				</div>
+  				</div>
+			</div>
+	
+			
+
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

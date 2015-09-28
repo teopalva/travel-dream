@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+		<h:body>
+			<div class="container">
+
+				<div class="row clearfix" style="margin-top: 20px;border-bottom:1px solid #e7e7e7;">
+					<div class="col-md-12 column">
+						
+							<center><h1>Checkout</h1></center>
+						
+					</div>
+				</div>
+				<p:messages showDetail="true" for="alertMail" autoUpdate="true" closable="true" />  
+				<p:messages showDetail="true" for="alert" autoUpdate="true" closable="true" />  
+				<div class="row clearfix" style="padding-top: 30px">
+					<div class="col-md-4 column" style="height: 340px;">
+						<h2>Confirm Payment</h2>
+						<p>This will confirm your purchase.</p>
+						
+						<p:commandButton id="buy" value="Confirm" global="false" styleClass="btn btn-success btn-default btn-block" style="margin-top: 140px" action="#{Checkout.showPayment()}" />
+
+					</div>
+					<h:panelGroup rendered="#{Checkout.isGiftActive()}">
+					<div class="col-md-4 column">
+						<h2>Gift List</h2>
+						<p>This will add your custom package to your Gift List, in this way your friends will be able to buy it for you in the future.</p>
+						
+						<p:commandButton id="giftlist" value="Add to Gift List" global="false" styleClass="btn btn-block btn-info" style="margin-top: 100px" action="#{Checkout.showGiftList()}" />
+
+					</div>
+					</h:panelGroup>
+					<p:messages showDetail="true" for="alertMail" autoUpdate="true" closable="true" />  
+					<h:panelGroup rendered="#{Checkout.isInviteActive()}">
+					<div class="col-md-4 column">
+						<h2>Invite Friends</h2>
+						<p>Here you can invite friends to travel with you! They will receive an email with a link to your package.</p>
+						
+						<h:form id="mailForm">
+						<ui:repeat value="#{Checkout.emails}" var="item" varStatus="id"> 
+							<p:inputText id="email" styleClass="form-control" placeholder="e-mail" value="#{Checkout.emails[id.index]}" required="true" validatorMessage="Invalid email."> 
+							 <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)"/>
+							</p:inputText>
+						<br></br>
+						</ui:repeat>
+								
+							
+						<p:commandButton id="invitelist" value="Invita amici" styleClass="btn btn-block btn-warning"  action="#{Checkout.showInvitationList()}" />
+						<p:ajaxStatus id="ajaxStatusPanel" style="margin-top:20px;margin-bottom:30px">  
+    						<f:facet name="start">  
+    							<h:graphicImage library="images" name="ajaxloading.gif" style="width:16px;height:16px;"/> Sending email... 
+  							</f:facet>  
+      						<f:facet name="complete">  
+        						<h:outputText value="" />  
+							</f:facet>  
+						</p:ajaxStatus> 
+						
+						
+						
+						</h:form>
+					</div>
+					</h:panelGroup>
+				</div>
+				<div class="row clearfix" style="margin-bottom: 10px">
+					<div class="col-md-12 column">
+						<div class="alert alert-danger">
+							<b>Attention</b> This will confirm your choice!
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</h:body>
+
+	</ui:define>
+</ui:composition>
+
+
+
+</html>

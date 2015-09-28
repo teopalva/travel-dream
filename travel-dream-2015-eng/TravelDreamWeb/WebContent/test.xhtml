@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head>
+        <title>TEST</title>
+    </h:head>
+    <h:body>
+
+<h:form>  
+    <p:panel id="panel" header="Test">  
+  
+        <p:messages id="msgs" />  
+  
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test userEJB" actionListener="#{Test.testUserEJB()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>  
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test packageEJB" actionListener="#{Test.testPackageEJB()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>  
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test testBaseProductEJB" actionListener="#{Test.testBaseProductEJB()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>  
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test delete base products - BaseProductEJB" actionListener="#{Test.testDeleteBaseProductEJB()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>  
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test send invitation" actionListener="#{Test.testInvitationEJB()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid> 
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test Buying list" actionListener="#{Test.testBuyingListEJB()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test Delete Buying list" actionListener="#{Test.testDeleteBuyingListEJB()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>  
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test price package" actionListener="#{Test.testPrice()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid> 
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test gift package" actionListener="#{Test.testGiftListEJB()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test deep copy" actionListener="#{Test.testBuyPackageDeepCopy()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid> 
+        
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test valid package" actionListener="#{Test.testIsValidPackage()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test get invitations" actionListener="#{Test.testGetInvitations()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>
+        
+        <h:panelGrid columns="3" cellpadding="5">  
+    	   		<h:commandButton value="Test Paid" actionListener="#{Test.testPaid()}">
+    	   			<f:ajax execute="panel" render="panel" />  
+    	   		</h:commandButton>
+  
+        </h:panelGrid>
+        
+        
+        
+  
+  
+    </p:panel>  
+  
+</h:form>  
+
+    </h:body>
+</html>

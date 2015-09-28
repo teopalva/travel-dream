@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/WEB-INF/template/default.xhtml">
+	<ui:define name="content">
+		<h:body>
+
+			<div class="container" style="margin-top:20px" id="container">
+				
+				<div class="row row-offcanvas row-offcanvas-right">
+					<div class="col-xs-12 col-sm-3 sidebar-offcanvas" id="sidebar">
+						<div class="bs-sidebar hidden-print">
+							<div class="navbar navbar-default"
+								style="padding-left: 20px; padding-right: 20px">
+								<center>
+									<h3>Search</h3>
+								</center>
+
+						
+								<h:form>
+									<ul class="list-group">
+										<li class="list-group-item">Departing:<br></br> <p:calendar
+												value="#{OfferingsList.departureDate}" id="departureCal"
+												locale="it" pattern="dd/MM/yyyy">
+
+											</p:calendar>
+										</li>
+										<li class="list-group-item">Returning:<br></br> <p:calendar
+												id="returnCal" value="#{OfferingsList.returnDate}"
+												locale="it" pattern="dd/MM/yyyy" />
+										</li>
+										<li class="list-group-item">Leaving from:<p:inputText
+												styleClass="form-control" id="departure"
+												value="#{OfferingsList.departurePlace}"
+												placeholder="#{SessionStorage.departurePlace}" /></li>
+										<li class="list-group-item">Going to:<p:inputText
+												styleClass="form-control" id="arrival"
+												value="#{OfferingsList.arrivalPlace}"
+												placeholder="#{SessionStorage.arrivalPlace}" /></li>
+										<li class="list-group-item">Adults:<br></br> <p:spinner
+												id="people" value="#{OfferingsList.numPeople}" min="1"
+												max="10" styleClass="form-control"
+												style="border: 0px; height:30px;" />
+										</li>
+
+
+									</ul>
+									
+									<ul class="list-group collapse out" id="avanzate">
+									
+
+									<li class="list-group-item">
+										
+										<p:selectOneMenu
+												value="#{OfferingsList.flightClass}">
+												<f:selectItem itemLabel="Flight class" itemValue="null" />
+												<f:selectItem itemLabel="Economy" itemValue="economy" />
+												<f:selectItem itemLabel="Business" itemValue="business" />
+											</p:selectOneMenu>
+										
+									</li>
+
+									<li class="list-group-item">
+
+										<p:selectOneMenu
+												value="#{OfferingsList.hotelStars}">
+												<f:selectItem itemLabel="Stars" itemValue="0" />
+												<f:selectItem itemLabel="1" itemValue="1" />
+												<f:selectItem itemLabel="2" itemValue="2" />
+												<f:selectItem itemLabel="3" itemValue="3" />
+												<f:selectItem itemLabel="4" itemValue="4" />
+												<f:selectItem itemLabel="5" itemValue="5" />
+											</p:selectOneMenu>
+
+
+										 <p:selectOneMenu
+												value="#{OfferingsList.hotelClass}">
+												<f:selectItem itemLabel="Room type" itemValue="null" />
+												<f:selectItem itemLabel="Economy" itemValue="economy" />
+												<f:selectItem itemLabel="Classic" itemValue="classic" />
+												<f:selectItem itemLabel="Business" itemValue="business" />
+												<f:selectItem itemLabel="Deluxe" itemValue="deluxe" />
+											</p:selectOneMenu>
+									
+
+
+									</li>
+									
+									</ul>
+									
+									
+									
+									
+									<div style="margin-top:10px;margin-bottom:20px">
+									<p:commandButton
+												value="Search" ajax="true"
+												action="#{OfferingsList.submitSearch()}" update=":packages"
+												styleClass="btn btn-primary btn-lg btn-block"
+												id="buttonSearch" />
+
+											<button type="button"
+												class="btn btn-default btn-lg btn-block"
+												data-toggle="collapse" data-target="#avanzate">Advanced</button>
+									</div>
+								</h:form>
+
+							
+								
+
+
+							</div>
+
+
+						</div>
+					</div>
+
+
+					<div class="col-xs-12 col-sm-9">
+						
+
+
+
+						<div class="row">
+
+
+							<div class="alert alert-info">
+							<h3 style="margin-top:5px">Catalogue <small><br></br>Discover our amazing discounted packages! You can also refine your search on the left toolbar.</small></h3>
+
+							</div>
+
+
+
+							<h:form>
+
+							</h:form>
+							<div class="row text-center">
+
+
+								<h:panelGroup id="packages"> 
+									<ui:repeat value="#{OfferingsList.submitSearch()}"
+										var="package">
+
+										<div class="col-md-4 hero-feature">
+											<div class="thumbnail">
+											
+											<img src="http://localhost:8080/TravelDreamWeb/ImageServlet?id=#{package.getId()}" style="height:180px" class="img-rounded"></img>
+												<h:graphicImage value="" />
+												<div class="caption">
+													<h4>#{package.getName()}</h4>
+													<p>Price: #{package.getPrice()} €</p>
+													<p>Discount:  #{package.getReduction()*100} %</p>
+													<p>From:
+														#{package.getOutboundFlight().flight.getCityDeparture().getName()}
+														#{package.getOutboundFlight().flight.getAirportDeparture()}</p>
+													<p>To:
+														#{package.getOutboundFlight().flight.getCityArrival().getName()}
+														#{package.getOutboundFlight().flight.getAirportArrival()}</p>
+													<div id="info_#{package.id}" class="collapse out">
+														<table class="table" style="margin-bottom: 45px; margin-right:10px">
+															<caption style="padding-bottom: 5px"><h5>Package details</h5></caption>
+															<tr>
+																<th>Flight (departing)</th>
+																<td>#{package.getOutboundFlight().flight.name}</td>
+																<td>#{package.getOutboundFlight().flight.company}</td>
+															</tr>
+															<tr>
+																<th>Flight (returning)</th>
+																<td>#{package.getReturnFlight().flight.name}</td>
+																<td>#{package.getReturnFlight().flight.company}</td>
+															</tr>
+
+															<tr>
+																<th>Hotel</th>
+																<td>#{package.getHotel().hotel.name}</td>
+																<td>#{package.getHotel().hotel.company}</td>
+															</tr>
+															<tr>
+																<th>Excursion</th>
+																<td>#{package.getExcursion().excursion.name}</td>
+																<td>#{package.getExcursion().excursion.company}</td>
+															</tr>
+														</table>
+													</div>
+													
+													<p>
+
+														<p:commandButton value="Go" styleClass="btn btn-primary"
+															action="#{OfferingsList.showEditPackage(package)}" />
+														<p:commandButton rendered="#{OfferingsList.isTDE()}" action="#{OfferingsList.removePackage(package)}" value="Remove" styleClass="btn btn-primary" update=":packages"/>
+														
+
+														<button type="button" class="btn btn-default"
+															data-toggle="collapse" data-target="#info_#{package.id}">Info</button>
+													
+
+													</p>
+												</div>
+											</div>
+										</div>
+
+									</ui:repeat>
+								</h:panelGroup>
+
+
+							</div>
+							<!-- /.row -->
+
+
+						</div>
+						<!--/span-->
+
+					</div>
+
+
+
+				</div>
+				<!--/.container-->
+
+			</div>
+
+		</h:body>
+	</ui:define>
+</ui:composition>
+
+
+
+</html>
